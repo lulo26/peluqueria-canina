@@ -1,6 +1,6 @@
 <?php
 
-const BASE_URL = "http://localhost/canifelix";
+const BASE_URL = "http://localhost/peluqueria-canina";
 //const LIBS = "Libraries/";
 //const VIEWS = "Views/";
 
