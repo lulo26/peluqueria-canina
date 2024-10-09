@@ -42,6 +42,7 @@
 
 
     <script>const base_url = "<?= base_url() ?>";</script>
+    
     <!-- Bootstrap core JavaScript-->
     <script src="<?= media() ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?= media() ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

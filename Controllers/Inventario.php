@@ -13,4 +13,29 @@ class Inventario extends Controllers{
  
         $this->views->getView($this,"inventario", $data);
     }
+
+    public function setProducto(){
+        $nombreProducto = strClean($_POST['nombreProducto']);
+        $estadoProducto = strClean($_POST['estadoProducto']);
+        $precioProducto = intval($_POST['precioProducto']);
+        $codigoProducto = strClean($_POST['codigoProducto']);
+
+        $arrPost = ['nombreProducto','estadoProducto','precioProducto','codigoProducto'];
+        if (check_post($arrPost)) {
+            $requestModel = $this->model->insertarProducto($nombreProducto, $estadoProducto, $precioProducto, $codigoProducto);    
+        }else{
+            $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos');
+        }
+
+        if ($requestModel > 0) {
+            $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+        }elseif ($requestModel == 'exist') {
+            $arrRespuesta = array('status' => false, 'msg' => 'Atención: El producto ya existe');
+        }else{
+            $arrRespuesta = array('status' => false, 'msg' => 'No es posible registrar el producto');
+        }
+
+        echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
