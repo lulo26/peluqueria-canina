@@ -9,6 +9,7 @@ class Usuarios extends Controllers{
     public function usuarios(){
 
         $data['page_title'] = "Usuarios";
+        $data['page_id_name'] = "usuarios";
  
         $this->views->getView($this,"usuarios", $data);
     }

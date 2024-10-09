@@ -13,14 +13,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "dashboard" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Gestion de usuarios -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-store"></i>
@@ -35,35 +35,35 @@
             </li>
 
             <!-- Nav Item - Citas -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "citas" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/citas">
                     <i class="fas fa-calendar-check"></i>
                     <span>Citas</span></a>
             </li>
 
             <!-- Nav Item - Inventario -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "inventario" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/inventario">
                     <i class="fas fa-box-open"></i>
                     <span>Inventario</span></a>
             </li>
 
             <!-- Nav Item - Ventas -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "ventas" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/ventas">
                     <i class="fas fa-cash-register"></i>
                     <span>Ventas</span></a>
             </li>
 
             <!-- Nav Item - Clientes -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "clientes" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/clientes">
                     <i class="fas fa-user-tag"></i>
                     <span>Clientes</span></a>
             </li>
 
             <!-- Nav Item - Mascotas -->
-            <li class="nav-item">
+            <li class="nav-item <?= $data['page_id_name'] == "mascotas" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/mascotas">
                     <i class="fas fa-cat"></i>
                     <span>Mascotas</span></a>

@@ -8,7 +8,9 @@ class Citas extends Controllers{
     //Muestra la view principal de citas
     public function citas(){
 
+        $data['page_id_name'] = "citas";
         $data['page_title'] = "Citas";
+
  
         $this->views->getView($this,"citas", $data);
     }
