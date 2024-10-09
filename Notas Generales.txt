@@ -1,0 +1,2 @@
+Toda la paginación está estructurada
+Resta crear paginacion para logout y login

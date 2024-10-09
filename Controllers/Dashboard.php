@@ -11,6 +11,6 @@ class Dashboard extends Controllers{
         $data['page_tag'] = "Dashboard - Home";
         $data['page_title'] = "Página de dashboard";
         $data['page_name'] = "Dashboard";
-        $this->views->getView($this,"dashboard", $data);
+        $this->views->getView($this,"dashboard", $data); //Llama la vista
     }
 }

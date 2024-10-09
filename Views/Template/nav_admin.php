@@ -4,9 +4,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-dog"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Peluqueria Canina</div>
             </a>
 
             <!-- Divider -->
@@ -23,30 +23,50 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-users"></i>
-                    <span>Gestión de usuarios</span>
+                    <i class="fas fa-store"></i>
+                    <span>Administrar Negocio</span>
                 </a>
                 <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Usuarios</a>
-                        <a class="collapse-item" href="cards.html">Roles</a>
-                        <a class="collapse-item" href="cards.html">Permisos</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
                     </div>
                 </div>
             </li>
 
             <!-- Nav Item - Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?= base_url() ?>/citas">
                     <i class="fas fa-calendar-check"></i>
                     <span>Citas</span></a>
             </li>
 
-            <!-- Nav Item - Citas -->
+            <!-- Nav Item - Inventario -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="<?= base_url() ?>/inventario">
                     <i class="fas fa-box-open"></i>
                     <span>Inventario</span></a>
+            </li>
+
+            <!-- Nav Item - Ventas -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url() ?>/ventas">
+                    <i class="fas fa-cash-register"></i>
+                    <span>Ventas</span></a>
+            </li>
+
+            <!-- Nav Item - Clientes -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url() ?>/clientes">
+                    <i class="fas fa-user-tag"></i>
+                    <span>Clientes</span></a>
+            </li>
+
+            <!-- Nav Item - Mascotas -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url() ?>/mascotas">
+                    <i class="fas fa-cat"></i>
+                    <span>Mascotas</span></a>
             </li>
             
             <!-- Divider -->
