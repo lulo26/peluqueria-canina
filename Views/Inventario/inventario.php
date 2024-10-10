@@ -12,22 +12,34 @@ getModal('inventarioModal',$data);
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">
+                <h4 class="m-0 font-weight-bold text-primary">
                     <?= $data['page_title'] ?>
-                    <button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#exampleModal" >
+                    <button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#crearProductoModal" >
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
                         <span class="text">Crear producto</span>
                     </button>
 
-                </h6>
+                </h4>
             </div>
 
 
 
             <div class="card-body">
-                oiuoiuoiu
+            <table id="tablaProductos" class="datatable cell-border compact stripe">
+                <thead>
+                    <tr>
+                        <td>Nombre producto</td>
+                        <td>Cantidad</td>
+                        <td>Estado</td>
+                        <td>Precio</td>
+                        <td>codigo SKU</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
             </div>
         </div>
         

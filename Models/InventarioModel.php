@@ -6,6 +6,12 @@ class InventarioModel extends Mysql{
         parent::__construct();
     }
 
+    public function selectProductos(){
+        $sql = "SELECT * FROM productos";
+        $request = $this->select_all($sql);
+        return $request;    
+    }
+
     public function insertarProducto(string $nombreProducto, string $estadoProducto, int $precioProducto, string $codigoProducto){
         $return = "";
 
@@ -14,7 +20,7 @@ class InventarioModel extends Mysql{
         $this->precioProducto = $precioProducto;
         $this->codigoProducto = $codigoProducto;
 
-        $sql = "SELECT * FROM productos WHERE nombreProducto = '{$this->nombreProducto}'";
+        $sql = "SELECT nombreProducto, cantidadProducto, estado, precio, codigoSKU FROM productos WHERE nombreProducto = '{$this->nombreProducto}'";
         $request = $this->select_all($sql);
 
         if (empty($request)) {
