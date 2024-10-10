@@ -52,6 +52,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= media() ?>/js/sb-admin-2.min.js"></script>
+    <!-- alerts-->
+    <script src="<?= media() ?>/vendor/sweetAlert2/sweetalert2.all.min.js"></script>
+    <!-- dataTables-->
+    <script src="<?= media() ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="<?= media() ?>/vendor/datatables/jquery.datatables.min.js"></script>
 
 </body>
 

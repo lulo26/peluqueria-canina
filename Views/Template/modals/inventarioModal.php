@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="crearProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,25 +15,25 @@
         <form id="frmProductos" method="POST">
             <div class="form-group">
               <label for="nombreProducto">Nombre</label>
-              <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" aria-describedby="nombreProducto">
+              <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" autocomplete="off">
               <small id="nombreProducto" class="form-text text-muted">Nombre del producto que va a crear</small>
             </div>
 
             <div class="form-group">
               <label for="estadoProducto">Estado</label>
-              <input type="text" class="form-control" id="estadoProducto" name="estadoProducto" aria-describedby="estadoProducto">
+              <input type="text" class="form-control" id="estadoProducto" name="estadoProducto" autocomplete="off">
               <small id="estadoProducto" class="form-text text-muted">Estado del producto que va a crear</small>
             </div>
 
             <div class="form-group">
               <label for="precioProducto">Precio</label>
-              <input type="text" class="form-control" id="precioProducto" name="precioProducto" aria-describedby="precioProducto">
+              <input type="text" class="form-control" id="precioProducto" name="precioProducto" autocomplete="off">
               <small id="precioProducto" class="form-text text-muted">precio del producto que va a crear</small>
             </div>
 
             <div class="form-group">
               <label for="codigoProducto">Codigo</label>
-              <input type="text" class="form-control" id="codigoProducto" name="codigoProducto" aria-describedby="codigoProducto">
+              <input type="text" class="form-control" id="codigoProducto" name="codigoProducto" autocomplete="off">
               <small id="codigoProducto" class="form-text text-muted">Codigo SKU del producto</small>
             </div>
       </div>
