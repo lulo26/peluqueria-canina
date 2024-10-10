@@ -18,32 +18,29 @@ class Clientes extends Controllers{
         $nombre = strClean($_POST['nombre']);
         $apellido = strClean($_POST['apellido']);
         $correo = $_POST['correo'];
-        $cleanEmail =filter_var($correo,FILTER_SANITIZE_EMAIL);
+        $telefono = strClean($_POST['telefono']);
         $usuario = strClean($_POST['usuario']);
         $password = strClean($_POST['password']);
 
-        $arrayPost = ['nombre','apellido','correo','usuario','password'];
+        $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
 
-        if ($correo == $cleanEmail && filter_var($correo,FILTER_VALIDATE_EMAIL)) {
-            if (check_post($arrayPost)) {
-                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$usuario,$password);
-            }else {
-                $arrayResp= array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+        if (check_post($arrayPost)) {
+            $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
+
+            if ($requestModel>0) {
+                $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
+            }elseif ($requestModel == 'user exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
+            }elseif ($requestModel=='email exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe');
+            }else{
+                $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente');
             }
-        }else{
-            $arrayResp= array('status'=>false,'msg'=>'Correo inválido');
-        }
 
-        if ($requestModel>0) {
-            $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
-        }elseif ($requestModel == 'user exist') {
-            $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
-        }elseif ($requestModel=='email exist') {
-            $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe');
-        }else{
-            $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente');
+        }else {
+            $arrayResp= array('status'=>false,'msg'=>'Debe ingresar todos los datos');
         }
-
+        
         echo json_encode($arrayResp,JSON_UNESCAPED_UNICODE);
         die();
         

@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <label for="apellido">Nombre</label>
-                            <input type="text" class="form-control" id="apellido" name="apelldio" autocomplete="off">
+                            <input type="text" class="form-control" id="apellido" name="apellido" autocomplete="off">
                             <small id="apellido" class="form-text text-muted">Apellido(s).</small>
                         </div>
                         <div class="form-group">
@@ -40,12 +40,14 @@
                             <input type="password" class="form-control" id="password" name="password" autocomplete="off">
                             <small id="password" class="form-text text-muted">Contraseña.</small>
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
+                
             </div>
         </div>
 
