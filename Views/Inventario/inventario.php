@@ -27,7 +27,10 @@ getModal('inventarioModal',$data);
 
 
             <div class="card-body">
-            <table id="tablaProductos" class="datatable cell-border compact stripe">
+            <div class="table-responsive">
+
+            </div>
+            <table id="tablaProductos" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <td>Nombre producto</td>
