@@ -9,7 +9,7 @@ class InventarioModel extends Mysql{
     public function selectProductos(){
         $sql = "SELECT * FROM productos";
         $request = $this->select_all($sql);
-        return $request;    
+        return $request;
     }
 
     public function insertarProducto(string $nombreProducto, string $estadoProducto, int $precioProducto, string $codigoProducto){
