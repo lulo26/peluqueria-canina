@@ -10,7 +10,6 @@
       </div>
       <div class="modal-body">
 
-
         <!-- aquí va el contenido del modal -->
 
         <form id="frmProductos" method="POST">

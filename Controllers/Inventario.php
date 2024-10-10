@@ -21,6 +21,7 @@ class Inventario extends Controllers{
         $codigoProducto = strClean($_POST['codigoProducto']);
 
         $arrPost = ['nombreProducto','estadoProducto','precioProducto','codigoProducto'];
+        
         if (check_post($arrPost)) {
             $requestModel = $this->model->insertarProducto($nombreProducto, $estadoProducto, $precioProducto, $codigoProducto);    
         }else{
