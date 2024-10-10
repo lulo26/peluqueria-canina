@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             {"data":"estado"},
             {"data":"precio"},
             {"data":"codigoSKU"},
+            {"data":"options"}
         ],
         "responsive": "true",
         "order":[[0, "asc"]]
@@ -41,8 +42,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 console.log('propiedad disparada')
                 frmProductos.reset()
                 $('#crearProductoModal').modal('hide')
+                tablaProductos.api().ajax.reload(function(){});
             }
         })
     })
+
+    //delProducto
+    //extraer el atributo
 })
 

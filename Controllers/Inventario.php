@@ -17,6 +17,25 @@ class Inventario extends Controllers{
     public function getProductos(){
         $arrData = $this->model->selectProductos();
 
+        for($i = 0; $i < count($arrData); $i++){
+/*             if($arrData[$i]['status'] == 1){
+                $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
+            }else{
+                $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
+            } */
+            
+            $arrData[$i]['options'] = "
+
+                <button type='button' class='btn btn-danger btn-circle' rel='".$arrData[$i]['idInventario']."'>
+                    <i class='fas fa-trash'></i>
+                </button>
+
+                <button type='button' class='btn btn-primary btn-circle' rel='".$arrData[$i]['idInventario']."'>
+                    <i class='fas fa-pen'></i>
+                </button>
+            ";
+        }
+
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }
@@ -44,6 +63,23 @@ class Inventario extends Controllers{
         }
 
         echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+
+    public function eliminarProducto(){
+        if ($_POST) {
+            $idProducto = intval($_POST['idInventario']);
+            $requestDelete = $this->model->deleteProducto($idProducto);
+            if($requestDelete == 'ok'){
+                $arrResponse = array('status' => true, 'msg' => 'se ha eliminado el producto.');
+            }else if($requestDelete == 'exist'){
+                $arrResponse = array('status' => false, 'msg' => 'No es posible eliminar un producto asociado a una factura.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el producto.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
         die();
     }
 }

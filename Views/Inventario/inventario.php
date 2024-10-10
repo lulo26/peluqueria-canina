@@ -33,11 +33,12 @@ getModal('inventarioModal',$data);
             <table id="tablaProductos" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <td>Nombre producto</td>
-                        <td>Cantidad</td>
-                        <td>Estado</td>
-                        <td>Precio</td>
-                        <td>codigo SKU</td>
+                        <th>Nombre producto</th>
+                        <th>Cantidad</th>
+                        <th>Estado</th>
+                        <th>Precio</th>
+                        <th>codigo SKU</th>
+                        <th>Accion</th>
                     </tr>
                 </thead>
                 <tbody>
