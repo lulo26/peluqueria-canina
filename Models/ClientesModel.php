@@ -14,7 +14,6 @@ class ClientesModel extends Mysql{
         $this->usuario=$usuario;
         $this->password=$password;
 
-        //ejecutamos consultas para saber si existen o no en la base de datos
         $sql=["SELECT * from clientes Where usuario='{$this->usuario}'","SELECT * from clientes where correo='{$this->correo}'"];
 
         $array_request=[
