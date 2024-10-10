@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         ],
         "responsive": "true",
         "order":[[0, "asc"]]
-    })
+    }) 
 
     frmProductos.addEventListener('submit', (e)=>{
         e.preventDefault()
@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             text: data.msg,
             icon: data.status ? "success" : 'error'
             })
+            console.log(data.status)
             if (data.status){
                 console.log('propiedad disparada')
                 frmProductos.reset()
