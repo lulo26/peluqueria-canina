@@ -35,7 +35,6 @@ getModal('inventarioModal',$data);
                     <tr>
                         <th>Nombre producto</th>
                         <th>Cantidad</th>
-                        <th>Estado</th>
                         <th>Precio</th>
                         <th>codigo SKU</th>
                         <th>Accion</th>

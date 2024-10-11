@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
         "columns":[
             {"data":"nombreProducto"},
             {"data":"cantidadProducto"},
-            {"data":"estado"},
             {"data":"precio"},
             {"data":"codigoSKU"},
             {"data":"options"}
@@ -37,17 +36,54 @@ document.addEventListener('DOMContentLoaded', ()=>{
             text: data.msg,
             icon: data.status ? "success" : 'error'
             })
-            console.log(data.status)
             if (data.status){
-                console.log('propiedad disparada')
                 frmProductos.reset()
                 $('#crearProductoModal').modal('hide')
-                tablaProductos.api().ajax.reload(function(){});
+                tablaProductos.api().ajax.reload(function(){})
             }
         })
     })
 
     //delProducto
     //extraer el atributo
+    document.addEventListener('click', (e)=>{
+        try {
+            let selected = e.target.closest('button').getAttribute('data-action-type')
+            let idProducto = e.target.closest('button').getAttribute('rel')
+            if (selected == 'delete') {
+                Swal.fire({
+                    title:"Eliminar Producto",
+                    text:"¿Está seguro de eliminar el producto?",
+                    icon: "warning",
+                    showDenyButton: true,
+                    confirmButtonText: "Sí",
+                    denyButtonText: `Cancelar`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let formData = new FormData()
+                        formData.append('idProducto', idProducto)
+                        fetch(base_url + '/inventario/eliminarProducto',{
+                            method: "POST",
+                            body: formData,
+                        })
+                        .then((res)=>res.json())
+                        .then((data)=>{
+                            Swal.fire({
+                                title: data.status ? 'Correcto' : 'Error',
+                                text: data.msg,
+                                icon: data.status ? "success" : 'error'
+                            })
+                            tablaProductos.api().ajax.reload(function(){})
+                        })
+                    }
+                  });
+
+            }
+
+            if (selected == 'update') {
+                $('#crearProductoModal').modal('show')
+            }
+        }catch{}
+    })
 })
 

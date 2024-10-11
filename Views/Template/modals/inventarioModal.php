@@ -16,25 +16,16 @@
             <div class="form-group">
               <label for="nombreProducto">Nombre</label>
               <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" autocomplete="off">
-              <small id="nombreProducto" class="form-text text-muted">Nombre del producto que va a crear</small>
-            </div>
-
-            <div class="form-group">
-              <label for="estadoProducto">Estado</label>
-              <input type="text" class="form-control" id="estadoProducto" name="estadoProducto" autocomplete="off">
-              <small id="estadoProducto" class="form-text text-muted">Estado del producto que va a crear</small>
             </div>
 
             <div class="form-group">
               <label for="precioProducto">Precio</label>
               <input type="text" class="form-control" id="precioProducto" name="precioProducto" autocomplete="off">
-              <small id="precioProducto" class="form-text text-muted">precio del producto que va a crear</small>
             </div>
 
             <div class="form-group">
               <label for="codigoProducto">Codigo</label>
               <input type="text" class="form-control" id="codigoProducto" name="codigoProducto" autocomplete="off">
-              <small id="codigoProducto" class="form-text text-muted">Codigo SKU del producto</small>
             </div>
       </div>
       <div class="modal-footer">

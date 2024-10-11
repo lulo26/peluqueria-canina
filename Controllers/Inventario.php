@@ -18,19 +18,14 @@ class Inventario extends Controllers{
         $arrData = $this->model->selectProductos();
 
         for($i = 0; $i < count($arrData); $i++){
-/*             if($arrData[$i]['status'] == 1){
-                $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
-            }else{
-                $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
-            } */
             
             $arrData[$i]['options'] = "
 
-                <button type='button' class='btn btn-danger btn-circle' rel='".$arrData[$i]['idInventario']."'>
+                <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idInventario']."'>
                     <i class='fas fa-trash'></i>
                 </button>
 
-                <button type='button' class='btn btn-primary btn-circle' rel='".$arrData[$i]['idInventario']."'>
+                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['idInventario']."'>
                     <i class='fas fa-pen'></i>
                 </button>
             ";
@@ -42,14 +37,13 @@ class Inventario extends Controllers{
 
     public function setProducto(){
         $nombreProducto = strClean($_POST['nombreProducto']);
-        $estadoProducto = strClean($_POST['estadoProducto']);
         $precioProducto = intval($_POST['precioProducto']);
         $codigoProducto = strClean($_POST['codigoProducto']);
 
-        $arrPost = ['nombreProducto','estadoProducto','precioProducto','codigoProducto'];
+        $arrPost = ['nombreProducto','precioProducto','codigoProducto'];
         
         if (check_post($arrPost)) {
-            $requestModel = $this->model->insertarProducto($nombreProducto, $estadoProducto, $precioProducto, $codigoProducto);
+            $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto);
              
             if ($requestModel > 0) {
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
@@ -69,7 +63,7 @@ class Inventario extends Controllers{
 
     public function eliminarProducto(){
         if ($_POST) {
-            $idProducto = intval($_POST['idInventario']);
+            $idProducto = intval($_POST['idProducto']);
             $requestDelete = $this->model->deleteProducto($idProducto);
             if($requestDelete == 'ok'){
                 $arrResponse = array('status' => true, 'msg' => 'se ha eliminado el producto.');
@@ -79,6 +73,8 @@ class Inventario extends Controllers{
                 $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el producto.');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }else{
+            print_r($_POST);
         }
         die();
     }
