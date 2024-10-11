@@ -45,7 +45,7 @@ class Inventario extends Controllers{
         if (check_post($arrPost)) {
             $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto);
              
-            if ($requestModel > 0) {
+            if ($requestModel > 0){
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
             }elseif ($requestModel == 'exist') {
                 $arrRespuesta = array('status' => false, 'msg' => 'Atención: El producto ya existe');
