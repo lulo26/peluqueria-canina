@@ -25,6 +25,7 @@ class Clientes extends Controllers{
         $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
 
         if (check_post($arrayPost)) {
+            
             $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
 
             if ($requestModel>0 && $requestModel != 'exist') {

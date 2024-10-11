@@ -14,7 +14,8 @@ getModal('inventarioModal',$data);
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary">
                     <?= $data['page_title'] ?>
-                    <button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#crearProductoModal" >
+                    <!--<button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#crearProductoModal" >-->
+                    <button id="btnCrearProducto" type="button" class="btn btn-primary btn-icon-split btn-sm" >
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
