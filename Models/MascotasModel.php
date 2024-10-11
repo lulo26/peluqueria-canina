@@ -16,7 +16,7 @@ class MascotasModel extends Mysql{
 
         $this->id = $id;
 
-        $sql = "SELECT * FROM mascotas WHERE idMascotas = '{$this->id}'";
+        $sql = "SELECT * FROM mascotas WHERE idMascotas = {$this->id}";
         $request = $this->select_all($sql);
         $return = $request;
         if(!empty($request)){
@@ -26,22 +26,24 @@ class MascotasModel extends Mysql{
         }
     }
 
-    public function insertarMascota(string $nombre, string $raza, int $edad, string $comentario){
+    public function insertarMascota(int $clienteId, string $nombre, string $raza, int $edad, string $comentario){
 
+        $this->clienteId = $clienteId;
         $this->nombre = $nombre;
         $this->raza = $raza;
         $this->edad = $edad;
         $this->comentario = $comentario;
 
-        $sql = "INSERT INTO mascotas (nombre, raza, edad, comentario) VALUES (?, ?, ?, ?)";
-        $arrData = array($this->nombre, $this->raza, $this->edad, $this->comentario);
+        $sql = "INSERT INTO mascotas (clientes_idClientes, nombre, raza, edad, comentario) VALUES (?, ?, ?, ?, ?)";
+        $arrData = array($this->clienteId, $this->nombre, $this->raza, $this->edad, $this->comentario);
         return $this->insert($sql, $arrData);
         
     }
 
-    public function editarMascota(int $id, string $nombre, string $raza, int $edad, string $comentario){
+    public function editarMascota(int $id, int $clienteId, string $nombre, string $raza, int $edad, string $comentario){
         $return = "";
 
+        $this->clienteId = $clienteId;
         $this->id = $id;
         $this->nombre = $nombre;
         $this->raza = $raza;
@@ -52,8 +54,8 @@ class MascotasModel extends Mysql{
         $request = $this->select_all($sql);
 
         if(!empty($request)){
-            $query = "UPDATE mascotas SET nombre = ?, raza = ?, edad = ?, comentario = ? WHERE idMascotas = ?";
-            $arrData = array($this->nombre, $this->raza, $this->edad, $this->comentario, $this->id);
+            $query = "UPDATE mascotas SET clientes_idClientes = ?, nombre = ?, raza = ?, edad = ?, comentario = ? WHERE idMascotas = ?";
+            $arrData = array($this->clienteId, $this->nombre, $this->raza, $this->edad, $this->comentario, $this->id);
             $request_insert = $this->insert($query, $arrData);
             $return = $request_insert;
         } else {
@@ -73,10 +75,11 @@ class MascotasModel extends Mysql{
             $query = "DELETE FROM mascotas WHERE idMascotas = ?";
             $arrData = array($this->id);
             $request_insert = $this->insert($query, $arrData);
-            $return = $request_insert
+            $return = $request_insert;
         } else {
             $return = "empty";
         }
+        return $return;
     }
 
 }

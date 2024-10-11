@@ -13,4 +13,45 @@ class Mascotas extends Controllers{
  
         $this->views->getView($this,"mascotas", $data);
     }
+
+    public function getMascotas(){
+        $arrData = $this->model->selectMascotas();
+
+        for ($i=0; $i < count($arrData); $i++) { 
+            $arrData[$i]['options'] = "
+            <button type='button' class='btn btn-danger btn-circle' rel='".$arrData[$i]['idMascotas']."'>
+                    <i class='fas fa-trash'></i>
+                </button>
+
+                <button type='button' class='btn btn-primary btn-circle' rel='".$arrData[$i]['idMascotas']."'>
+                    <i class='fas fa-pen'></i>
+                </button>
+            ";
+        }
+
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function setMascotas(){
+        $idUsuario = strClean($_POST['idUsuario']);
+        $nombreMascota = strClean($_POST['nombreMascota']);
+        $razaMascota = strClean($_POST['razaMascota']);
+        $edadMascota = strClean($_POST['edadMascota']);
+        $comentarioMascota = strClean($_POST['comentarioMascota']);
+
+        $arrPost = ['idUsuario','nombreMascota','razaMascota','edadMascota','comentarioMascota'];
+
+        if (check_post($arrPost)) {
+            $requestModel = $this->model->insertarMascota($idUsuario, $nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
+            if($requestModel > 0) {
+                $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            }
+        } else{
+            $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos');
+        }
+
+        echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
