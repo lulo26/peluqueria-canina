@@ -29,11 +29,11 @@ class Clientes extends Controllers{
 
             if ($requestModel>0) {
                 $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
-            }elseif ($requestModel == 'user exist') {
+            }elseif ($requestModel === 'exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
-            }elseif ($requestModel=='email exist') {
+            }/* elseif ($requestModel=='email exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe');
-            }else{
+            } */else{
                 $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente');
             }
 
