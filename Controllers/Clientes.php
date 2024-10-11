@@ -28,13 +28,17 @@ class Clientes extends Controllers{
             
             $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
 
-            if ($requestModel>0 && $requestModel != 'exist') {
+            $array_validate=["user exist","email exist","both exist"];
+
+            if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
                 $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
-            }elseif ($requestModel === 'exist') {
+            }elseif ($requestModel === 'user exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
-            }/* elseif ($requestModel=='email exist') {
+            }elseif ($requestModel==='email exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe');
-            } */else{
+            }elseif ($requestModel==='both exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes');
+            }else{
                 $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente');
             }
 
