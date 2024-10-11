@@ -1,6 +1,6 @@
-const frmProductos = document.querySelector('#frmProductos')
-const crearProductoModal = document.querySelector('#crearProductoModal')
-let tablaProductos
+const frmProductos = document.querySelector("#frmProductos");
+const crearProductoModal = document.querySelector("#crearProductoModal");
+let tablaProductos;
 
 document.addEventListener('DOMContentLoaded', ()=>{
 

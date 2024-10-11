@@ -16,7 +16,7 @@
                             <small id="nombre" class="form-text text-muted">Nombre con el que se va registrar.</small>
                         </div>
                         <div class="form-group">
-                            <label for="apellido">Nombre</label>
+                            <label for="apellido">Apellido</label>
                             <input type="text" class="form-control" id="apellido" name="apellido" autocomplete="off">
                             <small id="apellido" class="form-text text-muted">Apellido(s).</small>
                         </div>
@@ -46,10 +46,7 @@
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
                     </form>
-                </div>
-                
+                </div>    
             </div>
         </div>
-
-  
 </div>

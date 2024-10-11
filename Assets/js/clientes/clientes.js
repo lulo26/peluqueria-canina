@@ -2,7 +2,6 @@ const formularioClientes = document.querySelector('#formularioClientes')
 const insertarClientesModal = document.querySelector('#insertarClientesModal')
 
 document.addEventListener('DOMContentLoaded',()=>{
-
     formularioClientes.addEventListener('submit',(e)=>{
         console.log('elpepe')
         e.preventDefault()
