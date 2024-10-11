@@ -27,7 +27,7 @@ class ClientesModel extends Mysql{
  */
         if (empty($cosa) /* || !empty($array_request["email"]) */) {
 
-            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,'password') VALUES(?, ?, ?, ?, ?, ?)";
+            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`) VALUES(?, ?, ?, ?, ?, ?)";
             $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password);
             $request_insert = $this->insert($query_insert, $arrData);
             $result = $request_insert;

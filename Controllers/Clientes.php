@@ -27,7 +27,7 @@ class Clientes extends Controllers{
         if (check_post($arrayPost)) {
             $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
 
-            if ($requestModel>0) {
+            if ($requestModel>0 && $requestModel != 'exist') {
                 $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
             }elseif ($requestModel === 'exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
