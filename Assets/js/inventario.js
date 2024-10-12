@@ -1,5 +1,6 @@
 const frmProductos = document.querySelector("#frmProductos");
 const crearProductoModal = document.querySelector("#crearProductoModal");
+const btnCrearProducto = document.querySelector('#btnCrearProducto')
 let tablaProductos;
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -22,6 +23,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         "responsive": "true",
         "order":[[0, "asc"]]
     }) 
+
+    btnCrearProducto.addEventListener('click', ()=>{
+        $('#crearProductoModal').modal('show')
+        document.getElementById('crearProductoModalLabel').innerHTML = "Crear Producto"
+    })
 
     frmProductos.addEventListener('submit', (e)=>{
         e.preventDefault()
@@ -82,6 +88,18 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
             if (selected == 'update') {
                 $('#crearProductoModal').modal('show')
+                document.getElementById('crearProductoModalLabel').innerHTML = "Actualizar Producto"
+                fetch(base_url + `/inventario/getProducto/${idProducto}`,{
+                    method: "GET"
+                })
+                .then((res)=>res.json())
+                .then((res)=>{
+                    arrData = res.data[0]
+                    document.querySelector('#nombreProducto').value = arrData.nombreProducto
+                    document.querySelector('#precioProducto').value = arrData.precio
+                    document.querySelector('#codigoProducto').value = arrData.codigoSKU
+                    document.querySelector('idProducto').value = idProducto
+                })
             }
         }catch{}
     })

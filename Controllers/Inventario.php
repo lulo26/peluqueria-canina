@@ -35,18 +35,47 @@ class Inventario extends Controllers{
         die();
     }
 
+    public function getProducto($idProducto){
+
+        $intIdProducto = intval(strClean($idProducto));
+
+        if($intIdProducto > 0){
+    
+            $arrData = $this->model->selectProducto($intIdProducto);
+            if(empty($arrData)){
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }
+        }
+
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setProducto(){
         $nombreProducto = strClean($_POST['nombreProducto']);
         $precioProducto = intval($_POST['precioProducto']);
         $codigoProducto = strClean($_POST['codigoProducto']);
+        $idProducto = intval(strClean($_POST['idProducto']));
 
         $arrPost = ['nombreProducto','precioProducto','codigoProducto'];
         
         if (check_post($arrPost)) {
-            $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto);
-             
+            if ($idProducto == 0 || $idProducto == "") {
+                $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto);
+                $option = 1;
+            }else{
+                $requestModel = $this->model->actualizarProducto($idProducto, $nombreProducto, $precioProducto, $codigoProducto);
+                $option = 2;
+            }
+            
             if ($requestModel > 0 && $requestModel != 'exist'){
-                $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+                if ($option === 1) {
+                    $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');   
+                }else{
+                    $arrRespuesta = array('status' => true, 'msg' => 'Datos actualizados correctamente.'); 
+                }
             }elseif ($requestModel == 'exist') {
                 $arrRespuesta = array('status' => false, 'msg' => 'Atención: El producto ya existe');
             }else{
