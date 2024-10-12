@@ -12,6 +12,23 @@ getModal('insertarClientesModal',$data);
             <i class="fas fa-plus"></i>
         </button>
 
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tablaClientes" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Usuario</th>
+                            <th>Opciones</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
     </div>
     <!-- /.Fin de contenido -->
 

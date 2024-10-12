@@ -5,6 +5,26 @@ class ClientesModel extends Mysql{
         parent::__construct();
     }
 
+    public function selectClientes(){
+        $sql="SELECT * FROM clientes where estado = 'activo'";
+        $request_select = $this->select_all($sql);
+        return $request_select;
+    }
+
+    public function borrarClientes(int $id){
+        $this->id = $id;
+        $sql="UPDATE clientes SET estado=? where idClientes = $this->id";
+        $arrayData= array('inactivo');
+
+        $requestDelete = $this->update($sql,$arrayData);
+        
+        if ($requestDelete) {
+            $requestDelete="ok";
+        }
+
+        return $requestDelete;
+    }
+
     public function insertarClientes(string $nombre, string $apellido, string $correo ,string $telefono, string $usuario, string $password){
         $result="";
 
@@ -24,8 +44,8 @@ class ClientesModel extends Mysql{
 
         if (empty($array_request["user"]) && empty($array_request["email"])) {
 
-            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`) VALUES(?, ?, ?, ?, ?, ?)";
-            $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password);
+            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado) VALUES(?, ?, ?, ?, ?, ?,?)";
+            $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password,'activo');
             $request_insert = $this->insert($query_insert, $arrData);
             $result = $request_insert;
             

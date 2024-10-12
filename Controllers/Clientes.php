@@ -14,6 +14,27 @@ class Clientes extends Controllers{
         $this->views->getView($this,"clientes", $data);
     }
 
+    public function getClientes(){
+        $clientes = $this->model->selectClientes();
+
+        for ($i=0; $i <count($clientes) ; $i++) { 
+            $clientes[$i]['options'] = "
+
+                <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$clientes[$i]['idClientes']."'>
+                    <i class='fas fa-trash'></i>
+                </button>
+
+                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$clientes[$i]['idClientes']."'>
+                    <i class='fas fa-pen'></i>
+                </button>
+            
+            ";
+        }
+
+        echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setClientes(){
         $nombre = strClean($_POST['nombre']);
         $apellido = strClean($_POST['apellido']);
@@ -48,5 +69,23 @@ class Clientes extends Controllers{
         echo json_encode($arrayResp,JSON_UNESCAPED_UNICODE);
         die();
         
+    }
+
+    public function deleteClientes(){
+        if ($_POST) {
+            $idCliente = intval($_POST['idClientes']);
+            $requestDelete = $this->model->borrarClientes($idCliente);
+            
+            if ($requestDelete=='ok') {
+                $arrayResponse = array('status' => true, 'msg' => 'Cliente eliminado correctamente.');
+            }else{
+                $arrayResponse = array('status' => true, 'msg' => 'No se pudo eliminar el cliente.');
+            }
+            echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
+        }else {
+            print_r($_POST);
+        }
+
+        die();
     }
 }
