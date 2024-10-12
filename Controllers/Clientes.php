@@ -20,11 +20,11 @@ class Clientes extends Controllers{
         for ($i=0; $i <count($clientes) ; $i++) { 
             $clientes[$i]['options'] = "
 
-                <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$clientes[$i]['idClientes']."'>
+                <button type='button' class='btn btn-danger btn-circle' id='btnEliminar' data-action-type='delete' rel='".$clientes[$i]['idClientes']."'>
                     <i class='fas fa-trash'></i>
                 </button>
 
-                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$clientes[$i]['idClientes']."'>
+                <button type='button' class='btn btn-primary btn-circle' id='btnEditar'  data-action-type='update' rel='".$clientes[$i]['idClientes']."'>
                     <i class='fas fa-pen'></i>
                 </button>
             
@@ -35,6 +35,24 @@ class Clientes extends Controllers{
         die();
     }
 
+    public function getClienteById($idCliente){
+        $idCliente = intval(strClean($idCliente));
+
+        if ($idCliente>0) {
+            
+            $arrCliente = $this->model->selectClienteById($idCliente);
+
+            if(empty($arrCliente)){
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrResponse = array('status' => true, 'data' => $arrCliente);
+            }
+        }
+        
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setClientes(){
         $nombre = strClean($_POST['nombre']);
         $apellido = strClean($_POST['apellido']);
@@ -42,17 +60,32 @@ class Clientes extends Controllers{
         $telefono = strClean($_POST['telefono']);
         $usuario = strClean($_POST['usuario']);
         $password = strClean($_POST['password']);
+        $idCliente = intval(strClean($_POST['idCliente']));
 
         $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
 
         if (check_post($arrayPost)) {
+            if ($idCliente == 0 || $idCliente = "") {
+                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
+
+                $action = "insert";
+            } else {
+                $requestModel= $this->model->actualizarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
+                $action = "update";
+            }
             
-            $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
 
             $array_validate=["user exist","email exist","both exist"];
 
             if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
-                $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
+
+                if ($action=="insert") {
+                    $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
+                } else {
+                    $arrayResp= array('status'=>true,'msg'=>'Datos actualizados correctamente');
+                }
+                
+                
             }elseif ($requestModel === 'user exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
             }elseif ($requestModel==='email exist') {

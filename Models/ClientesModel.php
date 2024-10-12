@@ -25,6 +25,13 @@ class ClientesModel extends Mysql{
         return $requestDelete;
     }
 
+    public function selectClienteById(int $id){
+        $this->id=$id;
+        $sql="SELECT * from clientes where idClientes = $this->id";
+        $request_select = $this->select_all($sql);
+        return $request_select;
+    }
+
     public function insertarClientes(string $nombre, string $apellido, string $correo ,string $telefono, string $usuario, string $password){
         $result="";
 

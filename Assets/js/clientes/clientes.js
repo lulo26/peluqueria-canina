@@ -1,5 +1,6 @@
 const formularioClientes = document.querySelector('#formularioClientes')
 const insertarClientesModal = document.querySelector('#insertarClientesModal')
+const btnCrearCliente = document.querySelector('#btnCrearCliente')
 let tablaClientes;
 
 document.addEventListener('DOMContentLoaded',()=>{
@@ -24,8 +25,15 @@ document.addEventListener('DOMContentLoaded',()=>{
         "order":[[0, "asc"]]
     })
 
+    btnCrearCliente.addEventListener('click',()=>{
+        $('#insertarClientes').modal('show')
+        document.querySelector('#titulo').innerHTML = "Crear cliente"
+        let id = document.querySelector('idCliente').value
+        console.log(id)
+
+    })
+
     formularioClientes.addEventListener('submit',(e)=>{
-        console.log('elpepe')
         e.preventDefault()
 
         frmClientes = new FormData(formularioClientes)
@@ -45,7 +53,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             if (dataInsert.status) {
                 formularioClientes.reset()
-                $('#formularioClientes').modal('hide')
+                $('#insertarClientes').modal('hide')
                 tablaClientes.api().ajax.reload(function(){})
             }
         })
@@ -85,9 +93,26 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             }
 
-            console.log(selected)
             if (selected == 'update') {
-                $('#insertarClientesModal').modal('show')
+                $('#insertarClientes').modal('show')
+                document.querySelector('#titulo').innerHTML = "Actualizar cliente"
+                fetch(base_url + `/clientes/getClienteById/${idCliente}`,{
+                    method: "GET"
+                })
+                .then((res)=>res.json())
+                .then((res)=>{
+
+                    const inputs = ['#nombre','#apellido','#correo','#telefono','#usuario','#password','#idCliente']
+                    arrData = res.data[0]
+
+                    const values = [arrData.nombre,arrData.apellido,arrData.correo,arrData.telefono,arrData.usuario,arrData.password,arrData.idCliente]
+                    
+
+                    for (let index = 0; index < inputs.length; index++) {
+                        document.querySelector(inputs[index]).value=values[index]
+                    }
+                    
+                })
             }
 
         }catch{}

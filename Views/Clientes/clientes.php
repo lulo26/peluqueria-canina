@@ -8,7 +8,7 @@ getModal('insertarClientesModal',$data);
 
         <!-- Titulo de la pagina -->
         <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#insertarClientes">
+        <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#insertarClientes">
             <i class="fas fa-plus"></i>
         </button>
 
