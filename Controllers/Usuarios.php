@@ -14,3 +14,5 @@ class Usuarios extends Controllers{
         $this->views->getView($this,"usuarios", $data);
     }
 }
+
+// hash("SHA256", $_POST['']) : hash("SHA256", passgeneratos())
