@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         try {
             let selected = e.target.closest('button').getAttribute('data-action-type')
             let idProducto = e.target.closest('button').getAttribute('rel')
+            
             if (selected == 'delete') {
                 Swal.fire({
                     title:"Eliminar Producto",
