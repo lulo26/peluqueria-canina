@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }) 
 
     btnCrearProducto.addEventListener('click', ()=>{
+        document.querySelector('#idProducto').value = 0
+        frmProductos.reset()
         $('#crearProductoModal').modal('show')
         document.getElementById('crearProductoModalLabel').innerHTML = "Crear Producto"
     })
@@ -50,13 +52,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
         })
     })
 
-    //delProducto
-    //extraer el atributo
     document.addEventListener('click', (e)=>{
         try {
             let selected = e.target.closest('button').getAttribute('data-action-type')
             let idProducto = e.target.closest('button').getAttribute('rel')
-            
+            //Eliminar producto
             if (selected == 'delete') {
                 Swal.fire({
                     title:"Eliminar Producto",
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
                   });
 
             }
-
+            //Actualizar producto
             if (selected == 'update') {
                 $('#crearProductoModal').modal('show')
                 document.getElementById('crearProductoModalLabel').innerHTML = "Actualizar Producto"
@@ -96,10 +96,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 .then((res)=>res.json())
                 .then((res)=>{
                     arrData = res.data[0]
+                    console.log(arrData)
                     document.querySelector('#nombreProducto').value = arrData.nombreProducto
                     document.querySelector('#precioProducto').value = arrData.precio
                     document.querySelector('#codigoProducto').value = arrData.codigoSKU
-                    document.querySelector('idProducto').value = idProducto
+                    document.querySelector('#idProducto').value = arrData.idInventario
                 })
             }
         }catch{}
