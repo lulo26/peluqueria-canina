@@ -1,5 +1,7 @@
 <?php 
 
+//TODO:: REVISAR VALIDACION, REGLAS SUGERIDAS PARA ELIMINAR Y ACTUALIZAR PRODUCTO SEGÚN CODIGO O NOMBRE
+
 class Inventario extends Controllers{
     public function __construct(){
         parent::__construct();
