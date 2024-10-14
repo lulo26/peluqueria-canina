@@ -6,9 +6,6 @@ getModal('inventarioModal',$data);
 <!-- Contenido de la pagina -->
     <div class="container-fluid">
 
-        <!-- Titulo de la pagina -->
-        <h1 class="h3 mb-4 text-gray-800"></h1>
-
         <div class="card shadow mb-4">
 
             <div class="card-header py-3">
