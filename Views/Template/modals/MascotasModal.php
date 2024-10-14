@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear Producto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar mascota</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -34,7 +34,7 @@
 
             <div class="form-group">
               <label for="comentarioMascota">comentario</label>
-              <input type="text" class="form-control" id="comentarioMascota" name="comentarioMascota" autocomplete="off">
+              <textarea type="text" class="form-control" id="comentarioMascota" name="comentarioMascota" autocomplete="off" rows="4"></textarea>
             </div>
         </div>
       <div class="modal-footer">

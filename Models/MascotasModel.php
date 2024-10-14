@@ -6,23 +6,22 @@ class MascotasModel extends Mysql{
     }
 
     public function selectMascotas(){
-        $sql = "SELECT * FROM mascotas";
+        $sql = "SELECT mascotas.nombre, mascotas.raza, mascotas.edad, mascotas.comentario, clientes.nombre FROM mascotas
+        INNER JOIN clientes
+        ON clientes.idClientes = mascotas.clientes_idClientes";
         $request = $this->select_all($sql);
         return $request;
     }
 
     public function selectMascotaID($id){
-        $return = "";
-
-        $this->id = $id;
-
-        $sql = "SELECT * FROM mascotas WHERE idMascotas = {$this->id}";
+        $sql = "SELECT * FROM mascotas WHERE idMascotas = $id";
         $request = $this->select_all($sql);
         $return = $request;
         if(!empty($request)){
             return $return;
         } else {
             $return = "empty";
+            return $return;
         }
     }
 

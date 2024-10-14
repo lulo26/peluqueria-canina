@@ -4,7 +4,30 @@ const nombreUsuario = document.querySelector("#nombreUsuario");
 let selectMascotas;
 let tablaMascotas;
 
+console.log("hello world");
+
+
 document.addEventListener("DOMContentLoaded", () => {
+
+  tablaMascotas = $("#tablaMascotas").dataTable({
+    language: {
+      url: `${base_url}/Assets/vendor/datatables/dataTables_es.json`,
+    },
+    ajax: {
+      url: " " + base_url + "/mascotas/getMascotas",
+      dataSrc: "",
+    },
+    columns: [
+      {"data":"nombre" },
+      {"data":"raza" },
+      {"data":"edad" },
+      {"data":"comentario" },
+      {"data":"clientes.nombre" },
+    ],
+    responsive: "true",
+    order: [[0, "asc"]],
+  });
+
   frmMascotas.addEventListener("submit", (e) => {
     e.preventDefault();
     frmData = new FormData(frmMascotas);
