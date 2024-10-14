@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <form id="formularioClientes" method="post">
 
-                    <input hidden type="text" name="idCliente" id="idCliente" value="0">
+                        <input type="hidden" name="idCliente" id="idCliente" value="0">
 
                         <div class="form-group">
                             <label for="nombre ">Nombre</label>
