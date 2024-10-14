@@ -1,6 +1,7 @@
 const frmMascotas = document.querySelector("#frmMascotas");
 const crearProductoModal = document.querySelector("#insertarMascotasModal");
-const nombreUsuario = document.querySelector("#nombreUsuario");
+let nombreUsuario = document.querySelector("#nombreUsuario");
+const btnInsertarMascota = document.querySelector('#btnInsertarMascota');
 let selectMascotas;
 let tablaMascotas;
 
@@ -8,6 +9,19 @@ console.log("hello world");
 
 
 document.addEventListener("DOMContentLoaded", () => {
+
+  btnInsertarMascota.addEventListener('click', (e) =>{
+    //traigame los datos del select
+    fetch(base_url + "/clientes/getClientes")
+      .then((res)=>res.json())
+      .then((data) => {
+        data.forEach(el => {
+          nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`
+
+        });
+      })
+    $('#insertarMascotasModal').modal('show')
+  })
 
   tablaMascotas = $("#tablaMascotas").dataTable({
     language: {
