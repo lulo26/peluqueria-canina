@@ -26,11 +26,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     })
 
     btnCrearCliente.addEventListener('click',()=>{
+        document.querySelector('#idCliente').value=0
+        formularioClientes.reset()
         $('#insertarClientes').modal('show')
         document.querySelector('#titulo').innerHTML = "Crear cliente"
-        let id = document.querySelector('idCliente').value
-        console.log(id)
-
     })
 
     formularioClientes.addEventListener('submit',(e)=>{
@@ -44,7 +43,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         .then((res)=>res.json())
         .then((dataInsert)=>{
-            console.log(dataInsert)
+
             Swal.fire({
                 title: dataInsert.status ? 'Correcto' : 'Error',
                 text: dataInsert.msg,
@@ -63,6 +62,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         try {
             let selected = e.target.closest('button').getAttribute('data-action-type')
             let idCliente = e.target.closest('button').getAttribute('rel')
+
+            //accion borrar clientes
             if (selected == 'delete') {
                 Swal.fire({
                     title:"Eliminar Cliente",
@@ -92,25 +93,30 @@ document.addEventListener('DOMContentLoaded',()=>{
                   });
 
             }
-
+            //actualización clientes
             if (selected == 'update') {
+
                 $('#insertarClientes').modal('show')
                 document.querySelector('#titulo').innerHTML = "Actualizar cliente"
                 fetch(base_url + `/clientes/getClienteById/${idCliente}`,{
                     method: "GET"
                 })
                 .then((res)=>res.json())
-                .then((res)=>{
 
+
+                .then((res)=>{
                     const inputs = ['#nombre','#apellido','#correo','#telefono','#usuario','#password','#idCliente']
+                   
                     arrData = res.data[0]
 
-                    const values = [arrData.nombre,arrData.apellido,arrData.correo,arrData.telefono,arrData.usuario,arrData.password,arrData.idCliente]
+                    const values = [arrData.nombre,arrData.apellido,arrData.correo,arrData.telefono,arrData.usuario,arrData.password,arrData.idClientes]
                     
-
+                    
                     for (let index = 0; index < inputs.length; index++) {
                         document.querySelector(inputs[index]).value=values[index]
                     }
+
+                    
                     
                 })
             }
