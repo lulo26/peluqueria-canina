@@ -71,7 +71,7 @@ class Clientes extends Controllers{
                 $action = "update";
             }
             
-            $array_validate=["user exist","email exist","all exist"];
+            $array_validate=["user exist","email exist","tel exist","both exist","all exist"];
 
             if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
 
@@ -85,8 +85,12 @@ class Clientes extends Controllers{
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe.');
             }elseif ($requestModel==='email exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe.');
-            }elseif ($requestModel==='all exist') {
+            }elseif ($requestModel==='tel exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Número de teléfono ya existente.');
+            }elseif ($requestModel==='both exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes.');
+            }elseif ($requestModel==='all exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Email, nombre de usuario y teléfono ya existentes.');
             }else{
                 $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente.');
             }
