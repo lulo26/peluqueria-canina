@@ -83,16 +83,22 @@ class Clientes extends Controllers{
                      
             }elseif ($requestModel === 'user exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe.');
-            }elseif ($requestModel==='email exist') {
+
+            }elseif ($requestModel=='email exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe.');
-            }elseif ($requestModel==='tel exist') {
+
+            }elseif ($requestModel=='tel exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Número de teléfono ya existente.');
-            }elseif ($requestModel==='both exist') {
+
+            }elseif ($requestModel=='both exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes.');
-            }elseif ($requestModel==='all exist') {
+
+            }elseif ($requestModel=='all exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Email, nombre de usuario y teléfono ya existentes.');
+
             }else{
                 $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente.');
+
             }
 
         }else {
