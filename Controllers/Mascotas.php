@@ -19,11 +19,12 @@ class Mascotas extends Controllers{
 
         for ($i=0; $i < count($arrData); $i++) { 
             $arrData[$i]['options'] = "
-            <button type='button' class='btn btn-danger btn-circle' rel='".$arrData[$i]['idMascotas']."'>
-                    <i class='fas fa-trash'></i>
+
+            <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idMascotas']."'>
+                <i class='fas fa-trash'></i>
                 </button>
 
-                <button type='button' class='btn btn-primary btn-circle' rel='".$arrData[$i]['idMascotas']."'>
+                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['idMascotas']."'>
                     <i class='fas fa-pen'></i>
                 </button>
             ";
@@ -34,16 +35,15 @@ class Mascotas extends Controllers{
     }
 
     public function setMascotas(){
-        $idUsuario = strClean($_POST['idUsuario']);
+        $nombreUsuario = strClean($_POST['nombreUsuario']);
         $nombreMascota = strClean($_POST['nombreMascota']);
         $razaMascota = strClean($_POST['razaMascota']);
         $edadMascota = strClean($_POST['edadMascota']);
         $comentarioMascota = strClean($_POST['comentarioMascota']);
 
-        $arrPost = ['idUsuario','nombreMascota','razaMascota','edadMascota','comentarioMascota'];
-
+        $arrPost = ['nombreUsuario','nombreMascota','razaMascota','edadMascota','comentarioMascota'];
         if (check_post($arrPost)) {
-            $requestModel = $this->model->insertarMascota($idUsuario, $nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
+            $requestModel = $this->model->insertarMascota($nombreUsuario, $nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
             if($requestModel > 0) {
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
             }

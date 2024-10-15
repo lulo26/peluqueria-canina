@@ -16,7 +16,7 @@ getModal('MascotasModal',$data);
     </div>
 
     <div class="card-body">
-            <div class="table-responsive">
+    <div class="table-responsive">
 
             </div>
             <table id="tablaMascotas" class="table table-bordered" width="100%" cellspacing="0">
@@ -27,6 +27,7 @@ getModal('MascotasModal',$data);
                         <th>edad</th>
                         <th>comentario</th>
                         <th>Nombre dueño</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
