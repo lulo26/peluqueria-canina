@@ -64,4 +64,60 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
   });
+
+  document.addEventListener('click', (e)=>{
+    try {
+        let selected = e.target.closest('button').getAttribute('data-action-type')
+        let idMascota = e.target.closest('button').getAttribute('rel')
+        //Eliminar mascota
+        if (selected == 'delete') {
+            Swal.fire({
+                title:"Eliminar Mascota",
+                text:"¿Está seguro de eliminar la mascota?",
+                icon: "warning",
+                showDenyButton: true,
+                confirmButtonText: "Sí",
+                denyButtonText: `Cancelar`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let formData = new FormData()
+                    formData.append('idMascotas', idMascota)
+                    fetch(base_url + '/mascotas/eliminarMascota',{
+                        method: "POST",
+                        body: formData,
+                    })
+                    .then((res)=>res.json())
+                    .then((data)=>{
+                        Swal.fire({
+                            title: data.status ? 'Correcto' : 'Error',
+                            text: data.msg,
+                            icon: data.status ? "success" : 'error'
+                        })
+                        tablaMascotas.api().ajax.reload(function(){})
+                    })
+                }
+              });
+
+        }
+        //Actualizar producto
+        if (selected == 'update') {
+            $('#insertarMascotasModal').modal('show')
+            document.getElementById('insertarMascotasModal').innerHTML = "Actualizar Mascota"
+            fetch(base_url + `/mascotas/getMascota/${idMascota}`,{
+                method: "GET"
+            })
+            .then((res)=>res.json())
+            .then((res)=>{
+                arrData = res.data[0]
+                console.log(arrData)
+                document.querySelector('#nombreMascota').value = arrData.nombreMascota
+                document.querySelector('#nombreUsuario').value = arrData.nombre
+                document.querySelector('#razaMascota').value = arrData.razaMascota
+                document.querySelector('#edadMascota').value = arrData.edadMascota
+                document.querySelector('#comentarioMascota').value = arrData.comentarioMascota
+            })
+        }
+    }catch{}
+})
+
 });
