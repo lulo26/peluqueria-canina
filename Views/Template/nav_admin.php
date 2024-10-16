@@ -30,6 +30,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
                         <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/roles">Roles</a>
                     </div>
                 </div>
             </li>

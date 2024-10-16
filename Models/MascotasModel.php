@@ -63,7 +63,7 @@ class MascotasModel extends Mysql{
         return $return;
     }
 
-    public function eliminarMascota(int $id){
+    public function deleteMascota(int $id){
         $return = "";
 
         $this->id = $id;
