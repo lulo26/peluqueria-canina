@@ -105,7 +105,7 @@ class Inventario extends Controllers{
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }else{
-            print_r($_POST);
+            //print_r($_POST);
         }
         die();
     }

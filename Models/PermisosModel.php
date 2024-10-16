@@ -15,7 +15,7 @@ class PermisosModel extends Mysql{
     }
 
     public function selectModulos(){
-        $sql = "SELECT * FROM modulos WHERE status != 0";
+        $sql = "SELECT * FROM modulos WHERE status_modulo != 0";
         $request = $this->select_all($sql);
         return $request;
     }
