@@ -64,11 +64,15 @@ class Clientes extends Controllers{
         if (check_post($arrayPost)) {
 
             if ($idCliente === 0 || $idCliente === "") {
+
                 $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
                 $action = "insert";
+
             } else {
+
                 $requestModel= $this->model->actualizarCliente($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
                 $action = "update";
+                
             }
             
             $array_validate=["user exist","email exist","tel exist","both exist","all exist"];

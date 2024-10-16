@@ -54,7 +54,7 @@ class ClientesModel extends Mysql{
 
         if (empty($array_request["user"]) && empty($array_request["email"]) && empty($array_request["tel"])) {
 
-            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado) VALUES(?, ?, ?, ?, ?, ?,?)";
+            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado) VALUES(?, ?, ?, ?, ?, ?, ?)";
             $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password,'activo');
             $request_insert = $this->insert($query_insert, $arrData);
             $result = $request_insert;
@@ -90,15 +90,22 @@ class ClientesModel extends Mysql{
         $this->password = $password;
         $this->idCliente = $idCliente;
 
-        $sql=["SELECT * from clientes Where usuario ='{$this->usuario}' and idClientes != $this->idCliente","SELECT * from clientes where correo='{$this->correo}' and idClientes != $this->idCliente","SELECT * from clientes where telefono='{$this->telefono}' and idClientes != $this->idCliente"];
+        $sql = [
+            "user"=>"SELECT * from clientes Where usuario ='$this->usuario' and idClientes != $this->idCliente",
 
-        $array_request=[
-            "user"=>$this->select_all($sql[0]),
-            "email"=>$this->select_all($sql[1]),
-            "tel"=>$this->select_all($sql[2])
+            "email"=>"SELECT * from clientes where correo='$this->correo' and idClientes != $this->idCliente",
+
+            "tel" =>"SELECT * from clientes where telefono='$this->telefono' and idClientes != $this->idCliente"
         ];
 
-        if (empty($array_request["user"]) && empty($array_request["email"])) {
+
+        $array_request=[
+            "user"=>$this->select_all($sql["user"]),
+            "email"=>$this->select_all($sql["email"]),
+            "tel"=>$this->select_all($sql["tel"])
+        ];
+
+        if (empty($array_request["user"]) && empty($array_request["email"]) && empty($array_request["tel"])) {
 
             $queryUpdate = "UPDATE clientes SET nombre = ?, apellido = ?, correo=?, telefono = ?,usuario=?, password = ?, estado = ? WHERE idClientes = $this->idCliente";
 
