@@ -61,10 +61,10 @@
                   <a class="nav-link" href="clinic.html"> Clinica</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Contactanos!</a>
+                  <a class="nav-link" href="contact.html">Tienda de Mascotas</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="buy.html"> Tienda de Mascotas</a>
+                  <a class="nav-link" href="buy.html"> Contactanos!</a>
                 </li>
               </ul>
               <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
@@ -99,22 +99,12 @@
                     <h1>
                       Professional
                       <span>
-                        Care Your Pet
+                        Al cuidado siempre de tu mascota
                       </span>
                     </h1>
                     <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                      Lorem Ipsum has been the industry's standard dummy text ever
+                    En cada ladrido y en cada ronroneo, estamos aquí para cuidar de tu mascota como si fuera nuestra, porque su bienestar es nuestra prioridad
                     </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Buy now
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact
-                      </a>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -247,9 +237,9 @@
         <div class="col-md-6">
           <div class="detail-box">
             <h2 class="custom_heading">
-              About Our Pets
+              Acerca de Nosotros
               <span>
-                Clinic
+                Canino Feliz
               </span>
             </h2>
             <p>
@@ -274,7 +264,7 @@
       <div class="row">
         <div class="col-md-6 offset-md-2">
           <h2 class="custom_heading">
-            Our <span>Services</span>
+            Nuestros <span>Servicios</span>
           </h2>
           <div class="container layout_padding2">
             <div class="row">
@@ -284,7 +274,7 @@
                 </div>
                 <div class="detail_box">
                   <h6>
-                    Pet Care
+                    Clinica Veterinaria
                   </h6>
                   <p>
                     onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -298,7 +288,7 @@
                 </div>
                 <div class="detail_box">
                   <h6>
-                    Pet Hotel
+                    Hotel Mascota
                   </h6>
                   <p>
                     onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -308,11 +298,11 @@
               </div>
               <div class="col-md-4">
                 <div class="img_box">
-                  <img src="./Assets/img/home/s-3.png" alt="">
+                  <img src="./Assets/img/home/store.png" alt="">
                 </div>
                 <div class="detail_box">
                   <h6>
-                    Emergency
+                    Tienda
                   </h6>
                   <p>
                     onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -322,11 +312,7 @@
               </div>
             </div>
           </div>
-          <div>
-            <a href="">
-              Read More
-            </a>
-          </div>
+       
         </div>
         <div class="col-md-4">
           <img src="./Assets/img/home/tool.png" alt="" class="w-100">
@@ -343,7 +329,7 @@
   <section class="gallery-section layout_padding">
     <div class="container">
       <h2>
-        Our Gallery
+        Nuestros Pacientes
       </h2>
     </div>
     <div class="container ">
