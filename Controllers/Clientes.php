@@ -75,12 +75,13 @@ class Clientes extends Controllers{
                 
             }
             
-            $array_validate=["user exist","email exist","tel exist","both exist","all exist"];
+            $array_validate=["user exist","email exist","tel exist","email/user exist","tel/user exist","tel/email exist","all exist"];
 
-            if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
+            if (($requestModel > 0 || $requestModel===true) && !in_array($requestModel,$array_validate)) {
 
                 if ($action==="insert") {
-                    $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
+                    $arrayResp = array('status'=>true,'msg'=>'Datos guardados correctamente');
+                    
                 } else {
                     $arrayResp= array('status'=>true,'msg'=>'Datos actualizados correctamente');
                 }
@@ -88,28 +89,33 @@ class Clientes extends Controllers{
             }elseif ($requestModel === 'user exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe.');
 
-            }elseif ($requestModel=='email exist') {
+            }elseif ($requestModel =='email exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe.');
 
-            }elseif ($requestModel=='tel exist') {
+            }elseif ($requestModel =='tel exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Número de teléfono ya existente.');
 
-            }elseif ($requestModel=='both exist') {
+            }elseif ($requestModel =='email/user exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes.');
 
-            }elseif ($requestModel=='all exist') {
+            }elseif ($requestModel =='tel/user exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Teléfono y nombre de usuario ya existentes.');
+
+            }elseif ($requestModel =='tel/email exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Teléfono y email ya existentes.');
+
+            }elseif ($requestModel =='all exist') {
                 $arrayResp= array('status'=>false,'msg'=>'Email, nombre de usuario y teléfono ya existentes.');
 
             }else{
                 $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente.');
-
             }
 
         }else {
             $arrayResp= array('status'=>false,'msg'=>'Debe ingresar todos los datos');
         }
         
-        echo json_encode($arrayResp,JSON_UNESCAPED_UNICODE);
+        echo json_encode($action,JSON_UNESCAPED_UNICODE);
         die();
         
     }

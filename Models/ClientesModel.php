@@ -63,13 +63,24 @@ class ClientesModel extends Mysql{
 
             if (empty($array_request["user"]) && empty($array_request["email"])) {
                 $result = "tel exist";
+
             }elseif (empty($array_request["user"]) && empty($array_request["tel"])) {
                 $result="email exist";
+
             }elseif (empty($array_request["email"]) && empty($array_request["tel"])) {
+                
                 $result="user exist";
+
             }elseif (empty($array_request["tel"])) {
-                $result= "both exist";
-            } else{
+                $result= "email/user exist";
+
+            }elseif (empty($array_request["email"])) {
+                $result= "tel/user exist";
+
+            }elseif (empty($array_request["user"])) {
+                $result= "tel/email exist";
+
+            }else{
                 $result = "all exist";
             }
 
@@ -118,13 +129,24 @@ class ClientesModel extends Mysql{
 
             if (empty($array_request["user"]) && empty($array_request["email"])) {
                 $result = "tel exist";
+
             }elseif (empty($array_request["user"]) && empty($array_request["tel"])) {
                 $result="email exist";
+
             }elseif (empty($array_request["email"]) && empty($array_request["tel"])) {
+
                 $result="user exist";
+
             }elseif (empty($array_request["tel"])) {
-                $result= "both exist";
-            } else{
+                $result= "email/user exist";
+
+            }elseif (empty($array_request["email"])) {
+                $result= "tel/user exist";
+
+            }elseif (empty($array_request["user"])) {
+                $result= "tel/email exist";
+
+            }else{
                 $result = "all exist";
             }
         }
