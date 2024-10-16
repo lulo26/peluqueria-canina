@@ -34,6 +34,24 @@ class Mascotas extends Controllers{
         die();
     }
 
+    public function getMascota($idMascota){
+
+        $intIdMascota = intval(strClean($idMascota));
+
+        if($intIdMascota > 0){
+    
+            $arrData = $this->model->selectMascotaID($intIdMascota);
+            if(empty($arrData)){
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }
+        }
+
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setMascotas(){
         $nombreUsuario = strClean($_POST['nombreUsuario']);
         $nombreMascota = strClean($_POST['nombreMascota']);
@@ -52,6 +70,22 @@ class Mascotas extends Controllers{
         }
 
         echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function eliminarMascota(){
+        if ($_POST) {
+            $idMascota = intval($_POST['idMascotas']);
+            $requestDelete = $this->model->deleteMascota($idMascota);
+            if($requestDelete == 'empty'){
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la mascota.');
+            }else{
+                $arrResponse = array('status' => true, 'msg' => 'se ha eliminado la mascota.');
+            }
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }else{
+            print_r($_POST);
+        }
         die();
     }
 }
