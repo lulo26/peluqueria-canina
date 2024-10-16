@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Crear Producto</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Agregar mascota</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -18,23 +18,23 @@
               <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" autocomplete="off">
             </div>
 
-            <select class="form-select" aria-label="Default select example" id="nombreUsuario" name="nombreUsuario">
+            <select class="custom-select mt-3" aria-label="Default select example" id="nombreUsuario" name="nombreUsuario">
                 <option selected>selecicone el dueño</option>
             </select>
 
-            <div class="form-group">
+            <div class="form-group mt-3">
               <label for="razaMascota">raza</label>
-              <input type="text" class="form-control" id="razaMascota" name="precioProducto" autocomplete="off">
+              <input type="text" class="form-control" id="razaMascota" name="razaMascota" autocomplete="off">
             </div>
             
             <div class="form-group">
               <label for="edadMascota">edad</label>
-              <input type="text" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off">
+              <input type="number" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off">
             </div>
 
             <div class="form-group">
               <label for="comentarioMascota">comentario</label>
-              <input type="text" class="form-control" id="comentarioMascota" name="comentarioMascota" autocomplete="off">
+              <textarea type="text" class="form-control" id="comentarioMascota" name="comentarioMascota" autocomplete="off" rows="4"></textarea>
             </div>
         </div>
       <div class="modal-footer">

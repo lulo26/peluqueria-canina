@@ -6,36 +6,35 @@ class MascotasModel extends Mysql{
     }
 
     public function selectMascotas(){
-        $sql = "SELECT * FROM mascotas";
+        $sql = "SELECT * FROM mascotas
+        INNER JOIN clientes
+        ON clientes.idClientes = mascotas.clientes_idClientes";
         $request = $this->select_all($sql);
         return $request;
     }
 
     public function selectMascotaID($id){
-        $return = "";
-
-        $this->id = $id;
-
-        $sql = "SELECT * FROM mascotas WHERE idMascotas = {$this->id}";
+        $sql = "SELECT * FROM mascotas WHERE idMascotas = $id";
         $request = $this->select_all($sql);
         $return = $request;
         if(!empty($request)){
             return $return;
         } else {
             $return = "empty";
+            return $return;
         }
     }
 
     public function insertarMascota(int $clienteId, string $nombre, string $raza, int $edad, string $comentario){
 
-        $this->clienteId = $clienteId;
         $this->nombre = $nombre;
         $this->raza = $raza;
         $this->edad = $edad;
         $this->comentario = $comentario;
+        $this->clienteId = $clienteId;
 
-        $sql = "INSERT INTO mascotas (clientes_idClientes, nombre, raza, edad, comentario) VALUES (?, ?, ?, ?, ?)";
-        $arrData = array($this->clienteId, $this->nombre, $this->raza, $this->edad, $this->comentario);
+        $sql = "INSERT INTO mascotas (nombreMascota, razaMascota, edadMascota, comentarioMascota, clientes_idClientes) VALUES (?, ?, ?, ?, ?)";
+        $arrData = array($this->nombre, $this->raza, $this->edad, $this->comentario, $this->clienteId);
         return $this->insert($sql, $arrData);
         
     }
@@ -54,7 +53,7 @@ class MascotasModel extends Mysql{
         $request = $this->select_all($sql);
 
         if(!empty($request)){
-            $query = "UPDATE mascotas SET clientes_idClientes = ?, nombre = ?, raza = ?, edad = ?, comentario = ? WHERE idMascotas = ?";
+            $query = "UPDATE mascotas SET clientes_idClientes = ?, nombreMascota = ?, razaMascota = ?, edadMascota = ?, comentarioMascota = ? WHERE idMascotas = ?";
             $arrData = array($this->clienteId, $this->nombre, $this->raza, $this->edad, $this->comentario, $this->id);
             $request_insert = $this->insert($query, $arrData);
             $return = $request_insert;

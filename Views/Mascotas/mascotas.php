@@ -8,9 +8,33 @@ getModal('MascotasModal',$data);
 
         <!-- Titulo de la pagina -->
         <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <button class="btn btn-primary" data-toggle="modal" data-target="#insertarMascotasModal">
+        <button class="btn btn-primary" data-toggle="modal" id="btnInsertarMascota">
             <i class="fas fa-plus"></i>
+            <span class="text">Agregar mascota</span>
         </button>
+        
+    </div>
+
+    <div class="card-body">
+    <div class="table-responsive">
+
+            </div>
+            <table id="tablaMascotas" class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>raza</th>
+                        <th>edad</th>
+                        <th>comentario</th>
+                        <th>Nombre dueño</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            </div>
+        </div>
         
     </div>
     <!-- /.Fin de contenido -->

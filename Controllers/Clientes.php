@@ -36,9 +36,7 @@ class Clientes extends Controllers{
     }
 
     public function getClienteById($idCliente){
-        $idCliente = intval(strClean($idCliente));
-
-        if ($idCliente>0) {
+            $idCliente = intval(strClean($idCliente));
             
             $arrCliente = $this->model->selectClienteById($idCliente);
 
@@ -47,7 +45,6 @@ class Clientes extends Controllers{
             }else{
                 $arrResponse = array('status' => true, 'data' => $arrCliente);
             }
-        }
         
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
@@ -65,35 +62,43 @@ class Clientes extends Controllers{
         $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
 
         if (check_post($arrayPost)) {
-            if ($idCliente == 0 || $idCliente = "") {
-                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
 
+            if ($idCliente === 0 || $idCliente === "") {
+                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
                 $action = "insert";
             } else {
-                $requestModel= $this->model->actualizarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
+                $requestModel= $this->model->actualizarCliente($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
                 $action = "update";
             }
             
-
-            $array_validate=["user exist","email exist","both exist"];
+            $array_validate=["user exist","email exist","tel exist","both exist","all exist"];
 
             if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
 
-                if ($action=="insert") {
+                if ($action==="insert") {
                     $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
                 } else {
                     $arrayResp= array('status'=>true,'msg'=>'Datos actualizados correctamente');
                 }
-                
-                
+                     
             }elseif ($requestModel === 'user exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe');
-            }elseif ($requestModel==='email exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe');
-            }elseif ($requestModel==='both exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes');
+                $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe.');
+
+            }elseif ($requestModel=='email exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe.');
+
+            }elseif ($requestModel=='tel exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Número de teléfono ya existente.');
+
+            }elseif ($requestModel=='both exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes.');
+
+            }elseif ($requestModel=='all exist') {
+                $arrayResp= array('status'=>false,'msg'=>'Email, nombre de usuario y teléfono ya existentes.');
+
             }else{
-                $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente');
+                $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente.');
+
             }
 
         }else {
