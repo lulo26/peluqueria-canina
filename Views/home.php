@@ -81,147 +81,44 @@
       </div>
     </header>
     <!-- end header section -->
-    <!-- slider section -->
-    <section class=" slider_section position-relative">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-4 offset-md-2">
-                  <div class="slider_detail-box">
-                    <h1>
-                      Professional
-                      <span>
-                        Al cuidado siempre de tu mascota
-                      </span>
-                    </h1>
-                    <p>
-                    En cada ladrido y en cada ronroneo, estamos aquí para cuidar de tu mascota como si fuera nuestra, porque su bienestar es nuestra prioridad
-                    </p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="slider_img-box">
-                    <img src="./Assets/img/home/slider-img.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-4 offset-md-2">
-                  <div class="slider_detail-box">
-                    <h1>
-                      Professional
-                      <span>
-                        Care Your Pet
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                      Lorem Ipsum has been the industry's standard dummy text ever
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Buy now
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact
-                      </a>
+ 
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0">
+        <div id="header-carousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="w-100" src="./assets/img/home/hero.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Donde cada cola se mueve con alegría y cada ladrido cuenta una historia de amor.</h4>
+                            <h1 class="display-3 text-white mb-md-4">Canino Feliz</h1>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="slider_img-box">
-                    <img src="./Assets/img/home/slider-img.png" alt="">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-4 offset-md-2">
-                  <div class="slider_detail-box">
-                    <h1>
-                      Professional
-                      <span>
-                        Care Your Pet
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                      Lorem Ipsum has been the industry's standard dummy text ever
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Buy now
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact
-                      </a>
+                <div class="carousel-item">
+                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                        <div class="p-3" style="max-width: 900px;">
+                            <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                            <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
+                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="slider_img-box">
-                    <img src="./Assets/img/home/slider-img.png" alt="">
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
-          <div class="carousel-item">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-md-4 offset-md-2">
-                  <div class="slider_detail-box">
-                    <h1>
-                      Professional
-                      <span>
-                        Care Your Pet
-                      </span>
-                    </h1>
-                    <p>
-                      Lorem Ipsum is simply dummy text of the printing and
-                      typesetting industry.
-                      Lorem Ipsum has been the industry's standard dummy text ever
-                    </p>
-                    <div class="btn-box">
-                      <a href="" class="btn-1">
-                        Buy now
-                      </a>
-                      <a href="" class="btn-2">
-                        Contact
-                      </a>
-                    </div>
-                  </div>
+            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-prev-icon mb-n2"></span>
                 </div>
-                <div class="col-md-6">
-                  <div class="slider_img-box">
-                    <img src="./Assets/img/home/slider-img.png" alt="">
-                  </div>
+            </a>
+            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                    <span class="carousel-control-next-icon mb-n2"></span>
                 </div>
-              </div>
-            </div>
-          </div>
+            </a>
         </div>
-      </div>
-
-    </section>
-    <!-- end slider section -->
+    </div>
+    <!-- Carousel End -->
   </div>
 
   <!-- about section -->
@@ -243,15 +140,16 @@
               </span>
             </h2>
             <p>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-              industry's standard dummy text ever since theLorem Ipsum is simply dummy text of the printing and
-              typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+            En Canino Feliz, nos apasiona el bienestar de tus mascotas. Somos una plataforma dedicada a ofrecerte todo lo que necesitas para cuidar y consentir a tus fieles compañeros.
+            <br>
+
+Nuestro objetivo es facilitar el acceso a servicios veterinarios de calidad, donde puedes agendar citas de manera rápida y sencilla, asegurando que tu mascota reciba la atención que merece. Además, contamos con un servicio de peluquería profesional, diseñado para que tu mascota luzca y se sienta espectacular.
+<br>
+
+También ofrecemos una cuidada selección de productos para mascotas, desde alimentos saludables hasta juguetes y accesorios, todo pensado para satisfacer las necesidades de tu compañero peludo.
+<br>
+En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso nos comprometemos a brindarte un servicio excepcional y asesoramiento experto. ¡Estamos aquí para ayudarte a mantener a tu mascota feliz y saludable!
             </p>
-            <div>
-              <a href="">
-                About More
-              </a>
-            </div>
           </div>
         </div>
       </div>
@@ -277,8 +175,7 @@
                     Clinica Veterinaria
                   </h6>
                   <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
+                  En nuestra clínica, ofrecemos atención veterinaria de alta calidad para asegurar la salud y el bienestar de tu mascota. Contamos con un equipo de profesionales capacitados que brindan servicios como consultas, vacunaciones, y emergencias, garantizando que tu compañero reciba el mejor cuidado posible.
                   </p>
                 </div>
               </div>
@@ -291,8 +188,7 @@
                     Hotel Mascota
                   </h6>
                   <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
+                  Si necesitas un lugar seguro y cómodo para que tu perro se quede mientras estás fuera, nuestro hotel canino es la opción ideal. Ofrecemos un ambiente acogedor y atención personalizada, con actividades y cuidado constante para que tu mascota se sienta como en casa.
                   </p>
                 </div>
               </div>
@@ -305,8 +201,7 @@
                     Tienda
                   </h6>
                   <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
+                  Nuestra tienda está repleta de productos seleccionados especialmente para tus mascotas. Desde alimentos de alta calidad hasta juguetes, accesorios y productos de higiene, encontrarás todo lo que necesitas para consentir a tu compañero peludo. ¡Ven y descubre nuestra variedad!
                   </p>
                 </div>
               </div>
@@ -329,7 +224,7 @@
   <section class="gallery-section layout_padding">
     <div class="container">
       <h2>
-        Nuestros Pacientes
+        Nuestras Mascotas
       </h2>
     </div>
     <div class="container ">
@@ -358,20 +253,7 @@
   <!-- buy section -->
 
   <section class="buy_section layout_padding">
-    <div class="container">
-      <h2>
-        You Can Buy Pet From Our Clinic
-      </h2>
-      <p>
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      </p>
-      <div class="d-flex justify-content-center">
-        <a href="">
-          Buy Now
-        </a>
-      </div>
-    </div>
+
   </section>
 
   <!-- end buy section -->
@@ -380,13 +262,13 @@
   <section class="client_section layout_padding-bottom">
     <div class="container">
       <h2 class="custom_heading text-center">
-        What Say Our
+        Que dicen nuestros
         <span>
-          clients
+          Clientes
         </span>
       </h2>
       <p class="text-center">
-        orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut la
+      En Caninofeliz, valoramos la confianza de nuestros clientes y nos enorgullece recibir sus opiniones. Cada testimonio refleja nuestro compromiso con el bienestar de las mascotas y la satisfacción de sus dueños. ¡Gracias por hacernos parte de su familia!
       </p>
       <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -403,16 +285,10 @@
                 </div>
                 <div class="detail_box">
                   <h5>
-                    Sandy Mark
+                  María G.
                   </h5>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea
-                    commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                  "Estoy encantada con el servicio de la clínica veterinaria. El equipo es muy profesional y siempre se toma el tiempo para responder a mis preguntas. Mi perrito, Rocky, se siente muy cómodo aquí. ¡Definitivamente recomendaré Caninofeliz a todos mis amigos!"
                   </p>
                 </div>
               </div>
@@ -426,16 +302,11 @@
                 </div>
                 <div class="detail_box">
                   <h5>
-                    Sandy Mark
+                  Luis M.
+
                   </h5>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea
-                    commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                  "Dejé a mi perro en el hotel canino de Caninofeliz mientras estuve de vacaciones, y no podría haber estado más feliz. Recibí actualizaciones sobre su bienestar y, al recogerlo, estaba feliz y lleno de energía. ¡Un servicio excelente!"
                   </p>
                 </div>
               </div>
@@ -449,16 +320,10 @@
                 </div>
                 <div class="detail_box">
                   <h5>
-                    Sandy Mark
+                  Ana R.
                   </h5>
                   <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et
-                    dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea
-                    commodo
-                    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
+                  "La tienda tiene todo lo que necesito para mi gata, Luna. Me encanta la variedad de productos y la atención al cliente es excepcional. Siempre salgo con algo nuevo y especial para ella. ¡Caninofeliz es mi lugar favorito para consentir a mis mascotas!"
                   </p>
                 </div>
               </div>
@@ -474,47 +339,7 @@
   </section>
   <!-- end client section -->
 
-  <!-- map section -->
 
-  <section class="map_section">
-    <div id="map" class="h-100 w-100 ">
-    </div>
-
-    <div class="form_container ">
-      <div class="row">
-        <div class="col-md-8 col-sm-10 offset-md-4">
-          <form action="">
-            <div class="text-center">
-              <h3>
-                Contact Us
-              </h3>
-            </div>
-            <div>
-              <input type="text" placeholder="Name" class="pt-3">
-            </div>
-            <div>
-              <input type=" text" placeholder="Pone Number">
-            </div>
-            <div>
-              <input type="email" placeholder="Email">
-            </div>
-            <div>
-              <input type="text" class="message-box" placeholder="Message">
-            </div>
-            <div class="d-flex justify-content-center">
-              <button>
-                SEND
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
-
-  <!-- end map section -->
 
   <!-- info section -->
   <section class="info_section layout_padding2">
@@ -527,7 +352,7 @@
             </div>
             <div class="detail-box">
               <p>
-                Location
+                Ubicacion
               </p>
             </div>
           </div>
@@ -539,7 +364,7 @@
             </div>
             <div class="detail-box">
               <p>
-                +02 1234567890
+                +57 1234567890
               </p>
             </div>
           </div>
@@ -551,7 +376,7 @@
             </div>
             <div class="detail-box">
               <p>
-                demo@gmail.com
+                empleados@example.com
               </p>
             </div>
           </div>
@@ -600,6 +425,8 @@
   <!-- google map js -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
   </script>
+  <script src="./Assets/js/home/bootstrap.js"></script>
+  <script src="./Assets/js/home/jquery-3.4.1.min.js"></script>
   <!-- end google map js -->
 </body>
 </body>
