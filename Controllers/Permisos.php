@@ -33,7 +33,7 @@ class Permisos extends Controllers{
             }
             
             $arrPermisoRol['modulos'] = $arrModulos;
-            $html = getModal('modalPermisos', $arrPermisoRol);
+            $html = getModal('permisosModal', $arrPermisoRol);
         }
 
         die();

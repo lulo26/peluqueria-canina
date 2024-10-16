@@ -2,6 +2,7 @@ const btnCrearRol = document.querySelector('#btnCrearRol')
 const frmRol = document.querySelector("#frmRoles")
 const crearRolModal = document.querySelector("#crearRolModal")
 const permisosRolModal = document.querySelector('#permisosRolModal')
+const contentFetch = document.querySelector('#contentFetch')
 let tablaRoles
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -105,7 +106,17 @@ document.addEventListener('DOMContentLoaded', ()=>{
             }
             //Permisos
             if (selected == 'permisos') {
-                $('#permisosRolModal').modal('show')
+                fetch(base_url + `/permisos/getPermisosRol/${idRol}`,{
+                    method: "GET"
+                })
+                .then((res)=>{
+                    return res.text()
+                })
+                .then((html)=>{
+                    contentFetch.innerHTML += html
+                    $('#permisosRolModal').modal('show')
+                })
+                
             }
         } catch (error) {}
     })

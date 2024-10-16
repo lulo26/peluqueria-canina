@@ -2,6 +2,7 @@
 <?php header_admin($data); 
 getModal('rolesModal',$data);
 ?>
+<div id="contentFetch"></div>
 <!-- Contenido de la pagina -->
     <div class="container-fluid">
 
