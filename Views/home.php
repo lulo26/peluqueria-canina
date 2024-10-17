@@ -48,7 +48,7 @@
             <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
               <ul class="navbar-nav  ">
                 <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="service.html">Servicios </a>
@@ -60,7 +60,7 @@
                   <a class="nav-link" href="clinic.html"> Clinica</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="contact.html">Tienda de Mascotas</a>
+                  <a class="nav-link" href="tienda">Tienda de Mascotas</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="buy.html"> Contactanos!</a>
@@ -348,7 +348,7 @@
         <a href="">
           <div class="item ">
             <div class="img-box box-1">
-              <img src="" alt="">
+              <img src="Assets/img/home/ubicacion.png" alt="">
             </div>
             <div class="detail-box">
               <p>
@@ -360,7 +360,7 @@
         <a href="">
           <div class="item ">
             <div class="img-box box-2">
-              <img src="" alt="">
+              <img src="Assets/img/home/llamada-telefonica.png" alt="">
             </div>
             <div class="detail-box">
               <p>
@@ -372,11 +372,11 @@
         <a href="">
           <div class="item ">
             <div class="img-box box-3">
-              <img src="" alt="">
+              <img src="Assets/img/home/correo-electronico.png" alt="">
             </div>
             <div class="detail-box">
               <p>
-                empleados@example.com
+                empleados@caninofeliz.com
               </p>
             </div>
           </div>
