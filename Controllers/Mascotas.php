@@ -53,22 +53,34 @@ class Mascotas extends Controllers{
     }
 
     public function setMascotas(){
-        $nombreUsuario = strClean($_POST['nombreUsuario']);
+        $idCliente = intval(strClean($_POST['nombreUsuario']));
+        $idMascotas = intval(strClean($_POST['idMascotas']));
         $nombreMascota = strClean($_POST['nombreMascota']);
         $razaMascota = strClean($_POST['razaMascota']);
-        $edadMascota = strClean($_POST['edadMascota']);
+        $edadMascota = intval(strClean($_POST['edadMascota']));
         $comentarioMascota = strClean($_POST['comentarioMascota']);
 
-        $arrPost = ['nombreUsuario','nombreMascota','razaMascota','edadMascota','comentarioMascota'];
+        $arrPost = ['nombreMascota','razaMascota','edadMascota','comentarioMascota', 'nombreUsuario'];
         if (check_post($arrPost)) {
-            $requestModel = $this->model->insertarMascota($nombreUsuario, $nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
-            if($requestModel > 0) {
-                $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            if ($idMascotas == 0 || $idMascotas == ""){
+                $requestModel = $this->model->insertarMascota($nombreMascota, $razaMascota, $edadMascota, $comentarioMascota, $idCliente);
+                $option = 1;
+            } else {
+                $requestModel = $this->model->editarMascota($nombreMascota, $razaMascota, $edadMascota, $comentarioMascota, $idCliente, $idMascotas);
+                $option = 2;
             }
-        } else{
+            if($requestModel > 0) {
+                if($option === 1){
+                $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
+            } else{
+                $arrRespuesta = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
+                }
+            }else{
+                $arrRespuesta = array('status' => false, 'msg' => 'No es posible registrar la mascota');
+            }
+        }else{
             $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos');
         }
-
         echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
         die();
     }
