@@ -44,15 +44,11 @@ class ClientesModel extends Mysql{
         $this->usuario=$usuario;
         $this->password=$password;
 
-        $sql=["SELECT * from clientes Where usuario='{$this->usuario}'","SELECT * from clientes where correo='{$this->correo}'","SELECT * from clientes where telefono='{$this->telefono}'"];
+        $sql="SELECT * from clientes Where correo='{$this->correo}'";
 
-        $array_request=[
-            "user"=>$this->select_all($sql[0]),
-            "email"=>$this->select_all($sql[1]),
-            "tel"=>$this->select_all($sql[2])
-        ];
+        $request=$this->select_all($sql);
 
-        if (empty($array_request["user"]) && empty($array_request["email"]) && empty($array_request["tel"])) {
+        if (empty($request)) {
 
             $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado) VALUES(?, ?, ?, ?, ?, ?, ?)";
             $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password,'activo');
@@ -61,17 +57,7 @@ class ClientesModel extends Mysql{
             
         }else {
 
-            if (empty($array_request["user"]) && empty($array_request["email"])) {
-                $result = "tel exist";
-            }elseif (empty($array_request["user"]) && empty($array_request["tel"])) {
-                $result="email exist";
-            }elseif (empty($array_request["email"]) && empty($array_request["tel"])) {
-                $result="user exist";
-            }elseif (empty($array_request["tel"])) {
-                $result= "both exist";
-            } else{
-                $result = "all exist";
-            }
+            $result="exist";
 
         }
 
@@ -90,43 +76,22 @@ class ClientesModel extends Mysql{
         $this->password = $password;
         $this->idCliente = $idCliente;
 
-        $sql = [
-            "user"=>"SELECT * from clientes Where usuario ='$this->usuario' and idClientes != $this->idCliente",
+        $sql="SELECT * from clientes Where correo= '{$this->correo}' and idClientes != {$this->idCliente}";
 
-            "email"=>"SELECT * from clientes where correo='$this->correo' and idClientes != $this->idCliente",
+        $request=$this->select_all($sql);
 
-            "tel" =>"SELECT * from clientes where telefono='$this->telefono' and idClientes != $this->idCliente"
-        ];
+        if (empty($request)) {
 
+            $queryUpdate = "UPDATE clientes SET nombre = ?, apellido = ?, correo=?, telefono = ?,usuario=?, password = ?, estado = ? WHERE idClientes = ?";
 
-        $array_request=[
-            "user"=>$this->select_all($sql["user"]),
-            "email"=>$this->select_all($sql["email"]),
-            "tel"=>$this->select_all($sql["tel"])
-        ];
-
-        if (empty($array_request["user"]) && empty($array_request["email"]) && empty($array_request["tel"])) {
-
-            $queryUpdate = "UPDATE clientes SET nombre = ?, apellido = ?, correo=?, telefono = ?,usuario=?, password = ?, estado = ? WHERE idClientes = $this->idCliente";
-
-            $arrayData = array($this->nombre, $this->apellido, $this->correo, $this->telefono, $this->usuario,$this->password, "activo");
+            $arrayData = array($this->nombre, $this->apellido, $this->correo, $this->telefono, $this->usuario,$this->password, "activo",$this->idCliente);
 
             $requestUpdate = $this->update($queryUpdate, $arrayData);
             $result = $requestUpdate;
 
         }else {
 
-            if (empty($array_request["user"]) && empty($array_request["email"])) {
-                $result = "tel exist";
-            }elseif (empty($array_request["user"]) && empty($array_request["tel"])) {
-                $result="email exist";
-            }elseif (empty($array_request["email"]) && empty($array_request["tel"])) {
-                $result="user exist";
-            }elseif (empty($array_request["tel"])) {
-                $result= "both exist";
-            } else{
-                $result = "all exist";
-            }
+            $result = "exist";
         }
 
         return $result;

@@ -53,7 +53,7 @@ class Clientes extends Controllers{
     public function setClientes(){
         $nombre = strClean($_POST['nombre']);
         $apellido = strClean($_POST['apellido']);
-        $correo = $_POST['correo'];
+        $correo = strtolower(strClean($_POST['correo']));
         $telefono = strClean($_POST['telefono']);
         $usuario = strClean($_POST['usuario']);
         $password = strClean($_POST['password']);
@@ -64,45 +64,39 @@ class Clientes extends Controllers{
         if (check_post($arrayPost)) {
 
             if ($idCliente === 0 || $idCliente === "") {
-
                 $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
                 $action = "insert";
 
             } else {
-
                 $requestModel= $this->model->actualizarCliente($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
                 $action = "update";
                 
             }
-            
-            $array_validate=["user exist","email exist","tel exist","both exist","all exist"];
 
-            if ($requestModel>0 && !in_array($requestModel,$array_validate)) {
+            switch ($action) {
+                case 'insert':
+                    if ($requestModel>0) {
+                        $arrayResp = array('status'=>true,'msg'=>'Registro completo');
+                    }elseif ($requestModel === "exist") {
+                        $arrayResp = array('status'=>true,'msg'=>'Este registro ya existe');
+                    } else {
+                        $arrayResp= array('status'=>false,'msg'=>'No se pudo registrar este cliente');
+                    }
+                    break;
+                
+                case 'update':
 
-                if ($action==="insert") {
-                    $arrayResp= array('status'=>true,'msg'=>'Datos guardados correctamente');
-                } else {
-                    $arrayResp= array('status'=>true,'msg'=>'Datos actualizados correctamente');
-                }
-                     
-            }elseif ($requestModel === 'user exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Ese usuario ya existe.');
+                    if ($requestModel === true ) {
+                        $arrayResp = array('status'=>true,'msg'=>"Actualización completa");
+                    }elseif ($requestModel === "exist") {
+                        $arrayResp= array('status'=>false,'msg'=>'Este registro ya existe');
+                    } else{
+                        $arrayResp= array('status'=>false,'msg'=>'No se pudo actualizar este cliente');
+                    }
+                    break;
 
-            }elseif ($requestModel=='email exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Ese email ya existe.');
-
-            }elseif ($requestModel=='tel exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Número de teléfono ya existente.');
-
-            }elseif ($requestModel=='both exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Email y nombre de usuario ya existentes.');
-
-            }elseif ($requestModel=='all exist') {
-                $arrayResp= array('status'=>false,'msg'=>'Email, nombre de usuario y teléfono ya existentes.');
-
-            }else{
-                $arrayResp= array('status'=>false,'msg'=>'No es posible registrar el cliente.');
-
+                default:
+                    break;
             }
 
         }else {
