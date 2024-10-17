@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar mascota</h5>
+        <h5 class="modal-title" id="MascotaModalLabel">Agregar mascota</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -13,6 +13,7 @@
         <!-- aquí va el contenido del modal -->
 
         <form id="frmMascotas" method="POST">
+        <input type="hidden" id="idMascotas" name="idMascotas" value="0">
             <div class="form-group">
               <label for="nombreMascota">Nombre</label>
               <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" autocomplete="off">

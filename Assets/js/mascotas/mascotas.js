@@ -20,7 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
       })
-    $('#insertarMascotasModal').modal('show')
+      document.querySelector('#idMascotas').value = 0
+        frmMascotas.reset()
+        $('#insertarMascotasModal').modal('show')
+        document.getElementById('MascotaModalLabel').innerHTML = "Crear Mascota"
   })
 
   tablaMascotas = $("#tablaMascotas").dataTable({
@@ -43,10 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
     order: [[0, "asc"]],
   });
 
+  
+
   frmMascotas.addEventListener("submit", (e) => {
     e.preventDefault();
     frmData = new FormData(frmMascotas);
-    
     fetch(base_url + "/mascotas/setMascotas", {
       method: "POST",
       body: frmData,
@@ -68,7 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('click', (e)=>{
     try {
         let selected = e.target.closest('button').getAttribute('data-action-type')
-        let idMascota = e.target.closest('button').getAttribute('rel')
+        let idMascotas = e.target.closest('button').getAttribute('rel')
+        
         //Eliminar mascota
         if (selected == 'delete') {
             Swal.fire({
@@ -81,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }).then((result) => {
                 if (result.isConfirmed) {
                     let formData = new FormData()
-                    formData.append('idMascotas', idMascota)
+                    formData.append('idMascotas', idMascotas)
                     fetch(base_url + '/mascotas/eliminarMascota',{
                         method: "POST",
                         body: formData,
@@ -102,8 +107,8 @@ document.addEventListener("DOMContentLoaded", () => {
         //Actualizar producto
         if (selected == 'update') {
             $('#insertarMascotasModal').modal('show')
-            document.getElementById('insertarMascotasModal').innerHTML = "Actualizar Mascota"
-            fetch(base_url + `/mascotas/getMascota/${idMascota}`,{
+            document.getElementById('MascotaModalLabel').innerHTML = "Actualizar Mascota"
+            fetch(base_url + `/mascotas/getMascota/${idMascotas}`,{
                 method: "GET"
             })
             .then((res)=>res.json())
@@ -111,10 +116,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 arrData = res.data[0]
                 console.log(arrData)
                 document.querySelector('#nombreMascota').value = arrData.nombreMascota
-                document.querySelector('#nombreUsuario').value = arrData.nombre
+                res.forEach(el => {
+                  nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`
+                })
                 document.querySelector('#razaMascota').value = arrData.razaMascota
                 document.querySelector('#edadMascota').value = arrData.edadMascota
                 document.querySelector('#comentarioMascota').value = arrData.comentarioMascota
+                document.querySelector('#idMascotas').value = arrData.idMascotas
             })
         }
     }catch{}
