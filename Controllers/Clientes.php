@@ -100,7 +100,7 @@ class Clientes extends Controllers{
             }
 
         }else {
-            $arrayResp= array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+            $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
         }
         
         echo json_encode($arrayResp,JSON_UNESCAPED_UNICODE);

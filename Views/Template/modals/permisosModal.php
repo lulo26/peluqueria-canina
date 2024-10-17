@@ -12,9 +12,11 @@
 
         <!-- aquí va el contenido del modal -->
         <form id="frmPermisos">
+          <input type="hidden" id="idrol" name="idrol" value="<?= $data['idrol']; ?>">
           <table class="table table-bordered" width="100%" cellspacing="0">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Módulo</th>
                 <th>Leer</th>
                 <th>Escribir</th>
@@ -39,6 +41,11 @@
           
               ?>
               <tr>
+                <td>
+                  <?= $no ?>
+                  <input type="hidden" name="modulos[<?=$i;?>][id_modulo]" value="<?= $idmod ?>">
+                </td>
+
                 <td>
                   <?= $modulos[$i]['titulo_modulo']; ?>
                 </td>
