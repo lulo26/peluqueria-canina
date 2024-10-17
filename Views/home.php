@@ -7,10 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
+ 
 
   <title><?= $data['page_tag'] ?></title>
 
@@ -19,14 +16,14 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="./Assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.css" />
 
   <!-- fonts style -->
   <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="./Assets/css/style.css" rel="stylesheet" />
+  <link href="Assets/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
-  <link href="./Assets/css/responsive.css" rel="stylesheet" />
+  <link href="Assets/css/responsive.css" rel="stylesheet" />
 
 </head>
 
@@ -40,7 +37,7 @@
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
           <a class="navbar-brand" href="index.html">
-            <img src="./Assets/img/home/logo.png" alt="">
+            <img src="Assets/img/home/logo.png" alt="">
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -89,7 +86,7 @@
       <div id="header-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="w-100" src="./assets/img/home/hero.jpg" alt="Image">
+            <img class="w-100" src="Assets/img/home/hero.jpg" alt="Image">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
               <div class="p-3" style="max-width: 900px;">
                 <h4 class="text-white text-uppercase mb-md-3">Donde cada cola se mueve con alegría y cada ladrido cuenta una historia de amor.</h4>
@@ -98,7 +95,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+            <img class="w-100" src="Assets/img/home/g-2.png        " alt="Image">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
               <div class="p-3" style="max-width: 900px;">
                 <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
@@ -401,13 +398,28 @@
 
 
 
-  <!-- google map js -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
-  </script>
+
   <script src="./Assets/js/home/bootstrap.js"></script>
   <script src="./Assets/js/home/jquery-3.4.1.min.js"></script>
 
-  <!-- end google map js -->
+<!--  Scripc para que funcione carousel!!
+ -->
+ <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="Assets/js/home/carousel/lib/easing/easing.min.js"></script>
+    <script src="Assets/js/home/carousel/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="Assets/js/home/carousel/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="Assets/js/home/carousel/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="Assets/js/home/carousel/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="Assets/js/home/carousel/main.js"></script>
+
+
 </body>
 </body>
 
