@@ -87,7 +87,7 @@
 
             <!-- Nav Item - Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="login">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Salir</span>
                 </a>

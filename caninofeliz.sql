@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 17, 2024 at 06:37 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-10-2024 a las 01:32:33
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -61,8 +61,23 @@ CREATE TABLE `clientes` (
   `telefono` varchar(20) NOT NULL,
   `usuario` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `estado` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado`) VALUES
+(1, 'Pacho', 'Lopez', 'lopez@gmail.com', '312', 'pacho1', '1', 'inactivo'),
+(2, 'Diego', 'Valdes', 'bitardos8@gmail.com', '311', 'bits8', '12', 'inactivo'),
+(7, 'Alo', 'Sans', 'sans8@gmail.com', '314', 'sans', '12345', 'inactivo'),
+(8, 'Diego', 'Valdes', 'bitardos10@gmail.com', '315', 'bits10', '0000', 'inactivo'),
+(9, 'Diego1', 'Valdes1', 'bitardos11@gmail.com', '31115', 'bits11', '0000', 'inactivo'),
+(10, 'a', 'e', 'assss@gmail.com', '1233333', 'aaaaa', '12345', 'inactivo'),
+(11, 'alaverga', 'e', 'ae@gmail.com', '123333', 'diego', '1234', 'activo'),
+(12, 'Lopez', 'Veraniego', 'veraniego1@gmail.com', '310', 'veraLo10', '22', 'inactivo'),
+(27, 'colombiasas', 'pictures', 'bitardos81@gmail.com', '320', 'bits9', '12345', 'activo');
 
 --
 -- Dumping data for table `clientes`
@@ -82,22 +97,35 @@ CREATE TABLE `empleados` (
   `password` varchar(255) NOT NULL,
   `nomina` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mascotas`
+-- Estructura de tabla para la tabla `mascotas`
 --
 
 CREATE TABLE `mascotas` (
   `idMascotas` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `raza` varchar(45) NOT NULL,
-  `edad` int(11) NOT NULL,
-  `comentario` varchar(200) NOT NULL,
+  `nombreMascota` varchar(45) NOT NULL,
+  `razaMascota` varchar(45) NOT NULL,
+  `edadMascota` int(11) NOT NULL,
+  `comentarioMascota` varchar(200) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `modulos`
+--
+
+CREATE TABLE `modulos` (
+  `id_modulo` int(11) NOT NULL,
+  `titulo_modulo` varchar(50) DEFAULT NULL,
+  `descripcion_modulo` text DEFAULT NULL,
+  `status_modulo` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -123,24 +151,32 @@ CREATE TABLE `modulos` (
 
 CREATE TABLE `pagos` (
   `idPagos` int(11) NOT NULL,
-  `metodo` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `metodo` varchar(45) NOT NULL,
+  `numeroTarjeta` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `permisos` (
-  `id_permiso` int(11) NOT NULL,
-  `rol_id` int(11) NOT NULL,
-  `modulo_id` int(11) NOT NULL,
-  `r` int(11) NOT NULL DEFAULT 0,
-  `w` int(11) NOT NULL DEFAULT 0,
-  `u` int(11) NOT NULL DEFAULT 0,
-  `d` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `productos` (
+  `idInventario` int(11) NOT NULL,
+  `nombreProducto` varchar(45) NOT NULL,
+  `cantidadProducto` int(11) NOT NULL,
+  `codigoSKU` varchar(30) NOT NULL,
+  `estado` varchar(45) NOT NULL,
+  `precio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`idInventario`, `nombreProducto`, `cantidadProducto`, `codigoSKU`, `estado`, `precio`) VALUES
+(1, 'Papas', 30, '001001001', '0', 1000),
+(2, 'sopas', 0, '101010', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -255,40 +291,33 @@ ALTER TABLE `empleados`
   ADD KEY `fk_empleados_roles1_idx` (`roles_idRoles`);
 
 --
--- Indexes for table `mascotas`
+-- Indices de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD PRIMARY KEY (`idMascotas`),
   ADD KEY `fk_mascotas_clientes1_idx` (`clientes_idClientes`);
 
 --
--- Indexes for table `modulos`
+-- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   ADD PRIMARY KEY (`id_modulo`);
 
 --
--- Indexes for table `pagos`
+-- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
   ADD PRIMARY KEY (`idPagos`);
 
 --
--- Indexes for table `permisos`
---
-ALTER TABLE `permisos`
-  ADD PRIMARY KEY (`id_permiso`),
-  ADD KEY `rol_id` (`rol_id`),
-  ADD KEY `modulo_id` (`modulo_id`);
-
---
--- Indexes for table `productos`
+-- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`idInventario`);
+  ADD PRIMARY KEY (`idInventario`),
+  ADD UNIQUE KEY `codigoSKU` (`codigoSKU`);
 
 --
--- Indexes for table `roles`
+-- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
@@ -329,7 +358,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT for table `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `empleados`
@@ -338,31 +367,25 @@ ALTER TABLE `empleados`
   MODIFY `idEmpleados` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mascotas`
+-- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   MODIFY `idMascotas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `modulos`
+-- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `permisos`
---
-ALTER TABLE `permisos`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `productos`
+-- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
