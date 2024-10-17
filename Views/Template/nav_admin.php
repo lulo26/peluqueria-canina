@@ -20,7 +20,7 @@
             </li>
 
             <!-- Nav Item - Gestion de usuarios -->
-            <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" ? "active" : "" ?>">
+            <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" || $data['page_id_name'] == "roles" ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-store"></i>
