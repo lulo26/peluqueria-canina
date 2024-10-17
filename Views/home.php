@@ -95,12 +95,13 @@
             </div>
           </div>
           <div class="carousel-item">
-            <img class="w-100" src="Assets/img/home/g-2.png        " alt="Image">
+            <img class="w-100" src="Assets/img/home/carousel-2.jpg" alt="Image">
             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
               <div class="p-3" style="max-width: 900px;">
-                <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
-                <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
-                <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+                <h4 class="text-black text-uppercase mb-md-3">Descubre cómo nuestro amor por los perros transforma vidas. 🐶💖
+¡Únete a la familia Canino Feliz! 🌟
+#AmorPerruno #CaninoFeliz</h4>
+                <h1 class="display-3 text-black mb-md-4">🐾 ¡La felicidad tiene cuatro patas! 🐾</h1>
               </div>
             </div>
           </div>
@@ -237,10 +238,10 @@
         <img src="./Assets/img/home/g-3.png" alt="">
       </div>
       <div class="img_box box-4">
-        <img src="./Assets/img/home/g-4.png" alt="">
+        <img src="./Assets/img/home/about-2.jpg" alt="">
       </div>
       <div class="img_box box-5">
-        <img src="./Assets/img/home/g-5.png" alt="">
+        <img src="./Assets/img/home/price-2.jpg" alt="">
       </div>
     </div>
   </section>
@@ -280,7 +281,7 @@
             <div class="layout_padding2 pl-100">
               <div class="client_container ">
                 <div class="img_box">
-                  <img src="./Assets/img/home/client.jpg" alt="">
+                  <img src="./Assets/img/home/team-3.jpg" alt="">
                 </div>
                 <div class="detail_box">
                   <h5>
@@ -315,7 +316,7 @@
             <div class="layout_padding2 pl-100">
               <div class="client_container ">
                 <div class="img_box">
-                  <img src="./Assets/img/home/cliente1.jpg" alt="">
+                  <img src="./Assets/img/home/team-1.jpg" alt="">
                 </div>
                 <div class="detail_box">
                   <h5>
@@ -395,7 +396,8 @@
   </section>
   <!-- footer section -->
 
-
+   <!-- Back to Top -->
+   <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 
 
