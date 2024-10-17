@@ -568,5 +568,16 @@ a:focus {
   color: #292929;
 }
 
+.imagen-login{
+
+  margin-top: 5%;
+
+
+}
+
+.imagen-login img{
+  border-radius: 20px;
+}
+
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */

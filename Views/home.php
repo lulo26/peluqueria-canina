@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <!-- Basic -->
   <meta charset="utf-8" />
@@ -11,9 +12,9 @@
   <meta name="description" content="" />
   <meta name="author" content="" />
 
-    <title><?= $data['page_tag'] ?></title>
+  <title><?= $data['page_tag'] ?></title>
 
-    <!-- slider stylesheet -->
+  <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
     href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
 
@@ -28,6 +29,7 @@
   <link href="./Assets/css/responsive.css" rel="stylesheet" />
 
 </head>
+
 <body>
 
 
@@ -73,50 +75,50 @@
             </div>
             <div class="quote_btn-container  d-flex justify-content-center">
 
-            <a href="<?= base_url()  ?>/dashboard">Iniciar Sesion</a>
-            
+              <a href="<?= base_url()  ?>/login">Iniciar Sesion</a>
+
             </div>
           </div>
         </nav>
       </div>
     </header>
     <!-- end header section -->
- 
+
     <!-- Carousel Start -->
     <div class="container-fluid p-0">
-        <div id="header-carousel" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="./assets/img/home/hero.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Donde cada cola se mueve con alegría y cada ladrido cuenta una historia de amor.</h4>
-                            <h1 class="display-3 text-white mb-md-4">Canino Feliz</h1>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img class="w-100" src="img/carousel-2.jpg" alt="Image">
-                    <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                        <div class="p-3" style="max-width: 900px;">
-                            <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
-                            <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
-                        </div>
-                    </div>
-                </div>
+      <div id="header-carousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="w-100" src="./assets/img/home/hero.jpg" alt="Image">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+              <div class="p-3" style="max-width: 900px;">
+                <h4 class="text-white text-uppercase mb-md-3">Donde cada cola se mueve con alegría y cada ladrido cuenta una historia de amor.</h4>
+                <h1 class="display-3 text-white mb-md-4">Canino Feliz</h1>
+              </div>
             </div>
-            <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
-                <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                    <span class="carousel-control-prev-icon mb-n2"></span>
-                </div>
-            </a>
-            <a class="carousel-control-next" href="#header-carousel" data-slide="next">
-                <div class="btn btn-dark" style="width: 45px; height: 45px;">
-                    <span class="carousel-control-next-icon mb-n2"></span>
-                </div>
-            </a>
+          </div>
+          <div class="carousel-item">
+            <img class="w-100" src="img/carousel-2.jpg" alt="Image">
+            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+              <div class="p-3" style="max-width: 900px;">
+                <h4 class="text-white text-uppercase mb-md-3">Tours & Travel</h4>
+                <h1 class="display-3 text-white mb-md-4">Discover Amazing Places With Us</h1>
+                <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Book Now</a>
+              </div>
+            </div>
+          </div>
         </div>
+        <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+          <div class="btn btn-dark" style="width: 45px; height: 45px;">
+            <span class="carousel-control-prev-icon mb-n2"></span>
+          </div>
+        </a>
+        <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+          <div class="btn btn-dark" style="width: 45px; height: 45px;">
+            <span class="carousel-control-next-icon mb-n2"></span>
+          </div>
+        </a>
+      </div>
     </div>
     <!-- Carousel End -->
   </div>
@@ -140,15 +142,15 @@
               </span>
             </h2>
             <p>
-            En Canino Feliz, nos apasiona el bienestar de tus mascotas. Somos una plataforma dedicada a ofrecerte todo lo que necesitas para cuidar y consentir a tus fieles compañeros.
-            <br>
+              En Canino Feliz, nos apasiona el bienestar de tus mascotas. Somos una plataforma dedicada a ofrecerte todo lo que necesitas para cuidar y consentir a tus fieles compañeros.
+              <br>
 
-Nuestro objetivo es facilitar el acceso a servicios veterinarios de calidad, donde puedes agendar citas de manera rápida y sencilla, asegurando que tu mascota reciba la atención que merece. Además, contamos con un servicio de peluquería profesional, diseñado para que tu mascota luzca y se sienta espectacular.
-<br>
+              Nuestro objetivo es facilitar el acceso a servicios veterinarios de calidad, donde puedes agendar citas de manera rápida y sencilla, asegurando que tu mascota reciba la atención que merece. Además, contamos con un servicio de peluquería profesional, diseñado para que tu mascota luzca y se sienta espectacular.
+              <br>
 
-También ofrecemos una cuidada selección de productos para mascotas, desde alimentos saludables hasta juguetes y accesorios, todo pensado para satisfacer las necesidades de tu compañero peludo.
-<br>
-En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso nos comprometemos a brindarte un servicio excepcional y asesoramiento experto. ¡Estamos aquí para ayudarte a mantener a tu mascota feliz y saludable!
+              También ofrecemos una cuidada selección de productos para mascotas, desde alimentos saludables hasta juguetes y accesorios, todo pensado para satisfacer las necesidades de tu compañero peludo.
+              <br>
+              En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso nos comprometemos a brindarte un servicio excepcional y asesoramiento experto. ¡Estamos aquí para ayudarte a mantener a tu mascota feliz y saludable!
             </p>
           </div>
         </div>
@@ -175,7 +177,7 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
                     Clinica Veterinaria
                   </h6>
                   <p>
-                  En nuestra clínica, ofrecemos atención veterinaria de alta calidad para asegurar la salud y el bienestar de tu mascota. Contamos con un equipo de profesionales capacitados que brindan servicios como consultas, vacunaciones, y emergencias, garantizando que tu compañero reciba el mejor cuidado posible.
+                    En nuestra clínica, ofrecemos atención veterinaria de alta calidad para asegurar la salud y el bienestar de tu mascota. Contamos con un equipo de profesionales capacitados que brindan servicios como consultas, vacunaciones, y emergencias, garantizando que tu compañero reciba el mejor cuidado posible.
                   </p>
                 </div>
               </div>
@@ -188,7 +190,7 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
                     Hotel Mascota
                   </h6>
                   <p>
-                  Si necesitas un lugar seguro y cómodo para que tu perro se quede mientras estás fuera, nuestro hotel canino es la opción ideal. Ofrecemos un ambiente acogedor y atención personalizada, con actividades y cuidado constante para que tu mascota se sienta como en casa.
+                    Si necesitas un lugar seguro y cómodo para que tu perro se quede mientras estás fuera, nuestro hotel canino es la opción ideal. Ofrecemos un ambiente acogedor y atención personalizada, con actividades y cuidado constante para que tu mascota se sienta como en casa.
                   </p>
                 </div>
               </div>
@@ -201,13 +203,13 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
                     Tienda
                   </h6>
                   <p>
-                  Nuestra tienda está repleta de productos seleccionados especialmente para tus mascotas. Desde alimentos de alta calidad hasta juguetes, accesorios y productos de higiene, encontrarás todo lo que necesitas para consentir a tu compañero peludo. ¡Ven y descubre nuestra variedad!
+                    Nuestra tienda está repleta de productos seleccionados especialmente para tus mascotas. Desde alimentos de alta calidad hasta juguetes, accesorios y productos de higiene, encontrarás todo lo que necesitas para consentir a tu compañero peludo. ¡Ven y descubre nuestra variedad!
                   </p>
                 </div>
               </div>
             </div>
           </div>
-       
+
         </div>
         <div class="col-md-4">
           <img src="./Assets/img/home/tool.png" alt="" class="w-100">
@@ -268,7 +270,7 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
         </span>
       </h2>
       <p class="text-center">
-      En Caninofeliz, valoramos la confianza de nuestros clientes y nos enorgullece recibir sus opiniones. Cada testimonio refleja nuestro compromiso con el bienestar de las mascotas y la satisfacción de sus dueños. ¡Gracias por hacernos parte de su familia!
+        En Caninofeliz, valoramos la confianza de nuestros clientes y nos enorgullece recibir sus opiniones. Cada testimonio refleja nuestro compromiso con el bienestar de las mascotas y la satisfacción de sus dueños. ¡Gracias por hacernos parte de su familia!
       </p>
       <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
@@ -285,10 +287,10 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
                 </div>
                 <div class="detail_box">
                   <h5>
-                  María G.
+                    María G.
                   </h5>
                   <p>
-                  "Estoy encantada con el servicio de la clínica veterinaria. El equipo es muy profesional y siempre se toma el tiempo para responder a mis preguntas. Mi perrito, Rocky, se siente muy cómodo aquí. ¡Definitivamente recomendaré Caninofeliz a todos mis amigos!"
+                    "Estoy encantada con el servicio de la clínica veterinaria. El equipo es muy profesional y siempre se toma el tiempo para responder a mis preguntas. Mi perrito, Rocky, se siente muy cómodo aquí. ¡Definitivamente recomendaré Caninofeliz a todos mis amigos!"
                   </p>
                 </div>
               </div>
@@ -302,11 +304,11 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
                 </div>
                 <div class="detail_box">
                   <h5>
-                  Luis M.
+                    Luis M.
 
                   </h5>
                   <p>
-                  "Dejé a mi perro en el hotel canino de Caninofeliz mientras estuve de vacaciones, y no podría haber estado más feliz. Recibí actualizaciones sobre su bienestar y, al recogerlo, estaba feliz y lleno de energía. ¡Un servicio excelente!"
+                    "Dejé a mi perro en el hotel canino de Caninofeliz mientras estuve de vacaciones, y no podría haber estado más feliz. Recibí actualizaciones sobre su bienestar y, al recogerlo, estaba feliz y lleno de energía. ¡Un servicio excelente!"
                   </p>
                 </div>
               </div>
@@ -316,14 +318,14 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
             <div class="layout_padding2 pl-100">
               <div class="client_container ">
                 <div class="img_box">
-                  <img src="./Assets/img/home/client.jpg" alt="">
+                  <img src="./Assets/img/home/cliente1.jpg" alt="">
                 </div>
                 <div class="detail_box">
                   <h5>
-                  Ana R.
+                    Ana R.
                   </h5>
                   <p>
-                  "La tienda tiene todo lo que necesito para mi gata, Luna. Me encanta la variedad de productos y la atención al cliente es excepcional. Siempre salgo con algo nuevo y especial para ella. ¡Caninofeliz es mi lugar favorito para consentir a mis mascotas!"
+                    "La tienda tiene todo lo que necesito para mi gata, Luna. Me encanta la variedad de productos y la atención al cliente es excepcional. Siempre salgo con algo nuevo y especial para ella. ¡Caninofeliz es mi lugar favorito para consentir a mis mascotas!"
                   </p>
                 </div>
               </div>
@@ -396,37 +398,15 @@ En Canino Feliz, entendemos que tus mascotas son parte de tu familia, por eso no
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
 
-  <script>
-    // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-    // Australia.
-    function initMap() {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 11,
-        center: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-      });
 
-      var image = './Assets/img/home/maps-and-flags.png';
-      var beachMarker = new google.maps.Marker({
-        position: {
-          lat: 40.645037,
-          lng: -73.880224
-        },
-        map: map,
-        icon: image
-      });
-    }
-  </script>
+
   <!-- google map js -->
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8eaHt9Dh5H57Zh0xVTqxVdBFCvFMqFjQ&callback=initMap">
   </script>
   <script src="./Assets/js/home/bootstrap.js"></script>
   <script src="./Assets/js/home/jquery-3.4.1.min.js"></script>
+
   <!-- end google map js -->
 </body>
 </body>
