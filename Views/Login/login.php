@@ -77,7 +77,7 @@
                                     </div>
                                     <div class="text-center">
                                         <br>
-                                        <a href="small" class="btn btn-primary btn-user btn-block ghost">
+                                        <a href="register" class="btn btn-primary btn-user btn-block ghost">
                                             Crea una Cuenta Firulais!!
                                         </a>
                                  

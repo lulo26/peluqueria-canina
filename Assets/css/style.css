@@ -579,5 +579,16 @@ a:focus {
   border-radius: 20px;
 }
 
+.imagen-register{
+  margin-top: 30%;
+  margin-left: 2%;
+}
+
+.imagen-register img{
+  border-radius: 20px;
+}
+
+
+
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
