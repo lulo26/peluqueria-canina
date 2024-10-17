@@ -115,7 +115,7 @@ class Clientes extends Controllers{
             $arrayResp= array('status'=>false,'msg'=>'Debe ingresar todos los datos');
         }
         
-        echo json_encode($action,JSON_UNESCAPED_UNICODE);
+        echo json_encode($requestModel,JSON_UNESCAPED_UNICODE);
         die();
         
     }
