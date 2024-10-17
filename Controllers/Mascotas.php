@@ -60,24 +60,24 @@ class Mascotas extends Controllers{
         $edadMascota = intval(strClean($_POST['edadMascota']));
         $comentarioMascota = strClean($_POST['comentarioMascota']);
 
+        
         $arrPost = ['nombreMascota','razaMascota','edadMascota','comentarioMascota', 'nombreUsuario'];
         if (check_post($arrPost)) {
             if ($idMascotas == 0 || $idMascotas == ""){
-                $requestModel = $this->model->insertarMascota($nombreMascota, $razaMascota, $edadMascota, $comentarioMascota, $idCliente);
+                $requestModel = $this->model->insertarMascota($idCliente, $nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
                 $option = 1;
             } else {
-                $requestModel = $this->model->editarMascota($nombreMascota, $razaMascota, $edadMascota, $comentarioMascota, $idCliente, $idMascotas);
+                $requestModel = $this->model->editarMascota($idMascotas ,$idCliente ,$nombreMascota, $razaMascota, $edadMascota, $comentarioMascota);
                 $option = 2;
             }
+           // echo($option);
             if($requestModel > 0) {
                 if($option === 1){
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-            } else{
+            }
+            }else{
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
                 }
-            }else{
-                $arrRespuesta = array('status' => false, 'msg' => 'No es posible registrar la mascota');
-            }
         }else{
             $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos');
         }

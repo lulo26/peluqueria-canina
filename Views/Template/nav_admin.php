@@ -42,6 +42,13 @@
                     <span>Citas</span></a>
             </li>
 
+            <!-- Nav Item - Servicios -->
+            <li class="nav-item <?= $data['page_id_name'] == "servicios" ? "active" : "" ?>">
+                <a class="nav-link" href="<?= base_url() ?>/servicios">
+                    <i class="fas fa-box-open"></i>
+                    <span>Servicios</span></a>
+            </li>
+
             <!-- Nav Item - Inventario -->
             <li class="nav-item <?= $data['page_id_name'] == "inventario" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= base_url() ?>/inventario">

@@ -20,7 +20,7 @@
             </div>
 
             <select class="custom-select mt-3" aria-label="Default select example" id="nombreUsuario" name="nombreUsuario">
-                <option selected>selecicone el dueño</option>
+                
             </select>
 
             <div class="form-group mt-3">
