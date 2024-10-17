@@ -65,16 +65,15 @@ class Servicios extends Controllers{
                 $action = "insert";
             }else{
                 $requestModel = $this->model->actualizarServicios($nombre, $precio, $descripcion, $id_servicio);
-
                 $action = "update";
             }
 
             switch ($action) {
                 case 'insert':
-                    if ($requestModel>0) {
+                    if (is_numeric($requestModel) && $requestModel>0) {
                         $arrayResp = array('status'=>true,'msg'=>'Registro completo');
                     }elseif ($requestModel === "exist") {
-                        $arrayResp = array('status'=>true,'msg'=>'Este servicio ya existe');
+                        $arrayResp = array('status'=>false,'msg'=>'Este servicio ya existe');
                     } else {
                         $arrayResp= array('status'=>false,'msg'=>'No se pudo registrar este servicio');
                     }
