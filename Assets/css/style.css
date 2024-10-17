@@ -588,6 +588,25 @@ a:focus {
   border-radius: 20px;
 }
 
+/*Comentario para agregar boton fantasma */
+
+
+
+.back-to-top {
+  
+  position: fixed;
+  display: none;
+  right: 15px;
+  bottom: 15px;
+  z-index: 11;
+}
+
+
+
+
+/*Aqui termina boton fantasma*/
+
+
 
 
 /* end footer section*/
