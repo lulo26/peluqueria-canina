@@ -5,29 +5,46 @@ getModal('serviciosModal',$data);
  
     <!-- Contenido de la pagina -->
     <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <!-- Titulo de la pagina -->
+                <h4 class="h3 mb-4 font-weight-bold  text-primary">
+                    <?= $data['page_title'] ?>
 
-        <!-- Titulo de la pagina -->
-        <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <button id="btnCrearServicio" class="btn btn-primary" data-toggle="modal" data-target="#insertarServicios">
-            <i class="fas fa-plus"></i>
-        </button>
+                    <button id="btnCrearServicio" class="btn btn-primary" data-toggle="modal" data-target="#insertarServicios">
+                        <span>
+                            <i class="fas fa-plus"></i>
+                        </span>
 
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tablaServicios" class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Precio</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody> 
-                    </tbody>
-                </table>
+                        <span class="text">
+                            Crear Servicio
+                        </span>
+                        
+                    </button>
+
+                </h4>
+
+                
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="tablaServicios" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Descripción</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-
+        
     </div>
     <!-- /.Fin de contenido -->
 
