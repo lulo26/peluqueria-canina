@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded",()=>{
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
         },
         "ajax":{
-            "url": " "+base_url+"/clientes/getServicios",
+            "url": " "+base_url+"/servicios/getServicios",
             "dataSrc":""
         },
         "columns":[

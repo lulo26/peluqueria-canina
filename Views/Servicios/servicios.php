@@ -20,6 +20,7 @@ getModal('serviciosModal',$data);
                             <th>Nombre</th>
                             <th>Precio</th>
                             <th>Descripción</th>
+                            <th>Opciones</th>
                         </tr>
                     </thead>
                     <tbody> 

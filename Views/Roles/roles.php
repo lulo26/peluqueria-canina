@@ -47,5 +47,5 @@ getModal('rolesModal',$data);
     </div>
     <!-- Fin de contenido principal <main> -->
 
-    <script src="<?=media() ?>/js/roles.js"></script>
+    <script src="<?=media() ?>/js/roles/roles.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

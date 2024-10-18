@@ -1,7 +1,7 @@
 <!-- Carga todo el header, la variable $data viene desde el controlador -->
 <?php 
 header_admin($data);
-//getModal('', $data);
+getModal('usuariosModal', $data);
 ?> 
 <!-- Contenido de la pagina -->
     <div class="container-fluid">
@@ -61,5 +61,5 @@ header_admin($data);
 
     </div>
     <!-- Fin de contenido principal <main> -->
-
+    <script src="<?=media() ?>/js/usuarios/usuarios.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->
