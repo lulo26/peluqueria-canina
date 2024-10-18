@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 17, 2024 at 06:37 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 18-10-2024 a las 00:34:52
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `caninofeliz`
+-- Base de datos: `caninofeliz`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `citas`
+-- Estructura de tabla para la tabla `citas`
 --
 
 CREATE TABLE `citas` (
@@ -34,23 +34,23 @@ CREATE TABLE `citas` (
   `lugar` varchar(45) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL,
   `empleados_idEmpleados` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `citas_has_servicios`
+-- Estructura de tabla para la tabla `citas_has_servicios`
 --
 
 CREATE TABLE `citas_has_servicios` (
   `citas_idCitas` int(11) NOT NULL,
   `servicios_idServicios` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `clientes`
+-- Estructura de tabla para la tabla `clientes`
 --
 
 CREATE TABLE `clientes` (
@@ -62,15 +62,12 @@ CREATE TABLE `clientes` (
   `usuario` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
   `estado` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `clientes`
---
 -- --------------------------------------------------------
 
 --
--- Table structure for table `empleados`
+-- Estructura de tabla para la tabla `empleados`
 --
 
 CREATE TABLE `empleados` (
@@ -82,27 +79,27 @@ CREATE TABLE `empleados` (
   `password` varchar(255) NOT NULL,
   `nomina` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mascotas`
+-- Estructura de tabla para la tabla `mascotas`
 --
 
 CREATE TABLE `mascotas` (
   `idMascotas` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `raza` varchar(45) NOT NULL,
-  `edad` int(11) NOT NULL,
-  `comentario` varchar(200) NOT NULL,
+  `nombreMascota` varchar(45) NOT NULL,
+  `razaMascota` varchar(45) NOT NULL,
+  `edadMascota` int(11) NOT NULL,
+  `comentarioMascota` varchar(200) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `modulos`
+-- Estructura de tabla para la tabla `modulos`
 --
 
 CREATE TABLE `modulos` (
@@ -110,26 +107,30 @@ CREATE TABLE `modulos` (
   `titulo_modulo` varchar(50) DEFAULT NULL,
   `descripcion_modulo` text DEFAULT NULL,
   `status_modulo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `modulos`
+-- Volcado de datos para la tabla `modulos`
 --
+
+INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `status_modulo`) VALUES
+(5, 'clientes', 'administrar clientes', 1);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pagos`
+-- Estructura de tabla para la tabla `pagos`
 --
 
 CREATE TABLE `pagos` (
   `idPagos` int(11) NOT NULL,
   `metodo` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `permisos`
+-- Estructura de tabla para la tabla `permisos`
 --
 
 CREATE TABLE `permisos` (
@@ -140,12 +141,19 @@ CREATE TABLE `permisos` (
   `w` int(11) NOT NULL DEFAULT 0,
   `u` int(11) NOT NULL DEFAULT 0,
   `d` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`id_permiso`, `rol_id`, `modulo_id`, `r`, `w`, `u`, `d`) VALUES
+(1, 10, 5, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `productos`
+-- Estructura de tabla para la tabla `productos`
 --
 
 CREATE TABLE `productos` (
@@ -155,15 +163,12 @@ CREATE TABLE `productos` (
   `estado` int(1) NOT NULL,
   `precio` int(11) NOT NULL,
   `codigoSKU` varchar(16) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Dumping data for table `productos`
---
 -- --------------------------------------------------------
 
 --
--- Table structure for table `roles`
+-- Estructura de tabla para la tabla `roles`
 --
 
 CREATE TABLE `roles` (
@@ -171,29 +176,42 @@ CREATE TABLE `roles` (
   `nombre_rol` varchar(45) NOT NULL,
   `descripcion_rol` varchar(200) NOT NULL,
   `status_rol` int(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Dumping data for table `roles`
+-- Volcado de datos para la tabla `roles`
 --
+
+INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`, `status_rol`) VALUES
+(10, 'Admin', 'administrador', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servicios`
+-- Estructura de tabla para la tabla `servicios`
 --
 
 CREATE TABLE `servicios` (
-  `idServicios` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id_servicio` int(11) NOT NULL,
+  `nombre_servicio` varchar(45) NOT NULL,
+  `precio_servicio` int(11) NOT NULL,
+  `descripcion_servicio` varchar(255) NOT NULL,
+  `estado_servicio` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id_servicio`, `nombre_servicio`, `precio_servicio`, `descripcion_servicio`, `estado_servicio`) VALUES
+(1, 'Paseo', 12, 'Un peque&ntilde;o paseo por el parque', 1),
+(2, 'U&ntilde;as', 12, 'COSA', 1),
+(3, 'Spa', 12000, 'DELETE', 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas`
+-- Estructura de tabla para la tabla `ventas`
 --
 
 CREATE TABLE `ventas` (
@@ -202,25 +220,25 @@ CREATE TABLE `ventas` (
   `total` int(11) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL,
   `empleados_idEmpleados` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ventas_has_inventario`
+-- Estructura de tabla para la tabla `ventas_has_inventario`
 --
 
 CREATE TABLE `ventas_has_inventario` (
   `ventas_idVentas` int(11) NOT NULL,
   `inventario_idInventario` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `citas`
+-- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
   ADD PRIMARY KEY (`idCitas`),
@@ -228,7 +246,7 @@ ALTER TABLE `citas`
   ADD KEY `fk_citas_empleados1_idx` (`empleados_idEmpleados`);
 
 --
--- Indexes for table `citas_has_servicios`
+-- Indices de la tabla `citas_has_servicios`
 --
 ALTER TABLE `citas_has_servicios`
   ADD PRIMARY KEY (`citas_idCitas`,`servicios_idServicios`),
@@ -236,7 +254,7 @@ ALTER TABLE `citas_has_servicios`
   ADD KEY `fk_citas_has_servicios_citas_idx` (`citas_idCitas`);
 
 --
--- Indexes for table `clientes`
+-- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   ADD PRIMARY KEY (`idClientes`),
@@ -245,7 +263,7 @@ ALTER TABLE `clientes`
   ADD UNIQUE KEY `telefono` (`telefono`);
 
 --
--- Indexes for table `empleados`
+-- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
   ADD PRIMARY KEY (`idEmpleados`),
@@ -255,26 +273,26 @@ ALTER TABLE `empleados`
   ADD KEY `fk_empleados_roles1_idx` (`roles_idRoles`);
 
 --
--- Indexes for table `mascotas`
+-- Indices de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD PRIMARY KEY (`idMascotas`),
   ADD KEY `fk_mascotas_clientes1_idx` (`clientes_idClientes`);
 
 --
--- Indexes for table `modulos`
+-- Indices de la tabla `modulos`
 --
 ALTER TABLE `modulos`
   ADD PRIMARY KEY (`id_modulo`);
 
 --
--- Indexes for table `pagos`
+-- Indices de la tabla `pagos`
 --
 ALTER TABLE `pagos`
   ADD PRIMARY KEY (`idPagos`);
 
 --
--- Indexes for table `permisos`
+-- Indices de la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD PRIMARY KEY (`id_permiso`),
@@ -282,25 +300,26 @@ ALTER TABLE `permisos`
   ADD KEY `modulo_id` (`modulo_id`);
 
 --
--- Indexes for table `productos`
+-- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
   ADD PRIMARY KEY (`idInventario`);
 
 --
--- Indexes for table `roles`
+-- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
 
 --
--- Indexes for table `servicios`
+-- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`idServicios`);
+  ADD PRIMARY KEY (`id_servicio`),
+  ADD UNIQUE KEY `nombre_servicio` (`nombre_servicio`);
 
 --
--- Indexes for table `ventas`
+-- Indices de la tabla `ventas`
 --
 ALTER TABLE `ventas`
   ADD PRIMARY KEY (`idVentas`),
@@ -308,7 +327,7 @@ ALTER TABLE `ventas`
   ADD KEY `fk_ventas_empleados1_idx` (`empleados_idEmpleados`);
 
 --
--- Indexes for table `ventas_has_inventario`
+-- Indices de la tabla `ventas_has_inventario`
 --
 ALTER TABLE `ventas_has_inventario`
   ADD PRIMARY KEY (`ventas_idVentas`,`inventario_idInventario`),
@@ -316,115 +335,115 @@ ALTER TABLE `ventas_has_inventario`
   ADD KEY `fk_ventas_has_inventario_ventas1_idx` (`ventas_idVentas`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `citas`
+-- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
   MODIFY `idCitas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `clientes`
+-- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
   MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `empleados`
+-- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
   MODIFY `idEmpleados` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mascotas`
+-- AUTO_INCREMENT de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   MODIFY `idMascotas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `modulos`
+-- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `permisos`
+-- AUTO_INCREMENT de la tabla `permisos`
 --
 ALTER TABLE `permisos`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `productos`
+-- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
   MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT for table `roles`
+-- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `servicios`
+-- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `idServicios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT for table `ventas`
+-- AUTO_INCREMENT de la tabla `ventas`
 --
 ALTER TABLE `ventas`
   MODIFY `idVentas` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `citas`
+-- Filtros para la tabla `citas`
 --
 ALTER TABLE `citas`
   ADD CONSTRAINT `fk_citas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_citas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `citas_has_servicios`
+-- Filtros para la tabla `citas_has_servicios`
 --
 ALTER TABLE `citas_has_servicios`
   ADD CONSTRAINT `fk_citas_has_servicios_citas` FOREIGN KEY (`citas_idCitas`) REFERENCES `citas` (`idCitas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_citas_has_servicios_servicios1` FOREIGN KEY (`servicios_idServicios`) REFERENCES `servicios` (`idServicios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_citas_has_servicios_servicios1` FOREIGN KEY (`servicios_idServicios`) REFERENCES `servicios` (`id_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `empleados`
+-- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
   ADD CONSTRAINT `fk_empleados_roles1` FOREIGN KEY (`roles_idRoles`) REFERENCES `roles` (`id_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `mascotas`
+-- Filtros para la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD CONSTRAINT `fk_mascotas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `permisos`
+-- Filtros para la tabla `permisos`
 --
 ALTER TABLE `permisos`
   ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`modulo_id`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `ventas`
+-- Filtros para la tabla `ventas`
 --
 ALTER TABLE `ventas`
   ADD CONSTRAINT `fk_ventas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_ventas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `ventas_has_inventario`
+-- Filtros para la tabla `ventas_has_inventario`
 --
 ALTER TABLE `ventas_has_inventario`
   ADD CONSTRAINT `fk_ventas_has_inventario_inventario1` FOREIGN KEY (`inventario_idInventario`) REFERENCES `productos` (`idInventario`) ON DELETE NO ACTION ON UPDATE NO ACTION,

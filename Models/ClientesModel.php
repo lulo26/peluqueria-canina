@@ -44,7 +44,9 @@ class ClientesModel extends Mysql{
         $this->usuario=$usuario;
         $this->password=$password;
 
-        $sql="SELECT * from clientes Where correo='{$this->correo}'";
+        $sql="SELECT * from clientes Where correo='{$this->correo}' 
+        or usuario = '{$this->usuario}' 
+        or telefono = '{$this->telefono}'";
 
         $request=$this->select_all($sql);
 
@@ -76,7 +78,10 @@ class ClientesModel extends Mysql{
         $this->password = $password;
         $this->idCliente = $idCliente;
 
-        $sql="SELECT * from clientes Where correo= '{$this->correo}' and idClientes != {$this->idCliente}";
+        $sql="SELECT * from clientes Where (correo= '{$this->correo}' 
+        or usuario = '{$this->usuario}' 
+        or telefono = '{$this->telefono}')
+        and idClientes != {$this->idCliente}";
 
         $request=$this->select_all($sql);
 

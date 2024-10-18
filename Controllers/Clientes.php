@@ -57,7 +57,7 @@ class Clientes extends Controllers{
         $telefono = strClean($_POST['telefono']);
         $usuario = strClean($_POST['usuario']);
         $password = strClean($_POST['password']);
-        $idCliente = intval(strClean($_POST['idCliente']));
+        $idCliente = intval($_POST['idCliente']);
 
         $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
 
@@ -75,10 +75,10 @@ class Clientes extends Controllers{
 
             switch ($action) {
                 case 'insert':
-                    if ($requestModel>0) {
+                    if (is_numeric($requestModel) && $requestModel>0) {
                         $arrayResp = array('status'=>true,'msg'=>'Registro completo');
-                    }elseif ($requestModel === "exist") {
-                        $arrayResp = array('status'=>true,'msg'=>'Este registro ya existe');
+                    }elseif ($requestModel == "exist") {
+                        $arrayResp = array('status'=>false,'msg'=>'El campo usuario, teléfono o correo ya existen en el sistema.');
                     } else {
                         $arrayResp= array('status'=>false,'msg'=>'No se pudo registrar este cliente');
                     }
@@ -89,13 +89,14 @@ class Clientes extends Controllers{
                     if ($requestModel === true ) {
                         $arrayResp = array('status'=>true,'msg'=>"Actualización completa");
                     }elseif ($requestModel === "exist") {
-                        $arrayResp= array('status'=>false,'msg'=>'Este registro ya existe');
+                        $arrayResp= array('status'=>false,'msg'=>'El campo usuario, teléfono o correo ya existen en el sistema.');
                     } else{
                         $arrayResp= array('status'=>false,'msg'=>'No se pudo actualizar este cliente');
                     }
                     break;
 
                 default:
+                    $arrayResp= array('status'=>false,'msg'=>'Accion no esperada');
                     break;
             }
 
