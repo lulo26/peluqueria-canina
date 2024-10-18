@@ -120,7 +120,10 @@ document.addEventListener("DOMContentLoaded", () => {
               .then((res) => res.json())
               .then((data) => {
               data.forEach((el) => {
-              nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`;
+                if (arrData.idClientes != el.idClientes) {
+                  nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`;
+                }
+              
                 });
              });
             document.querySelector("#nombreMascota").value =
