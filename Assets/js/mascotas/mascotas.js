@@ -115,6 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
           .then((res) => {
             arrData = res.data[0];
             console.log(arrData);
+            nombreUsuario.innerHTML = `<option value="${arrData.idClientes}" selected>${arrData.nombre}</option>`;
+              fetch(base_url + "/clientes/getClientes")
+              .then((res) => res.json())
+              .then((data) => {
+              data.forEach((el) => {
+              nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`;
+                });
+             });
             document.querySelector("#nombreMascota").value =
               arrData.nombreMascota;
             document.querySelector("#razaMascota").value = arrData.razaMascota;
@@ -122,9 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#comentarioMascota").value =
               arrData.comentarioMascota;
             document.querySelector("#idMascotas").value = arrData.idMascotas;
-            res.forEach((el) => {
-              nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`;
-            });
           });
       }
     } catch {}
