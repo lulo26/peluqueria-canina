@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         document.getElementById('crearRolModalLabel').innerHTML = "Crear Rol"
     })
 
-    document.addEventListener('submit', (e)=>{
+    frmRol.addEventListener('submit', (e)=>{
         e.preventDefault()
         frmData = new FormData(frmRol)
         fetch(base_url + '/roles/setRol',{
@@ -113,11 +113,32 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     return res.text()
                 })
                 .then((html)=>{
-                    contentFetch.innerHTML += html
+                    contentFetch.innerHTML = html
                     $('#permisosRolModal').modal('show')
+                    document.querySelector('#frmPermisos').addEventListener('submit', funcSavePermisos, false)
                 })
                 
             }
         } catch (error) {}
     })
+
+    function funcSavePermisos(event){
+        event.preventDefault()
+        let frm = document.querySelector('#frmPermisos')
+        let frmData = new FormData(frm)
+        fetch(base_url + '/permisos/setPermisos',{
+            method: "POST",
+            body: frmData
+        })
+        .then((res)=>res.json())
+        .then((data)=>{
+            Swal.fire({
+                title: data.status ? 'Correcto' : 'Error',
+                text: data.msg,
+                icon: data.status ? "success" : 'error'
+            })
+            $('#permisosRolModal').modal('hide')
+            tablaRoles.api().ajax.reload(function(){})
+        })
+    }
 })

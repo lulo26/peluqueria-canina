@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2024 a las 01:32:33
+-- Tiempo de generación: 18-10-2024 a las 00:34:52
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,21 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `caninofeliz`
 --
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `admins`
---
-
-CREATE TABLE `admins` (
-  `idAdmins` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `apellido` varchar(45) NOT NULL,
-  `correo` varchar(45) NOT NULL,
-  `usuario` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -76,23 +61,8 @@ CREATE TABLE `clientes` (
   `telefono` varchar(20) NOT NULL,
   `usuario` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado` varchar(15) NOT NULL
+  `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `clientes`
---
-
-INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado`) VALUES
-(1, 'Pacho', 'Lopez', 'lopez@gmail.com', '312', 'pacho1', '1', 'inactivo'),
-(2, 'Diego', 'Valdes', 'bitardos8@gmail.com', '311', 'bits8', '12', 'inactivo'),
-(7, 'Alo', 'Sans', 'sans8@gmail.com', '314', 'sans', '12345', 'inactivo'),
-(8, 'Diego', 'Valdes', 'bitardos10@gmail.com', '315', 'bits10', '0000', 'inactivo'),
-(9, 'Diego1', 'Valdes1', 'bitardos11@gmail.com', '31115', 'bits11', '0000', 'inactivo'),
-(10, 'a', 'e', 'assss@gmail.com', '1233333', 'aaaaa', '12345', 'inactivo'),
-(11, 'alaverga', 'e', 'ae@gmail.com', '123333', 'diego', '1234', 'activo'),
-(12, 'Lopez', 'Veraniego', 'veraniego1@gmail.com', '310', 'veraLo10', '22', 'inactivo'),
-(27, 'colombiasas', 'pictures', 'bitardos81@gmail.com', '320', 'bits9', '12345', 'activo');
 
 -- --------------------------------------------------------
 
@@ -139,6 +109,13 @@ CREATE TABLE `modulos` (
   `status_modulo` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `modulos`
+--
+
+INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `status_modulo`) VALUES
+(5, 'clientes', 'administrar clientes', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -147,9 +124,31 @@ CREATE TABLE `modulos` (
 
 CREATE TABLE `pagos` (
   `idPagos` int(11) NOT NULL,
-  `metodo` varchar(45) NOT NULL,
-  `numeroTarjeta` varchar(45) NOT NULL
+  `metodo` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `permisos`
+--
+
+CREATE TABLE `permisos` (
+  `id_permiso` int(11) NOT NULL,
+  `rol_id` int(11) NOT NULL,
+  `modulo_id` int(11) NOT NULL,
+  `r` int(11) NOT NULL DEFAULT 0,
+  `w` int(11) NOT NULL DEFAULT 0,
+  `u` int(11) NOT NULL DEFAULT 0,
+  `d` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `permisos`
+--
+
+INSERT INTO `permisos` (`id_permiso`, `rol_id`, `modulo_id`, `r`, `w`, `u`, `d`) VALUES
+(1, 10, 5, 1, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -161,18 +160,10 @@ CREATE TABLE `productos` (
   `idInventario` int(11) NOT NULL,
   `nombreProducto` varchar(45) NOT NULL,
   `cantidadProducto` int(11) NOT NULL,
-  `codigoSKU` varchar(30) NOT NULL,
-  `estado` varchar(45) NOT NULL,
-  `precio` int(11) NOT NULL
+  `estado` int(1) NOT NULL,
+  `precio` int(11) NOT NULL,
+  `codigoSKU` varchar(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `productos`
---
-
-INSERT INTO `productos` (`idInventario`, `nombreProducto`, `cantidadProducto`, `codigoSKU`, `estado`, `precio`) VALUES
-(1, 'Papas', 30, '001001001', '0', 1000),
-(2, 'sopas', 0, '101010', '1', 12);
 
 -- --------------------------------------------------------
 
@@ -181,10 +172,18 @@ INSERT INTO `productos` (`idInventario`, `nombreProducto`, `cantidadProducto`, `
 --
 
 CREATE TABLE `roles` (
-  `idRoles` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `descripcion` varchar(200) NOT NULL
+  `id_rol` int(11) NOT NULL,
+  `nombre_rol` varchar(45) NOT NULL,
+  `descripcion_rol` varchar(200) NOT NULL,
+  `status_rol` int(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`, `status_rol`) VALUES
+(10, 'Admin', 'administrador', 1);
 
 -- --------------------------------------------------------
 
@@ -193,11 +192,21 @@ CREATE TABLE `roles` (
 --
 
 CREATE TABLE `servicios` (
-  `idServicios` int(11) NOT NULL,
-  `nombre` varchar(45) NOT NULL,
-  `precio` int(11) NOT NULL,
-  `descripcion` varchar(255) NOT NULL
+  `id_servicio` int(11) NOT NULL,
+  `nombre_servicio` varchar(45) NOT NULL,
+  `precio_servicio` int(11) NOT NULL,
+  `descripcion_servicio` varchar(255) NOT NULL,
+  `estado_servicio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `servicios`
+--
+
+INSERT INTO `servicios` (`id_servicio`, `nombre_servicio`, `precio_servicio`, `descripcion_servicio`, `estado_servicio`) VALUES
+(1, 'Paseo', 12, 'Un peque&ntilde;o paseo por el parque', 1),
+(2, 'U&ntilde;as', 12, 'COSA', 1),
+(3, 'Spa', 12000, 'DELETE', 0);
 
 -- --------------------------------------------------------
 
@@ -227,14 +236,6 @@ CREATE TABLE `ventas_has_inventario` (
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `admins`
---
-ALTER TABLE `admins`
-  ADD PRIMARY KEY (`idAdmins`),
-  ADD UNIQUE KEY `usuario_UNIQUE` (`usuario`),
-  ADD UNIQUE KEY `correo_UNIQUE` (`correo`);
 
 --
 -- Indices de la tabla `citas`
@@ -291,23 +292,31 @@ ALTER TABLE `pagos`
   ADD PRIMARY KEY (`idPagos`);
 
 --
+-- Indices de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD PRIMARY KEY (`id_permiso`),
+  ADD KEY `rol_id` (`rol_id`),
+  ADD KEY `modulo_id` (`modulo_id`);
+
+--
 -- Indices de la tabla `productos`
 --
 ALTER TABLE `productos`
-  ADD PRIMARY KEY (`idInventario`),
-  ADD UNIQUE KEY `codigoSKU` (`codigoSKU`);
+  ADD PRIMARY KEY (`idInventario`);
 
 --
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
-  ADD PRIMARY KEY (`idRoles`);
+  ADD PRIMARY KEY (`id_rol`);
 
 --
 -- Indices de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  ADD PRIMARY KEY (`idServicios`);
+  ADD PRIMARY KEY (`id_servicio`),
+  ADD UNIQUE KEY `nombre_servicio` (`nombre_servicio`);
 
 --
 -- Indices de la tabla `ventas`
@@ -330,12 +339,6 @@ ALTER TABLE `ventas_has_inventario`
 --
 
 --
--- AUTO_INCREMENT de la tabla `admins`
---
-ALTER TABLE `admins`
-  MODIFY `idAdmins` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
@@ -345,7 +348,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
@@ -363,25 +366,31 @@ ALTER TABLE `mascotas`
 -- AUTO_INCREMENT de la tabla `modulos`
 --
 ALTER TABLE `modulos`
-  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_modulo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idInventario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `idRoles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
 --
 ALTER TABLE `servicios`
-  MODIFY `idServicios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_servicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ventas`
@@ -405,19 +414,26 @@ ALTER TABLE `citas`
 --
 ALTER TABLE `citas_has_servicios`
   ADD CONSTRAINT `fk_citas_has_servicios_citas` FOREIGN KEY (`citas_idCitas`) REFERENCES `citas` (`idCitas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_citas_has_servicios_servicios1` FOREIGN KEY (`servicios_idServicios`) REFERENCES `servicios` (`idServicios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_citas_has_servicios_servicios1` FOREIGN KEY (`servicios_idServicios`) REFERENCES `servicios` (`id_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD CONSTRAINT `fk_empleados_roles1` FOREIGN KEY (`roles_idRoles`) REFERENCES `roles` (`idRoles`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_empleados_roles1` FOREIGN KEY (`roles_idRoles`) REFERENCES `roles` (`id_rol`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD CONSTRAINT `fk_mascotas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `permisos`
+--
+ALTER TABLE `permisos`
+  ADD CONSTRAINT `permisos_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `permisos_ibfk_2` FOREIGN KEY (`modulo_id`) REFERENCES `modulos` (`id_modulo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `ventas`

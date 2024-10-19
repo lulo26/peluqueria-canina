@@ -6,29 +6,43 @@ getModal('insertarClientesModal',$data);
     <!-- Contenido de la pagina -->
     <div class="container-fluid">
 
-        <!-- Titulo de la pagina -->
-        <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#insertarClientes">
-            <i class="fas fa-plus"></i>
-        </button>
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tablaClientes" class="table table-bordered" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Usuario</th>
-                            <th>Opciones</th>
-                        </tr>
-                    </thead>
-                </table>
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <!-- Titulo de la pagina -->
+                <h4 class="h3 mb-4 font-weight-bold  text-primary">
+                    <?= $data['page_title'] ?>
+                    <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#insertarClientes">
+                        <span>
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>
+                            Crear Cliente
+                        </span>
+                    
+                    </button>
+                </h4>
             </div>
+            
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="tablaClientes" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Usuario</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
         </div>
 
+        
     </div>
     <!-- /.Fin de contenido -->
 

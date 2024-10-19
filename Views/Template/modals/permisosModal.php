@@ -11,22 +11,60 @@
       <div class="modal-body">
 
         <!-- aquí va el contenido del modal -->
+        <form id="frmPermisos">
+          <input type="hidden" id="idrol" name="idrol" value="<?= $data['idrol']; ?>">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Módulo</th>
+                <th>Leer</th>
+                <th>Escribir</th>
+                <th>Actualizar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
 
-        <table class="table table-bordered" width="100%" cellspacing="0">
-          <thead>
-            <tr>
-              <th>Módulo</th>
-              <th>Leer</th>
-              <th>Escribir</th>
-              <th>Actualizar</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
+            <tbody>
+            <?php
+              $no = 1;
+              $modulos = $data['modulos'];
+              for ($i=0; $i < count($modulos); $i++):  
 
-          <tbody>
-            <?php dep($data)  ?>
-          </tbody>
-        </table>
+              $permisos = $modulos[$i]['permisos'];
+              $rCheck = $permisos['r'] == 1 ? " checked " : "";
+              $wCheck = $permisos['w'] == 1 ? " checked " : "";
+              $uCheck = $permisos['u'] == 1 ? " checked " : "";
+              $dCheck = $permisos['d'] == 1 ? " checked " : "";
+
+              $idmod = $modulos[$i]['id_modulo'];
+          
+              ?>
+              <tr>
+                <td>
+                  <?= $no ?>
+                  <input type="hidden" name="modulos[<?=$i;?>][id_modulo]" value="<?= $idmod ?>">
+                </td>
+
+                <td>
+                  <?= $modulos[$i]['titulo_modulo']; ?>
+                </td>
+                <td><input type="checkbox" name="modulos[<?= $i; ?>][r]" <?= $rCheck ?>></td>
+                <td><input type="checkbox" name="modulos[<?= $i; ?>][w]" <?= $wCheck ?>></td>
+                <td><input type="checkbox" name="modulos[<?= $i; ?>][u]" <?= $uCheck ?>></td>
+                <td><input type="checkbox" name="modulos[<?= $i; ?>][d]" <?= $dCheck ?>></td>
+              </tr>
+              <?php 
+              $no++;
+              endfor; 
+              ?>
+            </tbody>
+          </table>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+          </div>
 
       </div>
     </div>
