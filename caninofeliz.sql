@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2024 a las 00:34:52
+-- Tiempo de generación: 19-10-2024 a las 16:10:21
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,13 +28,20 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `citas` (
-  `idCitas` int(11) NOT NULL,
-  `fechaInicio` date NOT NULL,
-  `fechaFinal` date NOT NULL,
-  `lugar` varchar(45) NOT NULL,
+  `id_cita` int(11) NOT NULL,
+  `fecha_inicio` date NOT NULL,
+  `fecha_final` date NOT NULL,
+  `lugar_cita` varchar(45) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL,
   `empleados_idEmpleados` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `citas`
+--
+
+INSERT INTO `citas` (`id_cita`, `fecha_inicio`, `fecha_final`, `lugar_cita`, `clientes_idClientes`, `empleados_idEmpleados`) VALUES
+(1, '2024-10-02', '2024-10-02', 'La estacion', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -46,6 +53,13 @@ CREATE TABLE `citas_has_servicios` (
   `citas_idCitas` int(11) NOT NULL,
   `servicios_idServicios` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `citas_has_servicios`
+--
+
+INSERT INTO `citas_has_servicios` (`citas_idCitas`, `servicios_idServicios`) VALUES
+(1, 3);
 
 -- --------------------------------------------------------
 
@@ -64,6 +78,13 @@ CREATE TABLE `clientes` (
   `estado` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado`) VALUES
+(5, 'Paco', 'Juan', 'paco@gmail.com', '310', 'paco', '12345', 'inactivo');
+
 -- --------------------------------------------------------
 
 --
@@ -71,15 +92,22 @@ CREATE TABLE `clientes` (
 --
 
 CREATE TABLE `empleados` (
-  `idEmpleados` int(11) NOT NULL,
-  `nombre` varchar(55) NOT NULL,
-  `apellido` varchar(55) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `usuario` varchar(55) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `nomina` int(11) NOT NULL,
+  `id_empleado` int(11) NOT NULL,
+  `nombre_empleado` varchar(55) NOT NULL,
+  `apellido_empleado` varchar(55) NOT NULL,
+  `correo_empleado` varchar(100) NOT NULL,
+  `usuario_empleado` varchar(55) NOT NULL,
+  `password_empleado` varchar(255) NOT NULL,
+  `nomina_empleado` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `empleados`
+--
+
+INSERT INTO `empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `correo_empleado`, `usuario_empleado`, `password_empleado`, `nomina_empleado`, `roles_idRoles`) VALUES
+(1, 'Salazar', 'Salazar', 'salazar@gmail.com', 'salazar', '12345', 20000, 10);
 
 -- --------------------------------------------------------
 
@@ -183,7 +211,8 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`, `status_rol`) VALUES
-(10, 'Admin', 'administrador', 1);
+(10, 'Admin', 'administrador', 1),
+(11, 'Empleado', 'asa', 1);
 
 -- --------------------------------------------------------
 
@@ -204,7 +233,7 @@ CREATE TABLE `servicios` (
 --
 
 INSERT INTO `servicios` (`id_servicio`, `nombre_servicio`, `precio_servicio`, `descripcion_servicio`, `estado_servicio`) VALUES
-(1, 'Paseo', 12, 'Un peque&ntilde;o paseo por el parque', 1),
+(1, 'paseosos', 12, 'Un peque&ntilde;o paseo por el parque', 1),
 (2, 'U&ntilde;as', 12, 'COSA', 1),
 (3, 'Spa', 12000, 'DELETE', 0);
 
@@ -241,7 +270,7 @@ CREATE TABLE `ventas_has_inventario` (
 -- Indices de la tabla `citas`
 --
 ALTER TABLE `citas`
-  ADD PRIMARY KEY (`idCitas`),
+  ADD PRIMARY KEY (`id_cita`),
   ADD KEY `fk_citas_clientes1_idx` (`clientes_idClientes`),
   ADD KEY `fk_citas_empleados1_idx` (`empleados_idEmpleados`);
 
@@ -266,10 +295,10 @@ ALTER TABLE `clientes`
 -- Indices de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  ADD PRIMARY KEY (`idEmpleados`),
-  ADD UNIQUE KEY `idEmpleados_UNIQUE` (`idEmpleados`),
-  ADD UNIQUE KEY `correo_UNIQUE` (`correo`),
-  ADD UNIQUE KEY `usuario_UNIQUE` (`usuario`),
+  ADD PRIMARY KEY (`id_empleado`),
+  ADD UNIQUE KEY `idEmpleados_UNIQUE` (`id_empleado`),
+  ADD UNIQUE KEY `correo_UNIQUE` (`correo_empleado`),
+  ADD UNIQUE KEY `usuario_UNIQUE` (`usuario_empleado`),
   ADD KEY `fk_empleados_roles1_idx` (`roles_idRoles`);
 
 --
@@ -342,19 +371,19 @@ ALTER TABLE `ventas_has_inventario`
 -- AUTO_INCREMENT de la tabla `citas`
 --
 ALTER TABLE `citas`
-  MODIFY `idCitas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `idEmpleados` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `mascotas`
@@ -384,7 +413,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `servicios`
@@ -407,13 +436,13 @@ ALTER TABLE `ventas`
 --
 ALTER TABLE `citas`
   ADD CONSTRAINT `fk_citas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_citas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_citas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `citas_has_servicios`
 --
 ALTER TABLE `citas_has_servicios`
-  ADD CONSTRAINT `fk_citas_has_servicios_citas` FOREIGN KEY (`citas_idCitas`) REFERENCES `citas` (`idCitas`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_citas_has_servicios_citas` FOREIGN KEY (`citas_idCitas`) REFERENCES `citas` (`id_cita`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_citas_has_servicios_servicios1` FOREIGN KEY (`servicios_idServicios`) REFERENCES `servicios` (`id_servicio`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -440,7 +469,7 @@ ALTER TABLE `permisos`
 --
 ALTER TABLE `ventas`
   ADD CONSTRAINT `fk_ventas_clientes1` FOREIGN KEY (`clientes_idClientes`) REFERENCES `clientes` (`idClientes`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_ventas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`idEmpleados`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_ventas_empleados1` FOREIGN KEY (`empleados_idEmpleados`) REFERENCES `empleados` (`id_empleado`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `ventas_has_inventario`
