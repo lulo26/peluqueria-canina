@@ -69,12 +69,12 @@ class ServiciosModel extends Mysql{
 
         if (empty($request)) {
 
-            $query_insert = "UPDATE servicios set nombre_servicio= ?,precio_servicio= ?,descripcion_servicio= ?,estado_servicio= ? WHERE id_servicio = ? ";
+            $query_update = "UPDATE servicios set nombre_servicio= ?,precio_servicio= ?,descripcion_servicio= ?,estado_servicio= ? WHERE id_servicio = ? ";
 
             $arrData = array($this->nombre,$this->precio,$this->descripcion,1,$this->id_servicio);
 
-            $request_insert = $this->insert($query_insert, $arrData);
-            $result = $request_insert;
+            $request_update = $this->update($query_update, $arrData);
+            $result = $request_update;
             
         }else {
 

@@ -81,7 +81,7 @@ class Servicios extends Controllers{
                 
                 case 'update':
 
-                    if ($requestModel === "0" ) {
+                    if ($requestModel === true ) {
                         $arrayResp = array('status'=>true,'msg'=>"Actualización completa");
 
                     }elseif ($requestModel === "exist") {
