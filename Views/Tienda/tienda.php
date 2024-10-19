@@ -25,11 +25,34 @@
   <!-- responsive style -->
   <link href="Assets/css/responsive.css" rel="stylesheet" />
 
+<!-- Haciendo tienda con nuevas librerias!!! -->
+
+<!-- Google font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+
+
+
+<!-- Slick -->
+<link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick.css"/>
+<link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick-theme.css"/>
+
+<!-- nouislider -->
+<link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/nouislider.min.css"/>
+
+<!-- Font Awesome Icon -->
+<link rel="stylesheet" href="./Assets/css/tienda_css/font-awesome.min.css">
+
+<!-- Custom stlylesheet -->
+<link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/style.css"/>
+
+
+
+
+<!-- Aqui termina la tienda con nuevas librerias!! -->
+
+
 </head>
-
-
-
-
 
   <div class="hero_area">
     <!-- header section strats -->
@@ -84,163 +107,89 @@
 
     <body>
 
-
-    <!-- Page Content -->
-    <!-- Items Starts Here -->
-    <div class="featured-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            <div class="section-heading">
-              <div class="line-dec"></div>
-              <h1>Featured Items</h1>
-            </div>
-          </div>
-          <div class="col-md-8 col-sm-12">
-            <div id="filters" class="button-group">
-              <button class="btn btn-primary" data-filter="*">All Products</button>
-              <button class="btn btn-primary" data-filter=".new">Newest</button>
-              <button class="btn btn-primary" data-filter=".low">Low Price</button>
-              <button class="btn btn-primary" data-filter=".high">Hight Price</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="featured container no-gutter">
-
-        <div class="row posts">
-            <div id="1" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-01.jpg" alt="">
-                  <h4>Proin vel ligula</h4>
-                  <h6>$15.00</h6>
+	<!-- HOT DEAL SECTION -->
+  <div id="hot-deal" class="section">
+			<!-- container -->
+			<div class="container">
+				<!-- row -->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="hot-deal">
+							<ul class="hot-deal-countdown">
+								<li>
+									<div>
+										<h3>02</h3>
+										<span>Days</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>10</h3>
+										<span>Hours</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>34</h3>
+										<span>Mins</span>
+									</div>
+								</li>
+								<li>
+									<div>
+										<h3>60</h3>
+										<span>Secs</span>
+									</div>
+								</li>
+                <div class="row">
+                  <div class="col">
+                    <img src="./assets/img/tienda/capuchino.png" width="20%" alt="">
+                  </div>
                 </div>
-              </a>
-            </div>
-            <div id="2" class="item high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-02.jpg" alt="">
-                  <h4>Erat odio rhoncus</h4>
-                  <h6>$25.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="3" class="item low col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-03.jpg" alt="">
-                  <h4>Integer vel turpis</h4>
-                  <h6>$35.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="4" class="item low col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-04.jpg" alt="">
-                  <h4>Sed purus quam</h4>
-                  <h6>$45.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="5" class="item new high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-05.jpg" alt="">
-                  <h4>Morbi aliquet</h4>
-                  <h6>$55.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="6" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-06.jpg" alt="">
-                  <h4>Urna ac diam</h4>
-                  <h6>$65.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="7" class="item new high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-03.jpg" alt="">
-                  <h4>Proin eget imperdiet</h4>
-                  <h6>$75.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="8" class="item low new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-02.jpg" alt="">
-                  <h4>Nullam risus nisl</h4>
-                  <h6>$85.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="9" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-01.jpg" alt="">
-                  <h4>Cras tempus</h4>
-                  <h6>$95.00</h6>
-                </div>
-              </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-navigation">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <ul>
-              <li class="current-page"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Featred Page Ends Here -->
-
-
+							</ul>
+							<h2 class="text-uppercase">hot deal this week</h2>
+							<p>New Collection Up to 50% OFF</p>
+							<a class="primary-btn cta-btn" href="#">Shop now</a>
+						</div>
+					</div>
+				</div>
+				<!-- /row -->
+			</div>
+			<!-- /container -->
+		</div>
+		<!-- /HOT DEAL SECTION -->
 
     
-    
+    <div class="col-7">
+							<!-- product -->
+							<div class="col-md-4 ">
+								<div class="product">
+									<div class="product-img">
+										<img src="./assets/img/tienda/dog_chow_triple_proteina.png" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Comida para Perro</p>
+										<h3 class="product-name"><a href="#">Dog Chow Triple Proteina con ExtraLife</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+									</div>
+								</div>
+							</div>
 
 
    
 
+		<!-- jQuery Plugins tienda -->
+		<script src="./Assets/js/tienda_js/jquery.min.js"></script>
+		<script src="./Assets/js/tienda_js/bootstrap.min.js"></script>
+		<script src="./Assets/js/tienda_js/slick.min.js"></script>
+		<script src="./Assets/js/tienda_js/nouislider.min.js"></script>
+		<script src="./Assets/js/tienda_js/jquery.zoom.min.js"></script>
+		<script src="./Assets/js/tienda_js/main.js"></script>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="Assets/tienda/jquery/jquery.min.js"></script>
-    <script src="Assets/tienda/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
-    <!-- Additional Scripts -->
-    <script src="assets/tienda/bootstrap/js/custom.js"></script>
-    <script src="assets/tienda/bootstrap/js/owl.js"></script>
-    <script src="assets/tienda/bootstrap/js/isotope.js"></script>
-
-
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
+   <!-- Aqui termina -->
 
 
   </body>
+  
