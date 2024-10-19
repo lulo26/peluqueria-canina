@@ -57,6 +57,11 @@
     <!-- dataTables-->
     <script src="<?= media() ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= media() ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <!-- Charts --->
+    <!-- <script src="<?= media() ?>/chart.js/Chart.min.js"></script>
+    <script src="<?= media() ?>/chart.js/Chart.js"></script>
+    <script src="<?= media() ?>/chart.js/Chart.bundle.min.js"></script>
+    <script src="<?= media() ?>/chart.js/Chart.bundle.js"></script> -->
 
 </body>
 
