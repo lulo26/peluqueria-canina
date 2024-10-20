@@ -41,5 +41,17 @@ class Citas extends Controllers{
         die();
     }
 
+    public function getClientes(){
+        $arrayData = $this->model->selectClientes();
+        echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function getEmpleados(){
+        $arrayData = $this->model->selectEmpleados();
+        echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
 
 }

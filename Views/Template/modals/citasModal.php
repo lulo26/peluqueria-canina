@@ -36,6 +36,18 @@
                             
                             
                         </div>
+
+                        <div class="form-group">
+                            <label for="cliente">Cliente</label>
+                            <select class="custom-select" name="cliente" id="cliente_select"></select>
+                            <small class="form-text text-muted">Cliente quien está reservando una cita.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="empleado_select">Empleado</label>
+                            <select class="custom-select" name="empleado" id="empleado_select"></select>
+                            <small class="form-text text-muted">Empleado quien va atender al dueño de esta cita.</small>
+                        </div>
                        
 
                         <div class="modal-footer">
