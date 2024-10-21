@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 16:10:21
+-- Tiempo de generación: 21-10-2024 a las 22:33:51
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,7 @@ CREATE TABLE `citas` (
   `fecha_inicio` date NOT NULL,
   `fecha_final` date NOT NULL,
   `lugar_cita` varchar(45) NOT NULL,
+  `estado_cita` int(11) NOT NULL,
   `clientes_idClientes` int(11) NOT NULL,
   `empleados_idEmpleados` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -40,8 +41,8 @@ CREATE TABLE `citas` (
 -- Volcado de datos para la tabla `citas`
 --
 
-INSERT INTO `citas` (`id_cita`, `fecha_inicio`, `fecha_final`, `lugar_cita`, `clientes_idClientes`, `empleados_idEmpleados`) VALUES
-(1, '2024-10-02', '2024-10-02', 'La estacion', 5, 1);
+INSERT INTO `citas` (`id_cita`, `fecha_inicio`, `fecha_final`, `lugar_cita`, `estado_cita`, `clientes_idClientes`, `empleados_idEmpleados`) VALUES
+(1, '2024-10-02', '2024-10-02', 'La estacion', 1, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -75,15 +76,16 @@ CREATE TABLE `clientes` (
   `telefono` varchar(20) NOT NULL,
   `usuario` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `estado` varchar(20) DEFAULT NULL
+  `estado_cliente` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Volcado de datos para la tabla `clientes`
 --
 
-INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado`) VALUES
-(5, 'Paco', 'Juan', 'paco@gmail.com', '310', 'paco', '12345', 'inactivo');
+INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado_cliente`) VALUES
+(5, 'Paco', 'Juan', 'paco@gmail.com', '310', 'paco', '12345', 'activo'),
+(6, 'Sanchez', 'Rodriguez', 'r@gmail.com', '312', 'sanguez', '12345', 'activo');
 
 -- --------------------------------------------------------
 
@@ -99,6 +101,7 @@ CREATE TABLE `empleados` (
   `usuario_empleado` varchar(55) NOT NULL,
   `password_empleado` varchar(255) NOT NULL,
   `nomina_empleado` int(11) NOT NULL,
+  `estado_empleado` int(11) NOT NULL,
   `roles_idRoles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -106,8 +109,8 @@ CREATE TABLE `empleados` (
 -- Volcado de datos para la tabla `empleados`
 --
 
-INSERT INTO `empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `correo_empleado`, `usuario_empleado`, `password_empleado`, `nomina_empleado`, `roles_idRoles`) VALUES
-(1, 'Salazar', 'Salazar', 'salazar@gmail.com', 'salazar', '12345', 20000, 10);
+INSERT INTO `empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `correo_empleado`, `usuario_empleado`, `password_empleado`, `nomina_empleado`, `estado_empleado`, `roles_idRoles`) VALUES
+(1, 'Salazar', 'Salazar', 'salazar@gmail.com', 'salazar', '12345', 20000, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -377,7 +380,7 @@ ALTER TABLE `citas`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idClientes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `empleados`
