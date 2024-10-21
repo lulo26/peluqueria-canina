@@ -20,10 +20,42 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
     frmUsuarios.addEventListener('submit', (e)=>{
         e.preventDefault()
-        let frm = new FormData(frmUsuarios);
+
+        let strIdentificacion = document.querySelector('#txtIdentificacion').value
+        let strNombre = document.querySelector('#txtNombres').value
+        let strApellido = document.querySelector('#txtApellidos').value
+        let strEmail = document.querySelector('#txtEmail').value
+        let intTelefono = document.querySelector('#txtTelefono').value
+        let intTipoUsuario = document.querySelector('#listRolId').value
+        //let strPassword = document.querySelector('#txtPassword').value
+
+        if (strIdentificacion == '' || strNombre == '' || strApellido == '' || strEmail == '' || intTelefono == '' || intTipoUsuario == '') {
+            Swal.fire({
+                title: 'Atencion',
+                text: 'Todos los campos son obligatorios',
+                icon: 'Error'
+            })
+
+            return false
+        }
+
+        let formUsuarios = new FormData(frmUsuarios);
+
         fetch(base_url + '/usuarios/setUsuario', {
             method: "POST",
-            body: frm
+            body: formUsuarios
+        })
+        .then((res)=>res.json())
+        .then((data)=>{Swal.fire({
+            title: data.status ? 'Correcto' : 'Error',
+            text: data.msg,
+            icon: data.status ? "success" : 'error'
+            })
+            if (data.status){
+                frmUsuarios.reset()
+                $('#crearUsuarioModal').modal('hide')
+                tablaRoles.api().ajax.reload(function(){})
+            }
         })
     })
 

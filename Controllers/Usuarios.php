@@ -17,19 +17,50 @@ class Usuarios extends Controllers{
     public function setUsuario(){
  
         if($_POST){
-            $identificacion = $_POST['txtIdentificacion'];
-            $nombre = $_POST['txtNombres'];
-            $apellido = $_POST['txtApellidos'];
-            $email = $_POST['txtEmail'];
-            $telefono = $_POST['txtTelefono'];
-            $tipoUsuario = $_POST['listRolId'];
-            $password = $_POST['txtPassword'];
 
-            $arrPost = ['txtIdentificacion','txtNombres','txtApellidos','txtEmail','txtTelefono','listRolId','txtPassword'];
+            $arrPost = ['txtIdentificacion','txtNombres','txtApellidos','txtEmail','txtTelefono','listRolId'];
 
             if (check_post($arrPost)) {
+                $strIdentificacion = strClean($_POST['txtIdentificacion']);
+                $strNombre = ucwords(strClean($_POST['txtNombres']));
+                $strApellido = ucwords(strClean($_POST['txtApellidos']));
+                $intTelefono = intval($_POST['txtTelefono']);
+                $strEmail = strtolower(strClean($_POST['txtEmail']));
+                $intTipoId = intval($_POST['listRolId']);
+                $intStatus = strClean($_POST['listStatus']);
+
+                $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
+                //$strPassword = "123456";
+                try {
+                    $request_user = $this->model->insertarUsuario(
+                        $strIdentificacion,
+                        $strNombre,
+                        $strApellido,
+                        $intTelefono,
+                        $strEmail,
+                        $strPassword,
+                        $intTipoId,
+                        $intStatus
+                    );
+
+                    if ($request_user != 'exist') {
+                        $arrResponse = array("status" => true, "msg" => 'Datos guardados correctamente.');
+                    }else if($request_user == 'exist'){
+                        $arrResponse = array("status" => false, "msg" => 'El email o la identificacion ya existe');
+                    }else{
+                        $arrResponse = array("status" => false, "msg" => 'No esposible almacenar los datos');
+                    }
+
+                } catch (\Throwable $th) {
+                    $arrResponse = array("status" => false, "msg" => "No es posible relizar la insercion de datos");
+                }
                 
+            }else{
+                $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
             }
+
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            die();
         }
     }
 }
