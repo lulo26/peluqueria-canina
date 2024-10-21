@@ -3,7 +3,7 @@
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="crearRolModalLabel">Crear Usuario</h5>
+        <h5 class="modal-title" id="crearUsuarioModalLabel">Crear Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -69,6 +69,69 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal VER USUARIOS -->
+<div class="modal fade" id="verUsuarioModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearRolModalLabel">Informacion del Usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table table-bordered" width="100%" cellspacing="0">
+          <tbody>
+            
+            <tr>
+              <th>Identificacion</th>
+              <td id="celIdentificacion">1232145</td>
+            </tr>
+
+            <tr>
+              <th>Nombres:</th>
+              <td id="celNombre">Ja cob</td>
+            </tr>
+
+            <tr>
+              <th>Apellidos:</th>
+              <td id="celApellido">Jacobsen</td>
+            </tr>
+
+            <tr>
+              <th>Teléfono:</th>
+              <td id="celTelefono">315548776</td>
+            </tr>
+
+            <tr>
+              <th>Email (Usuario):</th>
+              <td id="celEmail">lar@son</td>
+            </tr>
+
+            <tr>
+              <th>Tipo Usuario:</th>
+              <td id="celTipoUsuario">Admin</td>
+            </tr>
+
+            <tr>
+              <th>Estado:</th>
+              <td id="celEstado">Activo</td>
+            </tr>
+
+            <tr>
+              <th>Fecha registro:</th>
+              <td id="celFechaRegistro">28/1/2023</td>
+            </tr>
+
+          </tbody>
+        </table>
+        
       </div>
     </div>
   </div>

@@ -2,8 +2,31 @@ const btnCrearUsuario = document.querySelector('#btnCrearUsuario')
 const frmUsuarios = document.querySelector('#frmUsuarios')
 
 document.addEventListener('DOMContentLoaded', ()=>{
+
+    tablaUsuarios = $('#tablaUsuarios').dataTable({
+        "language": {
+            "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
+        },
+        "ajax":{
+            "url": " "+base_url+"/usuarios/getUsuarios",
+            "dataSrc":""
+        },
+        "columns":[
+            {"data":"id_persona"},
+            {"data":"nombres"},
+            {"data":"apellidos"},
+            {"data":"email_user"},
+            {"data":"telefono"},
+            {"data":"nombre_rol"},
+            {"data":"status"},
+            {"data":"options"}
+        ],
+        "responsive": "true",
+        "order":[[0, "asc"]]
+    }) 
     
     btnCrearUsuario.addEventListener('click', ()=>{
+        document.getElementById('crearUsuarioModalLabel').innerHTML = "Crear Usuario"
         $('#crearUsuarioModal').modal('show')
 
         fetch(base_url + '/roles/getSelectRoles',{
@@ -54,9 +77,68 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (data.status){
                 frmUsuarios.reset()
                 $('#crearUsuarioModal').modal('hide')
-                tablaRoles.api().ajax.reload(function(){})
+                tablaUsuarios.api().ajax.reload(function(){})
             }
         })
+    })
+
+    document.addEventListener('click', (e) =>{
+        try {
+            let selected = e.target.closest('button').getAttribute('data-action-type')
+            let idUsuario = e.target.closest('button').getAttribute('data-id')
+
+            if (selected == 'viewUsuario') {
+                $('#verUsuarioModal').modal('show')
+            }
+
+            if (selected == 'delete') {
+                Swal.fire({
+                    title:"Eliminar usuario",
+                    text:"¿Está seguro de eliminar el usuario?",
+                    icon: "warning",
+                    showDenyButton: true,
+                    confirmButtonText: "Sí",
+                    denyButtonText: `Cancelar`
+                }).then((result)=>{
+/*                     if (result.isConfirmed) {
+                        let frmData = new FormData()
+                        frmData.append('idUsuario', idUsuario)
+                        fetch(base_url + '',{
+                            method: "POST",
+                            body: frmData,
+                        })
+                        .then((res)=>res.json())
+                        .then((data)=>{
+                            Swal.fire({
+                                title: data.status ? 'Correcto' : 'Error',
+                                text: data.msg,
+                                icon: data.status ? "success" : 'error'
+                            })
+                            tablaUsuarios.api().ajax.reload(function(){})
+                        })
+                    } */
+                })
+            }
+
+            if (selected == 'update') {
+                frmUsuarios.reset()
+                $('#crearUsuarioModal').modal('show')
+                document.getElementById('crearUsuarioModalLabel').innerHTML = "Modificar Usuario"
+/*                 fetch(base_url + `/roles/getRol/${idRol}`,{
+                    method: "GET"
+                })
+                .then((res)=>res.json())
+                .then((res)=>{
+                    arrData = res.data
+                    console.log(arrData)
+                    document.querySelector('#nombreRol').value = arrData.nombre_rol
+                    document.querySelector('#descripcionRol').value = arrData.descripcion_rol
+                    document.querySelector('#estadoRol').value = arrData.status_rol
+                    document.querySelector('#idRol').value = arrData.id_rol
+                }) */
+            }
+
+        } catch (error) {}
     })
 
 })

@@ -27,7 +27,7 @@ getModal('usuariosModal', $data);
         <div class="table-responsive">
 
         </div>
-        <table id="tablaRoles" class="table table-bordered" width="100%" cellspacing="0">
+        <table id="tablaUsuarios" class="table table-bordered" width="100%" cellspacing="0">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -41,16 +41,6 @@ getModal('usuariosModal', $data);
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Carlos</td>
-                    <td>Hernandez</td>
-                    <td>Carlos@info.com</td>
-                    <td>1321321</td>
-                    <td>Admin</td>
-                    <td>Activo</td>
-                    <td></td>
-                </tr>
             </tbody>
         </table>
         </div>
