@@ -5,11 +5,12 @@
 
         <!-- Titulo de la pagina -->
         <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        
+        <canvas id="myChart"></canvas>
     </div>
     <!-- /.Fin de contenido -->
 
     </div>
     <!-- Fin de contenido principal <main> -->
-
+        <script src="<?=media() ?>/js/informes/informes.js"></script>
+        
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->
