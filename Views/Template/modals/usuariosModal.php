@@ -1,6 +1,6 @@
 <!-- Modal Crear/Actualizar -->
 <div class="modal fade" id="crearUsuarioModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="crearRolModalLabel">Crear Usuario</h5>
@@ -24,35 +24,34 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="txtNombres">Nombres</label>
                 <input type="text" class="form-control" id="txtNombres" name="txtNombres" autocomplete="off" required="">
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="txtApellidos">Apellidos</label>
                 <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" autocomplete="off" required="">
               </div>
             </div>
 
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="txtTelefono">Teléfono</label>
                 <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" autocomplete="off" required="">
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="txtEmail">Email</label>
                 <input type="email" class="form-control" id="txtEmail" name="txtEmail" autocomplete="off" required="">
               </div>
             </div>
 
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="listRolId">Tipo usuario</label>
                 <select name="listRolId" id="listRolId" class="form-control">
-
                 </select>
               </div>
-              <div class="form-group">
+              <div class="form-group col-md-6">
                 <label for="listStatus">Status</label>
                 <select name="listStatus" id="listStatus" class="form-control" required>
                   <option value="1">Activo</option>
