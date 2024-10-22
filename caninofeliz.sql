@@ -217,6 +217,37 @@ INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`, `status_rol`) VA
 (10, 'Admin', 'administrador', 1),
 (11, 'Empleado', 'asa', 1);
 
+
+
+CREATE TABLE `personas` (
+  `id_persona` int(11) NOT NULL,
+  `identificacion` varchar(30) NOT NULL,
+  `nombres` varchar(80) NOT NULL,
+  `apellidos` varchar(100) NOT NULL,
+  `telefono` int(20) NOT NULL,
+  `email_user` varchar(100) NOT NULL,
+  `password` varchar(75) NOT NULL,
+  `nit` varchar(20) NOT NULL,
+  `razon_social` varchar(80) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `token` varchar(80) NOT NULL,
+  `rol_id` int(11) NOT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `personas`
+  ADD PRIMARY KEY (`id_persona`),
+  ADD KEY `rol_id` (`rol_id`);
+
+ALTER TABLE `personas`
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+ALTER TABLE `personas`
+  ADD CONSTRAINT `personas_ibfk_1` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id_rol`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+
 -- --------------------------------------------------------
 
 --
