@@ -91,42 +91,42 @@
             
             <tr>
               <th>Identificacion</th>
-              <td id="celIdentificacion">1232145</td>
+              <td id="celIdentificacion"></td>
             </tr>
 
             <tr>
               <th>Nombres:</th>
-              <td id="celNombre">Ja cob</td>
+              <td id="celNombre"></td>
             </tr>
 
             <tr>
               <th>Apellidos:</th>
-              <td id="celApellido">Jacobsen</td>
+              <td id="celApellido"></td>
             </tr>
 
             <tr>
               <th>Teléfono:</th>
-              <td id="celTelefono">315548776</td>
+              <td id="celTelefono"></td>
             </tr>
 
             <tr>
               <th>Email (Usuario):</th>
-              <td id="celEmail">lar@son</td>
+              <td id="celEmail"></td>
             </tr>
 
             <tr>
               <th>Tipo Usuario:</th>
-              <td id="celTipoUsuario">Admin</td>
+              <td id="celTipoUsuario"></td>
             </tr>
 
             <tr>
               <th>Estado:</th>
-              <td id="celEstado">Activo</td>
+              <td id="celEstado"></td>
             </tr>
 
             <tr>
               <th>Fecha registro:</th>
-              <td id="celFechaRegistro">28/1/2023</td>
+              <td id="celFechaRegistro"></td>
             </tr>
 
           </tbody>

@@ -7,7 +7,7 @@ class UsuariosModel extends Mysql{
 
     public function selectUserById(int $id){
         $this->intId = $id;
-        $sql = "SELECT p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, r.nombre_rol, p.status  
+        $sql = "SELECT p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, r.nombre_rol, p.status, DATE_FORMAT(p.date_created , '%d-%m-%Y') as fechaRegistro
                 from personas p 
                 JOIN roles r on
                 p.rol_id = r.id_rol

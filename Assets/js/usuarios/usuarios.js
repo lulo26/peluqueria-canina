@@ -90,20 +90,28 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (selected == 'viewUsuario') {
                 fetch(base_url + '/usuarios/getUsuario/' + idUsuario)
                 .then((res)=>res.json())
-                .then((data)=>{
-                    data = data[0]
-                    document.querySelector('#celIdentificacion').innerHTML = data.identificacion
-                    document.querySelector('#celNombre').innerHTML = data.nombres
-                    document.querySelector('#celApellido').innerHTML = data.apellidos
-                    document.querySelector('#celTelefono').innerHTML = data.telefono
-                    document.querySelector('#celEmail').innerHTML = data.email_user
-                    document.querySelector('#celTipoUsuario').innerHTML = data.nombre_rol
-                    let userStatus = data.status == 1 ? `<span class="badge badge-success">Activo</span>` : `<span class="badge badge-danger">Inactivo</span>`
-                    document.querySelector('#celEstado').innerHTML = userStatus
-                    document.querySelector('#celFechaRegistro').innerHTML = data.date_created
-                })
+                .then((dataOrigin)=>{
+                    if(dataOrigin.status){
+                        data = dataOrigin.data[0]
+                        document.querySelector('#celIdentificacion').innerHTML = data.identificacion
+                        document.querySelector('#celNombre').innerHTML = data.nombres
+                        document.querySelector('#celApellido').innerHTML = data.apellidos
+                        document.querySelector('#celTelefono').innerHTML = data.telefono
+                        document.querySelector('#celEmail').innerHTML = data.email_user
+                        document.querySelector('#celTipoUsuario').innerHTML = data.nombre_rol
+                        let userStatus = data.status == 1 ? `<span class="badge badge-success">Activo</span>` : `<span class="badge badge-danger">Inactivo</span>`
+                        document.querySelector('#celEstado').innerHTML = userStatus
+                        document.querySelector('#celFechaRegistro').innerHTML = data.fechaRegistro
+                        $('#verUsuarioModal').modal('show')
+                    }else{
+                        Swal.fire({
+                            title: 'Error',
+                            text: dataOrigin.msg,
+                            icon: 'error'
+                        })
+                    }
 
-                $('#verUsuarioModal').modal('show')
+                })
             }
 
             if (selected == 'delete') {
