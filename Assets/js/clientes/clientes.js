@@ -115,9 +115,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                     for (let index = 0; index < inputs.length; index++) {
                         document.querySelector(inputs[index]).value=values[index]
                     }
-
-                    
-                    
                 })
             }
 

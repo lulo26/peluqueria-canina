@@ -14,36 +14,6 @@ class Citas extends Controllers{
         $this->views->getView($this,"citas", $data);
     }
 
-    public function setCitas(){
-        $id_cita = strClean($_POST['id_cita']);
-        $fecha_inicio = strClean($_POST['fecha_inicio']);
-        $fecha_final = strClean($_POST['fecha_final']);
-        $lugar_cita = strClean($_POST['lugar_cita']);
-        $cliente_select  = intval($_POST['id_clciente']);
-        $empleado_select = intval($_POST['id_empleado']);
-
-        $array_post  = ["id_cita","fecha_inicio","fecha_final","lugar_cita","cliente_select","empleado_select"];
-
-        if (!empty($_POST['servicios'])) {
-
-            if (check_post($_POST['servicios'])) {
-                $count_post++;
-            }
-
-        }else {
-            $count_post=0;
-        }
-        
-        if (check_post($array_post) && $count_post>0) {
-            
-        }else {
-            $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
-        }
-
-        echo json_encode($_POST['servicios'], JSON_UNESCAPED_UNICODE);
-        die();
-    }
-
     public function getCitas(){
         $arrayData = $this->model->selectCitas();
 
@@ -64,7 +34,93 @@ class Citas extends Controllers{
         echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
         die();
     }
+
+    public function getCitasByID($id_cita){
+            $id_cita = intval($id_cita);
+            
+            $arrCita = $this->model->selectCitasByID($id_cita);
+
+            if(empty($id_cita)){
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrResponse = array('status' => true, 'data' => $arrCita);
+            }
+        
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function setCitas(){
+        $id_cita = intval($_POST['id_cita']);
+        $fecha_inicio = strClean($_POST['fecha_inicio']);
+        $fecha_final = strClean($_POST['fecha_final']);
+        $lugar_cita = strClean($_POST['lugar_cita']);
+        $id_cliente  = intval($_POST['id_cliente']);
+        $id_empleado = intval($_POST['id_empleado']);
+
+        $array_post  = ["fecha_inicio","fecha_final","lugar_cita","id_cliente","id_empleado"];
+
+        $count_post = 0;
+
+        if (!empty($_POST['servicios'])) {
+            foreach ($_POST['servicios'] as $checked) {
+                if (isset($checked) && !empty(intval($checked))) {
+                    $count_post++;
+                }
+            }
+        }
+        
+        if (check_post($array_post) && $count_post>0 && $id_cliente > 0 && $id_empleado > 0) {
+
+            if ($id_cita === 0 || $id_cita === "") {
+                $requestModel = $this->model->insertarCitas($fecha_inicio,$fecha_final,$lugar_cita,$id_cliente,$id_empleado);
+
+                foreach ($_POST['servicios'] as $checked) {
+                    $insertPivote = $this->model->insertarCitaServicios($checked);
+                }
+
+                $action = "insert";
+                
+            } else {
+                $action = "update";
+            }
+
+            switch ($action) {
+                case 'insert':
+                    $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
+                    break;
+                
+                default:
+                    break;
+            }
+            
+        }else {
+            $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+        }
+
+        echo json_encode($arrayResp, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     
+    public function deleteCitas(){
+        if ($_POST) {
+            $id_cita = intval($_POST['id_cita']);
+            $requestDelete = $this->model->deleteCitas($id_cita);
+            
+            if ($requestDelete=='ok') {
+                $arrayResponse = array('status' => true, 'msg' => 'Cita eliminada correctamente.');
+            }else{
+                $arrayResponse = array('status' => false, 'msg' => 'No se pudo eliminar la cita.');
+            }
+            echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
+
+        }else {
+            print_r($_POST);
+        }
+
+        die();
+    }
 
     public function getServicios(){
         $arrayData = $this->model->selectServicios();
