@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             res.forEach(element => {
                 checkbox_servicios.innerHTML+=`
                 <div class="col"> 
-                    <input class="form-check-input" type="checkbox" value="${element.id_servicio}" name="${element.nombre_servicio}">
+                    <input class="form-check-input" type="checkbox" value="${element.id_servicio}" name="servicios[]">
                     <label for="${element.nombre_servicio}">${element.nombre_servicio}</label>   
                 </div>
                 
@@ -77,13 +77,38 @@ document.addEventListener('DOMContentLoaded',()=>{
             {"data":"fecha_inicio"},
             {"data":"fecha_final"},
             {"data":"lugar_cita"},
-            {"data":"nombre_servicio"},
             {"data":"nombre_cliente"},
             {"data":"nombre_empleado"},
             {"data":"options"}
         ],
         "responsive": "true",
         "order":[[0, "asc"]]
+    })
+
+    formularioCitas.addEventListener('submit',(e)=>{
+        e.preventDefault()
+
+        frmCitas = new FormData(formularioCitas)
+        fetch(base_url + '/citas/setCitas',{
+            method:"POST",
+            body:frmCitas
+        })
+
+        .then((res)=>res.json())
+        .then((dataInsert)=>{
+
+            Swal.fire({
+                title: dataInsert.status ? 'Correcto' : 'Error',
+                text: dataInsert.msg,
+                icon: dataInsert.status ? "success" : 'error'
+            })
+
+            if (dataInsert.status) {
+                formularioCitas.reset()
+                $('#insertarCitasModal').modal('hide')
+                tablaCitas.api().ajax.reload(function(){})
+            }
+        })
     })
 
     btnCrearCita.addEventListener('click',()=>{
