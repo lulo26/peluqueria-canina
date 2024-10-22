@@ -68,6 +68,8 @@ class Usuarios extends Controllers{
             $arrPost = ['txtIdentificacion','txtNombres','txtApellidos','txtEmail','txtTelefono','listRolId'];
 
             if (check_post($arrPost)) {
+                
+                $strIdUsuario = intval(strClean($_POST['idUsuario']));
                 $strIdentificacion = strClean($_POST['txtIdentificacion']);
                 $strNombre = ucwords(strClean($_POST['txtNombres']));
                 $strApellido = ucwords(strClean($_POST['txtApellidos']));
@@ -75,31 +77,53 @@ class Usuarios extends Controllers{
                 $strEmail = strtolower(strClean($_POST['txtEmail']));
                 $intTipoId = intval($_POST['listRolId']);
                 $intStatus = strClean($_POST['listStatus']);
-
                 $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
                 //$strPassword = "123456";
-                try {
-                    $request_user = $this->model->insertarUsuario(
-                        $strIdentificacion,
-                        $strNombre,
-                        $strApellido,
-                        $intTelefono,
-                        $strEmail,
-                        $strPassword,
-                        $intTipoId,
-                        $intStatus
-                    );
 
-                    if ($request_user != 'exist') {
-                        $arrResponse = array("status" => true, "msg" => 'Datos guardados correctamente.');
-                    }else if($request_user == 'exist'){
+                try {
+
+                    if ($strIdUsuario == 0 || $strIdUsuario == "") {
+                        $requestModel = $this->model->insertarUsuario(
+                            $strIdentificacion,
+                            $strNombre,
+                            $strApellido,
+                            $intTelefono,
+                            $strEmail,
+                            $strPassword,
+                            $intTipoId,
+                            $intStatus
+                        );
+                        $option = 1;
+                    }else{
+                        $requestModel = $this->model->actualizarUsuario(
+                            $strIdUsuario,
+                            $strIdentificacion,
+                            $strNombre,
+                            $strApellido,
+                            $intTelefono,
+                            $strEmail,
+                            $intTipoId,
+                            $intStatus
+                        );
+                        $option = 2;
+                    }
+
+                    if ($requestModel != 'exist') {
+                        if ($option === 1) {
+                            $arrResponse = array("status" => true, "msg" => 'Datos guardados correctamente.');
+                        }
+    
+                        if ($option === 2) {
+                            $arrResponse = array("status" => true, "msg" => 'Datos actualizados correctamente.');
+                        }
+                    }elseif($requestModel === 'exist'){
                         $arrResponse = array("status" => false, "msg" => 'El email o la identificacion ya existe');
                     }else{
                         $arrResponse = array("status" => false, "msg" => 'No esposible almacenar los datos');
                     }
 
                 } catch (\Throwable $th) {
-                    $arrResponse = array("status" => false, "msg" => "No es posible relizar la insercion de datos");
+                    $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta");
                 }
                 
             }else{

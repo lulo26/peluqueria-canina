@@ -7,7 +7,7 @@ class UsuariosModel extends Mysql{
 
     public function selectUserById(int $id){
         $this->intId = $id;
-        $sql = "SELECT p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, r.nombre_rol, p.status, DATE_FORMAT(p.date_created , '%d-%m-%Y') as fechaRegistro
+        $sql = "SELECT p.id_persona, p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, r.nombre_rol, p.rol_id, p.status, DATE_FORMAT(p.date_created , '%d-%m-%Y') as fechaRegistro
                 from personas p 
                 JOIN roles r on
                 p.rol_id = r.id_rol
@@ -66,5 +66,27 @@ class UsuariosModel extends Mysql{
             $return = "exist";
         }
         return $return;
+    }
+
+
+    public function actualizarUsuario(int $userId,int $identificacion, string $nombre, string $apellido, int $telefono, string $email, int $tipoId, int $status){
+        $return = "";
+
+        $this->userId = $userId;
+        $this->identificacion = $identificacion;
+        $this->nombre = $nombre;
+        $this->apellido = $apellido;
+        $this->telefono = $telefono;
+        $this->email = $email;
+        $this->tipoId = $tipoId;
+        $this->status = $status;
+
+        $query_insert = "UPDATE personas SET identificacion = ?, nombres = ?, apellidos = ?, telefono = ?, email_user = ?, rol_id  = ?, status = ? 
+        WHERE id_persona = $this->userId";
+
+        $arrData = array($this->identificacion, $this->nombre, $this->apellido, $this->telefono, $this->email, $this->tipoId, $this->status);
+
+        $request_insert = $this->update($query_insert, $arrData);
+        $return = $request_insert;
     }
 }

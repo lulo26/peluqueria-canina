@@ -27,18 +27,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
     btnCrearUsuario.addEventListener('click', ()=>{
         document.getElementById('crearUsuarioModalLabel').innerHTML = "Crear Usuario"
+        frmUsuarios.reset()
+        document.querySelector('#txtPassword').removeAttribute('readonly')
         $('#crearUsuarioModal').modal('show')
-
-        fetch(base_url + '/roles/getSelectRoles',{
-            method: "GET"
-        })
-        .then((res)=>{
-            return res.text()
-        })
-        .then((html)=>{
-            document.getElementById('listRolId').innerHTML = '<option value="0">Seleccione el tipo de usuario</option>'
-            document.getElementById('listRolId').innerHTML += html
-        })
+        getRolesOptions()
     })
 
     frmUsuarios.addEventListener('submit', (e)=>{
@@ -146,22 +138,41 @@ document.addEventListener('DOMContentLoaded', ()=>{
             if (selected == 'update') {
                 frmUsuarios.reset()
                 $('#crearUsuarioModal').modal('show')
+                getRolesOptions()
                 document.getElementById('crearUsuarioModalLabel').innerHTML = "Modificar Usuario"
-/*                 fetch(base_url + `/roles/getRol/${idRol}`,{
+                 fetch(base_url + `/usuarios/getUsuario/${idUsuario}`,{
                     method: "GET"
                 })
                 .then((res)=>res.json())
                 .then((res)=>{
-                    arrData = res.data
+                    arrData = res.data[0]
                     console.log(arrData)
-                    document.querySelector('#nombreRol').value = arrData.nombre_rol
-                    document.querySelector('#descripcionRol').value = arrData.descripcion_rol
-                    document.querySelector('#estadoRol').value = arrData.status_rol
-                    document.querySelector('#idRol').value = arrData.id_rol
-                }) */
+                    document.querySelector('#idUsuario').value = arrData.id_persona
+                    document.querySelector('#txtIdentificacion').value = arrData.identificacion
+                    document.querySelector('#txtNombres').value = arrData.nombres
+                    document.querySelector('#txtApellidos').value = arrData.apellidos
+                    document.querySelector('#txtTelefono').value = arrData.telefono
+                    document.querySelector('#txtEmail').value = arrData.email_user
+                    document.querySelector('#listRolId').value = arrData.rol_id
+                    //rol_id
+                    document.querySelector('#txtPassword').setAttribute('readonly', '')
+                }) 
             }
 
         } catch (error) {}
     })
+
+    function getRolesOptions(){
+        fetch(base_url + '/roles/getSelectRoles',{
+            method: "GET"
+        })
+        .then((res)=>{
+            return res.text()
+        })
+        .then((html)=>{
+            document.getElementById('listRolId').innerHTML = '<option value="0">Seleccione el tipo de usuario</option>'
+            document.getElementById('listRolId').innerHTML += html
+        })
+    }
 
 })
