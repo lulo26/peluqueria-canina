@@ -36,7 +36,7 @@ class Clientes extends Controllers{
     }
 
     public function getClienteById($idCliente){
-            $idCliente = intval(strClean($idCliente));
+            $idCliente = intval($idCliente);
             
             $arrCliente = $this->model->selectClienteById($idCliente);
 
@@ -117,7 +117,7 @@ class Clientes extends Controllers{
             if ($requestDelete=='ok') {
                 $arrayResponse = array('status' => true, 'msg' => 'Cliente eliminado correctamente.');
             }else{
-                $arrayResponse = array('status' => true, 'msg' => 'No se pudo eliminar el cliente.');
+                $arrayResponse = array('status' => false, 'msg' => 'No se pudo eliminar el cliente.');
             }
             echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
         }else {
