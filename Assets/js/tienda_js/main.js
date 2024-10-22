@@ -5,7 +5,7 @@ fetch(base_url + "/inventario/traerProductos")
   .then((data) => {
     data.forEach((element) => {
       productos.innerHTML += `
-		      <div class="col-2">
+		      <div class="col-3">
         		<div class="product">
           			<div class="product-img">
            				<img src="./assets/img/tienda/dog_chow_triple_proteina.png" alt="">

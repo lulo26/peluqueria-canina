@@ -107,22 +107,29 @@
 
   <body>
 
+  
+
     <!-- HOT DEAL SECTION -->
     <div id="hot-deal" class="section">
       <!-- container -->
-      <div class="container">
-        <!-- row -->
+      <div class="container" id="cardnavegante">
+  
+
+
+
+
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-7">
+          <div class="imagenTienda1">
+                    <img src="./assets/img/tienda/capuchino.png" height="10%">
+                  </div>
             <div class="hot-deal">
               <ul class="hot-deal-countdown">
                 <div class="row">
-                  <div class="imagenTienda1">
-                    <img src="./assets/img/tienda/capuchino.png">
-                  </div>
                 </div>
               </ul>
               <h2 class="text-uppercase">Canino Feliz Store</h2>
+          
               <p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
               <a class="primary-btn cta-btn" href="#">Shop now</a>
             </div>
