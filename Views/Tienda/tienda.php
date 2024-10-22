@@ -116,38 +116,14 @@
 					<div class="col-md-12">
 						<div class="hot-deal">
 							<ul class="hot-deal-countdown">
-								<li>
-									<div>
-										<h3>02</h3>
-										<span>Days</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>10</h3>
-										<span>Hours</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>34</h3>
-										<span>Mins</span>
-									</div>
-								</li>
-								<li>
-									<div>
-										<h3>60</h3>
-										<span>Secs</span>
-									</div>
-								</li>
                 <div class="row">
-                  <div class="col">
-                    <img src="./assets/img/tienda/capuchino.png" width="20%" alt="">
+                  <div class="imagenTienda1">
+                    <img src="./assets/img/tienda/capuchino.png">
                   </div>
                 </div>
 							</ul>
-							<h2 class="text-uppercase">hot deal this week</h2>
-							<p>New Collection Up to 50% OFF</p>
+							<h2 class="text-uppercase">Canino Feliz Store</h2>
+							<p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
 							<a class="primary-btn cta-btn" href="#">Shop now</a>
 						</div>
 					</div>
@@ -161,6 +137,23 @@
     
     <div class="col-7">
 							<!-- product -->
+							<div class="col-md-4 ">
+								<div class="product">
+									<div class="product-img">
+										<img src="./assets/img/tienda/dog_chow_triple_proteina.png" alt="">
+									</div>
+									<div class="product-body">
+										<p class="product-category">Comida para Perro</p>
+										<h3 class="product-name"><a href="#">Dog Chow Triple Proteina con ExtraLife</a></h3>
+										<h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+									</div>
+									<div class="add-to-cart">
+										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir</button>
+									</div>
+								</div>
+							</div>
+
+              <!-- product2 -->
 							<div class="col-md-4 ">
 								<div class="product">
 									<div class="product-img">
