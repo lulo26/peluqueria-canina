@@ -59,6 +59,8 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: #333;
+  overflow-y: scroll;
+overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -792,10 +794,12 @@ textarea.input {
   background-image: url('../img/hotdeal.png');
   background-position: center;
   background-repeat: no-repeat;
+  
 }
 
 .hot-deal {
   text-align: center;
+  
 }
 
 .hot-deal .hot-deal-countdown {
@@ -1000,7 +1004,7 @@ Cambia el color de los bordes de la card
   padding: 10px;
   font-size: 12px;
   line-height: 10px;
-  background: #1e1f29;
+  background: #9ea2cc;
   color: #FFF;
   text-transform: uppercase;
   z-index: 10;
@@ -1024,7 +1028,7 @@ Cambia el color de los bordes de la card
   right: 1px;
   bottom: 1px;
   padding: 15px;
-  background: #1e1f29;
+  background: #238cef;
   text-align: center;
   -webkit-transform: translateY(0%);
   -ms-transform: translateY(0%);
@@ -2141,12 +2145,13 @@ Aqui cambia el color del precio
 
 .imagenTienda1 {
 
-  margin-left: 70%;
+  margin-left: 80%;
 width: 50px;
 height: 50px;
 position: relative;
-
 }
+
+
 
 /*=========================================================
 	13 -> RESPONSIVE

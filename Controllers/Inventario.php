@@ -37,6 +37,15 @@ class Inventario extends Controllers{
         die();
     }
 
+
+    public function traerProductos(){
+
+        $arrData = $this->model->traerProductos();
+
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+    }
+
+
     public function getProducto($idProducto){
 
         $intIdProducto = intval(strClean($idProducto));
