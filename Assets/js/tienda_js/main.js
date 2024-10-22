@@ -16,7 +16,7 @@ fetch(base_url + "/inventario/traerProductos")
             			<h4 class="product-price">${element.precio}<del class="product-old-price">${element.precio}</del></h4>
           			</div>
           			<div class="add-to-cart">
-            			<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Añadir</button>
+            			<button class="add-to-cart-btn"> <i class="bi bi-bag"></i> Añadir </button>
           			</div>
         		</div>
      		 </div>

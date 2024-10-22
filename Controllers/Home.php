@@ -10,6 +10,7 @@ class Home extends Controllers{
         $data['page_title'] = "Página principal";
         $data['page_name'] = "home";
         $data['page_id_name'] = "home";
+        $data['page_tag'] = "Inicio";
         $this->views->getView($this,"home", $data);
     }
 }
