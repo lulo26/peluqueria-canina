@@ -14,6 +14,36 @@ class Citas extends Controllers{
         $this->views->getView($this,"citas", $data);
     }
 
+    public function setCitas(){
+        $id_cita = strClean($_POST['id_cita']);
+        $fecha_inicio = strClean($_POST['fecha_inicio']);
+        $fecha_final = strClean($_POST['fecha_final']);
+        $lugar_cita = strClean($_POST['lugar_cita']);
+        $cliente_select  = intval($_POST['id_clciente']);
+        $empleado_select = intval($_POST['id_empleado']);
+
+        $array_post  = ["id_cita","fecha_inicio","fecha_final","lugar_cita","cliente_select","empleado_select"];
+
+        if (!empty($_POST['servicios'])) {
+
+            if (check_post($_POST['servicios'])) {
+                $count_post++;
+            }
+
+        }else {
+            $count_post=0;
+        }
+        
+        if (check_post($array_post) && $count_post>0) {
+            
+        }else {
+            $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+        }
+
+        echo json_encode($_POST['servicios'], JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function getCitas(){
         $arrayData = $this->model->selectCitas();
 
@@ -34,6 +64,7 @@ class Citas extends Controllers{
         echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
         die();
     }
+    
 
     public function getServicios(){
         $arrayData = $this->model->selectServicios();

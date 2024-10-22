@@ -7,6 +7,36 @@ class CitasModel extends Mysql{
         parent::__construct();
     }
 
+    public function insertarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_cliente, int $id_empleado){
+        $this->fecha_inicio=$fecha_inicio;
+        $this->fecha_final=$fecha_final;
+        $this->lugar=$lugar;
+        $this->id_cliente=$id_cliente;
+        $this->id_empleado=$id_empleado;
+
+        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,clientes_idClientes,empleados_idEmpleados) 
+        values (?,?,?,?,?,?)";
+        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_cliente,$this->id_empleado);
+        $request_insert = $this->insert($sql, $arrayData);
+        $result = $request_insert;
+
+        return $result;
+    }
+
+    public function insertarCitaServicios(int $id_cita, int $id_servicio){
+        $this->id_cita = $id_cita;
+        $this->id_servicio = $id_servicio;
+
+        $sql="INSERT INTO citas_has_servicios
+        VALUES(?,?)";
+        $arrayData = array($this->id_cita,$this->id_servicio);
+        $request_insert = $this->insert($sql, $arrayData);
+        $result = $request_insert;
+
+        return $result;
+    }
+
+
     public function selectCitas(){
         $sql = "SELECT id_cita,fecha_inicio, 
         fecha_final,lugar_cita,
