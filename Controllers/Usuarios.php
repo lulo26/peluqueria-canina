@@ -14,6 +14,22 @@ class Usuarios extends Controllers{
         $this->views->getView($this,"usuarios", $data);
     }
 
+    public function getUsuario($idUsuario){
+        $intIdUsuario = intval(strClean($idUsuario));
+
+        if ($intIdUsuario > 0) {
+            $arrData = $this->model->selectUserById($intIdUsuario);
+            if (!empty($arrData)) {
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }
+        }
+
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function getUsuarios(){
 
         $arrData = $this->model->selectUsuarios();

@@ -5,6 +5,19 @@ class UsuariosModel extends Mysql{
         parent::__construct();
     }
 
+    public function selectUserById(int $id){
+        $this->intId = $id;
+        $sql = "SELECT p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, r.nombre_rol, p.status  
+                from personas p 
+                JOIN roles r on
+                p.rol_id = r.id_rol
+                WHERE p.id_persona = $this->intId;";
+
+        $request = $this->select_all($sql);
+
+        return $request;
+    }
+
     public function selectUsuarios(){
         
         $sql = "SELECT p.id_persona , p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, p.status, r.nombre_rol 
