@@ -1,19 +1,19 @@
 <?php
 
-class InformesModel extends mysqli{
+class InformesModel extends Mysql{
     public function __construct(){
     parent::__construct();
     }
 
     public function chartGroupRazas(){
-        $sql = "SELECT COUNT(mascotas.idMascotas) AS total, mascotas.razaMascota AS agrupa FROM mascotas GROUP BY agrupa;";
+        $sql = "SELECT COUNT(idMascotas) AS total, razaMascota AS agrupa FROM mascotas GROUP BY agrupa ORDER BY idMascotas ASC;";
         $request = $this->select_all($sql);
         $data = array();
         foreach($request as $row){
             $data[] = $row;
         }
         header('Content-Type: application/json');
-        echo json_encode($data);
+ 
         return $data;
     }
 }
