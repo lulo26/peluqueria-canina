@@ -111,6 +111,14 @@
     position: relative;
     height: 450px !important;
   }
+
+  /*.imagenTienda1 {
+    right: 10%;
+    margin-right: 90%;
+  width: 10%;
+  height: 10%;
+  }*/
+
 }
 
 @media (max-width: 480px) {

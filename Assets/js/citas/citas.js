@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     function CargarClientes() {
+
         fetch(base_url + `/citas/getClientes`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -44,6 +45,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     function CargarEmpleados() {
+
         fetch(base_url + `/citas/getEmpleados`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -105,7 +107,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             if (dataInsert.status) {
                 formularioCitas.reset()
-                $('#insertarCitasModal').modal('hide')
+                $('#insertarCitas').modal('hide')
                 tablaCitas.api().ajax.reload(function(){})
             }
         })
@@ -118,5 +120,72 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.querySelector('#titulo').innerHTML='Agendar cita'
         
     })
+
+    document.addEventListener('click', (e)=>{
+        try {
+            let selected = e.target.closest('button').getAttribute('data-action-type')
+            let id_cita = e.target.closest('button').getAttribute('rel')
+
+            //accion borrar clientes
+            if (selected == 'delete') {
+                Swal.fire({
+                    title:"Eliminar Cita",
+                    text:"¿Está seguro de eliminar esta cita?",
+                    icon: "warning",
+                    showDenyButton: true,
+                    confirmButtonText: "Sí",
+                    denyButtonText: `Cancelar`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let formData = new FormData()
+                        formData.append('id_cita', id_cita)
+                        fetch(base_url + '/citas/deleteCitas',{
+                            method: "POST",
+                            body: formData,
+                        })
+                        .then((res)=>res.json())
+                        .then((data)=>{
+                            Swal.fire({
+                                title: data.status ? 'Correcto' : 'Error',
+                                text: data.msg,
+                                icon: data.status ? "success" : 'error'
+                            })
+                            tablaCitas.api().ajax.reload(function(){})
+                        })
+                    }
+                  });
+
+            }
+            //actualización clientes
+            if (selected == 'update') {
+
+                $('#insertarCitas').modal('show')
+                document.querySelector('#titulo').innerHTML = "Actualizar cita"
+                fetch(base_url + `/citas/getCitasByID/${id_cita}`,{
+                    method: "GET"
+                })
+                .then((res)=>res.json())
+
+
+                .then((res)=>{
+                    const inputs = ['#fecha_inicio','#fecha_final','#lugar_cita','#cliente_select','#empleado_select',"#id_cita"]
+
+                    arrData = res.data[0]
+
+                    const values = [arrData.fecha_inicio,arrData.fecha_final,arrData.lugar_cita,arrData.clientes_idClientes ,arrData.empleados_idEmpleados,arrData.id_cita]
+                    
+                    
+                    for (let index = 0; index < inputs.length; index++) {
+                        document.querySelector(inputs[index]).value=values[index]
+                    }
+
+                    
+                    
+                })
+            }
+
+        }catch{}
+    })
+
 })
 

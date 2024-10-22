@@ -601,7 +601,12 @@ a:focus {
   z-index: 11;
 }
 
+.imagenTienda1 {
+background-color: #0dc3ff;
+padding-left: 50%;
 
+
+}
 
 
 /*Aqui termina boton fantasma*/

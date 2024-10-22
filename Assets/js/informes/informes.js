@@ -1,112 +1,111 @@
-$(document).ready(function () {
-  $.ajax({
-    url: "InformesModel.php",
-    dataType: "json",
-    contentType: "application/json; charset=utf-8",
-    method: "GET",
-    success: function (data) {
-      console.log(data);
+document.addEventListener("DOMContentLoaded", (e) => {
+  $(document).ready(function () {
+    $.ajax({
+      url: `${base_url}/informes/getCharts`,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      method: "GET",
+      success: function (data) {
+        console.log(data); // Agregado para depuración
 
-      var agrupa = [];
-      var total = [];
+        var agrupa = [];
+        var total = [];
 
-      for (var i in data) {
-        agrupa.push(data[i].agrupa);
-        total.push(data[i].total);
-      }
+        for (var i in data) {
+          agrupa.push(data[i].agrupa);
+          total.push(data[i].total);
+        }
 
-      var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById("myChart").getContext("2d");
 
-      if (!ctx) {
-        console.log(
-          "Failed to get context. Ensure the canvas element is present and has the correct ID."
-        );
-        return;
-      }
+        if (!ctx) {
+          console.log(
+            "Failed to get context. Ensure the canvas element is present and has the correct ID."
+          );
+          return;
+        }
 
-      var gradientStroke = ctx.createLinearGradient(0, 0, 0, 500);
-      gradientStroke.addColorStop(0, "rgba(29, 140, 248, 0.6)");
-      gradientStroke.addColorStop(0.5, "rgba(29, 140, 248, 0.3)");
-      gradientStroke.addColorStop(1, "rgba(29, 140, 248, 0.1)");
-
-      var chartdata = {
-        labels: agrupa,
-        datasets: [
-          {
-            fill: true,
-            backgroundColor: gradientStroke,
-            borderColor: "#1d8cf8",
-            borderWidth: 2,
-            pointBackgroundColor: "#1d8cf8",
-            pointBorderColor: "rgba(255,255,255,0)",
-            pointHoverBackgroundColor: "#1d8cf8",
-            pointBorderWidth: 20,
-            pointHoverRadius: 4,
-            pointHoverBorderWidth: 15,
-            pointRadius: 4,
-            data: total,
-          },
-        ],
-      };
-
-      var show = $("#myChart");
-
-      var grafico = new Chart(mostrar, {
-        type: "bar",
-        data: chartdata,
-        options: {
-          maintainAspectRatio: false,
-          legend: { display: false },
-          tooltips: {
-            backgroundColor: "#f5f5f5",
-            titleFontColor: "#333",
-            bodyFontColor: "#666",
-            bodySpacing: 4,
-            xPadding: 12,
-            mode: "nearest",
-            intersect: 0,
-            position: "nearest",
-          },
-          responsive: true,
-          scales: {
-            yAxes: [
-              {
-                barPercentage: 1.6,
-                gridLines: {
-                  drawBorder: true,
-                  color: "rgba(29,140,248,0.0)",
-                  zeroLineColor: "#1d8cf8",
-                },
-                ticks: {
-                  max: 160000,
-                  stepSize: 10000,
-                  suggestedMax: 150000,
-                  padding: 20,
-                  fontColor: "#000000",
-                },
+        var chartdata = {
+          labels: agrupa,
+          datasets: [
+            {
+              fill: true,
+              data: total,
+            },
+          ],
+        };
+        // Bar Chart Example
+        var ctx = document.getElementById("myChart");
+        var myBarChart = new Chart(ctx, {
+          type: "bar",
+          data: chartdata,
+          options: {
+            maintainAspectRatio: false,
+            layout: {
+              padding: {
+                left: 10,
+                right: 25,
+                top: 25,
+                bottom: 0,
               },
-            ],
-            xAxes: [
-              {
-                barPercentage: 0.2,
-                gridLines: {
-                  drawBorder: true,
-                  color: "rgba(173, 216, 230, 0.1)",
-                  zeroLineColor: "#1d8cf8",
+            },
+            scales: {
+              xAxes: [
+                {
+                  time: {
+                    unit: "month",
+                  },
+                  gridLines: {
+                    display: false,
+                    drawBorder: false,
+                  },
+                  ticks: {
+                    maxTicksLimit: 6,
+                  },
+                  maxBarThickness: 25,
                 },
-                ticks: {
-                  padding: 20,
-                  fontColor: "#000000",
-                  stepSize: 2,
+              ],
+              yAxes: [
+                {
+                  ticks: {
+                    min: 0,
+                    max: 15000,
+                    maxTicksLimit: 5,
+                    padding: 10,
+                    callback: function (val, index) {
+                      return index;
+                    },
+                    // Include a dollar sign in the ticks
+                  },
+                  gridLines: {
+                    color: "rgb(234, 236, 244)",
+                    zeroLineColor: "rgb(234, 236, 244)",
+                    drawBorder: false,
+                    borderDash: [2],
+                    zeroLineBorderDash: [2],
+                  },
                 },
-              },
-            ],
+              ],
+            },
+            legend: {
+              display: false,
+            },
+            tooltips: {
+              titleMarginBottom: 10,
+              titleFontColor: "#6e707e",
+              titleFontSize: 14,
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: "#dddfeb",
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: false,
+              caretPadding: 10,
+            },
           },
-        },
-      });
-    },
-    error: function (data) {
-      console.log("Error:", data);
-    },
+        });
+      },
+    });
   });
 });

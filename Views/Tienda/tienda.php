@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <!-- Mobile Metas -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
- 
+
 
   <title><?= $data['page_tag'] ?></title>
 
@@ -25,222 +25,140 @@
   <!-- responsive style -->
   <link href="Assets/css/responsive.css" rel="stylesheet" />
 
+  <!-- Haciendo tienda con nuevas librerias!!! -->
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+
+
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick.css" />
+  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick-theme.css" />
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/nouislider.min.css" />
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="./Assets/css/tienda_css/font-awesome.min.css">
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/style.css" />
+
+
+
+
+  <!-- Aqui termina la tienda con nuevas librerias!! -->
+
+
 </head>
 
+<div class="hero_area">
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container ">
+        <a class="navbar-brand" href="index.html">
+          <img src="Assets/img/home/logo.png" alt="">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-
-
-
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
-            <img src="Assets/img/home/logo.png" alt="">
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="service.html">Servicios </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pet.html">Galeria de Mascotas </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="clinic.html"> Clinica</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="tienda">Tienda de Mascotas</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="buy.html"> Contactanos!</a>
-                </li>
-              </ul>
-              <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-              </form>
-            </div>
-            <div class="quote_btn-container  d-flex justify-content-center">
-
-              <a href="<?= base_url()  ?>/login">Iniciar Sesion</a>
-
-            </div>
-          </div>
-        </nav>
-      </div>
-    </header>
-
-
-
-    <body>
-
-
-    <!-- Page Content -->
-    <!-- Items Starts Here -->
-    <div class="featured-page">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-12">
-            <div class="section-heading">
-              <div class="line-dec"></div>
-              <h1>Featured Items</h1>
-            </div>
-          </div>
-          <div class="col-md-8 col-sm-12">
-            <div id="filters" class="button-group">
-              <button class="btn btn-primary" data-filter="*">All Products</button>
-              <button class="btn btn-primary" data-filter=".new">Newest</button>
-              <button class="btn btn-primary" data-filter=".low">Low Price</button>
-              <button class="btn btn-primary" data-filter=".high">Hight Price</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="featured container no-gutter">
-
-        <div class="row posts">
-            <div id="1" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-01.jpg" alt="">
-                  <h4>Proin vel ligula</h4>
-                  <h6>$15.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="2" class="item high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-02.jpg" alt="">
-                  <h4>Erat odio rhoncus</h4>
-                  <h6>$25.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="3" class="item low col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-03.jpg" alt="">
-                  <h4>Integer vel turpis</h4>
-                  <h6>$35.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="4" class="item low col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-04.jpg" alt="">
-                  <h4>Sed purus quam</h4>
-                  <h6>$45.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="5" class="item new high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-05.jpg" alt="">
-                  <h4>Morbi aliquet</h4>
-                  <h6>$55.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="6" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-06.jpg" alt="">
-                  <h4>Urna ac diam</h4>
-                  <h6>$65.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="7" class="item new high col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-03.jpg" alt="">
-                  <h4>Proin eget imperdiet</h4>
-                  <h6>$75.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="8" class="item low new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-02.jpg" alt="">
-                  <h4>Nullam risus nisl</h4>
-                  <h6>$85.00</h6>
-                </div>
-              </a>
-            </div>
-            <div id="9" class="item new col-md-4">
-              <a href="single-product.html">
-                <div class="featured-item">
-                  <img src="assets/images/product-01.jpg" alt="">
-                  <h4>Cras tempus</h4>
-                  <h6>$95.00</h6>
-                </div>
-              </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-navigation">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <ul>
-              <li class="current-page"><a href="#">1</a></li>
-              <li><a href="#">2</a></li>
-              <li><a href="#">3</a></li>
-              <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="service.html">Servicios </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="pet.html">Galeria de Mascotas </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="clinic.html"> Clinica</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tienda">Tienda de Mascotas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="buy.html"> Contactanos!</a>
+              </li>
             </ul>
+            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
+              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
+            </form>
+          </div>
+          <div class="quote_btn-container  d-flex justify-content-center">
+
+            <a href="<?= base_url()  ?>/login">Iniciar Sesion</a>
+
           </div>
         </div>
-      </div>
+      </nav>
     </div>
-    <!-- Featred Page Ends Here -->
+  </header>
 
 
 
-    
-    
+  <body>
+
+  
+
+    <!-- HOT DEAL SECTION -->
+    <div id="hot-deal" class="section">
+      <!-- container -->
+      <div class="container" id="cardnavegante">
+  
 
 
-   
 
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="Assets/tienda/jquery/jquery.min.js"></script>
-    <script src="Assets/tienda/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <div class="row">
+          <div class="col-7">
+          <div class="imagenTienda1">
+                    <img src="./assets/img/tienda/capuchino.png" height="10%">
+                  </div>
+            <div class="hot-deal">
+              <ul class="hot-deal-countdown">
+                <div class="row">
+                </div>
+              </ul>
+              <h2 class="text-uppercase">Canino Feliz Store</h2>
+          
+              <p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
+              <a class="primary-btn cta-btn" href="#">Shop now</a>
+            </div>
+          </div>
+        </div>
+        <!-- /row -->
+      </div>
+      <!-- /container -->
+    </div>
+    <!-- /HOT DEAL SECTION -->
+
+<div class="row" id="losProductos" width="10%">
+
+</div>
 
 
-    <!-- Additional Scripts -->
-    <script src="assets/tienda/bootstrap/js/custom.js"></script>
-    <script src="assets/tienda/bootstrap/js/owl.js"></script>
-    <script src="assets/tienda/bootstrap/js/isotope.js"></script>
 
+      <script>
+        const base_url = "<?= base_url() ?>";
+      </script>
+      <!-- jQuery Plugins tienda -->
+      <script src="./Assets/js/tienda_js/jquery.min.js"></script>
+      <script src="./Assets/js/tienda_js/bootstrap.min.js"></script>
+      <script src="./Assets/js/tienda_js/slick.min.js"></script>
+      <script src="./Assets/js/tienda_js/nouislider.min.js"></script>
+      <script src="./Assets/js/tienda_js/jquery.zoom.min.js"></script>
+      <script src="./Assets/js/tienda_js/main.js"></script>
 
-    <script language = "text/Javascript"> 
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t){                   //declaring the array outside of the
-      if(! cleared[t.id]){                      // function makes it static and global
-          cleared[t.id] = 1;  // you could use true and false, but that's more typing
-          t.value='';         // with more chance of typos
-          t.style.color='#fff';
-          }
-      }
-    </script>
+      <!-- Aqui termina -->
 
 
   </body>

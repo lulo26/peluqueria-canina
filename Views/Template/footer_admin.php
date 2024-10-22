@@ -58,11 +58,14 @@
     <script src="<?= media() ?>/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="<?= media() ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- Charts --->
-    <!-- <script src="<?= media() ?>/chart.js/Chart.min.js"></script>
-    <script src="<?= media() ?>/chart.js/Chart.js"></script>
-    <script src="<?= media() ?>/chart.js/Chart.bundle.min.js"></script>
-    <script src="<?= media() ?>/chart.js/Chart.bundle.js"></script> -->
+    <?php if ($data['page_id_name'] == "informes"): ?>
+        <script src="<?= media() ?>/vendor/jquery-ui/jquery-ui.min.js"></script>
+        <script src="<?= media() ?>/vendor/chart.js/Chart.min.js"></script>
+        <script src="<?= media() ?>/vendor/chart.js/Chart.js"></script>
+        <script src="<?= media() ?>/vendor/chart.js/Chart.bundle.min.js"></script>
+        <script src="<?= media() ?>/vendor/chart.js/Chart.bundle.js"></script>
+    <?php endif ?>
 
 </body>
 
-</html>x    
+</html>

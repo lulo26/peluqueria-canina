@@ -18,6 +18,14 @@ class InventarioModel extends Mysql{
         return $request;
     }
 
+    public function traerProductos(){
+
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos";
+        $request = $this->select_all($sql);
+        return $request;
+
+    }
+
     public function insertarProducto(string $nombreProducto, int $precioProducto, string $codigoProducto){
         $return = "";
 
