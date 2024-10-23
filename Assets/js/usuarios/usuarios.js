@@ -22,13 +22,13 @@ document.addEventListener('DOMContentLoaded', ()=>{
             {"data":"options"}
         ],
         "responsive": "true",
+        "iDisplayLength": 10,
         "order":[[0, "asc"]]
     }) 
     
     btnCrearUsuario.addEventListener('click', ()=>{
         document.getElementById('crearUsuarioModalLabel').innerHTML = "Crear Usuario"
         frmUsuarios.reset()
-        document.querySelector('#txtPassword').removeAttribute('readonly')
         $('#crearUsuarioModal').modal('show')
         getRolesOptions()
     })
@@ -115,10 +115,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     confirmButtonText: "Sí",
                     denyButtonText: `Cancelar`
                 }).then((result)=>{
-/*                     if (result.isConfirmed) {
+                     if (result.isConfirmed) {
                         let frmData = new FormData()
                         frmData.append('idUsuario', idUsuario)
-                        fetch(base_url + '',{
+                        fetch(base_url + '/usuarios/deleteUsuario',{
                             method: "POST",
                             body: frmData,
                         })
@@ -131,13 +131,12 @@ document.addEventListener('DOMContentLoaded', ()=>{
                             })
                             tablaUsuarios.api().ajax.reload(function(){})
                         })
-                    } */
+                    } 
                 })
             }
 
             if (selected == 'update') {
                 frmUsuarios.reset()
-                $('#crearUsuarioModal').modal('show')
                 getRolesOptions()
                 document.getElementById('crearUsuarioModalLabel').innerHTML = "Modificar Usuario"
                  fetch(base_url + `/usuarios/getUsuario/${idUsuario}`,{
@@ -146,7 +145,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 .then((res)=>res.json())
                 .then((res)=>{
                     arrData = res.data[0]
-                    console.log(arrData)
                     document.querySelector('#idUsuario').value = arrData.id_persona
                     document.querySelector('#txtIdentificacion').value = arrData.identificacion
                     document.querySelector('#txtNombres').value = arrData.nombres
@@ -154,9 +152,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     document.querySelector('#txtTelefono').value = arrData.telefono
                     document.querySelector('#txtEmail').value = arrData.email_user
                     document.querySelector('#listRolId').value = arrData.rol_id
-                    //rol_id
-                    document.querySelector('#txtPassword').setAttribute('readonly', '')
+                    document.querySelector('#listStatus').value = arrData.status
                 }) 
+
+                $('#crearUsuarioModal').modal('show')
             }
 
         } catch (error) {}

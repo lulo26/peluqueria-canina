@@ -77,12 +77,12 @@ class Usuarios extends Controllers{
                 $strEmail = strtolower(strClean($_POST['txtEmail']));
                 $intTipoId = intval($_POST['listRolId']);
                 $intStatus = strClean($_POST['listStatus']);
-                $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
                 //$strPassword = "123456";
 
                 try {
 
                     if ($strIdUsuario == 0 || $strIdUsuario == "") {
+                        $strPassword = empty($_POST['txtPassword']) ? hash("SHA256", passGenerator()) : hash("SHA256", $_POST['txtPassword']);
                         $requestModel = $this->model->insertarUsuario(
                             $strIdentificacion,
                             $strNombre,
@@ -95,6 +95,7 @@ class Usuarios extends Controllers{
                         );
                         $option = 1;
                     }else{
+                        $strPassword = empty($_POST['txtPassword']) ? "" : hash("SHA256", $_POST['txtPassword']);
                         $requestModel = $this->model->actualizarUsuario(
                             $strIdUsuario,
                             $strIdentificacion,
@@ -102,13 +103,15 @@ class Usuarios extends Controllers{
                             $strApellido,
                             $intTelefono,
                             $strEmail,
+                            $strPassword,
                             $intTipoId,
                             $intStatus
                         );
                         $option = 2;
                     }
 
-                    if ($requestModel != 'exist') {
+                    if (intval($requestModel) > 0) {
+
                         if ($option === 1) {
                             $arrResponse = array("status" => true, "msg" => 'Datos guardados correctamente.');
                         }
@@ -127,12 +130,29 @@ class Usuarios extends Controllers{
                 }
                 
             }else{
-                $arrResponse = array("status" => false, "msg" => 'Datos incorrectos.');
+                $arrResponse = array("status" => false, "msg" => 'Debe ingresar todos los datos.');
             }
 
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+            //dep($requestModel);
             die();
         }
+    }
+
+    public function deleteUsuario(){
+        if ($_POST) {
+            $intIdUsuario = intval($_POST['idUsuario']);
+            $requestDelete = $this->model->eliminarUsuario($intIdUsuario);
+
+            if ($requestDelete) {
+                $arrResponse = array('status' => true, 'msg' => 'Se ha eliminado el usuario');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar el usuario');
+            }
+
+            echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        }
+        die();
     }
 }
 

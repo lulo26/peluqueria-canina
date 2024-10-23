@@ -69,7 +69,7 @@ class UsuariosModel extends Mysql{
     }
 
 
-    public function actualizarUsuario(int $userId,int $identificacion, string $nombre, string $apellido, int $telefono, string $email, int $tipoId, int $status){
+    public function actualizarUsuario(int $userId,int $identificacion, string $nombre, string $apellido, int $telefono, string $email, string $password, int $tipoId, int $status){
         $return = "";
 
         $this->userId = $userId;
@@ -78,15 +78,58 @@ class UsuariosModel extends Mysql{
         $this->apellido = $apellido;
         $this->telefono = $telefono;
         $this->email = $email;
+        $this->password = $password;
         $this->tipoId = $tipoId;
         $this->status = $status;
 
-        $query_insert = "UPDATE personas SET identificacion = ?, nombres = ?, apellidos = ?, telefono = ?, email_user = ?, rol_id  = ?, status = ? 
-        WHERE id_persona = $this->userId";
+        $sql = "SELECT * FROM personas WHERE (email_user = '{$this->email}' AND id_persona  != {$this->userId}) OR (identificacion = '{$this->identificacion}' AND id_persona != {$this->userId})";
 
-        $arrData = array($this->identificacion, $this->nombre, $this->apellido, $this->telefono, $this->email, $this->tipoId, $this->status);
+        $request = $this->select_all($sql);
 
-        $request_insert = $this->update($query_insert, $arrData);
-        $return = $request_insert;
+        if (empty($request)) {
+            if ($this->password != "") {
+                $query_insert = "UPDATE personas SET identificacion = ?, nombres = ?, apellidos = ?, telefono = ?, email_user = ?, password = ?, rol_id  = ?, status = ? 
+                WHERE id_persona = $this->userId";
+        
+                $arrData = array(
+                    $this->identificacion, 
+                    $this->nombre, 
+                    $this->apellido, 
+                    $this->telefono, 
+                    $this->email, 
+                    $this->password, 
+                    $this->tipoId, 
+                    $this->status
+                );   
+            }else{
+                $query_insert = "UPDATE personas SET identificacion = ?, nombres = ?, apellidos = ?, telefono = ?, email_user = ?, rol_id = ?, status = ? 
+                WHERE id_persona = $this->userId";
+        
+                $arrData = array(
+                    $this->identificacion, 
+                    $this->nombre, 
+                    $this->apellido, 
+                    $this->telefono, 
+                    $this->email, 
+                    $this->tipoId, 
+                    $this->status
+                );
+            }
+            $request_insert = $this->update($query_insert, $arrData);
+        }else{
+            $request_insert = "exist";
+        }
+
+        //return $request_insert;
+        return $request_insert;
+    }
+
+    public function eliminarUsuario(int $idUsuario){
+        $this->intIdUsuario = $idUsuario;
+
+        $sql = "UPDATE personas SET status = ? WHERE id_persona = {$this->intIdUsuario}";
+        $arrData = array(0);
+        $request = $this->update($sql, $arrData);
+        return $request;
     }
 }
