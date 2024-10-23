@@ -14,7 +14,7 @@ class MascotasModel extends Mysql{
     }
 
     public function selectMascotaID($id){
-        $sql = "SELECT idMascotas,nombreMascota, razaMascota, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
+        $sql = "SELECT idMascotas, nombreMascota, razaMascota, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
         INNER JOIN clientes
         ON clientes.idClientes = mascotas.clientes_idClientes
         WHERE idMascotas = $id";
