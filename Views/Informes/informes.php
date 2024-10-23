@@ -4,8 +4,10 @@
     <div class="container-fluid">
 
         <!-- Titulo de la pagina -->
+         
         <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <canvas id="myChart"></canvas>
+        <div class="container mt-5"><canvas id="myChart"></canvas></div>
+        
     </div>
     <!-- /.Fin de contenido -->
 

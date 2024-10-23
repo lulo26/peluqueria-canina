@@ -14,7 +14,10 @@ document.addEventListener("DOMContentLoaded", (e) => {
         for (var i in data) {
           agrupa.push(data[i].agrupa);
           total.push(data[i].total);
+          
         }
+        
+        
 
         var ctx = document.getElementById("myChart").getContext("2d");
 
@@ -29,8 +32,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
           labels: agrupa,
           datasets: [
             {
+              label: "razas de mascotas",
               fill: true,
               data: total,
+              backgroundColor: "#4e73df",
+              hoverBackgroundColor: "#2e59d9",
+              borderColor: "#4e73df",
             },
           ],
         };
@@ -69,13 +76,12 @@ document.addEventListener("DOMContentLoaded", (e) => {
                 {
                   ticks: {
                     min: 0,
-                    max: 15000,
-                    maxTicksLimit: 5,
-                    padding: 10,
-                    callback: function (val, index) {
-                      return index;
+                    max: total.length,
+                    maxTicksLimit: 3,
+                    callback: function(value, index) {
+                      return value;
                     },
-                    // Include a dollar sign in the ticks
+                    padding: 10,
                   },
                   gridLines: {
                     color: "rgb(234, 236, 244)",
@@ -105,6 +111,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
             },
           },
         });
+        console.log(total);
       },
     });
   });
