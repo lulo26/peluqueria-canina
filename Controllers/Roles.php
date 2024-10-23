@@ -63,7 +63,7 @@ class Roles extends Controllers{
 
     public function getSelectRoles(){
         $htmlOptions = "";
-        $arrData = $this->model->selectRoles();
+        $arrData = $this->model->selectRolesActivos();
         if (count($arrData) > 0) {
             for ($i=0; $i < count($arrData); $i++) { 
                 $htmlOptions .= '<option value="' . $arrData[$i]['id_rol']. '">' . $arrData[$i]['nombre_rol'] . '</option>';
@@ -91,10 +91,12 @@ class Roles extends Controllers{
             }
 
             if ($option === 1) {
-                if ($requestModel > 0 && $requestModel != "exist"){
+                if (intval($requestModel) > 0){
                     $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
-                }else{
+                }elseif($requestModel === "exist"){
                     $arrRespuesta = array('status' => false, 'msg' => 'Atención: El Rol ya existe');
+                }else{
+                    $arrRespuesta = array('status' => false, 'msg' => 'No es posible registrar el rol');
                 }
             }
 

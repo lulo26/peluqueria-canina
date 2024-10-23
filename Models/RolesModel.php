@@ -12,7 +12,13 @@ class RolesModel extends Mysql{
     }
 
     public function selectRoles(){
-        $sql = "SELECT * FROM roles";
+        $sql = "SELECT * FROM roles WHERE status_rol != 0";
+        $request = $this->select_all($sql);
+        return $request;
+    }
+
+    public function selectRolesActivos(){
+        $sql = "SELECT id_rol, nombre_rol, status_rol FROM roles WHERE status_rol != 0 AND status_rol = 1";
         $request = $this->select_all($sql);
         return $request;
     }
@@ -58,25 +64,14 @@ class RolesModel extends Mysql{
         return $request;
     }
 
-    //revisar tema de usuarios, no se puede eliminar rol cuando está asignado con un usuario.
     public function deleteRol(int $idrol){
+        
         $this->intIdrol = $idrol;
-        $sql = "DELETE FROM roles WHERE id_rol = $this->intIdrol";
-            $request = $this->delete($sql);
-            if($request){
-                $request = 'ok';
-            }else{
-                $request = 'error';
-            }
-        return $request;
-    }
-
-/*     public function deleteRol(int $idrol){
-        $this->intIdrol = $idrol;
-        $sql = "SELECT * FROM usuarios WHERE rol_id = $this->intIdrol";
+        $sql = "SELECT * FROM personas WHERE rol_id = {$this->intIdrol}";
         $request = $this->select_all($sql);
+
         if(empty($request)){
-            $sql = "UPDATE roles SET status = ? WHERE id_rol = $this->intIdrol";
+            $sql = "UPDATE roles SET status_rol = ? WHERE id_rol = {$this->intIdrol}";
             $arrData = array(0);
             $request = $this->update($sql, $arrData);
             if($request){
@@ -89,6 +84,7 @@ class RolesModel extends Mysql{
         }
 
         return $request;
-    } */
+        
+    }
 
 }

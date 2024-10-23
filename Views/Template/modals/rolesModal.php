@@ -28,7 +28,7 @@
               <label for="estadoRol">Estado</label>
               <select name="estadoRol" id="estadoRol" class="form-control">
                 <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
+                <option value="2">Inactivo</option>
               </select>
             </div>
       </div>
