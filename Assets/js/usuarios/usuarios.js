@@ -54,6 +54,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
             return false
         }
 
+        let elValid = document.getElementsByClassName("valid")
+        for (let i = 0; i < elValid.length; i++) {
+            if (elValid[i].classList.contains('is-invalid')) {
+                Swal.fire({
+                    title: 'Atencion',
+                    text: 'Por favor verifique los campos en rojo',
+                    icon: 'Error'
+                })
+    
+                return false
+            }
+        }
+
         let formUsuarios = new FormData(frmUsuarios);
 
         fetch(base_url + '/usuarios/setUsuario', {
