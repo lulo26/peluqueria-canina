@@ -19,29 +19,29 @@
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="txtIdentificacion">Identificacion</label>
-                <input type="text" class="form-control" id="txtIdentificacion" name="txtIdentificacion" autocomplete="off" required="">
+                <input type="text" class="form-control validate validNumber" id="txtIdentificacion" name="txtIdentificacion" autocomplete="off" required="">
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="txtNombres">Nombres</label>
-                <input type="text" class="form-control" id="txtNombres" name="txtNombres" autocomplete="off" required="">
+                <input type="text" class="form-control validate validText" id="txtNombres" name="txtNombres" autocomplete="off" required="">
               </div>
               <div class="form-group col-md-6">
                 <label for="txtApellidos">Apellidos</label>
-                <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" autocomplete="off" required="">
+                <input type="text" class="form-control validate validText" id="txtApellidos" name="txtApellidos" autocomplete="off" required="">
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="txtTelefono">Teléfono</label>
-                <input type="text" class="form-control" id="txtTelefono" name="txtTelefono" autocomplete="off" required="">
+                <input type="text" class="form-control validate validNumber" id="txtTelefono" name="txtTelefono" autocomplete="off" required="">
               </div>
               <div class="form-group col-md-6">
                 <label for="txtEmail">Email</label>
-                <input type="email" class="form-control" id="txtEmail" name="txtEmail" autocomplete="off" required="">
+                <input type="email" class="form-control validate validEmail" id="txtEmail" name="txtEmail" autocomplete="off" required="">
               </div>
             </div>
 
