@@ -1,32 +1,37 @@
 <?php
 
-class InventarioModel extends Mysql{
+class InventarioModel extends Mysql
+{
 
-    public function __construct(){
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function selectProductos(){
+    public function selectProductos()
+    {
         $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE estado = 1";
         $request = $this->select_all($sql);
         return $request;
     }
 
-    public function selectProducto(int $id){
+    public function selectProducto(int $id)
+    {
         $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE idInventario = $id";
         $request = $this->select_all($sql);
         return $request;
     }
 
-    public function traerProductos(){
+    public function traerProductos()
+    {
 
-        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos";
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE estado = 1";
         $request = $this->select_all($sql);
         return $request;
-
     }
 
-    public function insertarProducto(string $nombreProducto, int $precioProducto, string $codigoProducto){
+    public function insertarProducto(string $nombreProducto, int $precioProducto, string $codigoProducto)
+    {
         $return = "";
 
         $this->nombreProducto = $nombreProducto;
@@ -41,13 +46,14 @@ class InventarioModel extends Mysql{
             $arrData = array($this->nombreProducto, 0, 1, $this->precioProducto, $this->codigoProducto);
             $request_insert = $this->insert($query_insert, $arrData);
             $return = $request_insert;
-        }else {
+        } else {
             $return = "exist";
         }
         return $return;
     }
 
-    public function actualizarProducto(int $idProducto, string $nombreProducto, int $precioProducto, string $codigoProducto){
+    public function actualizarProducto(int $idProducto, string $nombreProducto, int $precioProducto, string $codigoProducto)
+    {
         $return = "";
 
         $this->idProducto = $idProducto;
@@ -63,20 +69,21 @@ class InventarioModel extends Mysql{
             $arrData = array($this->nombreProducto, 1, $this->precioProducto, $this->codigoProducto);
             $request_insert = $this->update($query_insert, $arrData);
             $return = $request_insert;
-        }else {
+        } else {
             $return = "exist";
         }
         return $return;
     }
 
-    public function deleteProducto(int $idProducto){
+    public function deleteProducto(int $idProducto)
+    {
         $this->intIdProducto = $idProducto;
         $sql = "UPDATE productos SET estado = ? WHERE idInventario = $this->intIdProducto";
         $arrData = array(0);
         $request = $this->update($sql, $arrData);
-        if($request){
+        if ($request) {
             $request = 'ok';
-        }else{
+        } else {
             $request = 'error';
         }
 

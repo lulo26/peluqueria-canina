@@ -53,18 +53,12 @@
                 <li class="nav-item">
                   <a class="nav-link" href="service.html">Servicios </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="pet.html">Galeria de Mascotas </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="clinic.html"> Clinica</a>
-                </li>
+
+
                 <li class="nav-item">
                   <a class="nav-link" href="tienda">Tienda de Mascotas</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="buy.html"> Contactanos!</a>
-                </li>
+
               </ul>
               <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
                 <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
@@ -225,18 +219,6 @@
       <div class="info_items">
         <a href="">
           <div class="item ">
-            <div class="img-box box-1">
-              <img src="Assets/img/home/ubicacion.png" alt="">
-            </div>
-            <div class="detail-box">
-              <p>
-                Ubicacion
-              </p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item ">
             <div class="img-box box-2">
               <img src="Assets/img/home/llamada-telefonica.png" alt="">
             </div>
@@ -254,7 +236,7 @@
             </div>
             <div class="detail-box">
               <p>
-                empleados@caninofeliz.com
+                soporte@caninofeliz.com
               </p>
             </div>
           </div>

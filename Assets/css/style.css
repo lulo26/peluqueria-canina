@@ -80,7 +80,7 @@
 /*Aqui va el css de la navbar para cambiar el color de letra*/
 .custom_nav-container.navbar-expand-lg .navbar-nav .nav-link {
   padding: 10px 30px;
-  color: #434242;
+  color: black;
   text-align: center;
   text-transform: uppercase;
 }
@@ -553,6 +553,18 @@ a:focus {
 /*Aqui termina boton fantasma*/
 
 
+/*Aqui empieza compra flotante */
+
+.back-to-top {
+  color:#4e73df ;
+  position: fixed;
+  display: none;
+  right: 15px;
+  bottom: 30px;
+  z-index: 11;
+}
+
+/*Aqui termina compra flotante*/
 
 
 /* end footer section*/

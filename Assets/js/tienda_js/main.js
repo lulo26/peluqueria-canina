@@ -5,21 +5,33 @@ fetch(base_url + "/inventario/traerProductos")
   .then((data) => {
     data.forEach((element) => {
       productos.innerHTML += `
-		      <div class="col-3">
-        		<div class="product">
-          			<div class="product-img">
-           				<img src="./assets/img/tienda/dog_chow_triple_proteina.png" alt="">
-         			 </div>
-          			<div class="product-body">
-            			<p class="product-category" id="cardTitulo">categoria</p>
-            			<h3 class="product-name"><a href="#">${element.nombreProducto}</a></h3>
-            			<h4 class="product-price">${element.precio}<del class="product-old-price">${element.precio}</del></h4>
-          			</div>
-          			<div class="add-to-cart">
-            			<button class="add-to-cart-btn"> <i class="bi bi-bag"></i> Añadir </button>
-          			</div>
-        		</div>
-     		 </div>
+ <section class="py-5">
+            <div class="container px-lg-0 py-lg-8">
+                <div class="justify-content-center">
+                    <div class="col ">
+                        <div class="card h-100">
+                            <!-- Product image-->
+                            <img class="card-img-top" src="assets/img/tienda/dog_chow_triple_proteina.png" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">${element.nombreProducto}</h5>
+                                    <!-- Product price-->
+                                    ${element.precio}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                            </div>
+                        </div>
+                    </div>
+                 
+
+                    
+                  
+        </section>
          
 		`;
     });

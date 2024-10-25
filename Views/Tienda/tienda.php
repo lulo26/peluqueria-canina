@@ -76,22 +76,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="service.html">Servicios </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="pet.html">Galeria de Mascotas </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="clinic.html"> Clinica</a>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="tienda">Tienda de Mascotas</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="buy.html"> Contactanos!</a>
-              </li>
+         
             </ul>
-            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-            </form>
+            
           </div>
           <div class="quote_btn-container  d-flex justify-content-center">
 
@@ -114,13 +105,11 @@
       <!-- container -->
       <div class="container" id="cardnavegante">
         <div class="row">
-            <div class="hot-deal">
-              <ul class="hot-deal-countdown">
-                
-              </ul>
-              <h2 class="text-uppercase-center">Canino Feliz Store</h2>
-          
-              <p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
+        <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-black">
+                    <h1 class="display-4 fw-bolder">Canino Feliz Shop</h1>
+                    <p class="lead fw-normal text-black-50 mb-0">Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
+                </div>
             </div>
         </div>
         <!-- /row -->
@@ -129,7 +118,10 @@
     </div>
     <!-- /HOT DEAL SECTION -->
 
-<div class="row" id="losProductos" width="10%">
+
+
+    
+<div class="row" id="losProductos" >
 
 </div>
 
