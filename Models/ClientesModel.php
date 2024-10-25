@@ -52,7 +52,7 @@ class ClientesModel extends Mysql{
 
         if (empty($request)) {
 
-            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado) VALUES(?, ?, ?, ?, ?, ?, ?)";
+            $query_insert = "INSERT INTO clientes(nombre,apellido,correo,telefono,usuario,`password`,estado_cliente) VALUES(?, ?, ?, ?, ?, ?, ?)";
             $arrData = array($this->nombre,$this->apellido,$this->correo,$this->telefono,$this->usuario,$this->password,'activo');
             $request_insert = $this->insert($query_insert, $arrData);
             $result = $request_insert;

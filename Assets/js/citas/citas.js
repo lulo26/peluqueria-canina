@@ -2,14 +2,9 @@
 const formularioCitas = document.querySelector('#formularioCitas')
 const insertarCitasModal = document.querySelector('#insertarCitas')
 const btnCrearCita = document.querySelector('#btnCrearCita')
-let checkbox_servicios = document.querySelector('#checkbox-servicios')
 let tablaCitas;
 
 document.addEventListener('DOMContentLoaded',()=>{
-
-    CargarServicios()
-    CargarClientes()
-    CargarEmpleados()
 
     function CargarServicios() {
         fetch(base_url + `/citas/getServicios`)
@@ -17,29 +12,28 @@ document.addEventListener('DOMContentLoaded',()=>{
         .then((res)=>{
 
             res.forEach(element => {
-                checkbox_servicios.innerHTML+=`
-                <div class="col"> 
-                    <input class="form-check-input" type="checkbox" value="${element.id_servicio}" name="servicios[]">
-                    <label for="${element.nombre_servicio}">${element.nombre_servicio}</label>   
-                </div>
+
+                let opcion = document.createElement('option')
+                opcion.value = element.id_servicio
+                opcion.innerText = element.nombre_servicio
                 
-                `
+                document.querySelector('#servicio_select').appendChild(opcion)
             });
         })
     }
 
-    function CargarClientes() {
+    function CargarMascotas() {
 
-        fetch(base_url + `/citas/getClientes`)
+        fetch(base_url + `/citas/getMascotas`)
         .then((res)=>res.json())
         .then((res)=>{
 
             res.forEach(element => {
                 let opcion = document.createElement('option')
-                opcion.value = element.idClientes
-                opcion.innerText = element.nombre
+                opcion.value = element.idMascotas
+                opcion.innerText = element.nombreMascota
 
-                document.querySelector('#cliente_select').appendChild(opcion)
+                document.querySelector('#mascota_select').appendChild(opcion)
             });
         })
     }
@@ -59,6 +53,36 @@ document.addEventListener('DOMContentLoaded',()=>{
             });
         })
     }
+
+    CargarServicios()
+    CargarMascotas()
+    CargarEmpleados()
+
+    //boton añadir mas servicios
+    document.querySelector('#mas_servicios').addEventListener('click',(e)=>{
+        e.preventDefault()
+        let div  = document.createElement('div')
+        let select = document.createElement('select')
+        select.setAttribute('class','custom-select mt-2')
+        select.setAttribute('name','servicios[]')
+        select.innerHTML=`
+        <option value="0" selected>Seleccione un servicio</option>
+        `
+        div.appendChild(select)
+        document.querySelector('#select_servicios').appendChild(div)
+
+        fetch(base_url + "/citas/getServicios")
+        .then((res)=>res.json())
+        .then((res)=>{
+            res.forEach(element => {
+                let opcion = document.createElement('option')
+                opcion.value = element.id_servicio
+                opcion.innerText = element.nombre_servicio
+                select.appendChild(opcion)
+            });
+            
+        })  
+    })
     
 
     tablaCitas = $('#tablaCitas').dataTable({
@@ -67,19 +91,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         },
         "ajax":{
             "url": " "+base_url+"/citas/getCitas",
-            "dataSrc":function (json) {
-                json.forEach(cita => {
-                    cita.nombre_cliente = `${cita.nombre_cliente} ${cita.apellido_cliente}`;
-                    cita.nombre_empleado = `${cita.nombre_empleado} ${cita.apellido_empleado}`;
-            })
-                return json;
-            }
+            "dataSrc":""
         },
         "columns":[
             {"data":"fecha_inicio"},
             {"data":"fecha_final"},
             {"data":"lugar_cita"},
-            {"data":"nombre_cliente"},
+            {"data":"nombre_mascota"},
             {"data":"nombre_empleado"},
             {"data":"options"}
         ],
@@ -109,6 +127,18 @@ document.addEventListener('DOMContentLoaded',()=>{
                 formularioCitas.reset()
                 $('#insertarCitas').modal('hide')
                 tablaCitas.api().ajax.reload(function(){})
+
+                //borramos los select creados anteriormente y dejamos solo el primero
+                document.querySelector('#select_servicios').innerHTML=""
+                document.querySelector('#select_servicios').innerHTML=`
+                            <span>Servicios</span>
+
+                            <div class="servicios">
+                                <select class="custom-select" name="servicios[]" id="servicio_select">
+                                        <option value="0" selected>Seleccione un servicio</option>
+                                </select>
+                            </div>
+                `
             }
         })
     })
@@ -120,7 +150,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         document.querySelector('#titulo').innerHTML='Agendar cita'
         
     })
-
+    
     document.addEventListener('click', (e)=>{
         try {
             let selected = e.target.closest('button').getAttribute('data-action-type')
@@ -165,23 +195,21 @@ document.addEventListener('DOMContentLoaded',()=>{
                     method: "GET"
                 })
                 .then((res)=>res.json())
-
-
                 .then((res)=>{
-                    const inputs = ['#fecha_inicio','#fecha_final','#lugar_cita','#cliente_select','#empleado_select',"#id_cita"]
+                    const inputs = ['#fecha_inicio','#fecha_final','#lugar_cita','#mascota_select','#empleado_select',"#id_cita"]
 
                     arrData = res.data[0]
 
-                    const values = [arrData.fecha_inicio,arrData.fecha_final,arrData.lugar_cita,arrData.clientes_idClientes ,arrData.empleados_idEmpleados,arrData.id_cita]
+                    const values = [arrData.fecha_inicio,arrData.fecha_final,arrData.lugar_cita,arrData.mascotas_idMascotas,arrData.empleados_idEmpleados,arrData.id_cita]
                     
                     
                     for (let index = 0; index < inputs.length; index++) {
                         document.querySelector(inputs[index]).value=values[index]
                     }
-
-                    
-                    
                 })
+
+
+
             }
 
         }catch{}
