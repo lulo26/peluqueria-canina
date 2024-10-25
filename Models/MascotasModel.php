@@ -14,7 +14,7 @@ class MascotasModel extends Mysql{
     }
 
     public function selectMascotaID($id){
-        $sql = "SELECT idMascotas, nombreMascota, razaMascota, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
+        $sql = "SELECT idMascotas, nombreMascota, raza_idRaza, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
         INNER JOIN clientes
         ON clientes.idClientes = mascotas.clientes_idClientes
         WHERE idMascotas = $id";
@@ -30,7 +30,7 @@ class MascotasModel extends Mysql{
         $this->comentario = $comentario;
         $this->clienteId = $clienteId;
 
-        $sql = "INSERT INTO mascotas (nombreMascota, razaMascota, edadMascota, comentarioMascota, clientes_idClientes) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO mascotas (nombreMascota, raza_idRaza, edadMascota, comentarioMascota, clientes_idClientes) VALUES (?, ?, ?, ?, ?)";
         $arrData = array($this->nombre, $this->raza, $this->edad, $this->comentario, $this->clienteId);
         return $this->insert($sql, $arrData);
         
@@ -50,7 +50,7 @@ class MascotasModel extends Mysql{
         $request = $this->select_all($sql);
 
         if(!empty($request)){
-            $query = "UPDATE mascotas SET nombreMascota = ?, razaMascota = ?, edadMascota = ?, comentarioMascota = ?, clientes_idClientes = ? WHERE idMascotas = ?";
+            $query = "UPDATE mascotas SET nombreMascota = ?, raza_idRaza = ?, edadMascota = ?, comentarioMascota = ?, clientes_idClientes = ? WHERE idMascotas = ?";
             $arrData = array($this->nombre, $this->raza, $this->edad, $this->comentario, $this->clienteId, $this->id);
             $request_insert = $this->insert($query, $arrData);
             $return = $request_insert;

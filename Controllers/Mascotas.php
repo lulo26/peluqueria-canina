@@ -10,6 +10,7 @@ class Mascotas extends Controllers{
 
         $data['page_title'] = "Mascotas";
         $data['page_id_name'] = "mascotas";
+        $data['page_functions_js'] = "mascotas/mascotas.js";
  
         $this->views->getView($this,"mascotas", $data);
     }

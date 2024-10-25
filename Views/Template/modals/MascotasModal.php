@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade" id="insertarMascotasModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="MascotaModalLabel">Agregar mascota</h5>
@@ -19,22 +19,35 @@
               <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" autocomplete="off">
             </div>
 
-            <select class="custom-select mt-3" aria-label="Default select example" id="nombreUsuario" name="nombreUsuario">
-                
+            <div class="form-group">
+              <label for="razaMascota">Raza</label>
+            <select class="custom-select" aria-label="Default select example" id="razaMascota" name="razaMascota">
             </select>
-
-            <div class="form-group mt-3">
-              <label for="razaMascota">raza</label>
-              <input type="text" class="form-control" id="razaMascota" name="razaMascota" autocomplete="off">
+            <span class="badge badge-primary mt-3" id="agregarNuevo">agregar nueva raza</span>
             </div>
+            <style>
+              span{
+                cursor: pointer;
+              }
+              #agregarNuevo{
+                font-size: 15px;
+              }
+            </style>
             
             <div class="form-group">
-              <label for="edadMascota">edad</label>
+              <label for="edadMascota">Edad</label>
               <input type="number" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off">
             </div>
 
             <div class="form-group">
-              <label for="comentarioMascota">comentario</label>
+              <label for="nombreUsuario">Dueño</label>
+            <select class="custom-select" aria-label="Default select example" id="nombreUsuario" name="nombreUsuario">
+                
+            </select>
+            </div>
+
+            <div class="form-group">
+              <label for="comentarioMascota">Comentario</label>
               <textarea type="text" class="form-control" id="comentarioMascota" name="comentarioMascota" autocomplete="off" rows="4"></textarea>
             </div>
         </div>

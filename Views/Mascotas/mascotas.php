@@ -1,6 +1,7 @@
 <!-- Carga todo el header, la variable $data viene desde el controlador -->
 <?php header_admin($data);
 getModal('MascotasModal',$data);
+getModal('RazasModal', $data);
 ?> 
 <!-- Contenido de la pagina -->
  
@@ -41,5 +42,5 @@ getModal('MascotasModal',$data);
 
     </div>
     <!-- Fin de contenido principal <main> -->
-<script src="<?=media() ?>/js/mascotas/mascotas.js"></script>
+    <script src="<?=media() ?>/js/razas/razas.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->
