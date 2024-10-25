@@ -49,5 +49,4 @@ getModal('inventarioModal',$data);
 
     </div>
     <!-- Fin de contenido principal <main> -->
-<script src="<?=media() ?>/js/inventario/inventario.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

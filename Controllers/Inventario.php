@@ -12,6 +12,7 @@ class Inventario extends Controllers{
 
         $data['page_title'] = "Inventario de productos";
         $data['page_id_name'] = "inventario";
+        $data['page_functions_js'] = "inventario/inventario.js";
  
         $this->views->getView($this,"inventario", $data);
     }

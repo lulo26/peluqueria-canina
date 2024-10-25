@@ -10,6 +10,7 @@ class Usuarios extends Controllers{
 
         $data['page_title'] = "Usuarios";
         $data['page_id_name'] = "usuarios";
+        $data['page_functions_js'] = "usuarios/usuarios.js";
  
         $this->views->getView($this,"usuarios", $data);
     }

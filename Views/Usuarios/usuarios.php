@@ -51,5 +51,4 @@ getModal('usuariosModal', $data);
 
     </div>
     <!-- Fin de contenido principal <main> -->
-    <script src="<?=media() ?>/js/usuarios/usuarios.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

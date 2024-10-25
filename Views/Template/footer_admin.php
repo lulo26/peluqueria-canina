@@ -59,6 +59,8 @@
     <script src="<?= media() ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- Script Global del proyecto -->
     <script src="<?= media() ?>/js/script.js"></script>
+    <!-- Script seteado de cada Controller -->
+    <script src="<?= media(); ?>/js/<?= $data['page_functions_js'] ?>"></script>
     <!-- Charts --->
     <?php if ($data['page_id_name'] == "informes"): ?>
         <script src="<?= media() ?>/vendor/jquery-ui/jquery-ui.min.js"></script>

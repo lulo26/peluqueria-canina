@@ -8,7 +8,7 @@ function controlTag(e){
 }
 
 function testText(txtString){
-    let stringText = new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü]+$/)
+    let stringText = new RegExp(/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü ]+$/)
     if(stringText.test(txtString)){
         return true
     }else{

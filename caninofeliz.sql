@@ -40,10 +40,6 @@ CREATE TABLE `citas` (
 --
 -- Volcado de datos para la tabla `citas`
 --
-
-INSERT INTO `citas` (`id_cita`, `fecha_inicio`, `fecha_final`, `lugar_cita`, `estado_cita`, `clientes_idClientes`, `empleados_idEmpleados`) VALUES
-(1, '2024-10-02', '2024-10-02', 'La estacion', 1, 5, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -83,11 +79,6 @@ CREATE TABLE `clientes` (
 --
 -- Volcado de datos para la tabla `clientes`
 --
-
-INSERT INTO `clientes` (`idClientes`, `nombre`, `apellido`, `correo`, `telefono`, `usuario`, `password`, `estado_cliente`) VALUES
-(5, 'Paco', 'Juan', 'paco@gmail.com', '310', 'paco', '12345', 'activo'),
-(6, 'Sanchez', 'Rodriguez', 'r@gmail.com', '312', 'sanguez', '12345', 'activo');
-
 -- --------------------------------------------------------
 
 --
@@ -109,10 +100,6 @@ CREATE TABLE `empleados` (
 --
 -- Volcado de datos para la tabla `empleados`
 --
-
-INSERT INTO `empleados` (`id_empleado`, `nombre_empleado`, `apellido_empleado`, `correo_empleado`, `usuario_empleado`, `password_empleado`, `nomina_empleado`, `estado_empleado`, `roles_idRoles`) VALUES
-(1, 'Salazar', 'Salazar', 'salazar@gmail.com', 'salazar', '12345', 20000, 1, 10);
-
 -- --------------------------------------------------------
 
 --
@@ -208,10 +195,6 @@ CREATE TABLE `personas` (
 --
 -- Volcado de datos para la tabla `personas`
 --
-
-INSERT INTO `personas` (`id_persona`, `identificacion`, `nombres`, `apellidos`, `telefono`, `email_user`, `password`, `nit`, `razon_social`, `direccion`, `token`, `rol_id`, `date_created`, `status`) VALUES
-(8, '112', 'D', 'A', 312, 'a@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', '', '', '', '', 10, '2024-10-22 07:00:34', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -243,11 +226,6 @@ CREATE TABLE `roles` (
 --
 -- Volcado de datos para la tabla `roles`
 --
-
-INSERT INTO `roles` (`id_rol`, `nombre_rol`, `descripcion_rol`, `status_rol`) VALUES
-(10, 'Admin', 'administrador', 1),
-(11, 'Empleado', 'asa', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -265,12 +243,6 @@ CREATE TABLE `servicios` (
 --
 -- Volcado de datos para la tabla `servicios`
 --
-
-INSERT INTO `servicios` (`id_servicio`, `nombre_servicio`, `precio_servicio`, `descripcion_servicio`, `estado_servicio`) VALUES
-(1, 'paseosos', 12, 'Un peque&ntilde;o paseo por el parque', 1),
-(2, 'U&ntilde;as', 12, 'COSA', 1),
-(3, 'Spa', 12000, 'DELETE', 0);
-
 -- --------------------------------------------------------
 
 --
