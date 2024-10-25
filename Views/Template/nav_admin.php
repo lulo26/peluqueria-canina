@@ -23,14 +23,35 @@
             <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" || $data['page_id_name'] == "roles" ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-store"></i>
-                    <span>Administrar Negocio</span>
+                    <i class="fas fa-star"></i>
+                    <span>Administrar</span>
                 </a>
                 <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
                         <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
                         <a class="collapse-item" href="<?= base_url() ?>/roles">Roles</a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Nav Item - Tienda -->
+            <li class="nav-item <?= 
+            $data['page_id_name'] == "ventas" || 
+            $data['page_id_name'] == "productos" || 
+            $data['page_id_name'] == "categorias" || 
+            $data['page_id_name'] == "inventario" ? "active" : "" ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTienda"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-store"></i>
+                    <span>Tienda</span>
+                </a>
+                <div id="collapseTienda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?= base_url() ?>/ventas">Ventas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/productos">Productos</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/inventario">Inventario</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
                     </div>
                 </div>
             </li>
@@ -47,20 +68,6 @@
                 <a class="nav-link" href="<?= base_url() ?>/servicios">
                     <i class="fas fa-box-open"></i>
                     <span>Servicios</span></a>
-            </li>
-
-            <!-- Nav Item - Inventario -->
-            <li class="nav-item <?= $data['page_id_name'] == "inventario" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/inventario">
-                    <i class="fas fa-box-open"></i>
-                    <span>Inventario</span></a>
-            </li>
-
-            <!-- Nav Item - Ventas -->
-            <li class="nav-item <?= $data['page_id_name'] == "ventas" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/ventas">
-                    <i class="fas fa-cash-register"></i>
-                    <span>Ventas</span></a>
             </li>
 
             <!-- Nav Item - Clientes -->

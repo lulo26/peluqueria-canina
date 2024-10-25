@@ -1,6 +1,6 @@
 <?php
 
-class InventarioModel extends Mysql{
+class ProductosModel extends Mysql{
 
     public function __construct(){
         parent::__construct();

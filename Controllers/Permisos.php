@@ -53,7 +53,7 @@ class Permisos extends Controllers{
                 $d = empty($modulo['d']) ? 0 : 1;
                 $requstPermiso = $this->model->insertPermisos($intIdRol, $idModulo, $r, $w, $u, $d);
             }
-            if($requstPermiso > 0){
+            if(intval($requstPermiso) > 0){
                 $arrResponse = array('status' => true, 'msg' => 'Permisos asignados correctamente.');
             }else{
                 $arrResponse = array('status' => false, 'msg' => 'No es posible asignar los permisos.');

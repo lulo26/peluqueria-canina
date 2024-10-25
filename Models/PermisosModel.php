@@ -44,6 +44,7 @@ class PermisosModel extends Mysql{
         $query_insert = "INSERT INTO permisos(rol_id,modulo_id,r,w,u,d) VALUES(?,?,?,?,?,?)";
         $arrData = array($this->intRolid, $this->intModuloid, $this->r, $this->w, $this->u, $this->d);
         $request_insert = $this->insert($query_insert, $arrData);
+        
         return $request_insert;
     }
     
