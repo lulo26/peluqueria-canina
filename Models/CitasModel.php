@@ -7,16 +7,16 @@ class CitasModel extends Mysql{
         parent::__construct();
     }
 
-    public function insertarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_cliente, int $id_empleado){
+    public function insertarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_mascota, int $id_empleado){
         $this->fecha_inicio=$fecha_inicio;
         $this->fecha_final=$fecha_final;
         $this->lugar=$lugar;
-        $this->id_cliente=$id_cliente;
+        $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
 
-        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,clientes_idClientes,empleados_idEmpleados) 
+        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_idEmpleados) 
         values (?,?,?,?,?,?)";
-        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_cliente,$this->id_empleado);
+        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
         $request_insert = $this->insert($sql, $arrayData);
         $result = $request_insert;
 
@@ -48,18 +48,18 @@ class CitasModel extends Mysql{
         return $result;
     }
 
-    public function actualizarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_cliente, int $id_empleado,int $id_cita){
+    public function actualizarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_mascota, int $id_empleado,int $id_cita){
 
         $this->fecha_inicio=$fecha_inicio;
         $this->fecha_final=$fecha_final;
         $this->lugar=$lugar;
-        $this->id_cliente=$id_cliente;
+        $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
         $this->id_cita=$id_cita;
 
-        $sql = "UPDATE citas set fecha_inicio = ? ,fecha_final = ?,lugar_cita = ?,estado_cita = ?,clientes_idClientes = ?,empleados_idEmpleados = ? WHERE id_cita = ?";
+        $sql = "UPDATE citas set fecha_inicio = ? ,fecha_final = ?,lugar_cita = ?,estado_cita = ?,mascotas_idMascotas  = ?,empleados_idEmpleados = ? WHERE id_cita = ?";
 
-        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_cliente,$this->id_empleado,$this->id_cita);
+        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado,$this->id_cita);
 
         $request_insert = $this->insert($sql, $arrayData);
 
@@ -99,31 +99,45 @@ class CitasModel extends Mysql{
         
     }
 
+    public function deletePivote(int $id_cita){
+        $this->id_cita = $id_cita;
+        $sql = "DELETE FROM citas_has_servicios
+        WHERE citas_id_cita  = {$this->id_cita}";
+
+        $requestDelete = $this->delete($sql);
+
+        if ($requestDelete) {
+            $requestDelete="ok";
+        }
+
+        return $requestDelete;
+        
+    }
+
     public function selectCitas(){
-        $sql = "SELECT id_cita,fecha_inicio, 
-        fecha_final,lugar_cita,
-        clientes.nombre as nombre_cliente,
-        clientes.apellido as apellido_cliente,
-        empleados.nombre_empleado,
-        empleados.apellido_empleado
+        $sql = 'SELECT 	id_cita,
+		fecha_inicio,
+		fecha_final,
+		lugar_cita,
+        mascotas.nombreMascota as nombre_mascota,
+        CONCAT(empleados.nombre_empleado," ",empleados.apellido_empleado) as nombre_empleado
         FROM citas
-        INNER JOIN clientes on clientes.idClientes = citas.clientes_idClientes
+        INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
+        INNER JOIN mascotas on mascotas.idMascotas = citas.mascotas_idMascotas
         INNER JOIN empleados on empleados.id_empleado = citas.empleados_idEmpleados
-        INNER JOIN citas_has_servicios ON citas_has_servicios.citas_idCitas = citas.id_cita
-        INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_idServicios
-        WHERE estado_cita != 0 and estado_empleado != 0 and estado_cliente != 'inactivo'
-        GROUP BY id_cita
-        ";
+        INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
+        WHERE estado_cita != 0
+        GROUP BY id_cita';
 
         $request_select = $this->select_all($sql);
         return $request_select;
     }
 
     public function selectCitasByID(int $id_cita){
-        $sql = "SELECT id_cita,fecha_inicio, fecha_final, lugar_cita, clientes_idClientes, empleados_idEmpleados, servicios.nombre_servicio AS servicio
+        $sql = "SELECT id_cita,fecha_inicio, fecha_final, lugar_cita, mascotas_idMascotas , empleados_idEmpleados, servicios.nombre_servicio AS servicio
         from citas 
-        INNER JOIN citas_has_servicios ON citas_has_servicios.citas_idCitas = citas.id_cita
-        INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_idServicios
+        INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
+        INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
         WHERE id_cita = $id_cita";
 
         $request_select = $this->select_all($sql);
@@ -136,8 +150,8 @@ class CitasModel extends Mysql{
         return $request_select;
     }
 
-    public function selectClientes(){
-        $sql = "SELECT * from clientes where estado_cliente != 'inactivo'";
+    public function selectMascotas(){
+        $sql = "SELECT * from mascotas";
         $request_select = $this->select_all($sql);
         return $request_select;
     }

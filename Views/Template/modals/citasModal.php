@@ -29,20 +29,30 @@
                             <small class="form-text text-muted">Lugar donde tiene que acudir.</small>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" id="select_servicios">
                             <span>Servicios</span>
-                        </div>
-                        <div class="form-check" id="checkbox-servicios">
-                            
-                            
+
+                            <div class="servicios">
+                                <select class="custom-select" name="servicios[]" id="servicio_select">
+                                        <option value="0" selected>Seleccione un servicio</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <div class="form-group">
-                            <label for="cliente">Cliente</label>
-                            <select class="custom-select" name="id_cliente" id="cliente_select">
-                                <option value="0" selected>Seleccione un cliente</option>
+                                <button class="btn btn-primary" id="mas_servicios">
+                                    &plus;
+                                    Seleccionar otro servicio
+                                </button>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mascota">Mascota</label>
+                            <select class="custom-select" name="id_mascota" id="mascota_select">
+                                <option value="0" selected>Seleccione una mascota</option>
                             </select>
-                            <small class="form-text text-muted">Cliente quien está reservando una cita.</small>
+                            <small class="form-text text-muted">Mascota del cliente que está reservando una cita.</small>
                         </div>
 
                         <div class="form-group">

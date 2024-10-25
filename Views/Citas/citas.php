@@ -33,7 +33,7 @@ getModal('citasModal',$data);
                                     <th>Fecha de inicio</th>
                                     <th>Fecha de finalización</th>
                                     <th>Lugar</th>
-                                    <th>Cliente</th>
+                                    <th>Mascota</th>
                                     <th>Empleado encargado</th>
                                     <th>Opciones</th>
                                 </tr>
