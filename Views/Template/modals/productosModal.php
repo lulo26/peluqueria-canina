@@ -30,8 +30,8 @@
           </div>
 
           <div class="form-group">
-            <label for="exampleFormControlFile1">Elige la imagen del producto</label>
-            <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            <label for="imgProducto">Elige la imagen del producto</label>
+            <input type="file" class="form-control-file" id="imgProducto" name="imgProducto">
           </div>
 
       </div>
