@@ -8,11 +8,11 @@ getModal('serviciosModal',$data);
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <!-- Titulo de la pagina -->
-                <h4 class="h3 mb-4 font-weight-bold  text-primary">
+                <h4 class="m-0 font-weight-bold  text-primary">
                     <?= $data['page_title'] ?>
 
-                    <button id="btnCrearServicio" class="btn btn-primary" data-toggle="modal" data-target="#insertarServicios">
-                        <span>
+                    <button id="btnCrearServicio" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#insertarServicios">
+                        <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
 

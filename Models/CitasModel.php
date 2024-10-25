@@ -14,7 +14,7 @@ class CitasModel extends Mysql{
         $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
 
-        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_idEmpleados) 
+        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_id_empleado) 
         values (?,?,?,?,?,?)";
         $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
         $request_insert = $this->insert($sql, $arrayData);
@@ -57,7 +57,7 @@ class CitasModel extends Mysql{
         $this->id_empleado=$id_empleado;
         $this->id_cita=$id_cita;
 
-        $sql = "UPDATE citas set fecha_inicio = ? ,fecha_final = ?,lugar_cita = ?,estado_cita = ?,mascotas_idMascotas  = ?,empleados_idEmpleados = ? WHERE id_cita = ?";
+        $sql = "UPDATE citas set fecha_inicio = ? ,fecha_final = ?,lugar_cita = ?,estado_cita = ?,mascotas_idMascotas  = ?,empleados_id_empleado = ? WHERE id_cita = ?";
 
         $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado,$this->id_cita);
 
@@ -124,7 +124,7 @@ class CitasModel extends Mysql{
         FROM citas
         INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
         INNER JOIN mascotas on mascotas.idMascotas = citas.mascotas_idMascotas
-        INNER JOIN empleados on empleados.id_empleado = citas.empleados_idEmpleados
+        INNER JOIN empleados on empleados.id_empleado = citas.empleados_id_empleado
         INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
         WHERE estado_cita != 0
         GROUP BY id_cita';

@@ -10,6 +10,7 @@ class Citas extends Controllers{
 
         $data['page_id_name'] = "citas";
         $data['page_title'] = "Citas";
+        $data['page_functions_js'] = "citas/citas.js";
 
         $this->views->getView($this,"citas", $data);
     }
@@ -62,37 +63,51 @@ class Citas extends Controllers{
 
         $count_post = 0;
 
+        $array_repetidos = array();
+        
+
         if (!empty($_POST['servicios'])) {
             foreach ($_POST['servicios'] as $selected) {
-                if (isset($selected) && !empty(intval($selected)) && $selected>0 ) {
+                if (isset($selected) && !empty(intval($selected)) && $selected>0) {
                     $count_post++;
+                    
+                    if (!in_array($selected,$array_repetidos)) {
+                        $array_repetidos[]=$selected;
+                    }else {
+                        $array_repetidos[]="exist";
+                    }
                 }
             }
         }
         
         if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
 
-            if ($id_cita === 0 || $id_cita === "") {
-                $requestModel = $this->model->insertarCitas($fecha_inicio,$fecha_final,$lugar_cita,$id_mascota,$id_empleado);
-
-                foreach ($_POST['servicios'] as $selected) {
-                    $insertPivote = $this->model->insertarCitaServicios($selected);
+            if (!in_array("exist",$array_repetidos)) {
+                if ($id_cita === 0 || $id_cita === "") {
+                    $requestModel = $this->model->insertarCitas($fecha_inicio,$fecha_final,$lugar_cita,$id_mascota,$id_empleado);
+    
+                    foreach ($_POST['servicios'] as $selected) {
+                        $insertPivote = $this->model->insertarCitaServicios($selected);
+                    }
+    
+                    $action = "insert";
+                    
+                } else {
+                    $action = "update";
                 }
-
-                $action = "insert";
-                
-            } else {
-                $action = "update";
+    
+                switch ($action) {
+                    case 'insert':
+                        $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
+                        break;
+                    
+                    default:
+                        break;
+                }
+            }else {
+                $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
             }
-
-            switch ($action) {
-                case 'insert':
-                    $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
-                    break;
-                
-                default:
-                    break;
-            }
+            
             
         }else {
             $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
