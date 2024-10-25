@@ -127,7 +127,7 @@ class Usuarios extends Controllers{
                     }
 
                 } catch (\Throwable $th) {
-                    $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta");
+                    $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta: ". $th);
                 }
                 
             }else{

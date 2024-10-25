@@ -51,26 +51,23 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" id="formLogin">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="txtEmail" name="txtEmail" aria-describedby="emailHelp"
                                                 placeholder="Ingresa tu Usuario">
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Contraseña">
+                                                id="txtPassword" name="txtPassword" placeholder="Contraseña">
                                         </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Ingresar
+                                        </button>
                                     </form>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                
-                                            </div>
-                                        </div>
-                                        <a href="dashboard" class="btn btn-primary btn-user btn-block">
-                                            Ingresar
-                                        </a>
+
+
                                    
                                     <div class="text-center">
                                        
@@ -94,6 +91,8 @@
 
     </div>
 
+    <script>const base_url = "<?= base_url() ?>";</script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -103,6 +102,8 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="<?= media() ?>/vendor/sweetAlert2/sweetalert2.all.min.js"></script>
 
     <script src="<?= media(); ?>/js/<?= $data['page_functions_js'] ?>"></script>
 
