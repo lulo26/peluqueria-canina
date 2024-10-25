@@ -113,27 +113,15 @@
     <div id="hot-deal" class="section">
       <!-- container -->
       <div class="container" id="cardnavegante">
-  
-
-
-
-
         <div class="row">
-          <div class="col-7">
-          <div class="imagenTienda1">
-                    <img src="./assets/img/tienda/capuchino.png" height="10%">
-                  </div>
             <div class="hot-deal">
               <ul class="hot-deal-countdown">
-                <div class="row">
-                </div>
+                
               </ul>
-              <h2 class="text-uppercase">Canino Feliz Store</h2>
+              <h2 class="text-uppercase-center">Canino Feliz Store</h2>
           
               <p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
-              <a class="primary-btn cta-btn" href="#">Shop now</a>
             </div>
-          </div>
         </div>
         <!-- /row -->
       </div>
@@ -144,6 +132,10 @@
 <div class="row" id="losProductos" width="10%">
 
 </div>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i>
+  <img src="Assets/img/home/flecha_arriba.png" alt=""></a>
 
 
 

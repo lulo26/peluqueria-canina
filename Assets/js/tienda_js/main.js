@@ -20,6 +20,7 @@ fetch(base_url + "/inventario/traerProductos")
           			</div>
         		</div>
      		 </div>
+         
 		`;
     });
   })(function ($) {

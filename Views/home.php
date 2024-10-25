@@ -19,7 +19,7 @@
   <link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.css" />
 
   <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="Assets/css/style.css" rel="stylesheet" />
   <!-- responsive style -->
@@ -219,128 +219,6 @@
   <!-- end service section -->
 
 
-
-  <!-- gallery section -->
-  <section class="gallery-section layout_padding">
-    <div class="container">
-      <h2>
-        Nuestras Mascotas
-      </h2>
-    </div>
-    <div class="container ">
-      <div class="img_box box-1">
-        <img src="./Assets/img/home/g-1.png" alt="">
-      </div>
-      <div class="img_box box-2">
-        <img src="./Assets/img/home/g-2.png" alt="">
-      </div>
-      <div class="img_box box-3">
-        <img src="./Assets/img/home/g-3.png" alt="">
-      </div>
-      <div class="img_box box-4">
-        <img src="./Assets/img/home/about-2.jpg" alt="">
-      </div>
-      <div class="img_box box-5">
-        <img src="./Assets/img/home/price-2.jpg" alt="">
-      </div>
-    </div>
-  </section>
-
-
-
-  <!-- end gallery section -->
-
-  <!-- buy section -->
-
-  <section class="buy_section layout_padding">
-
-  </section>
-
-  <!-- end buy section -->
-
-  <!-- client section -->
-  <section class="client_section layout_padding-bottom">
-    <div class="container">
-      <h2 class="custom_heading text-center">
-        Que dicen nuestros
-        <span>
-          Clientes
-        </span>
-      </h2>
-      <p class="text-center">
-        En Caninofeliz, valoramos la confianza de nuestros clientes y nos enorgullece recibir sus opiniones. Cada testimonio refleja nuestro compromiso con el bienestar de las mascotas y la satisfacción de sus dueños. ¡Gracias por hacernos parte de su familia!
-      </p>
-      <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#carouselExample2Indicators" data-slide-to="0" class="active"></li>
-          <li data-target="#carouselExample2Indicators" data-slide-to="1"></li>
-          <li data-target="#carouselExample2Indicators" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="layout_padding2 pl-100">
-              <div class="client_container ">
-                <div class="img_box">
-                  <img src="./Assets/img/home/team-3.jpg" alt="">
-                </div>
-                <div class="detail_box">
-                  <h5>
-                    María G.
-                  </h5>
-                  <p>
-                    "Estoy encantada con el servicio de la clínica veterinaria. El equipo es muy profesional y siempre se toma el tiempo para responder a mis preguntas. Mi perrito, Rocky, se siente muy cómodo aquí. ¡Definitivamente recomendaré Caninofeliz a todos mis amigos!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="layout_padding2 pl-100">
-              <div class="client_container ">
-                <div class="img_box">
-                  <img src="./Assets/img/home/client.jpg" alt="">
-                </div>
-                <div class="detail_box">
-                  <h5>
-                    Luis M.
-
-                  </h5>
-                  <p>
-                    "Dejé a mi perro en el hotel canino de Caninofeliz mientras estuve de vacaciones, y no podría haber estado más feliz. Recibí actualizaciones sobre su bienestar y, al recogerlo, estaba feliz y lleno de energía. ¡Un servicio excelente!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <div class="layout_padding2 pl-100">
-              <div class="client_container ">
-                <div class="img_box">
-                  <img src="./Assets/img/home/team-1.jpg" alt="">
-                </div>
-                <div class="detail_box">
-                  <h5>
-                    Ana R.
-                  </h5>
-                  <p>
-                    "La tienda tiene todo lo que necesito para mi gata, Luna. Me encanta la variedad de productos y la atención al cliente es excepcional. Siempre salgo con algo nuevo y especial para ella. ¡Caninofeliz es mi lugar favorito para consentir a mis mascotas!"
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-
-    </div>
-
-  </section>
-  <!-- end client section -->
-
-
-
   <!-- info section -->
   <section class="info_section layout_padding2">
     <div class="container">
@@ -397,7 +275,7 @@
   <!-- footer section -->
 
    <!-- Back to Top -->
-   <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i>
+   <a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i>
   <img src="Assets/img/home/flecha_arriba.png" alt=""></a>
 
 
