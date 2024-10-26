@@ -1,11 +1,11 @@
 console.log("hello world");
-const frmRazasMascotas = document.querySelector("#frmRazas");
 const crearRazaModal = document.querySelector("#insertarRazaModal");
 const badgeRaza = document.querySelector("#agregarNuevo");
 const submitRaza = document.querySelector("#guardarRaza");
 const cerrarRaza = document.querySelector("#cerrarRaza");
 const razaMascotas = document.querySelector("#razaMascota");
-
+let nuevaRaza = document.querySelector("#agregarNuevo");
+const frmRaza = document.querySelector("#frmRazas");
 
 //agregar raza
 frmRazasMascotas.addEventListener("submit", (e) => {
@@ -24,6 +24,7 @@ frmRazasMascotas.addEventListener("submit", (e) => {
         icon: data.status ? "success" : "error",
       });
       if (data.status) {
+        frmRaza.reset();
         $("#insertarRazaModal").modal("hide");
         $("#insertarMascotasModal").modal("show");
         razaMascotas.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;

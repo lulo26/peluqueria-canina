@@ -13,13 +13,13 @@
         <input type="hidden" id="idRaza" name="idRaza" value="0">
             <div class="form-group">
               <label for="nombreRaza">Nombre</label>
-              <input type="text" class="form-control" id="nombreRaza" name="nombreRaza" autocomplete="off">
+              <input type="text" class="form-control text-muted" id="nombreRaza" name="nombreRaza" autocomplete="off">
             </div>
 
             <div class="form-group">
               <label for="sizeMascota">Tamaño</label>
             <select class="custom-select" aria-label="Default select example" id="sizeRaza" name="sizeRaza">
-                <option value="0">seleccione la raza</option>
+                <option value="0" selected hidden>seleccione la raza</option>
                 <option value="pequeno">Pequeño</option>
                 <option value="mediano">Mediano</option>
                 <option value="grande">Grande</option>
@@ -28,7 +28,9 @@
             </div>
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="cerrarRaza" onclick="$('#insertarRazaModal').modal('hide');$('#insertarMascotasModal').modal('show');" aria-label="close">Cerrar</button>
+        <button type="button" class="btn btn-secondary" id="cerrarRaza" onclick="
+        $('#insertarRazaModal').modal('hide');
+        $('#insertarMascotasModal').modal('show');" aria-label="close">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>
