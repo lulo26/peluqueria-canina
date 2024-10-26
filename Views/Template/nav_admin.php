@@ -77,12 +77,22 @@
                     <span>Clientes</span></a>
             </li>
 
-            <!-- Nav Item - Mascotas -->
-            <li class="nav-item <?= $data['page_id_name'] == "mascotas" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/mascotas">
-                    <i class="fas fa-cat"></i>
-                    <span>Mascotas</span></a>
+            <!-- Nav Item - Mascotas !!!!!!!!-->
+            <li class="nav-item <?= $data['page_id_name'] == "Mascotas" || $data['page_id_name'] == "Razas" ? "active" : "" ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMascotas"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-paw"></i>
+                    <span>Mascotas</span>
+                </a>
+                <div id="collapseMascotas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?= base_url() ?>/mascotas">Mascotas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/razas">Razas</a>
+                    </div>
+                </div>
             </li>
+
+         
             
             <!-- Divider -->
             <hr class="sidebar-divider">

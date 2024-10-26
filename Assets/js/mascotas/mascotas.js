@@ -7,9 +7,10 @@ let nuevaRaza = document.querySelector("#agregarNuevo");
 let insertarRazaModal = document.querySelector("#insertarRazaModal");
 let selectMascotas;
 let tablaMascotas;
-//console.log("hello world");
+
 console.log("hello world");
 
+//traer modal de razas
 nuevaRaza.addEventListener("click", (e) => {
   document.querySelector("#idRaza").value = 0;
   frmRazas.reset();
@@ -17,6 +18,8 @@ nuevaRaza.addEventListener("click", (e) => {
   document.getElementById("razaModalLabel").innerHTML = "Crear raza";
   $("#insertarMascotasModal").modal("hide");
 });
+
+//insertar mascota
 btnInsertarMascota.addEventListener("click", (e) => {
   //traigame los datos del select
   nombreUsuario.innerHTML = `<option value="0" selected hidden>seleccione el dueño</option>`;

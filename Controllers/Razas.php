@@ -9,13 +9,25 @@ class Razas extends Controllers{
 
         $data['page_title'] = "razas";
         $data['page_id_name'] = "razas";
+        $data['page_functions_js'] = "razas/razas.js";
 
         $this->views->getView($this,"razas", $data);
     }
 
     public function getRazas(){
         $arrData = $this->model->selectRazas();
+        for ($i=0; $i < count($arrData); $i++) { 
+            $arrData[$i]['options'] = "
 
+            <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idRaza']."'>
+                <i class='fas fa-trash'></i>
+                </button>
+
+                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['idRaza']."'>
+                    <i class='fas fa-pen'></i>
+                </button>
+            ";
+        }
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }

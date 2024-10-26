@@ -31,6 +31,7 @@
               }
               #agregarNuevo{
                 font-size: 15px;
+                user-select: none;
               }
             </style>
             
