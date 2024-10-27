@@ -50,6 +50,10 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                                        <p style="color:red;">
+                                            usuario: 	<b>web@master.com</b><br>
+                                            contraseña: <b>123456</b>
+                                        </p>
                                     </div>
                                     <form class="user" id="formLogin">
                                         <div class="form-group">

@@ -21,6 +21,35 @@ document.addEventListener('DOMContentLoaded', ()=>{
                     method: "POST",
                     body: frmData
                 })
+                .then((res) =>{
+                    
+                    if (res.status == 200) {
+                        res.json()
+                        .then((data) =>{
+                            if (data.status) {
+                                window.location = base_url + '/dashboard'
+                            }else{
+                                Swal.fire({
+                                    title: data.status ? 'Correcto' : 'Error',
+                                    text: data.msg,
+                                    icon: data.status ? "success" : 'error'
+                                })
+                                document.querySelector('#txtPassword').value = ""
+                            }
+                        })
+
+                    }else{
+                        Swal.fire({
+                            title: 'Atencion',
+                            text: 'Error en el proceso, intente mas tarde',
+                            icon: 'error'
+                        })
+                    }
+                })
+
+                
+
+                return false
             }
         })
     }

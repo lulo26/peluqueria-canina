@@ -94,7 +94,7 @@
 
             <!-- Nav Item - Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="login">
+                <a class="nav-link" href="<?= base_url(); ?>/logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Salir</span>
                 </a>
