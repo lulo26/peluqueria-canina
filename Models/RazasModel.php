@@ -12,7 +12,7 @@ class RazasModel extends Mysql{
         }
 
         public function selectRazaID($id){
-            $sql = "SELECT * FROM razas_mascota WHERE idraza = $id";
+            $sql = "SELECT * FROM razas_mascota WHERE idRaza = $id";
             $request = $this->select_all($sql);
             return $request;
         }
@@ -38,7 +38,7 @@ class RazasModel extends Mysql{
             $request = $this->select_all($sql);
     
             if(!empty($request)){
-                $query = "UPDATE razas_mascota SET nombreRaza = ?, sizeRaza = ? WHERE idraza = ?";
+                $query = "UPDATE razas_mascota SET nombreRaza = ?, sizeRaza = ? WHERE idRaza = ?";
                 $arrData = array($this->nombre, $this->size, $this->id);
                 $request_insert = $this->insert($query, $arrData);
                 $return = $request_insert;

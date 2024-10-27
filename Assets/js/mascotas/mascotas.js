@@ -1,22 +1,17 @@
 const frmMascotas = document.querySelector("#frmMascotas");
+const frmRazasMascotas = document.querySelector("#frmRazas");
 const crearProductoModal = document.querySelector("#insertarMascotasModal");
 let nombreUsuario = document.querySelector("#nombreUsuario");
 let razaMascota = document.querySelector("#razaMascota");
 const btnInsertarMascota = document.querySelector("#btnInsertarMascota");
-let nuevaRaza = document.querySelector("#agregarNuevo");
+let nuevaRazaMascota = document.querySelector("#agregarNuevo");
 let insertarRazaModal = document.querySelector("#insertarRazaModal");
 let selectMascotas;
 let tablaMascotas;
-//console.log("hello world");
+
 console.log("hello world");
 
-nuevaRaza.addEventListener("click", (e) => {
-  document.querySelector("#idRaza").value = 0;
-  frmRazas.reset();
-  $("#insertarRazaModal").modal("show");
-  document.getElementById("razaModalLabel").innerHTML = "Crear raza";
-  $("#insertarMascotasModal").modal("hide");
-});
+//insertar mascota
 btnInsertarMascota.addEventListener("click", (e) => {
   //traigame los datos del select
   nombreUsuario.innerHTML = `<option value="0" selected hidden>seleccione el dueño</option>`;
@@ -27,6 +22,7 @@ btnInsertarMascota.addEventListener("click", (e) => {
         nombreUsuario.innerHTML += `<option value="${el.idClientes}">${el.nombre}</option>`;
       });
     });
+
   razaMascota.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
   fetch(base_url + "/razas/getRazas")
     .then((res) => res.json())
@@ -35,6 +31,7 @@ btnInsertarMascota.addEventListener("click", (e) => {
         razaMascota.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
       });
     });
+
   document.querySelector("#idMascotas").value = 0;
   frmMascotas.reset();
   $("#insertarMascotasModal").modal("show");
@@ -159,4 +156,45 @@ document.addEventListener("click", (e) => {
         });
     }
   } catch {}
+});
+
+//traer modal de razas
+nuevaRazaMascota.addEventListener("click", (e) => {
+  document.querySelector("#idRaza").value = 0;
+  frmRazasMascotas.reset();
+  $("#insertarRazaModal").modal("show");
+  document.getElementById("razaModalLabel").innerHTML = "Crear raza";
+  $("#insertarMascotasModal").modal("hide");
+});
+
+//agregar raza
+frmRazasMascotas.addEventListener("submit", (e) => {
+  e.preventDefault();
+  frmData = new FormData(frmRazasMascotas);
+  console.log(frmData);
+  fetch(base_url + "/razas/setRaza", {
+    method: "POST",
+    body: frmData,
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      Swal.fire({
+        title: data.status ? "Correcto" : "Error",
+        text: data.msg,
+        icon: data.status ? "success" : "error",
+      });
+      if (data.status) {
+        frmRazasMascotas.reset();
+        $("#insertarRazaModal").modal("hide");
+        $("#insertarMascotasModal").modal("show");
+        frmRazasMascotas.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
+        fetch(base_url + "/razas/getRazas")
+          .then((res) => res.json())
+          .then((data) => {
+            data.forEach((raza) => {
+              frmRazasMascotas.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
+            });
+          });
+      }
+    });
 });

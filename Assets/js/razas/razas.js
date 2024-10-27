@@ -1,16 +1,23 @@
-console.log("hello world");
 const frmRazas = document.querySelector("#frmRazas");
-const crearRazaModal = document.querySelector("#insertarRazaModal");
-const badgeRaza = document.querySelector("#agregarNuevo");
-const submitRaza = document.querySelector("#guardarRaza");
-const cerrarRaza = document.querySelector("#cerrarRaza");
-let razaMascotas = document.querySelector("#razaMascota");
+const razaModal = document.querySelector("#insertarRazaModal");
+let tablaRazas = document.querySelector("#tablaRazas");
+const razas = document.querySelector("#razaMascota");
 
-cerrarRaza.addEventListener("click", (e) => {
-  $("#insertarRazaModal").modal("hide");
-  $("#insertarMascotasModal").modal("show");
+//tabla razas
+tablaRazas = $("#tablaRazas").dataTable({
+  language: {
+    url: `${base_url}/Assets/vendor/datatables/dataTables_es.json`,
+  },
+  ajax: {
+    url: " " + base_url + "/razas/getRazas",
+    dataSrc: "",
+  },
+  columns: [{ data: "nombreRaza" }, { data: "sizeRaza" }, { data: "options" }],
+  responsive: "true",
+  order: [[0, "asc"]],
 });
 
+//agregar raza
 frmRazas.addEventListener("submit", (e) => {
   e.preventDefault();
   frmData = new FormData(frmRazas);
@@ -27,16 +34,9 @@ frmRazas.addEventListener("submit", (e) => {
         icon: data.status ? "success" : "error",
       });
       if (data.status) {
+        frmRazas.reset();
         $("#insertarRazaModal").modal("hide");
-        $("#insertarMascotasModal").modal("show");
-        razaMascota.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
-        fetch(base_url + "/razas/getRazas")
-          .then((res) => res.json())
-          .then((data) => {
-            data.forEach((raza) => {
-              razaMascotas.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
-            });
-          });
+        tablaRazas.api().ajax.reload(function () {});
       }
     });
 });
@@ -49,8 +49,8 @@ document.addEventListener("click", (e) => {
     //Eliminar mascota
     if (selected == "delete") {
       Swal.fire({
-        title: "Eliminar Mascota",
-        text: "¿Está seguro de eliminar la mascota?",
+        title: "Eliminar raza de perro?",
+        text: "¿Está seguro de eliminar la raza?",
         icon: "warning",
         showDenyButton: true,
         confirmButtonText: "Sí",
@@ -70,6 +70,7 @@ document.addEventListener("click", (e) => {
                 text: data.msg,
                 icon: data.status ? "success" : "error",
               });
+              tablaRazas.api().ajax.reload(function () {});
             });
         }
       });

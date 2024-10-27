@@ -1,12 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="insertarRazaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="insertarRazaModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="razaModalLabel">Agregar raza</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
       </div>
       <div class="modal-body">
 
@@ -16,14 +13,14 @@
         <input type="hidden" id="idRaza" name="idRaza" value="0">
             <div class="form-group">
               <label for="nombreRaza">Nombre</label>
-              <input type="text" class="form-control" id="nombreRaza" name="nombreRaza" autocomplete="off">
+              <input type="text" class="form-control text-muted" id="nombreRaza" name="nombreRaza" autocomplete="off">
             </div>
 
             <div class="form-group">
               <label for="sizeMascota">Tamaño</label>
             <select class="custom-select" aria-label="Default select example" id="sizeRaza" name="sizeRaza">
-                <option value="0">seleccione la raza</option>
-                <option value="pequeño">Pequeño</option>
+                <option value="0" selected hidden>seleccione la raza</option>
+                <option value="pequeno">Pequeño</option>
                 <option value="mediano">Mediano</option>
                 <option value="grande">Grande</option>
                 <option value="extra grande">Extra Grande</option>
@@ -31,7 +28,9 @@
             </div>
         </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="cerrarRaza">Cerrar</button>
+        <button type="button" class="btn btn-secondary" id="cerrarRaza" onclick="
+        $('#insertarRazaModal').modal('hide');
+        $('#insertarMascotasModal').modal('show');" aria-label="close">Cerrar</button>
         <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>
