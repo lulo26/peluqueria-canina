@@ -7,16 +7,17 @@ class CitasModel extends Mysql{
         parent::__construct();
     }
 
-    public function insertarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_mascota, int $id_empleado){
-        $this->fecha_inicio=$fecha_inicio;
-        $this->fecha_final=$fecha_final;
+    public function insertarCitas(string $dia_cita,string $hora_inicio, string $hora_final, string $lugar, int $id_mascota, int $id_empleado){
+        $this->dia_cita=$dia_cita;
+        $this->hora_inicio=$hora_inicio;
+        $this->hora_final=$hora_final;
         $this->lugar=$lugar;
         $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
 
-        $sql = "INSERT INTO citas(fecha_inicio,fecha_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_id_empleado) 
+        $sql = "INSERT INTO citas(dia_cita,hora_inicio,hora_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_id_empleado) 
         values (?,?,?,?,?,?)";
-        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
+        $arrayData = array($this->dia_cita,$this->hora_inicio,$this->hora_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
         $request_insert = $this->insert($sql, $arrayData);
         $result = $request_insert;
 
@@ -48,10 +49,10 @@ class CitasModel extends Mysql{
         return $result;
     }
 
-    public function actualizarCitas(string $fecha_inicio, string $fecha_final, string $lugar, int $id_mascota, int $id_empleado,int $id_cita){
-
-        $this->fecha_inicio=$fecha_inicio;
-        $this->fecha_final=$fecha_final;
+    public function actualizarCitas(string $hora_inicio, string $hora_final, string $lugar, int $id_mascota, int $id_empleado,int $id_cita){
+        $this->dia_cita=$dia_cita;
+        $this->hora_inicio=$hora_inicio;
+        $this->hora_final=$hora_final;
         $this->lugar=$lugar;
         $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
@@ -116,8 +117,9 @@ class CitasModel extends Mysql{
 
     public function selectCitas(){
         $sql = 'SELECT 	id_cita,
-		fecha_inicio,
-		fecha_final,
+        dia_cita,
+		hora_inicio,
+		hora_final,
 		lugar_cita,
         mascotas.nombreMascota as nombre_mascota,
         CONCAT(empleados.nombre_empleado," ",empleados.apellido_empleado) as nombre_empleado

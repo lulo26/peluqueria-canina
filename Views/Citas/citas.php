@@ -30,8 +30,9 @@ getModal('citasModal',$data);
                         <table id="tablaCitas" class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Fecha de inicio</th>
-                                    <th>Fecha de finalización</th>
+                                    <th>Dia de la cita</th>
+                                    <th>Hora de inicio</th>
+                                    <th>Hora de finalización</th>
                                     <th>Lugar</th>
                                     <th>Mascota</th>
                                     <th>Empleado encargado</th>

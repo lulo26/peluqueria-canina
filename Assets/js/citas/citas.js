@@ -4,10 +4,8 @@ const insertarCitasModal = document.querySelector('#insertarCitas')
 const btnCrearCita = document.querySelector('#btnCrearCita')
 let tablaCitas;
 
-
 let borrar_servicios = document.querySelector('#borrar_servicios')
-//llevo la cuenta de cuantos divs con selects he creado(para el id)
-var count_selects_created = 0
+
 document.addEventListener('DOMContentLoaded',()=>{
     CargarServicios()
     CargarMascotas()
@@ -78,7 +76,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelector('#mas_servicios').addEventListener('click',(e)=>{
         
         e.preventDefault()
-/*         borrar_servicios.disabled=false */
         //creamos un contenedor y un select
         let div  = document.createElement('div')
         div.setAttribute("class","input-group mb-3")
@@ -117,11 +114,18 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     })
 
-    /* borrar_servicios.addEventListener('click',(e)=>{
-        e.preventDefault()
-        let div_selects = document.querySelector('#select_servicios');
-        div_selects.removeChild(div_selects.lastChild);
-    }) */
+    const on = (element, event, selector, handler) => {
+        element.addEventListener(event, (e) => {
+          if (e.target.closest(selector)) {
+            handler(e);
+          }
+        });
+      };
+
+      on(document,"click","#borrar_servicios",(e)=>{
+        e.target.parentNode.parentNode.remove()
+      })
+
     
     tablaCitas = $('#tablaCitas').dataTable({
         "language": {
@@ -132,8 +136,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             "dataSrc":""
         },
         "columns":[
-            {"data":"fecha_inicio"},
-            {"data":"fecha_final"},
+            {"data":"dia_cita"},
+            {"data":"hora_inicio"},
+            {"data":"hora_final"},
             {"data":"lugar_cita"},
             {"data":"nombre_mascota"},
             {"data":"nombre_empleado"},
