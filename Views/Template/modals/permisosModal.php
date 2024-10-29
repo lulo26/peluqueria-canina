@@ -29,8 +29,9 @@
             <?php
               $no = 1;
               $modulos = $data['modulos'];
+              
               for ($i=0; $i < count($modulos); $i++):  
-
+                
               $permisos = $modulos[$i]['permisos'];
               $rCheck = $permisos['r'] == 1 ? " checked " : "";
               $wCheck = $permisos['w'] == 1 ? " checked " : "";
