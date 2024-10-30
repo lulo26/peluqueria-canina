@@ -13,6 +13,5 @@
 
     </div>
     <!-- Fin de contenido principal <main> -->
-        <script src="<?=media() ?>/js/informes/informes.js"></script>
         
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

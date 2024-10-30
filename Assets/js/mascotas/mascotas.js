@@ -10,6 +10,17 @@ let selectMascotas;
 let tablaMascotas;
 
 console.log("hello world");
+/* 
+razaMascota.addEventListener("click", (e)=>{
+  razaMascota.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
+  fetch(base_url + "/razas/getRazas")
+    .then((res) => res.json())
+    .then((data) => {
+      data.forEach((raza) => {
+        razaMascota.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
+      });
+    });
+}) */
 
 //insertar mascota
 btnInsertarMascota.addEventListener("click", (e) => {
