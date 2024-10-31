@@ -74,21 +74,30 @@ class Productos extends Controllers{
         $precioProducto = intval($_POST['precioProducto']);
         $codigoProducto = strClean($_POST['codigoProducto']);
         $idProducto = intval(strClean($_POST['idProducto']));
+        $imagen = $_FILES['imgProducto'];
+        $rutaImagen = "";
 
         $arrPost = ['nombreProducto','precioProducto','codigoProducto'];
-        
+        $arrImagen = array('imgProducto');
+
         if (check_post($arrPost)) {
+
+            if (check_file($arrImagen)) {
+                $rutaImagen = save_image('imgProducto');
+            }
+
             if ($idProducto == 0 || $idProducto == "") {
-                $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto);
+                $requestModel = $this->model->insertarProducto($nombreProducto, $precioProducto, $codigoProducto, $rutaImagen);
                 $option = 1;
             }else{
-                $requestModel = $this->model->actualizarProducto($idProducto, $nombreProducto, $precioProducto, $codigoProducto);
+                $requestModel = $this->model->actualizarProducto($idProducto, $nombreProducto, $precioProducto, $codigoProducto, $rutaImagen);
                 $option = 2;
             }
             
             if ($requestModel > 0 && $requestModel != 'exist'){
                 if ($option === 1) {
-                    $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');   
+
+                    $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente, ');   
                 }else{
                     $arrRespuesta = array('status' => true, 'msg' => 'Datos actualizados correctamente.'); 
                 }

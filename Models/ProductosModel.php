@@ -20,25 +20,26 @@ class ProductosModel extends Mysql{
 
     public function traerProductos(){
 
-        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos";
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE estado = 1";
         $request = $this->select_all($sql);
         return $request;
 
     }
 
-    public function insertarProducto(string $nombreProducto, int $precioProducto, string $codigoProducto){
+    public function insertarProducto(string $nombreProducto, int $precioProducto, string $codigoProducto, string $imagenProducto){
         $return = "";
 
         $this->nombreProducto = $nombreProducto;
         $this->precioProducto = $precioProducto;
         $this->codigoProducto = $codigoProducto;
+        $this->imagenProducto = $imagenProducto;
 
         $sql = "SELECT * FROM productos WHERE nombreProducto = '{$this->nombreProducto}'";
         $request = $this->select_all($sql);
 
         if (empty($request)) {
-            $query_insert = "INSERT INTO productos(nombreProducto, cantidadProducto, estado, precio, codigoSKU) VALUES(?, ?, ?, ?, ?)";
-            $arrData = array($this->nombreProducto, 0, 1, $this->precioProducto, $this->codigoProducto);
+            $query_insert = "INSERT INTO productos(nombreProducto, cantidadProducto, estado, precio, codigoSKU, imagen_productos) VALUES(?, ?, ?, ?, ?, ?)";
+            $arrData = array($this->nombreProducto, 0, 1, $this->precioProducto, $this->codigoProducto, $this->imagenProducto);
             $request_insert = $this->insert($query_insert, $arrData);
             $return = $request_insert;
         }else {

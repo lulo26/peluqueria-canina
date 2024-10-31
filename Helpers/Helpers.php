@@ -108,6 +108,33 @@ function check_post(array $postNames){
     return $validState;
 }
 
+function check_file(array $fileName){
+    $validState = true;
+    foreach($fileName as $value){
+        if ($_FILES[$value]['error'] == 4 || ($_FILES[$value]['size'] == 0 && $_FILES[$value]['error'] == 0)) {
+            $validState = false;
+        }
+    }
+    return $validState;
+}
+
+function save_image($fileName){
+    $imagen = $_FILES[$fileName];
+    $response = "";
+    $directorio = 'Assets/img/uploded/';
+    if (!is_dir($directorio)) {
+        mkdir($directorio, 0777, true);
+    }
+    $extension = pathinfo($imagen['name'], PATHINFO_EXTENSION);
+    $nuevoNombreImagen = pathinfo($imagen['name'], PATHINFO_FILENAME) . '_' . date("Ymd_His") . '.' . $extension;
+    $rutaArchivo = $directorio . $nuevoNombreImagen;
+    if(move_uploaded_file($imagen['tmp_name'], $rutaArchivo)) {
+        $response = $rutaArchivo;
+    }
+
+    return $response;
+}
+
 function tokenGenerator(){
     $completeToken = '';
     for($count = 1; $count <= 4; $count++){

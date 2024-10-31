@@ -59,7 +59,7 @@ tablaMascotas = $("#tablaMascotas").dataTable({
   },
   columns: [
     { data: "nombreMascota" },
-    { data: "razaMascota" },
+    { data: "raza_idRaza" },
     { data: "edadMascota" },
     { data: "comentarioMascota" },
     { data: "nombre" },
