@@ -26,6 +26,12 @@ getModal('usuariosModal', $data);
         <div class="card-body">
         <div class="table-responsive">
 
+
+        <?php 
+        //dep($_SESSION['permisos']);
+        //dep($_SESSION['permisosMod']);
+        ?>
+
         </div>
         <table id="tablaUsuarios" class="table table-bordered" width="100%" cellspacing="0">
             <thead>

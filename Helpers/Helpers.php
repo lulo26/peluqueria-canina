@@ -30,6 +30,24 @@ function getModal(string $nameModal, $data){
     require_once $view_modal;
 }
 
+function getPermisos(int $idmodulo){
+    require_once("Models/PermisosModel.php");
+    $objPermisos = new PermisosModel();
+    $idRol = $_SESSION['userData']['id_rol'];
+    $arrPermisos = $objPermisos->permisosModulo($idRol);
+
+    $permisos = '';
+    $permisosMod = '';
+
+    if (count($arrPermisos) > 0) {
+        $permisos = $arrPermisos;
+        $permisosMod = isset($arrPermisos[$idmodulo]) ? $arrPermisos[$idmodulo] : "";
+    }
+
+    $_SESSION['permisos'] = $permisos;
+    $_SESSION['permisosMod'] = $permisosMod;
+}
+
 //Elimina excesos de espacios entre palabras
 function strClean($strCadena){
     $string = preg_replace(['/\s+/','/^\s|\s$/'],[' ',''], $strCadena);
