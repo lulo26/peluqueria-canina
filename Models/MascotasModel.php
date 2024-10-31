@@ -8,15 +8,19 @@ class MascotasModel extends Mysql{
     public function selectMascotas(){
         $sql = "SELECT * FROM mascotas
         INNER JOIN clientes
-        ON clientes.idClientes = mascotas.clientes_idClientes";
+        ON clientes.idClientes = mascotas.clientes_idClientes
+        INNER JOIN razas_mascota
+        ON razas_mascota.idRaza =  mascotas.raza_idraza";
         $request = $this->select_all($sql);
         return $request;
     }
 
     public function selectMascotaID($id){
-        $sql = "SELECT idMascotas, nombreMascota, raza_idRaza, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
+        $sql = "SELECT idMascotas, nombreMascota, nombreRaza, edadMascota, comentarioMascota, nombre, idClientes FROM mascotas
         INNER JOIN clientes
         ON clientes.idClientes = mascotas.clientes_idClientes
+        INNER JOIN razas_mascota
+        ON razas_mascota.idRaza =  mascotas.raza_idraza
         WHERE idMascotas = $id";
         $request = $this->select_all($sql);
         return $request;
