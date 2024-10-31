@@ -41,26 +41,34 @@ class Usuarios extends Controllers{
         $arrData = $this->model->selectUsuarios();
 
         for($i = 0; $i < count($arrData); $i++){
+            $btnView = '';
+            $btnEdit = '';
+            $btnDelete = '';
 
             if($arrData[$i]['status'] == 1){
                 $arrData[$i]['status'] = '<span class="badge badge-success">Activo</span>';
             }else{
                 $arrData[$i]['status'] = '<span class="badge badge-danger">Inactivo</span>';
             }
-            
-            $arrData[$i]['options'] = "
 
-                <button type='button' class='btn btn-secondary btn-circle' data-action-type='viewUsuario' data-id='".$arrData[$i]['id_persona']."'>
+            if ($_SESSION['permisosMod']['r']) {
+                $btnView = "<button type='button' class='btn btn-secondary btn-circle' data-action-type='viewUsuario' data-id='".$arrData[$i]['id_persona']."'>
                     <i class='fas fa-info'></i>
-                </button>
-                <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' data-id='".$arrData[$i]['id_persona']."'>
-                    <i class='fas fa-trash'></i>
-                </button>
+                </button>";
+            }
 
-                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' data-id='".$arrData[$i]['id_persona']."'>
+            if ($_SESSION['permisosMod']['d']) {
+                $btnDelete = "<button type='button' class='btn btn-danger btn-circle' data-action-type='delete' data-id='".$arrData[$i]['id_persona']."'>
+                    <i class='fas fa-trash'></i>
+                </button>";
+            }
+            if ($_SESSION['permisosMod']['u']) {
+                $btnEdit = "<button type='button' class='btn btn-primary btn-circle' data-action-type='update' data-id='".$arrData[$i]['id_persona']."'>
                     <i class='fas fa-pen'></i>
-                </button>
-            ";
+                </button>";
+            }
+            
+            $arrData[$i]['options'] = $btnView . " " . $btnDelete . " " . $btnEdit;
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
