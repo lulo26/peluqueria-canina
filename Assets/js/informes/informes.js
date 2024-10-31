@@ -1,3 +1,6 @@
+console.log("hello world");
+
+
 document.addEventListener("DOMContentLoaded", (e) => {
   $(document).ready(function () {
     $.ajax({

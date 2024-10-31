@@ -29,8 +29,9 @@
             <?php
               $no = 1;
               $modulos = $data['modulos'];
+              
               for ($i=0; $i < count($modulos); $i++):  
-
+                
               $permisos = $modulos[$i]['permisos'];
               $rCheck = $permisos['r'] == 1 ? " checked " : "";
               $wCheck = $permisos['w'] == 1 ? " checked " : "";
@@ -51,26 +52,26 @@
                 </td>
                 <td>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" name="modulos[<?= $i; ?>][r]" class="custom-control-input" id="switchR" <?= $rCheck ?>>
-                    <label class="custom-control-label" for="switchR"></label>
+                    <input type="checkbox" name="modulos[<?= $i; ?>][r]" class="custom-control-input" id="switchR_<?= $i; ?>" <?= $rCheck ?>>
+                    <label class="custom-control-label" for="switchR_<?= $i; ?>"></label>
                   </div>
                 </td>
                 <td>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" name="modulos[<?= $i; ?>][w]" class="custom-control-input" id="switchW" <?= $wCheck ?>>
-                    <label class="custom-control-label" for="switchW"></label>
+                    <input type="checkbox" name="modulos[<?= $i; ?>][w]" class="custom-control-input" id="switchW_<?= $i; ?>" <?= $wCheck ?>>
+                    <label class="custom-control-label" for="switchW_<?= $i; ?>"></label>
                   </div>
                 </td>
                 <td>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" name="modulos[<?= $i; ?>][u]" class="custom-control-input" id="switchU" <?= $uCheck ?>>
-                    <label class="custom-control-label" for="switchU"></label>
+                    <input type="checkbox" name="modulos[<?= $i; ?>][u]" class="custom-control-input" id="switchU_<?= $i; ?>" <?= $uCheck ?>>
+                    <label class="custom-control-label" for="switchU_<?= $i; ?>"></label>
                   </div>
                 </td>
                 <td>
                   <div class="custom-control custom-switch">
-                    <input type="checkbox" name="modulos[<?= $i; ?>][d]" class="custom-control-input" id="switchD" <?= $dCheck ?>>
-                    <label class="custom-control-label" for="switchD"></label>
+                    <input type="checkbox" name="modulos[<?= $i; ?>][d]" class="custom-control-input" id="switchD_<?= $i; ?>" <?= $dCheck ?>>
+                    <label class="custom-control-label" for="switchD_<?= $i; ?>"></label>
                   </div>
                 </td>
               </tr>

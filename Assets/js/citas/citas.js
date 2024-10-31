@@ -4,13 +4,17 @@ const insertarCitasModal = document.querySelector('#insertarCitas')
 const btnCrearCita = document.querySelector('#btnCrearCita')
 let tablaCitas;
 
+let borrar_servicios = document.querySelector('#borrar_servicios')
+
 document.addEventListener('DOMContentLoaded',()=>{
+    CargarServicios()
+    CargarMascotas()
+    CargarEmpleados()
 
     function CargarServicios() {
         fetch(base_url + `/citas/getServicios`)
         .then((res)=>res.json())
         .then((res)=>{
-
             res.forEach(element => {
 
                 let opcion = document.createElement('option')
@@ -23,7 +27,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     function CargarMascotas() {
-
         fetch(base_url + `/citas/getMascotas`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -39,7 +42,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     function CargarEmpleados() {
-
         fetch(base_url + `/citas/getEmpleados`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -54,37 +56,77 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
     }
 
-    CargarServicios()
-    CargarMascotas()
-    CargarEmpleados()
+    //evento que se dispara cuando en el primer select se selecciona un valor (se habilita el boton de agregar servicios)
+    document.querySelector('#servicio_select').addEventListener('change',()=>{
+        if (document.querySelector('#servicio_select').value>=1) {
+            document.querySelector('#mas_servicios').disabled=false
+        }else{
+            document.querySelector('#mas_servicios').disabled=true
+            let select = document.querySelectorAll('select[name="servicios[]"]')
+                    if (select.length>1) {
+                        let div_selects = document.querySelector('#select_servicios');
+                        for (let index = 1; index < select.length; index++) {
+                        div_selects.removeChild(div_selects.lastChild);    
+                    }
+            }
+        }
+    })
 
     //boton añadir mas servicios
     document.querySelector('#mas_servicios').addEventListener('click',(e)=>{
+        
         e.preventDefault()
+        //creamos un contenedor y un select
         let div  = document.createElement('div')
+        div.setAttribute("class","input-group mb-3")
+        div.setAttribute("id",count_selects_created+=1)
         let select = document.createElement('select')
-        select.setAttribute('class','custom-select mt-2')
+        select.setAttribute('class','custom-select')
         select.setAttribute('name','servicios[]')
         select.innerHTML=`
         <option value="0" selected>Seleccione un servicio</option>
         `
+
+        let div_label = document.createElement('div')
+        div_label.setAttribute('class',"input-group-prepend")
+        let label = document.createElement('label')
+        label.setAttribute('class',"input-group-text btn-danger")
+        label.setAttribute('id',"borrar_servicios")
+        label.innerText="Borrar"
+
+        div_label.appendChild(label)
         div.appendChild(select)
+        div.appendChild(div_label)
         document.querySelector('#select_servicios').appendChild(div)
 
         fetch(base_url + "/citas/getServicios")
         .then((res)=>res.json())
         .then((res)=>{
             res.forEach(element => {
+                //al select le creamos las opciones con los servicios disponibles
                 let opcion = document.createElement('option')
-                opcion.value = element.id_servicio
-                opcion.innerText = element.nombre_servicio
-                select.appendChild(opcion)
+                    opcion.value = element.id_servicio
+                    opcion.innerText = element.nombre_servicio
+                    select.appendChild(opcion)
             });
             
         })  
-    })
-    
 
+    })
+
+    const on = (element, event, selector, handler) => {
+        element.addEventListener(event, (e) => {
+          if (e.target.closest(selector)) {
+            handler(e);
+          }
+        });
+      };
+
+      on(document,"click","#borrar_servicios",(e)=>{
+        e.target.parentNode.parentNode.remove()
+      })
+
+    
     tablaCitas = $('#tablaCitas').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
@@ -94,8 +136,9 @@ document.addEventListener('DOMContentLoaded',()=>{
             "dataSrc":""
         },
         "columns":[
-            {"data":"fecha_inicio"},
-            {"data":"fecha_final"},
+            {"data":"dia_cita"},
+            {"data":"hora_inicio"},
+            {"data":"hora_final"},
             {"data":"lugar_cita"},
             {"data":"nombre_mascota"},
             {"data":"nombre_empleado"},
@@ -107,6 +150,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     formularioCitas.addEventListener('submit',(e)=>{
         e.preventDefault()
+        let select = document.querySelectorAll('select[name="servicios[]"]')
+        for (let index = 0; index < select.length; index++) {
+            if (select[index].value==0) {
+                select[index].removeAttribute("name")
+            }
+        }
 
         frmCitas = new FormData(formularioCitas)
         fetch(base_url + '/citas/setCitas',{
@@ -116,7 +165,6 @@ document.addEventListener('DOMContentLoaded',()=>{
 
         .then((res)=>res.json())
         .then((dataInsert)=>{
-
             Swal.fire({
                 title: dataInsert.status ? 'Correcto' : 'Error',
                 text: dataInsert.msg,
@@ -127,7 +175,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                 formularioCitas.reset()
                 $('#insertarCitas').modal('hide')
                 tablaCitas.api().ajax.reload(function(){})
-
                 //borramos los select creados anteriormente y dejamos solo el primero
                 document.querySelector('#select_servicios').innerHTML=""
                 document.querySelector('#select_servicios').innerHTML=`
@@ -139,6 +186,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 </select>
                             </div>
                 `
+                CargarServicios()
             }
         })
     })

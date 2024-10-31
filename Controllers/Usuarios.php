@@ -3,6 +3,11 @@
 class Usuarios extends Controllers{
     public function __construct(){
         parent::__construct();
+        session_start();
+        if(empty($_SESSION['login'])){
+            header('Location: ' . base_url().'/login' );
+        }
+        getPermisos(4);
     }
 
     //Muestra la view principal de citas
@@ -127,7 +132,7 @@ class Usuarios extends Controllers{
                     }
 
                 } catch (\Throwable $th) {
-                    $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta");
+                    $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta: ". $th);
                 }
                 
             }else{

@@ -1,25 +1,36 @@
 <!-- Carga todo el header, la variable $data viene desde el controlador -->
 <?php header_admin($data);
 getModal('MascotasModal',$data);
+getModal('RazasModal', $data);
 ?> 
-<!-- Contenido de la pagina -->
- 
-    <div class="container-fluid">
 
-        <!-- Titulo de la pagina -->
-        <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <button class="btn btn-primary" data-toggle="modal" id="btnInsertarMascota">
-            <i class="fas fa-plus"></i>
-            <span class="text">Agregar mascota</span>
-        </button>
-        
-    </div>
+  <!-- Contenido de la pagina -->
+  <div class="container-fluid">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <!-- Titulo de la pagina -->
+                <h4 class="m-0 font-weight-bold  text-primary">
+                    <?= $data['page_title'] ?>
 
-    <div class="card-body">
-    <div class="table-responsive">
+                    <button id="btnInsertarMascota" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#insertarMascotasModal">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
 
+                        <span class="text">
+                        Agregar mascota
+                        </span>
+                        
+                    </button>
+
+                </h4>
+
+                
             </div>
-            <table id="tablaMascotas" class="table table-bordered" width="100%" cellspacing="0">
+
+            <div class="card-body">
+                <div class="table-responsive">
+                <table id="tablaMascotas" class="table table-bordered" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Nombre</th>
@@ -33,6 +44,7 @@ getModal('MascotasModal',$data);
                 <tbody>
                 </tbody>
             </table>
+                </div>
             </div>
         </div>
         
@@ -41,5 +53,4 @@ getModal('MascotasModal',$data);
 
     </div>
     <!-- Fin de contenido principal <main> -->
-<script src="<?=media() ?>/js/mascotas/mascotas.js"></script>
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

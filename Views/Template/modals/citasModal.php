@@ -14,14 +14,20 @@
                         <input type="hidden" name="id_cita" id="id_cita" value="0">
 
                         <div class="form-group">
-                            <label for="fecha_inicio">Fecha inicio</label>
-                            <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" autocomplete="off">
-                            <small class="form-text text-muted">Fecha inicial de su cita.</small>
+                            <label for="dia_cita">Dia de la cita</label>
+                            <input type="date" class="form-control" id="dia_cita" name="dia_cita" autocomplete="off">
+                            <small class="form-text text-muted">Dia de la cita.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hora_inicio">Hora inicio</label>
+                            <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" autocomplete="off">
+                            <small class="form-text text-muted">Hora inicial de la cita.</small>
                         </div>
                         <div class="form-group">
-                            <label for="fecha_final">Fecha finalización</label>
-                            <input type="date" class="form-control" id="fecha_final" name="fecha_final" autocomplete="off">
-                            <small class="form-text text-muted">Fecha final de su cita.</small>
+                            <label for="hora_final">Hora finalización</label>
+                            <input type="time" class="form-control" id="hora_final" name="hora_final" autocomplete="off">
+                            <small class="form-text text-muted">Hora final de la cita.</small>
                         </div>
                         <div class="form-group">
                             <label for="lugar_cita">Lugar</label>
@@ -30,21 +36,23 @@
                         </div>
 
                         <div class="form-group" id="select_servicios">
-                            <span>Servicios</span>
+                                <span>Servicios</span>
 
-                            <div class="servicios">
-                                <select class="custom-select" name="servicios[]" id="servicio_select">
-                                        <option value="0" selected>Seleccione un servicio</option>
-                                </select>
-                            </div>
-
+                                <div class="input-group mb-3">
+                                    <select class="custom-select" name="servicios[]" id="servicio_select">
+                                                    <option value="0" selected>Seleccione un servicio</option>
+                                    </select>
+                                </div>
                         </div>
 
                         <div class="form-group">
-                                <button class="btn btn-primary" id="mas_servicios">
+
+                                <button disabled=true class="btn btn-primary" id="mas_servicios">
                                     &plus;
                                     Seleccionar otro servicio
                                 </button>
+
+                               
                         </div>
 
                         <div class="form-group">

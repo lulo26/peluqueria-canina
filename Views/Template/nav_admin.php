@@ -12,28 +12,38 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item <?= $data['page_id_name'] == "dashboard" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/dashboard">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+            <?php if(!empty($_SESSION['permisos'][1]['r'])): ?>
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item <?= $data['page_id_name'] == "dashboard" ? "active" : "" ?>">
+                    <a class="nav-link" href="<?= base_url() ?>/dashboard">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+            <?php endif; ?>
 
-            <!-- Nav Item - Gestion de usuarios -->
-            <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" || $data['page_id_name'] == "roles" ? "active" : "" ?>">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-star"></i>
-                    <span>Administrar</span>
-                </a>
-                <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
-                        <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
-                        <a class="collapse-item" href="<?= base_url() ?>/roles">Roles</a>
+            <?php if(!empty($_SESSION['permisos'][5]['r']) || !empty($_SESSION['permisos'][4]['r']) || !empty($_SESSION['permisos'][2]['r'])): ?>
+                <!-- Nav Item - Gestion de usuarios -->
+                <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" || $data['page_id_name'] == "roles" ? "active" : "" ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-star"></i>
+                        <span>Administrar</span>
+                    </a>
+                    <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <?php if(!empty($_SESSION['permisos'][5]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
+                            <?php endif; ?>
+                            <?php if(!empty($_SESSION['permisos'][4]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
+                            <?php endif; ?>
+                            <?php if(!empty($_SESSION['permisos'][2]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/roles">Roles</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endif; ?>
 
             <!-- Nav Item - Tienda -->
             <li class="nav-item <?= 
@@ -48,10 +58,15 @@
                 </a>
                 <div id="collapseTienda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+                    <?php if(!empty($_SESSION['permisos'][6]['r'])): ?>
                         <a class="collapse-item" href="<?= base_url() ?>/ventas">Ventas</a>
+                    <?php endif; ?>
+                        
                         <a class="collapse-item" href="<?= base_url() ?>/productos">Productos</a>
                         <a class="collapse-item" href="<?= base_url() ?>/inventario">Inventario</a>
-                        <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
+                        <?php if(!empty($_SESSION['permisos'][7]['r'])): ?>
+                            <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </li>
@@ -77,12 +92,22 @@
                     <span>Clientes</span></a>
             </li>
 
-            <!-- Nav Item - Mascotas -->
-            <li class="nav-item <?= $data['page_id_name'] == "mascotas" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/mascotas">
-                    <i class="fas fa-cat"></i>
-                    <span>Mascotas</span></a>
+            <!-- Nav Item - Mascotas !!!!!!!!-->
+            <li class="nav-item <?= $data['page_id_name'] == "Mascotas" || $data['page_id_name'] == "Razas" ? "active" : "" ?>">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMascotas"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-paw"></i>
+                    <span>Mascotas</span>
+                </a>
+                <div id="collapseMascotas" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="<?= base_url() ?>/mascotas">Mascotas</a>
+                        <a class="collapse-item" href="<?= base_url() ?>/razas">Razas</a>
+                    </div>
+                </div>
             </li>
+
+         
             
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -94,7 +119,7 @@
 
             <!-- Nav Item - Citas -->
             <li class="nav-item">
-                <a class="nav-link" href="login">
+                <a class="nav-link" href="<?= base_url(); ?>/logout">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Salir</span>
                 </a>

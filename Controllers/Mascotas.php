@@ -3,6 +3,10 @@
 class Mascotas extends Controllers{
     public function __construct(){
         parent::__construct();
+        session_start(); 
+        if(empty($_SESSION['login'])){
+            header('Location: ' . base_url().'/login' );
+        }
     }
 
     //Muestra la view principal de citas
@@ -10,6 +14,7 @@ class Mascotas extends Controllers{
 
         $data['page_title'] = "Mascotas";
         $data['page_id_name'] = "mascotas";
+        $data['page_functions_js'] = "mascotas/mascotas.js";
  
         $this->views->getView($this,"mascotas", $data);
     }

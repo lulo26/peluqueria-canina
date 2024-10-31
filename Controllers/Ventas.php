@@ -3,6 +3,10 @@
 class Ventas extends Controllers{
     public function __construct(){
         parent::__construct();
+        session_start();
+        if(isset($_SESSION['login'])){
+            header('Location: ' . base_url().'/dashboard' );
+        }
     }
 
     //Muestra la view principal de citas
