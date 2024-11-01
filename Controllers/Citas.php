@@ -12,6 +12,10 @@ class Citas extends Controllers{
     //Muestra la view principal de citas
     public function citas(){
 
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
+
         $data['page_id_name'] = "citas";
         $data['page_title'] = "Citas";
         $data['page_functions_js'] = "citas/citas.js";
@@ -23,17 +27,36 @@ class Citas extends Controllers{
         $arrayData = $this->model->selectCitas();
 
         for ($i=0; $i <count($arrayData) ; $i++) { 
-            $arrayData[$i]['options']="
-            
-            <button type='button' id='btnBorrar' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrayData[$i]['id_cita']."'>
-                    <i class='fas fa-trash'></i>
-            </button>
+            $btn_delete='';
+            $btn_view='';
+            $btn_edit='';
 
-            <button type='button' class='btn btn-primary btn-circle' id='btnEditar'  data-action-type='update' rel='".$arrayData[$i]['id_cita']."'>
+            if ($_SESSION['permisosMod']['d']) {
+                $btn_delete = "
+                <button type='button' id='btnBorrar' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrayData[$i]['id_cita']."'>
+                    <i class='fas fa-trash'></i>
+                </button>
+                ";
+            }
+
+            if ($_SESSION['permisosMod']['u']) {
+                $btn_edit = "
+                <button type='button' class='btn btn-primary btn-circle' id='btnEditar'  data-action-type='update' rel='".$arrayData[$i]['id_cita']."'>
                     <i class='fas fa-pen'></i>
-            </button>
-            
-            ";
+                </button>
+                ";
+            }
+
+            if ($_SESSION['permisosMod']['r']) {
+                $btn_view = "
+                <button type='button' class='btn btn-secondary btn-circle' data-action-type='btnView' data-id='".$arrayData[$i]['id_cita']."'>
+                    <i class='fas fa-info'></i>
+                </button>
+                ";
+            }
+
+
+            $arrayData[$i]['options']= $btn_delete . " " . $btn_edit . " " . $btn_view;
         }
 
         echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
