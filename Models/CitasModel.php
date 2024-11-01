@@ -16,7 +16,7 @@ class CitasModel extends Mysql{
         $this->id_empleado=$id_empleado;
 
         $sql = "INSERT INTO citas(dia_cita,hora_inicio,hora_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_id_empleado) 
-        values (?,?,?,?,?,?)";
+        values (?,?,?,?,?,?,?)";
         $arrayData = array($this->dia_cita,$this->hora_inicio,$this->hora_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
         $request_insert = $this->insert($sql, $arrayData);
         $result = $request_insert;
@@ -122,11 +122,11 @@ class CitasModel extends Mysql{
 		hora_final,
 		lugar_cita,
         mascotas.nombreMascota as nombre_mascota,
-        CONCAT(empleados.nombre_empleado," ",empleados.apellido_empleado) as nombre_empleado
+        CONCAT(personas.nombres," ",personas.apellidos) as nombre_empleado
         FROM citas
         INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
         INNER JOIN mascotas on mascotas.idMascotas = citas.mascotas_idMascotas
-        INNER JOIN empleados on empleados.id_empleado = citas.empleados_id_empleado
+        INNER JOIN personas on personas.id_persona = citas.empleados_id_empleado
         INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
         WHERE estado_cita != 0
         GROUP BY id_cita';
@@ -136,11 +136,22 @@ class CitasModel extends Mysql{
     }
 
     public function selectCitasByID(int $id_cita){
-        $sql = "SELECT id_cita,fecha_inicio, fecha_final, lugar_cita, mascotas_idMascotas , empleados_idEmpleados, servicios.nombre_servicio AS servicio
+        $sql = "SELECT id_cita,dia_cita, hora_inicio,hora_final, lugar_cita,mascotas_idMascotas
         from citas 
         INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
         INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
         WHERE id_cita = $id_cita";
+
+        $request_select = $this->select_all($sql);
+        return $request_select;
+    }
+
+    public function selectServiciosByID(int $id_cita){
+        $sql="SELECT servicios_id_servicio,servicios.nombre_servicio
+        FROM citas_has_servicios
+        inner join servicios on servicios.id_servicio = servicios_id_servicio
+        WHERE citas_id_cita = $id_cita
+        ";
 
         $request_select = $this->select_all($sql);
         return $request_select;
@@ -159,7 +170,9 @@ class CitasModel extends Mysql{
     }
 
     public function selectEmpleados(){
-        $sql = "SELECT * from empleados where estado_empleado != 0";
+        $sql = 'SELECT * from personas
+        INNER JOIN roles on roles.id_rol = personas.rol_id
+        WHERE roles.nombre_rol = "Vendedor" ';
         $request_select = $this->select_all($sql);
         return $request_select;
     }

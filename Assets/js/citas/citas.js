@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     CargarEmpleados()
 
     function CargarServicios() {
+        let array_servicios = []
         fetch(base_url + `/citas/getServicios`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -22,9 +23,19 @@ document.addEventListener('DOMContentLoaded',()=>{
                 opcion.innerText = element.nombre_servicio
                 
                 document.querySelector('#servicio_select').appendChild(opcion)
+
+                array_servicios.push({
+                    id_servicio:element.id_servicio,
+                    nombre_servicio:element.nombre_servicio
+                })
+                
+                
             });
         })
+
+        return array_servicios
     }
+    
 
     function CargarMascotas() {
         fetch(base_url + `/citas/getMascotas`)
@@ -48,8 +59,8 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             res.forEach(element => {
                 let opcion = document.createElement('option')
-                opcion.value = element.id_empleado
-                opcion.innerText = element.nombre_empleado
+                opcion.value = element.id_persona
+                opcion.innerText = element.nombres
 
                 document.querySelector('#empleado_select').appendChild(opcion)
             });
@@ -74,12 +85,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     //boton añadir mas servicios
     document.querySelector('#mas_servicios').addEventListener('click',(e)=>{
-        
         e.preventDefault()
         //creamos un contenedor y un select
         let div  = document.createElement('div')
         div.setAttribute("class","input-group mb-3")
-        div.setAttribute("id",count_selects_created+=1)
         let select = document.createElement('select')
         select.setAttribute('class','custom-select')
         select.setAttribute('name','servicios[]')
@@ -110,7 +119,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     select.appendChild(opcion)
             });
             
-        })  
+        }) 
 
     })
 
@@ -244,20 +253,65 @@ document.addEventListener('DOMContentLoaded',()=>{
                 })
                 .then((res)=>res.json())
                 .then((res)=>{
-                    const inputs = ['#fecha_inicio','#fecha_final','#lugar_cita','#mascota_select','#empleado_select',"#id_cita"]
+                    const inputs = ['#dia_cita','#hora_inicio','#hora_final','#lugar_cita','#mascota_select','#empleado_select',"#id_cita"]
 
                     arrData = res.data[0]
 
-                    const values = [arrData.fecha_inicio,arrData.fecha_final,arrData.lugar_cita,arrData.mascotas_idMascotas,arrData.empleados_idEmpleados,arrData.id_cita]
-                    
+                    const values = [arrData.dia_cita,arrData.hora_inicio,arrData.hora_final,arrData.lugar_cita,arrData.mascotas_idMascotas,arrData.personas_id_persona,arrData.id_cita]
                     
                     for (let index = 0; index < inputs.length; index++) {
                         document.querySelector(inputs[index]).value=values[index]
                     }
                 })
 
+                fetch(base_url + `/citas/getServiciosByID/${id_cita}`)
+                    .then((res)=>res.json())
+                    .then((res)=>{
 
+                        const array_servicios = CargarServicios()
 
+                        array_servicios.forEach(servicio => {
+                            let opcion = document.createElement('option')
+                            opcion.value = servicio.id_servicio
+                            opcion.innerText = servicio.nombre_servicio
+
+                            if (res.data.length>1) {
+
+                                for (let index = 1; index < res.data.length; index++){
+    
+                                let div  = document.createElement('div')
+                                div.setAttribute("class","input-group mb-3")
+                                let select = document.createElement('select')
+                                select.setAttribute('class','custom-select')
+                                select.setAttribute('name','servicios[]')
+                                select.innerHTML=`
+                                <option value="0" selected>Seleccione un servicio</option>
+                                `
+    
+                                let div_label = document.createElement('div')
+                                div_label.setAttribute('class',"input-group-prepend")
+                                let label = document.createElement('label')
+                                label.setAttribute('class',"input-group-text btn-danger")
+                                label.setAttribute('id',"borrar_servicios")
+                                label.innerText="Borrar"
+    
+                                div_label.appendChild(label)
+                                div.appendChild(select)
+                                div.appendChild(div_label)
+                                document.querySelector('#select_servicios').appendChild(div)
+                                
+                                select.appendChild(opcion)
+                                select.value=res.data[index].servicios_id_servicio
+                                }
+                            }
+
+                        });
+                        
+                        document.querySelector("#servicio_select").value=arrayData.servicios_id_servicio
+                        document.querySelector('#mas_servicios').disabled=false
+
+                        
+                    })
             }
 
         }catch{}

@@ -57,13 +57,14 @@ class Citas extends Controllers{
 
     public function setCitas(){
         $id_cita = intval($_POST['id_cita']);
-        $fecha_inicio = strClean($_POST['fecha_inicio']);
-        $fecha_final = strClean($_POST['fecha_final']);
+        $dia_cita = strClean($_POST['dia_cita']);
+        $hora_inicio = strClean($_POST['hora_inicio']);
+        $hora_final = strClean($_POST['hora_final']);
         $lugar_cita = strClean($_POST['lugar_cita']);
         $id_mascota  = intval($_POST['id_mascota']);
         $id_empleado = intval($_POST['id_empleado']);
 
-        $array_post  = ["fecha_inicio","fecha_final","lugar_cita","id_mascota","id_empleado"];
+        $array_post  = ["dia_cita","hora_inicio","hora_final","lugar_cita","id_mascota","id_empleado"];
 
         $count_post = 0;
 
@@ -88,7 +89,7 @@ class Citas extends Controllers{
 
             if (!in_array("exist",$array_repetidos)) {
                 if ($id_cita === 0 || $id_cita === "") {
-                    $requestModel = $this->model->insertarCitas($fecha_inicio,$fecha_final,$lugar_cita,$id_mascota,$id_empleado);
+                    $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
     
                     foreach ($_POST['servicios'] as $selected) {
                         $insertPivote = $this->model->insertarCitaServicios($selected);
@@ -157,6 +158,20 @@ class Citas extends Controllers{
     public function getEmpleados(){
         $arrayData = $this->model->selectEmpleados();
         echo json_encode($arrayData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function getServiciosByID($id_cita){
+            $id_cita = intval($id_cita);
+            $arrayData = $this->model->selectServiciosByID($id_cita);
+
+            if(empty($id_cita)){
+                $arrayResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrayResponse = array('status' => true, 'data' => $arrayData);
+            }
+            
+        echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
