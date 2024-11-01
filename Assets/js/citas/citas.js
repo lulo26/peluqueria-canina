@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     CargarEmpleados()
 
     function CargarServicios() {
-        let array_servicios = []
+
         fetch(base_url + `/citas/getServicios`)
         .then((res)=>res.json())
         .then((res)=>{
@@ -23,20 +23,30 @@ document.addEventListener('DOMContentLoaded',()=>{
                 opcion.innerText = element.nombre_servicio
                 
                 document.querySelector('#servicio_select').appendChild(opcion)
+            });
+        })
+    }
 
-                array_servicios.push({
-                    id_servicio:element.id_servicio,
-                    nombre_servicio:element.nombre_servicio
-                })
-                
-                
+    function LoadServices() {
+        let array_services = []
+        fetch(base_url + `/citas/getServicios`)
+        .then((res)=>res.json())
+        .then((res)=>{
+            res.forEach(element => {
+                array_services.push(
+                    {
+                        nombre_servicio:element.nombre_servicio,
+                        id_servicio:element.id_servicio
+                    }
+                )
             });
         })
 
-        return array_servicios
+        return array_services
     }
-    
 
+    console.log(LoadServices());
+    
     function CargarMascotas() {
         fetch(base_url + `/citas/getMascotas`)
         .then((res)=>res.json())
@@ -267,18 +277,25 @@ document.addEventListener('DOMContentLoaded',()=>{
                 fetch(base_url + `/citas/getServiciosByID/${id_cita}`)
                     .then((res)=>res.json())
                     .then((res)=>{
+                        document.querySelector("#servicio_select").value=res.data[0].servicios_id_servicio
+                        document.querySelector('#mas_servicios').disabled=false
 
-                        const array_servicios = CargarServicios()
+                        const array_servicios = LoadServices()
+                        
+                        array_servicios.forEach(services => {
+                            console.log(services);
+                            
+                        });
+/* 
+                        for (let index = 0; index < array_servicios.length; index++) {
+                            console.log(array_servicios[index]);
+                        }  */
 
-                        array_servicios.forEach(servicio => {
-                            let opcion = document.createElement('option')
-                            opcion.value = servicio.id_servicio
-                            opcion.innerText = servicio.nombre_servicio
+                        if (res.data.length>1) {
 
-                            if (res.data.length>1) {
+                            for (let index = 1; index < res.data.length; index++){
 
-                                for (let index = 1; index < res.data.length; index++){
-    
+                                //creamos un contenedor que tendra un select por cada servicio que el cliente haya registrado en la cita
                                 let div  = document.createElement('div')
                                 div.setAttribute("class","input-group mb-3")
                                 let select = document.createElement('select')
@@ -288,28 +305,28 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 <option value="0" selected>Seleccione un servicio</option>
                                 `
     
+                                //creamos un div que contiene el boton borrar de cada nuevo select
                                 let div_label = document.createElement('div')
                                 div_label.setAttribute('class',"input-group-prepend")
                                 let label = document.createElement('label')
                                 label.setAttribute('class',"input-group-text btn-danger")
                                 label.setAttribute('id',"borrar_servicios")
                                 label.innerText="Borrar"
-    
+
+                                //juntamos el div que contiene el btn borrar con el div que contiene el select
                                 div_label.appendChild(label)
                                 div.appendChild(select)
                                 div.appendChild(div_label)
                                 document.querySelector('#select_servicios').appendChild(div)
-                                
+    
+/*                                 let opcion = document.createElement("option")
+                                opcion.value = array_servicios.servicio[index].id_servicio
+                                opcion.innerText = array_servicios.servicio[index].nombre_servicio
+    
                                 select.appendChild(opcion)
-                                select.value=res.data[index].servicios_id_servicio
+                                select.value=res.data[index].servicios_id_servicio */
                                 }
-                            }
-
-                        });
-                        
-                        document.querySelector("#servicio_select").value=arrayData.servicios_id_servicio
-                        document.querySelector('#mas_servicios').disabled=false
-
+                        }
                         
                     })
             }
