@@ -5,33 +5,35 @@ fetch(base_url + "/inventario/traerProductos")
   .then((data) => {
     data.forEach((element) => {
       productos.innerHTML += `
- <section class="py-5">
-            <div class="container px-lg-0 py-lg-8">
-                <div class="justify-content-center">
-                    <div class="col ">
+<section class="py-5">
+    <div class="container px-lg-0 py-lg-8">
+        <div class="row justify-content-center">
+            <!-- Contenedor de productos -->
+            <div class="col-12">
+                <div class="row row-cols-1 row-cols-md-4 g-4"> <!-- Cambié aquí para 4 columnas -->
+                    <!-- Producto -->
+                    <div class="col">
                         <div class="card h-100">
-                            <!-- Product image-->
                             <img class="card-img-top" src="assets/img/tienda/dog_chow_triple_proteina.png" alt="..." />
-                            <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
-                                    <!-- Product name-->
                                     <h5 class="fw-bolder">${element.nombreProducto}</h5>
-                                    <!-- Product price-->
                                     ${element.precio}
                                 </div>
                             </div>
-                            <!-- Product actions-->
-                          <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                 
-
-                    
-                  
-        </section>
+                    <!-- Repite el bloque anterior para más productos -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
          
 		`;
     });

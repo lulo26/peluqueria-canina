@@ -564,6 +564,25 @@ a:focus {
   z-index: 11;
 }
 
+.card {
+  max-width: 500px; /* Ancho máximo para que no sean muy grandes */
+  margin: 100px; /* Centrar la tarjeta dentro de la columna */
+}
+
+.card-img-top {
+  height: 190px; /* Altura fija para las imágenes */
+  object-fit: cover; /* Asegura que la imagen se ajuste bien */
+}
+
+@media (max-width: 50%) {
+  .row-cols-md-4 .col {
+      flex: 0 0 50%; /* Dos columnas en pantallas pequeñas */
+      max-width: 50%; /* Máximo ancho para dos columnas */
+  }
+}
+
+
+
 /*Aqui termina compra flotante*/
 
 
