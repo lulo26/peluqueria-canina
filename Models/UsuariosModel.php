@@ -19,12 +19,17 @@ class UsuariosModel extends Mysql{
     }
 
     public function selectUsuarios(){
+
+        $whereAdmin = "";
+        if ($_SESSION['idUser'] != 1) {
+            $whereAdmin = " AND p.id_persona != 1";
+        }
         
-        $sql = "SELECT p.id_persona , p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, p.status, r.nombre_rol 
+        $sql = "SELECT p.id_persona , p.identificacion, p.nombres, p.apellidos, p.telefono, p.email_user, p.status, r.id_rol, r.nombre_rol 
         FROM personas p 
         INNER JOIN roles r 
         ON p.rol_id = r.id_rol 
-        WHERE p.status != 0";
+        WHERE p.status != 0".$whereAdmin;
 
         $request = $this->select_all($sql);
 

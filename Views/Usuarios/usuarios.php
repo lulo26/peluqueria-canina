@@ -4,10 +4,6 @@ header_admin($data);
 getModal('usuariosModal', $data);
 ?> 
 
-<?php if (empty($_SESSION['permisosMod']['r'])): ?>
-<h4>Acceso denegado</h4>
-<p>No tienes permiso para acceder a este modulo :(</p>
-<?php else: ?>
 <!-- Contenido de la pagina -->
     <div class="container-fluid">
 
@@ -32,12 +28,6 @@ getModal('usuariosModal', $data);
         <div class="card-body">
         <div class="table-responsive">
 
-
-        <?php 
-        //dep($_SESSION['permisos']);
-        //dep($_SESSION['permisosMod']);
-        ?>
-
         </div>
         <table id="tablaUsuarios" class="table table-bordered" width="100%" cellspacing="0">
             <thead>
@@ -60,7 +50,6 @@ getModal('usuariosModal', $data);
         
     </div>
     <!-- /.Fin de contenido -->
-<?php endif; ?>
     </div>
     <!-- Fin de contenido principal <main> -->
 <?php footer_admin($data) ?> <!-- Carga todo el footer -->

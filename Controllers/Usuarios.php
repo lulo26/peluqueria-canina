@@ -13,6 +13,10 @@ class Usuarios extends Controllers{
     //Muestra la view principal de citas
     public function usuarios(){
 
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
+
         $data['page_title'] = "Usuarios";
         $data['page_id_name'] = "usuarios";
         $data['page_functions_js'] = "usuarios/usuarios.js";
@@ -58,14 +62,31 @@ class Usuarios extends Controllers{
             }
 
             if ($_SESSION['permisosMod']['d']) {
+                if ( ($_SESSION['idUser'] == 1 and $_SESSION['userData']['id_rol'] == 1) || 
+                ($_SESSION['userData']['id_rol'] == 1 and $arrData[$i]['id_rol'] != 1) and
+                 ($_SESSION['userData']['id_persona'] != $arrData[$i]['id_persona'])) {
                 $btnDelete = "<button type='button' class='btn btn-danger btn-circle' data-action-type='delete' data-id='".$arrData[$i]['id_persona']."'>
                     <i class='fas fa-trash'></i>
                 </button>";
+                }else{
+                    $btnDelete = "<button type='button' class='btn btn-danger btn-circle disabled'>
+                    <i class='fas fa-trash'></i>
+                    </button>";
+                }
             }
+
             if ($_SESSION['permisosMod']['u']) {
-                $btnEdit = "<button type='button' class='btn btn-primary btn-circle' data-action-type='update' data-id='".$arrData[$i]['id_persona']."'>
+                if ( ($_SESSION['idUser'] == 1 && $_SESSION['userData']['id_rol'] == 1) || 
+                ($_SESSION['userData']['id_rol'] == 1 && $arrData[$i]['id_rol'] != 1)
+                ) {
+                    $btnEdit = "<button type='button' class='btn btn-primary btn-circle' data-action-type='update' data-id='".$arrData[$i]['id_persona']."'>
                     <i class='fas fa-pen'></i>
-                </button>";
+                    </button>";
+                }else{
+                    $btnEdit = "<button type='button' class='btn btn-primary btn-circle disabled'>
+                    <i class='fas fa-pen'></i>
+                    </button>";
+                }
             }
             
             $arrData[$i]['options'] = $btnView . " " . $btnDelete . " " . $btnEdit;

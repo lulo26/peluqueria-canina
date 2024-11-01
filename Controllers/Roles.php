@@ -7,10 +7,13 @@ class Roles extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/login' );
         }
+        getPermisos(2);
     }
     public function roles(){
 
-
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
         $data['page_title'] = "Roles";
         $data['page_name'] = "roles";
         $data['page_id_name'] = "roles";

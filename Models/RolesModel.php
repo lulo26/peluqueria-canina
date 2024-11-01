@@ -12,19 +12,26 @@ class RolesModel extends Mysql{
     }
 
     public function selectRoles(){
-        $sql = "SELECT * FROM roles WHERE status_rol != 0";
+        $whereAdmin = "";
+        if ($_SESSION['idUser'] != 1) {
+            $whereAdmin = " AND id_rol != 1 ";
+        }
+        $sql = "SELECT * FROM roles WHERE status_rol != 0".$whereAdmin;
         $request = $this->select_all($sql);
         return $request;
     }
 
     public function selectRolesActivos(){
-        $sql = "SELECT id_rol, nombre_rol, status_rol FROM roles WHERE status_rol != 0 AND status_rol = 1";
+        $whereAdmin = "";
+        if ($_SESSION['idUser'] != 1) {
+            $whereAdmin = " AND id_rol != 1 ";
+        }
+        $sql = "SELECT id_rol, nombre_rol, status_rol FROM roles WHERE status_rol != 0 AND status_rol = 1".$whereAdmin;
         $request = $this->select_all($sql);
         return $request;
     }
 
     public function selectRol(int $id_rol){
-        //Buscar Rol
         $this->intIdRol = $id_rol;
         $sql = "SELECT * FROM roles WHERE id_rol = $this->intIdRol";
         $request = $this->select($sql);
