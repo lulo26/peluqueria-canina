@@ -3,6 +3,11 @@
 class Clientes extends Controllers{
     public function __construct(){
         parent::__construct();
+
+        session_start(); 
+        if(empty($_SESSION['login'])){
+            header('Location: ' . base_url().'/login' );
+        }
     }
 
     //Muestra la view principal de citas
@@ -10,6 +15,7 @@ class Clientes extends Controllers{
 
         $data['page_id_name'] = "clientes";
         $data['page_title'] = "Clientes";
+        $data['page_functions_js'] = "clientes/clientes.js";
  
         $this->views->getView($this,"clientes", $data);
     }
