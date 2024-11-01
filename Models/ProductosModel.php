@@ -20,7 +20,7 @@ class ProductosModel extends Mysql{
 
     public function traerProductos(){
 
-        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE estado = 1";
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU, imagen_productos FROM productos WHERE estado = 1";
         $request = $this->select_all($sql);
         return $request;
 

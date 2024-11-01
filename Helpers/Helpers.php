@@ -1,4 +1,33 @@
 <?php
+/*
+const M_DASHBOARD = 1;
+const M_ROLES = 2;
+const M_PERMISOS = 3;
+const M_USUARIOS = 4;
+const M_INFORMES = 5;
+const M_VENTAS = 6;
+const M_CATEGORIAS = 7;
+const M_MASCOTAS = 8;
+const M_CITAS = 9;
+const M_SERVICIOS = 10;
+const M_PRODUCTOS = 11;
+const M_INVENTARIO = 12;
+
+*/
+
+const M_DASHBOARD = 1;
+const M_ROLES = 2;
+const M_PERMISOS = 3;
+const M_USUARIOS = 4;
+const M_INFORMES = 5;
+const M_VENTAS = 6;
+const M_CATEGORIAS = 7;
+const M_MASCOTAS = 8;
+const M_CITAS = 9;
+const M_SERVICIOS = 10;
+const M_PRODUCTOS = 11;
+const M_INVENTARIO = 12;
+const M_CLIENTES = 13;
 
 function base_url(){
     return BASE_URL;
