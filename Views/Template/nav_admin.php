@@ -45,31 +45,43 @@
                 </li>
             <?php endif; ?>
 
-            <!-- Nav Item - Tienda -->
-            <li class="nav-item <?= 
-            $data['page_id_name'] == "ventas" || 
-            $data['page_id_name'] == "productos" || 
-            $data['page_id_name'] == "categorias" || 
-            $data['page_id_name'] == "inventario" ? "active" : "" ?>">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTienda"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-store"></i>
-                    <span>Tienda</span>
-                </a>
-                <div id="collapseTienda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                    <?php if(!empty($_SESSION['permisos'][M_VENTAS]['r'])): ?>
-                        <a class="collapse-item" href="<?= base_url() ?>/ventas">Ventas</a>
-                    <?php endif; ?>
-                        
-                        <a class="collapse-item" href="<?= base_url() ?>/productos">Productos</a>
-                        <a class="collapse-item" href="<?= base_url() ?>/inventario">Inventario</a>
-                        <?php if(!empty($_SESSION['permisos'][M_CATEGORIAS]['r'])): ?>
-                            <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
+            <?php if(!empty($_SESSION['permisos'][M_VENTAS]['r']) || 
+            !empty($_SESSION['permisos'][M_PRODUCTOS]['r']) ||
+            !empty($_SESSION['permisos'][M_INVENTARIO]['r']) ||
+            !empty($_SESSION['permisos'][M_CATEGORIAS]['r'])
+            ):?>
+                <!-- Nav Item - Tienda -->
+                <li class="nav-item <?= 
+                    $data['page_id_name'] == "ventas" || 
+                    $data['page_id_name'] == "productos" || 
+                    $data['page_id_name'] == "categorias" || 
+                    $data['page_id_name'] == "inventario" ? "active" : "" ?>">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTienda"
+                        aria-expanded="true" aria-controls="collapseTwo">
+                        <i class="fas fa-store"></i>
+                        <span>Tienda</span>
+                    </a>
+                    <div id="collapseTienda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                        <?php if(!empty($_SESSION['permisos'][M_VENTAS]['r'])): ?>
+                            <a class="collapse-item" href="<?= base_url() ?>/ventas">Ventas</a>
                         <?php endif; ?>
+
+                            <?php if(!empty($_SESSION['permisos'][M_PRODUCTOS]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/productos">Productos</a>
+                            <?php endif; ?>
+
+                            <?php if(!empty($_SESSION['permisos'][M_INVENTARIO]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/inventario">Inventario</a>
+                            <?php endif; ?>
+
+                            <?php if(!empty($_SESSION['permisos'][M_CATEGORIAS]['r'])): ?>
+                                <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
+                            <?php endif; ?>
+                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            <?php endif; ?>
 
             <?php if(!empty($_SESSION['permisos'][M_CITAS]['r'])): ?>
                 <!-- Nav Item - Citas -->
