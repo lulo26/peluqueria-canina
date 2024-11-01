@@ -10,7 +10,7 @@ getModal('citasModal',$data);
                     <!-- Titulo de la pagina -->
                     <h4 class="m-0 font-weight-bold  text-primary">
                         <?= $data['page_title'] ?>
-
+                        <?php if ($_SESSION['permisosMod']['w']) : ?>
                         <button id="btnCrearCita" type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#insertarCitas">
                             <span class="icon text-white-50">
                                 <i class="fas fa-plus"></i>
@@ -21,7 +21,7 @@ getModal('citasModal',$data);
                             </span>
                             
                         </button>
-
+                        <?php endif; ?>
                     </h4>
                 </div>
 

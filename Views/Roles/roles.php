@@ -12,13 +12,14 @@ getModal('rolesModal',$data);
             <h4 class="m-0 font-weight-bold text-primary">
                 <?= $data['page_title'] ?>
                 <!--<button type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#crearProductoModal" >-->
-                <button id="btnCrearRol" type="button" class="btn btn-primary btn-icon-split btn-sm" >
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Crear Rol</span>
-                </button>
-
+                <?php if ($_SESSION['permisosMod']['w']): ?>
+                    <button id="btnCrearRol" type="button" class="btn btn-primary btn-icon-split btn-sm" >
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Crear Rol</span>
+                    </button>
+                <?php endif; ?>
             </h4>
         </div>
 

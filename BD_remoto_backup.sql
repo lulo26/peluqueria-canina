@@ -157,6 +157,9 @@ INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `stat
 (5, 'Informes', NULL, 1),
 (6, 'Ventas', NULL, 1),
 (7, 'Categorias', NULL, 1);
+INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `status_modulo`) VALUES (NULL, 'Mascotas', 'Modulo que gestiona Mascotas y Razas ', NULL), (NULL, 'Citas', NULL, NULL), (NULL, 'Servicios', NULL, NULL);
+INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `status_modulo`) VALUES (NULL, 'Productos', NULL, NULL), (NULL, 'Inventario', NULL, NULL);
+INSERT INTO `modulos` (`id_modulo`, `titulo_modulo`, `descripcion_modulo`, `status_modulo`) VALUES (NULL, 'Clientes', NULL, NULL);
 
 -- --------------------------------------------------------
 

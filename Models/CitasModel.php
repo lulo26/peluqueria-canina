@@ -15,7 +15,7 @@ class CitasModel extends Mysql{
         $this->id_mascota=$id_mascota;
         $this->id_empleado=$id_empleado;
 
-        $sql = "INSERT INTO citas(dia_cita,hora_inicio,hora_final,lugar_cita,estado_cita,mascotas_idMascotas,empleados_id_empleado) 
+        $sql = "INSERT INTO citas(dia_cita,hora_inicio,hora_final,lugar_cita,estado_cita,mascotas_idMascotas,personas_id_persona) 
         values (?,?,?,?,?,?,?)";
         $arrayData = array($this->dia_cita,$this->hora_inicio,$this->hora_final,$this->lugar,1,$this->id_mascota,$this->id_empleado);
         $request_insert = $this->insert($sql, $arrayData);
@@ -116,7 +116,7 @@ class CitasModel extends Mysql{
     }
 
     public function selectCitas(){
-        $sql = 'SELECT 	id_cita,
+        $sql = 'SELECT id_cita,
         dia_cita,
 		hora_inicio,
 		hora_final,
@@ -126,7 +126,7 @@ class CitasModel extends Mysql{
         FROM citas
         INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
         INNER JOIN mascotas on mascotas.idMascotas = citas.mascotas_idMascotas
-        INNER JOIN personas on personas.id_persona = citas.empleados_id_empleado
+        INNER JOIN personas on personas.id_persona = citas.personas_id_persona
         INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
         WHERE estado_cita != 0
         GROUP BY id_cita';
@@ -136,7 +136,7 @@ class CitasModel extends Mysql{
     }
 
     public function selectCitasByID(int $id_cita){
-        $sql = "SELECT id_cita,dia_cita, hora_inicio,hora_final, lugar_cita,mascotas_idMascotas
+        $sql = "SELECT id_cita,dia_cita, hora_inicio,hora_final, lugar_cita,mascotas_idMascotas,personas_id_persona 
         from citas 
         INNER JOIN citas_has_servicios ON citas_has_servicios.citas_id_cita = citas.id_cita
         INNER JOIN servicios ON servicios.id_servicio = citas_has_servicios.servicios_id_servicio
@@ -150,9 +150,8 @@ class CitasModel extends Mysql{
         $sql="SELECT servicios_id_servicio,servicios.nombre_servicio
         FROM citas_has_servicios
         inner join servicios on servicios.id_servicio = servicios_id_servicio
-        WHERE citas_id_cita = $id_cita
-        ";
-
+        WHERE citas_id_cita = $id_cita";
+        
         $request_select = $this->select_all($sql);
         return $request_select;
     }

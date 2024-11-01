@@ -12,7 +12,7 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <?php if(!empty($_SESSION['permisos'][1]['r'])): ?>
+            <?php if(!empty($_SESSION['permisos'][M_DASHBOARD]['r'])): ?>
                 <!-- Nav Item - Dashboard -->
                 <li class="nav-item <?= $data['page_id_name'] == "dashboard" ? "active" : "" ?>">
                     <a class="nav-link" href="<?= base_url() ?>/dashboard">
@@ -21,7 +21,7 @@
                 </li>
             <?php endif; ?>
 
-            <?php if(!empty($_SESSION['permisos'][5]['r']) || !empty($_SESSION['permisos'][4]['r']) || !empty($_SESSION['permisos'][2]['r'])): ?>
+            <?php if(!empty($_SESSION['permisos'][M_INFORMES]['r']) || !empty($_SESSION['permisos'][M_USUARIOS]['r']) || !empty($_SESSION['permisos'][M_ROLES]['r'])): ?>
                 <!-- Nav Item - Gestion de usuarios -->
                 <li class="nav-item <?= $data['page_id_name'] == "informes" || $data['page_id_name'] == "usuarios" || $data['page_id_name'] == "roles" ? "active" : "" ?>">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsuarios"
@@ -31,13 +31,13 @@
                     </a>
                     <div id="collapseUsuarios" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <?php if(!empty($_SESSION['permisos'][5]['r'])): ?>
+                            <?php if(!empty($_SESSION['permisos'][M_INFORMES]['r'])): ?>
                                 <a class="collapse-item" href="<?= base_url() ?>/informes">Informes y estadísticas</a>
                             <?php endif; ?>
-                            <?php if(!empty($_SESSION['permisos'][4]['r'])): ?>
+                            <?php if(!empty($_SESSION['permisos'][M_USUARIOS]['r'])): ?>
                                 <a class="collapse-item" href="<?= base_url() ?>/usuarios">Usuarios</a>
                             <?php endif; ?>
-                            <?php if(!empty($_SESSION['permisos'][2]['r'])): ?>
+                            <?php if(!empty($_SESSION['permisos'][M_ROLES]['r'])): ?>
                                 <a class="collapse-item" href="<?= base_url() ?>/roles">Roles</a>
                             <?php endif; ?>
                         </div>
@@ -58,40 +58,47 @@
                 </a>
                 <div id="collapseTienda" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <?php if(!empty($_SESSION['permisos'][6]['r'])): ?>
+                    <?php if(!empty($_SESSION['permisos'][M_VENTAS]['r'])): ?>
                         <a class="collapse-item" href="<?= base_url() ?>/ventas">Ventas</a>
                     <?php endif; ?>
                         
                         <a class="collapse-item" href="<?= base_url() ?>/productos">Productos</a>
                         <a class="collapse-item" href="<?= base_url() ?>/inventario">Inventario</a>
-                        <?php if(!empty($_SESSION['permisos'][7]['r'])): ?>
+                        <?php if(!empty($_SESSION['permisos'][M_CATEGORIAS]['r'])): ?>
                             <a class="collapse-item" href="<?= base_url() ?>/categorias">Categorias</a>
                         <?php endif; ?>
                     </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Citas -->
-            <li class="nav-item <?= $data['page_id_name'] == "citas" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/citas">
-                    <i class="fas fa-calendar-check"></i>
-                    <span>Citas</span></a>
-            </li>
+            <?php if(!empty($_SESSION['permisos'][M_CITAS]['r'])): ?>
+                <!-- Nav Item - Citas -->
+                <li class="nav-item <?= $data['page_id_name'] == "citas" ? "active" : "" ?>">
+                    <a class="nav-link" href="<?= base_url() ?>/citas">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Citas</span></a>
+                </li>
+            <?php endif; ?>
 
-            <!-- Nav Item - Servicios -->
-            <li class="nav-item <?= $data['page_id_name'] == "servicios" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/servicios">
-                    <i class="fas fa-box-open"></i>
-                    <span>Servicios</span></a>
-            </li>
+            <?php if(!empty($_SESSION['permisos'][M_SERVICIOS]['r'])): ?>
+                <!-- Nav Item - Servicios -->
+                <li class="nav-item <?= $data['page_id_name'] == "servicios" ? "active" : "" ?>">
+                    <a class="nav-link" href="<?= base_url() ?>/servicios">
+                        <i class="fas fa-box-open"></i>
+                        <span>Servicios</span></a>
+                </li>
+            <?php endif; ?>
 
-            <!-- Nav Item - Clientes -->
-            <li class="nav-item <?= $data['page_id_name'] == "clientes" ? "active" : "" ?>">
-                <a class="nav-link" href="<?= base_url() ?>/clientes">
-                    <i class="fas fa-user-tag"></i>
-                    <span>Clientes</span></a>
-            </li>
+            <?php if(!empty($_SESSION['permisos'][M_CLIENTES]['r'])): ?>
+                <!-- Nav Item - Clientes -->
+                <li class="nav-item <?= $data['page_id_name'] == "clientes" ? "active" : "" ?>">
+                    <a class="nav-link" href="<?= base_url() ?>/clientes">
+                        <i class="fas fa-user-tag"></i>
+                        <span>Clientes</span></a>
+                </li>
+            <?php endif; ?>
 
+            <?php if(!empty($_SESSION['permisos'][M_MASCOTAS]['r'])): ?>
             <!-- Nav Item - Mascotas !!!!!!!!-->
             <li class="nav-item <?= $data['page_id_name'] == "Mascotas" || $data['page_id_name'] == "Razas" ? "active" : "" ?>">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMascotas"
@@ -106,7 +113,7 @@
                     </div>
                 </div>
             </li>
-
+            <?php endif; ?>
          
             
             <!-- Divider -->

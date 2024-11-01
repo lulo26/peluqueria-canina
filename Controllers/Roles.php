@@ -24,26 +24,36 @@ class Roles extends Controllers{
         $arrData = $this->model->selectRoles();
 
         for($i = 0; $i < count($arrData); $i++){
+            $btnPermisos = '';
+            $btnEdit = '';
+            $btnDelete = '';
 
             if($arrData[$i]['status_rol'] == 1){
                 $arrData[$i]['status_rol'] = '<span class="badge badge-success">Activo</span>';
             }else{
                 $arrData[$i]['status_rol'] = '<span class="badge badge-danger">Inactivo</span>';
             }
-            
-            $arrData[$i]['options'] = "
 
-                <button type='button' class='btn btn-primary btn-circle' data-action-type='permisos' rel='".$arrData[$i]['id_rol']."'>
-                    <i class='fas fa-key'></i>
-                </button>
-                <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['id_rol']."'>
+            if ($_SESSION['permisosMod']['r']) {
+
+            }
+
+            if ($_SESSION['permisosMod']['d']) {
+                $btnDelete = "<button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['id_rol']."'>
                     <i class='fas fa-trash'></i>
-                </button>
+                </button>";
+            }
 
-                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['id_rol']."'>
+            if ($_SESSION['permisosMod']['u']) {
+                $btnEdit = "<button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['id_rol']."'>
                     <i class='fas fa-pen'></i>
-                </button>
-            ";
+                </button>";
+                $btnPermisos = "<button type='button' class='btn btn-primary btn-circle' data-action-type='permisos' rel='".$arrData[$i]['id_rol']."'>
+                <i class='fas fa-key'></i>
+                </button>";
+            }
+            
+            $arrData[$i]['options'] = $btnPermisos . " " . $btnDelete . " " . $btnEdit;
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
