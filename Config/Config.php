@@ -5,11 +5,11 @@ const BASE_URL = "http://localhost/peluqueria-canina";
 
 $modo = "LOCAL"; //LOCAL || REMOTO
 
-/* --REMOTO */
-/* const DB_HOST = "bhgtoc1qausfbocum0f0-mysql.services.clever-cloud.com";
+/* --REMOTO 
+const DB_HOST = "bhgtoc1qausfbocum0f0-mysql.services.clever-cloud.com";
 const DB_NAME = "bhgtoc1qausfbocum0f0";
 const DB_USER = "ujjnxedlzantdocl";
-const DB_PASSWORD = "E0fSQ7TKOq7PAsYPuTPk"; */
+const DB_PASSWORD = "E0fSQ7TKOq7PAsYPuTPk";*/
 
 /* --LOCAL */
 const DB_HOST = "localhost";
