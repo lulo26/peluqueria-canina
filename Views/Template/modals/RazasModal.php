@@ -13,7 +13,7 @@
         <input type="hidden" id="idRaza" name="idRaza" value="0">
             <div class="form-group">
               <label for="nombreRaza">Nombre</label>
-              <input type="text" class="form-control text-muted" id="nombreRaza" name="nombreRaza" autocomplete="off">
+              <input type="text" class="form-control text-muted valid validText" id="nombreRaza" name="nombreRaza" autocomplete="off">
             </div>
 
             <div class="form-group">

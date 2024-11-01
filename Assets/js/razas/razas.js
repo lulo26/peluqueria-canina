@@ -46,7 +46,7 @@ document.addEventListener("click", (e) => {
     let selected = e.target.closest("button").getAttribute("data-action-type");
     let idRaza = e.target.closest("button").getAttribute("rel");
 
-    //Eliminar mascota
+    //Eliminar raza
     if (selected == "delete") {
       Swal.fire({
         title: "Eliminar raza de perro?",
@@ -75,7 +75,7 @@ document.addEventListener("click", (e) => {
         }
       });
     }
-    //Actualizar producto
+    //Actualizar raza
     if (selected == "update") {
       $("#insertarRazaModal").modal("show");
       document.getElementById("razaModalLabel").innerHTML = "Actualizar raza";

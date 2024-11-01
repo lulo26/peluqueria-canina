@@ -11,7 +11,7 @@ getModal('RazasModal', $data);
                 <!-- Titulo de la pagina -->
                 <h4 class="m-0 font-weight-bold  text-primary">
                     <?= $data['page_title'] ?>
-
+                    <?php if ($_SESSION['permisosMod']['w']): ?>
                     <button id="btnInsertarMascota" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#insertarMascotasModal">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
@@ -22,7 +22,7 @@ getModal('RazasModal', $data);
                         </span>
                         
                     </button>
-
+                    <?php endif; ?>
                 </h4>
 
                 
