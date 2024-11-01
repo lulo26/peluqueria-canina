@@ -7,6 +7,10 @@ class Informes extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/login' );
         }
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
+        getPermisos(5);
     }
 
     //Muestra la view principal de citas

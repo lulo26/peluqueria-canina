@@ -53,15 +53,20 @@ class RazasModel extends Mysql{
     
             $this->id = $id;
     
-            $sql = "SELECT * FROM razas_mascota WHERE idRaza = '{$this->id}'";
+            $sql = "SELECT * FROM mascotas WHERE raza_idRaza = '{$this->id}'";
             $request = $this->select_all($sql);
-            if(!empty($request)){
+            if(empty($request)){
                 $query = "DELETE FROM razas_mascota WHERE idRaza = ?";
                 $arrData = array($this->id);
-                $request_insert = $this->insert($query, $arrData);
+                $request_insert = $this->update($query, $arrData);
                 $return = $request_insert;
+                if($request){
+                    $request = "ok";
+                } else {
+                    $request = "error";
+                }
             } else {
-                $return = "empty";
+                $return = "exist";
             }
             return $return;
         }

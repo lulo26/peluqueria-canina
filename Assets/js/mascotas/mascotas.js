@@ -59,7 +59,7 @@ tablaMascotas = $("#tablaMascotas").dataTable({
   },
   columns: [
     { data: "nombreMascota" },
-    { data: "raza_idRaza" },
+    { data: "nombreRaza" },
     { data: "edadMascota" },
     { data: "comentarioMascota" },
     { data: "nombre" },
@@ -126,7 +126,7 @@ document.addEventListener("click", (e) => {
         }
       });
     }
-    //Actualizar producto
+    //Actualizar mascota
     if (selected == "update") {
       $("#insertarMascotasModal").modal("show");
       document.getElementById("MascotaModalLabel").innerHTML =
@@ -152,8 +152,8 @@ document.addEventListener("click", (e) => {
             .then((res) => res.json())
             .then((data) => {
               data.forEach((raza) => {
-                if (arrData.idRaza != el.idRaza) {
-                  razaMascota.innerHTML += `<option value="${raza.idraza}">${raza.nombreRaza}</option>`;
+                if (arrData.idRaza != raza.idRaza) {
+                  razaMascota.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
                 }
               });
             });
@@ -169,9 +169,11 @@ document.addEventListener("click", (e) => {
   } catch {}
 });
 
+//
+
 //traer modal de razas
 nuevaRazaMascota.addEventListener("click", (e) => {
-  document.querySelector("#idRaza").value = 0;
+  //document.querySelector("#idRaza").value = 0;
   frmRazasMascotas.reset();
   $("#insertarRazaModal").modal("show");
   document.getElementById("razaModalLabel").innerHTML = "Crear raza";
@@ -198,12 +200,12 @@ frmRazasMascotas.addEventListener("submit", (e) => {
         frmRazasMascotas.reset();
         $("#insertarRazaModal").modal("hide");
         $("#insertarMascotasModal").modal("show");
-        frmRazasMascotas.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
+        razaMascota.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
         fetch(base_url + "/razas/getRazas")
           .then((res) => res.json())
           .then((data) => {
             data.forEach((raza) => {
-              frmRazasMascotas.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
+              razaMascota.innerHTML += `<option value="${raza.idRaza}">${raza.nombreRaza}</option>`;
             });
           });
       }

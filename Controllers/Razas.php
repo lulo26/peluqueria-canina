@@ -7,6 +7,10 @@ class Razas extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/login' );
         }
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
+        //getPermisos(8);
     }
 
     public function razas(){
@@ -21,6 +25,8 @@ class Razas extends Controllers{
     public function getRazas(){
         $arrData = $this->model->selectRazas();
         for ($i=0; $i < count($arrData); $i++) { 
+            $btnEdit = '';
+            $btnDelete = '';
             $arrData[$i]['options'] = "
 
             <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idRaza']."'>
@@ -88,10 +94,12 @@ class Razas extends Controllers{
         if ($_POST) {
             $idRaza = intval($_POST['idRaza']);
             $requestDelete = $this->model->deleteRaza($idRaza);
-            if($requestDelete == 'empty'){
-                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la mascota.');
-            }else{
+            if($requestDelete == 'ok'){
                 $arrResponse = array('status' => true, 'msg' => 'se ha eliminado la mascota.');
+            }else if($requestDelete == 'exist'){
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la raza porque está asociada con otra mascota.');
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Error al eliminar la mascota.');
             }
             echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         }else{
