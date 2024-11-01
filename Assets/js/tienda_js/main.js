@@ -8,9 +8,8 @@ fetch(base_url + "/inventario/traerProductos")
 <section class="py-5">
     <div class="container px-lg-0 py-lg-8">
         <div class="row justify-content-center">
-            <!-- Contenedor de productos -->
             <div class="col-12">
-                <div class="row row-cols-1 row-cols-md-4 g-4"> <!-- Cambié aquí para 4 columnas -->
+                <div class="row row-cols-1 row-cols-md-4 g-4">
                     <!-- Producto -->
                     <div class="col">
                         <div class="card h-100">
@@ -33,12 +32,22 @@ fetch(base_url + "/inventario/traerProductos")
             </div>
         </div>
     </div>
+
+    <!-- Icono del carrito de compra -->
+    <div class="carrito">
+        <a href="#" class="btn btn-primary">
+            <i class="fas fa-shopping-cart"></i> <!-- Usa Font Awesome para el icono -->
+            <span class="badge">0</span> <!-- Muestra la cantidad de productos en el carrito -->
+        </a>
+    </div>
 </section>
+
          
 		`;
     });
   })(function ($) {
   "use strict";
+  
 
   // Mobile Nav toggle
   $(".menu-toggle > a").on("click", function (e) {
@@ -205,4 +214,5 @@ fetch(base_url + "/inventario/traerProductos")
       handle ? (priceInputMax.value = value) : (priceInputMin.value = value);
     });
   }
+  
 })(jQuery);

@@ -565,8 +565,9 @@ a:focus {
 }
 
 .card {
-  max-width: 500px; /* Ancho máximo para que no sean muy grandes */
-  margin: 100px; /* Centrar la tarjeta dentro de la columna */
+  max-width: 300px; /* Ancho máximo para que no sean muy grandes */
+  margin: 50px; /* Centrar la tarjeta dentro de la columna */
+  
 }
 
 .card-img-top {
@@ -574,12 +575,24 @@ a:focus {
   object-fit: cover; /* Asegura que la imagen se ajuste bien */
 }
 
-@media (max-width: 50%) {
+@media (max-width: 50px) {
   .row-cols-md-4 .col {
-      flex: 0 0 50%; /* Dos columnas en pantallas pequeñas */
-      max-width: 50%; /* Máximo ancho para dos columnas */
+      flex: 0 0 50px; /* Dos columnas en pantallas pequeñas */
+      max-width: 50px; /* Máximo ancho para dos columnas */
   }
 }
+.carrito {
+  position: fixed;
+  bottom: 20px; /* Distancia desde el fondo */
+  right: 20px; /* Distancia desde la derecha */
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.carrito .btn {
+  border-radius: 50%; /* Botón redondo */
+  padding: 15px; /* Tamaño del botón */
+}
+
 
 
 
