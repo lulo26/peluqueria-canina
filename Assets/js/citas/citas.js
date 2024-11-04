@@ -12,40 +12,37 @@ document.addEventListener('DOMContentLoaded',()=>{
     CargarEmpleados()
 
     function CargarServicios() {
-
         fetch(base_url + `/citas/getServicios`)
         .then((res)=>res.json())
         .then((res)=>{
             res.forEach(element => {
-
                 let opcion = document.createElement('option')
                 opcion.value = element.id_servicio
                 opcion.innerText = element.nombre_servicio
-                
                 document.querySelector('#servicio_select').appendChild(opcion)
             });
         })
     }
 
-    function LoadServices() {
-        let array_services = []
+    function LoadServices(id_select,valor_select) {
         fetch(base_url + `/citas/getServicios`)
         .then((res)=>res.json())
         .then((res)=>{
-            res.forEach(element => {
-                array_services.push(
-                    {
-                        nombre_servicio:element.nombre_servicio,
-                        id_servicio:element.id_servicio
-                    }
-                )
-            });
+
+            for (let index = 0; index < res.length; index++) {
+                let opcion = document.createElement('option')
+                opcion.value = res[index].id_servicio
+                opcion.innerText = res[index].nombre_servicio
+                document.getElementById(id_select).appendChild(opcion)
+            }
+
+            if (valor_select) {
+                document.getElementById(id_select).value=valor_select
+            }
+
         })
 
-        return array_services
     }
-
-    console.log(LoadServices());
     
     function CargarMascotas() {
         fetch(base_url + `/citas/getMascotas`)
@@ -218,6 +215,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         
     })
     
+    let id_select = 1
     document.addEventListener('click', (e)=>{
         try {
             let selected = e.target.closest('button').getAttribute('data-action-type')
@@ -280,17 +278,6 @@ document.addEventListener('DOMContentLoaded',()=>{
                         document.querySelector("#servicio_select").value=res.data[0].servicios_id_servicio
                         document.querySelector('#mas_servicios').disabled=false
 
-                        const array_servicios = LoadServices()
-                        
-                        array_servicios.forEach(services => {
-                            console.log(services);
-                            
-                        });
-/* 
-                        for (let index = 0; index < array_servicios.length; index++) {
-                            console.log(array_servicios[index]);
-                        }  */
-
                         if (res.data.length>1) {
 
                             for (let index = 1; index < res.data.length; index++){
@@ -298,9 +285,11 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 //creamos un contenedor que tendra un select por cada servicio que el cliente haya registrado en la cita
                                 let div  = document.createElement('div')
                                 div.setAttribute("class","input-group mb-3")
+                                //creamos el select para el contenedor
                                 let select = document.createElement('select')
                                 select.setAttribute('class','custom-select')
                                 select.setAttribute('name','servicios[]')
+                                select.setAttribute('id',id_select)
                                 select.innerHTML=`
                                 <option value="0" selected>Seleccione un servicio</option>
                                 `
@@ -308,30 +297,46 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 //creamos un div que contiene el boton borrar de cada nuevo select
                                 let div_label = document.createElement('div')
                                 div_label.setAttribute('class',"input-group-prepend")
+                                //lavel para el anterior div
                                 let label = document.createElement('label')
                                 label.setAttribute('class',"input-group-text btn-danger")
                                 label.setAttribute('id',"borrar_servicios")
                                 label.innerText="Borrar"
 
-                                //juntamos el div que contiene el btn borrar con el div que contiene el select
-                                div_label.appendChild(label)
-                                div.appendChild(select)
-                                div.appendChild(div_label)
-                                document.querySelector('#select_servicios').appendChild(div)
-    
-/*                                 let opcion = document.createElement("option")
-                                opcion.value = array_servicios.servicio[index].id_servicio
-                                opcion.innerText = array_servicios.servicio[index].nombre_servicio
-    
-                                select.appendChild(opcion)
-                                select.value=res.data[index].servicios_id_servicio */
+                                 //juntamos el div que contiene el btn borrar con el div que contiene el select
+                                 div_label.appendChild(label)
+                                 div.appendChild(select)
+                                 div.appendChild(div_label)
+                                 document.querySelector('#select_servicios').appendChild(div)
+
+                                 //cargamos funcion que crea las opciones que tiene el nuevo select y le asigna el valor que corresponde al que se guardo en el registro de la cita
+                                LoadServices(id_select,res.data[index].servicios_id_servicio )
+                                id_select+=1;  
                                 }
                         }
                         
                     })
             }
 
-        }catch{}
+        }catch{
+
+        }
+    })
+
+    $('#insertarCitas').on('hidden.bs.modal',function (){
+        id_select=1
+
+        document.querySelector('#select_servicios').innerHTML=""
+                document.querySelector('#select_servicios').innerHTML=`
+                            <span>Servicios</span>
+
+                            <div class="input-group mb-3">
+                                    <select class="custom-select" name="servicios[]" id="servicio_select">
+                                                    <option value="0" selected>Seleccione un servicio</option>
+                                    </select>
+                            </div>
+                `
+                CargarServicios()
     })
 
 })
