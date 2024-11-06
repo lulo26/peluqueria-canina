@@ -1,9 +1,9 @@
 <!-- Modal -->
-<div class="modal fade" id="crearProductoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="setInventarioModal" tabindex="-1" aria-labelledby="setInventarioModal" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="crearProductoModalLabel">Crear Producto</h5>
+        <h5 class="modal-title" id="inventarioModalLabel">{titulo}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -12,21 +12,13 @@
 
         <!-- aquí va el contenido del modal -->
 
-        <form id="frmProductos" method="POST">
+        <form id="frmInventario" method="POST">
             <input type="hidden" id="idProducto" name="idProducto" value="0">
-            <div class="form-group">
-              <label for="nombreProducto">Nombre</label>
-              <input type="text" class="form-control" id="nombreProducto" name="nombreProducto" autocomplete="off">
-            </div>
+            <label id="nombreProductoLabel">{nombre producto}</label>
 
             <div class="form-group">
-              <label for="precioProducto">Precio</label>
-              <input type="text" class="form-control" id="precioProducto" name="precioProducto" autocomplete="off">
-            </div>
-
-            <div class="form-group">
-              <label for="codigoProducto">Codigo</label>
-              <input type="text" class="form-control" id="codigoProducto" name="codigoProducto" autocomplete="off">
+              <label for="cantidadProducto">Cantidad</label>
+              <input type="text" class="form-control" id="cantidadProducto" name="cantidadProducto" autocomplete="off" onkeypress="return controlTag(event);">
             </div>
       </div>
       <div class="modal-footer">

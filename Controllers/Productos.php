@@ -94,7 +94,7 @@ class Productos extends Controllers{
                 $option = 2;
             }
             
-            if ($requestModel > 0 && $requestModel != 'exist'){
+            if (intval($requestModel) > 0){
                 if ($option === 1) {
 
                     $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente, ');   
