@@ -119,21 +119,7 @@
 
 
         <div class="row">
-          <div class="col-7">
-          <div class="imagenTienda1">
-                    <img src="./assets/img/tienda/capuchino.png" height="10%">
-                  </div>
-            <div class="hot-deal">
-              <ul class="hot-deal-countdown">
-                <div class="row">
-                </div>
-              </ul>
-              <h2 class="text-uppercase">Canino Feliz Store</h2>
-          
-              <p>Todo lo que necesitas para un perro feliz, ¡a un clic de distancia!</p>
-              <a class="primary-btn cta-btn" href="#">Shop now</a>
-            </div>
-          </div>
+         <div class="cardProductos" id="cardProductos"></div>
         </div>
         <!-- /row -->
       </div>
@@ -157,6 +143,7 @@
       <script src="./Assets/js/tienda_js/nouislider.min.js"></script>
       <script src="./Assets/js/tienda_js/jquery.zoom.min.js"></script>
       <script src="./Assets/js/tienda_js/main.js"></script>
+      <script src="./Assets/js/tienda/tienda.js"></script>
 
       <!-- Aqui termina -->
 
