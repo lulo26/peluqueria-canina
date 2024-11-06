@@ -14,11 +14,12 @@
 
         <form id="frmInventario" method="POST">
             <input type="hidden" id="idProducto" name="idProducto" value="0">
+            <input type="hidden" id="inventarioSumaResta" name="inventarioSumaResta" value="">
             <label id="nombreProductoLabel">{nombre producto}</label>
 
             <div class="form-group">
               <label for="cantidadProducto">Cantidad</label>
-              <input type="text" class="form-control" id="cantidadProducto" name="cantidadProducto" autocomplete="off" onkeypress="return controlTag(event);">
+              <input type="number" class="form-control" id="cantidadProducto" name="cantidadProducto" value="" autocomplete="off">
             </div>
       </div>
       <div class="modal-footer">

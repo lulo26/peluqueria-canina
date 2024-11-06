@@ -11,20 +11,6 @@ getModal('inventarioModal',$data);
     <div class="card-header py-3">
         <h4 class="m-0 font-weight-bold text-primary">
             <?= $data['page_title'] ?>
-            <?php if ($_SESSION['permisosMod']['w']): ?>
-                    <button id="btnIngresarProducto" type="button" class="btn btn-primary btn-icon-split btn-sm" >
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Ingresar Productos</span>
-                    </button>
-                    <button id="btnEgresarProducto" type="button" class="btn btn-danger btn-icon-split btn-sm" >
-                        <span class="icon text-white-50">
-                            <i class="fas fa-minus"></i>
-                        </span>
-                        <span class="text">Egresar Productos</span>
-                    </button>
-                <?php endif; ?>
         </h4>
     </div>
 

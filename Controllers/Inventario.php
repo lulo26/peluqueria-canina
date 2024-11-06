@@ -45,14 +45,50 @@ class Inventario extends Controllers{
     }
 
     public function getInventarioById($id){
-
-        $arrData = $this->model->selectProducto($id);
+        $intId = intval($id);
+        $arrData = $this->model->selectProducto($intId);
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
         die();
     }
 
     public function setInventario(){
-        
+/*         $arrPost = ['cantidadProducto'];
+
+        if (check_post($arrPost)) {
+            $intCantidad = intval($_POST['cantidadProducto']);
+            $intId = intval($_POST['idProducto']);
+            $strSumaResta = strClean($_POST['inventarioSumaResta']);
+            try {
+                if (intval($requestModel) > 0) {
+
+                    $totalUpdate;
+                    $cantidadPdoducto = $this->model->selectCantidadProducto($intId);
+
+                    if ($strSumaResta == 'suma') {
+                        $totalUpdate = $intCantidad + $cantidadPdoducto;
+                        $this->model->updateProducto($intId, $totalUpdate);
+                        $arrResponse = array("status" => true, "msg" => 'Productos ingresados correctamente.');
+                    }
+
+                    if ($strSumaResta == 'resta' && $cantidadPdoducto >= $cantidadPdoducto) {
+                        $totalUpdate = $intCantidad - $cantidadPdoducto;
+                        $this->model->updateProducto($intId, $totalUpdate);
+                        $arrResponse = array("status" => true, "msg" => 'Productos egresados correctamente.');
+                    }else{
+                        $arrResponse = array("status" => false, "msg" => 'No se permite inventario negativo.');
+                    }
+                }else{
+                    $arrResponse = array("status" => false, "msg" => 'No esposible almacenar los datos');
+                }
+            } catch (\Throwable $th) {
+                $arrResponse = array("status" => false, "msg" => "Error al intentar ejecutar la consulta: ". $th);
+            }
+
+            echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+            die();
+        } */
+
+        dep($_POST['cantidadProducto']);
     }
 }
