@@ -1,13 +1,29 @@
 <!-- Carga todo el header, la variable $data viene desde el controlador -->
 <?php header_admin($data) ?> 
-<!-- Contenido de la pagina -->
-    <div class="container-fluid">
 
-        <!-- Titulo de la pagina -->
-        <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        
+
+<!-- Contenido de la pagina -->
+<div class="container-fluid">
+
+<div class="card shadow mb-4">
+
+    <div class="card-header py-3">
+        <h4 class="m-0 font-weight-bold text-primary">
+            <?= $data['page_title'] ?>
+        </h4>
     </div>
-    <!-- /.Fin de contenido -->
+
+    <div class="card-body">
+    <div class="table-responsive">
+
+    </div>
+content
+    </div>
+    </div>
+    
+</div>
+<!-- /.Fin de contenido -->
+
 
     </div>
     <!-- Fin de contenido principal <main> -->

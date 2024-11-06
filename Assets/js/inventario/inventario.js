@@ -34,21 +34,24 @@ document.addEventListener('click', (e)=>{
     try {
         selected = e.target.closest('button').getAttribute('data-action-type')
         let frmIdProducto = e.target.closest('button').getAttribute('rel')
-        frmInventario.reset()
 
         if (selected == 'sumar') {
+            frmInventario.reset()
             inventarioModalLabel.innerHTML = 'Ingresar Producto'
             inventarioSumaResta.value = 'suma'
             idProducto.value = frmIdProducto 
-            fntFetchInventarioById(frmIdProducto)     
+            fntFetchInventarioById(frmIdProducto)   
+            $('#setInventarioModal').modal('show')  
         }
 
         if (selected == 'restar') {
+            frmInventario.reset()
             inventarioModalLabel.innerHTML = 'Egresar Producto'
             inventarioSumaResta.value = 'resta'
+            idProducto.value = frmIdProducto
             fntFetchInventarioById(frmIdProducto)
+            $('#setInventarioModal').modal('show')
         }
-        $('#setInventarioModal').modal('show')
 
     } catch (error) {}
 })
@@ -66,7 +69,6 @@ function fntFetchInventarioById(idProducto){
 frmInventario.addEventListener('submit', (e)=>{
     e.preventDefault()
     frmData = new FormData(frmInventario)
-    console.log(frmData)
     fetch(base_url + '/inventario/setInventario',{
         method: "POST",
         body:frmData
@@ -78,7 +80,7 @@ frmInventario.addEventListener('submit', (e)=>{
         icon: data.status ? "success" : 'error'
         })
         if (data.status){
-            frmRol.reset()
+            frmInventario.reset()
             $('#setInventarioModal').modal('hide')
             tablaInventario.api().ajax.reload(function(){})
         }

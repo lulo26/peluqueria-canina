@@ -26,6 +26,8 @@ class InventarioModel extends Mysql
     public function selectCantidadProducto($id){
         $this->idProducto = $id;
         $sql = "SELECT cantidadProducto FROM productos WHERE idInventario = $this->idProducto";
+        $request = $this->select_all($sql);
+        return $request;
     }
 
     public function updateProducto(int $id, int $cantidad){
