@@ -50,8 +50,9 @@
 
 
   <!-- Aqui termina la tienda con nuevas librerias!! -->
-
-
+<?php
+  getModal('tiendaModal', $data);
+  ?> 
 </head>
 
 <div class="hero_area">
@@ -118,9 +119,9 @@
 
 
 
-        <div class="row">
-         <div class="cardProductos" id="cardProductos"></div>
+        <div class="row" id="cardProductos">
         </div>
+
         <!-- /row -->
       </div>
       <!-- /container -->
