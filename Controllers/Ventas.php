@@ -7,6 +7,7 @@ class Ventas extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/dashboard' );
         }
+        getPermisos(M_VENTAS);
     }
 
     //Muestra la view principal de citas
@@ -18,6 +19,7 @@ class Ventas extends Controllers{
 
         $data['page_title'] = "Ventas";
         $data['page_id_name'] = "ventas";
+        $data['page_functions_js'] = "ventas/ventas.js";
  
         $this->views->getView($this,"ventas", $data);
     }

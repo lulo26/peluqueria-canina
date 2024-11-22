@@ -16,7 +16,7 @@
         <input type="hidden" id="idMascotas" name="idMascotas" value="0">
             <div class="form-group">
               <label for="nombreMascota">Nombre</label>
-              <input type="text" class="form-control" id="nombreMascota" name="nombreMascota" autocomplete="off">
+              <input type="text" class="form-control valid validText" id="nombreMascota" name="nombreMascota" autocomplete="off">
             </div>
 
             <div class="form-group">
@@ -37,7 +37,7 @@
             
             <div class="form-group">
               <label for="edadMascota">Edad</label>
-              <input type="number" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off">
+              <input type="number" class="form-control" id="edadMascota" name="edadMascota" autocomplete="off" onkeypress="return controlTag(event);">
             </div>
 
             <div class="form-group">

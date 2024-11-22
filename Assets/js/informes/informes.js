@@ -1,6 +1,5 @@
 console.log("hello world");
 
-
 document.addEventListener("DOMContentLoaded", (e) => {
   $(document).ready(function () {
     $.ajax({
@@ -17,10 +16,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         for (var i in data) {
           agrupa.push(data[i].agrupa);
           total.push(data[i].total);
-          
         }
-        
-        
 
         var ctx = document.getElementById("myChart").getContext("2d");
 
@@ -46,7 +42,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
         };
         // Bar Chart Example
         var ctx = document.getElementById("myChart");
-        var myBarChart = new Chart(ctx, {
+        var myChart = new Chart(ctx, {
           type: "bar",
           data: chartdata,
           options: {
@@ -81,7 +77,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
                     min: 0,
                     max: total.length,
                     maxTicksLimit: 3,
-                    callback: function(value, index) {
+                    callback: function (value, index) {
                       return value;
                     },
                     padding: 10,

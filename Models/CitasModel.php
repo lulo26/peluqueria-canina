@@ -49,7 +49,7 @@ class CitasModel extends Mysql{
         return $result;
     }
 
-    public function actualizarCitas(string $hora_inicio, string $hora_final, string $lugar, int $id_mascota, int $id_empleado,int $id_cita){
+    public function actualizarCitas(string $dia_cita,string $hora_inicio, string $hora_final, string $lugar, int $id_mascota, int $id_empleado,int $id_cita){
         $this->dia_cita=$dia_cita;
         $this->hora_inicio=$hora_inicio;
         $this->hora_final=$hora_final;
@@ -58,9 +58,9 @@ class CitasModel extends Mysql{
         $this->id_empleado=$id_empleado;
         $this->id_cita=$id_cita;
 
-        $sql = "UPDATE citas set fecha_inicio = ? ,fecha_final = ?,lugar_cita = ?,estado_cita = ?,mascotas_idMascotas  = ?,empleados_id_empleado = ? WHERE id_cita = ?";
+        $sql = "UPDATE citas set  dia_cita = ?,hora_inicio = ? ,hora_final = ?,lugar_cita = ?,estado_cita = ?,mascotas_idMascotas  = ?,personas_id_persona = ? WHERE id_cita = ?";
 
-        $arrayData = array($this->fecha_inicio,$this->fecha_final,$this->lugar,1,$this->id_mascota,$this->id_empleado,$this->id_cita);
+        $arrayData = array($this->dia_cita,$this->hora_inicio,$this->hora_final,$this->lugar,1,$this->id_mascota,$this->id_empleado,$this->id_cita);
 
         $request_insert = $this->insert($sql, $arrayData);
 
@@ -74,7 +74,7 @@ class CitasModel extends Mysql{
         $this->id_cita = $id_cita;
         $this->id_servicio = $id_servicio;
 
-        $sql="UPDATE citas_has_servicios SET servicios_idServicios = ? WHERE citas_idCitas = ?";
+        $sql="UPDATE citas_has_servicios SET servicios_id_servicio = ? WHERE citas_id_cita = ?";
 
         $arrayData = array($this->id_servicio,$this->id_cita);
         $request_update = $this->update($sql, $arrayData);
@@ -112,7 +112,6 @@ class CitasModel extends Mysql{
         }
 
         return $requestDelete;
-        
     }
 
     public function selectCitas(){

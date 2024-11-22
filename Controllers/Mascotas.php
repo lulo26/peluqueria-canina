@@ -7,7 +7,14 @@ class Mascotas extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/login' );
         }
+<<<<<<< HEAD
         getPermisos(M_MASCOTAS);
+=======
+        if (empty($_SESSION['permisosMod']['r'])) {
+            header('Location: ' . base_url() );
+        }
+        //getPermisos(8);
+>>>>>>> d24f56893b975da522c82dab9632634bd7c13683
     }
 
     //Muestra la view principal de citas
@@ -28,16 +35,28 @@ class Mascotas extends Controllers{
         $arrData = $this->model->selectMascotas();
 
         for ($i=0; $i < count($arrData); $i++) { 
-            $arrData[$i]['options'] = "
-
-            <button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idMascotas']."'>
+            $btnEdit = '';
+            $btnDelete = '';
+            if ($_SESSION['permisosMod']['d']) {
+                $btnDelete = "<button type='button' class='btn btn-danger btn-circle' data-action-type='delete' rel='".$arrData[$i]['idMascotas']."'>
                 <i class='fas fa-trash'></i>
-                </button>
-
-                <button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['idMascotas']."'>
+                </button>";
+            } else {
+                $btnDelete = "<button type='button' class='btn btn-danger btn-circle disabled'>
+                <i class='fas fa-trash'></i>
+                </button>";
+            }
+            if ($_SESSION['permisosMod']['u']){
+                $btnEdit = "<button type='button' class='btn btn-primary btn-circle' data-action-type='update' rel='".$arrData[$i]['idMascotas']."'>
                     <i class='fas fa-pen'></i>
-                </button>
-            ";
+                </button>";
+            } else {
+                "<button type='button' class='btn btn-primary btn-circle disabled'>
+                    <i class='fas fa-pen'></i>
+                </button>";
+            }
+            $arrData[$i]['options'] =  $btnDelete . " " . " " . $btnEdit;
+                
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);

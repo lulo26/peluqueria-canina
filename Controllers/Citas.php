@@ -121,6 +121,15 @@ class Citas extends Controllers{
                     $action = "insert";
                     
                 } else {
+
+                    $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
+                    
+                    /* $deletePivote = $this->model->deletePivote($id_cita);
+
+                    foreach ($_POST['servicios'] as $selected) {
+                        $insertPivote = $this->model->insertarCitaServicios($selected);
+                    } */
+
                     $action = "update";
                 }
     
@@ -129,6 +138,10 @@ class Citas extends Controllers{
                         $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
                         break;
                     
+                        case 'update':
+                            $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+                            break;
+
                     default:
                         break;
                 }
