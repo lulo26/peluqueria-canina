@@ -1,4 +1,3 @@
-//const setInventarioModal = document.querySelector('#setInventarioModal')
 const btnIngresarProducto = document.querySelector('#btnIngresarProducto')
 const btnEgresarProducto = document.querySelector('#btnEgresarProducto')
 const inventarioModalLabel = document.querySelector('#inventarioModalLabel')
