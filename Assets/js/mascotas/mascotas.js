@@ -1,6 +1,5 @@
 const frmMascotas = document.querySelector("#frmMascotas");
 const frmRazasMascotas = document.querySelector("#frmRazas");
-const crearProductoModal = document.querySelector("#insertarMascotasModal");
 let nombreUsuario = document.querySelector("#nombreUsuario");
 let razaMascota = document.querySelector("#razaMascota");
 const btnInsertarMascota = document.querySelector("#btnInsertarMascota");

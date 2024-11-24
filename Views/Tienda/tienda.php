@@ -115,10 +115,6 @@
       <!-- container -->
       <div class="container" id="cardnavegante">
   
-
-
-
-
         <div class="row" id="cardProductos">
         </div>
 
