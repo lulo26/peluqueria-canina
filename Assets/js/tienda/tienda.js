@@ -12,7 +12,7 @@ fetch(base_url + "/productos/traerProductos")
   <img src="${producto.imagen_productos}" class="card-img-top">
   <div class="card-body">
   <h5 class="card-title">${producto.nombreProducto}</h5>
-    <p class="card-text">$ ${producto.precioProducto} <button type="button" class="btn btn-primary btn-circle" id="btnModalProducto" data-toggle="modal" data-target="#agregarProducto">agregar</button></p>
+    <p class="card-text">$ ${producto.precio} <button type="button" class="btn btn-primary btn-circle" id="btnModalProducto" data-toggle="modal" data-target="#agregarProducto">agregar</button></p>
 
   </div>
 </div></div>`

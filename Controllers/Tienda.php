@@ -6,7 +6,7 @@ class Tienda extends Controllers
     {
         parent::__construct();
     }
-    public function Tienda()
+    public function tienda()
     {
 
 
@@ -15,5 +15,18 @@ class Tienda extends Controllers
         $data['page_id_name'] = "tienda";
         $data['page_tag'] = "Tiendita :3";
         $this->views->getView($this, "tienda", $data);
+    }
+
+    public function productoTienda($id){
+        $intId = intval(strClean($id));
+        $arrData = $this->model->selectProducto($intId);
+        if (empty($arrData)) {
+            $arrResponse = array('status' => false, 'msg' => 'datos no encontrados');
+        }else{
+            $arrResponse = array('status' => true, 'data' => $arrData);
+        }
+        $data = json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        echo $data;
+        //$this->views->getView($this, "productoTienda", $data);
     }
 }
