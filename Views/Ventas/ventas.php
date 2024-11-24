@@ -17,7 +17,7 @@
     <div class="table-responsive">
 
     </div>
-content
+        content
     </div>
     </div>
     
