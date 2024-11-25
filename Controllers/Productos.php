@@ -63,6 +63,28 @@ class Productos extends Controllers{
             }else{
                 $arrResponse = array('status' => true, 'data' => $arrData);
             }
+        }else{
+            $arrResponse = array('status' => false, 'msg' => 'Error: tipo de dato no valido');
+        }
+
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function getProductoByCode($code){
+
+        $strCode = strClean($code);
+
+        if(!empty($strCode)){
+    
+            $arrData = $this->model->selectProductoByCode($strCode);
+            if(empty($arrData)){
+                $arrResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+            }else{
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }
+        }else{
+            $arrResponse = array('status' => false, 'msg' => 'Error: tipo de dato no valido');
         }
 
         echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
