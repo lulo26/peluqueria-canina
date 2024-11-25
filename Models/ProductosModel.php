@@ -12,6 +12,12 @@ class ProductosModel extends Mysql{
         return $request;
     }
 
+    public function selectProductoByCode(string $code){
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, idInventario FROM productos WHERE codigoSKU = '{$code}' AND estado = 1";
+        $request = $this->select_all($sql);
+        return $request;
+    }
+
     public function selectProducto(int $id){
         $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU FROM productos WHERE idInventario = $id";
         $request = $this->select_all($sql);
@@ -34,7 +40,7 @@ class ProductosModel extends Mysql{
         $this->codigoProducto = $codigoProducto;
         $this->imagenProducto = $imagenProducto;
 
-        $sql = "SELECT * FROM productos WHERE nombreProducto = '{$this->nombreProducto}'";
+        $sql = "SELECT * FROM productos WHERE nombreProducto = '{$this->nombreProducto}' OR codigoSKU = '{$this->codigoProducto}'";
         $request = $this->select_all($sql);
 
         if (empty($request)) {
@@ -56,10 +62,10 @@ class ProductosModel extends Mysql{
         $this->precioProducto = $precioProducto;
         $this->codigoProducto = $codigoProducto;
         $this->imagenProducto = $imagenProducto;
-
-        $sql = "SELECT * FROM productos WHERE nombreProducto = '{$this->nombreProducto}' AND idInventario != $this->idProducto";
-        //$request = $this->select_all($sql);
-        $request;
+// SELECT * FROM productos WHERE idInventario != 2 AND (nombreProducto = 'perro' OR codigoSKU = '001-001-002');
+        $sql = "SELECT * FROM productos WHERE idInventario != {$this->idProducto} AND (nombreProducto = '{$this->nombreProducto}' OR codigoSKU = '{$this->codigoProducto}')";
+        $request = $this->select_all($sql);
+        //$request;
 
         if (empty($request)) {
             $query_insert = "UPDATE productos SET nombreProducto = ?, estado = ?, precio = ?, codigoSKU = ?, imagen_productos = ? WHERE idInventario = $this->idProducto";

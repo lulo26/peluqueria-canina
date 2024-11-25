@@ -1,3 +1,7 @@
+console.log("hello world");
+let agregarProducto = document.getElementById("agregarProducto");
+let btnModalProducto = document.getElementById("btnModalProducto");
+
 //traer los productos
 
 fetch(base_url + "/productos/traerProductos")
@@ -8,11 +12,7 @@ fetch(base_url + "/productos/traerProductos")
   <img src="${producto.imagen_productos}" class="card-img-top">
   <div class="card-body">
   <h5 class="card-title">${producto.nombreProducto}</h5>
-    <p class="card-text">
-    <p>$${producto.precio}</p>
-     <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalTienda"><i="fas fa-shopping-cart">
-      Producto
-    </button></p>
+    <p class="card-text">$ ${producto.precio} <button type="button" class="btn btn-primary btn-circle" id="btnModalProducto" data-toggle="modal" data-target="#agregarProducto">agregar</button></p>
 
   </div>
 </div></div>`
@@ -20,6 +20,11 @@ fetch(base_url + "/productos/traerProductos")
     })
 
 
+    btnModalProducto.addEventListener('click', ()=>{
+      console.log("click");
+      
+     // $('#agregarProducto').modal('show')
+  })
 
 
 

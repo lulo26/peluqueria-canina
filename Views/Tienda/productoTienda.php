@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
 
-  <title><?= $data['page_tag'] ?></title>
+  <title>dsf</title>
 
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css"
@@ -34,8 +34,8 @@
 
 
   <!-- Slick -->
-  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick.css" />
-  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/slick-theme.css" />
+  <link type="text/css" rel="stylesheet" href="../Assets/css/tienda_css/slick.css" />
+  <link type="text/css" rel="stylesheet" href="../Assets/css/tienda_css/slick-theme.css" />
 
   <!-- nouislider -->
   <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/nouislider.min.css" />
@@ -51,7 +51,7 @@
 
   <!-- Aqui termina la tienda con nuevas librerias!! -->
 <?php
-  getModal('tiendaModal', $data);
+//  getModal('tiendaModal', $data);
   ?> 
 </head>
 
@@ -140,7 +140,6 @@
       <script src="./Assets/js/tienda_js/nouislider.min.js"></script>
       <script src="./Assets/js/tienda_js/jquery.zoom.min.js"></script>
       <script src="./Assets/js/tienda_js/main.js"></script>
-      <script src="./Assets/js/tienda/tienda.js"></script>
 
       <!-- Aqui termina -->
 
