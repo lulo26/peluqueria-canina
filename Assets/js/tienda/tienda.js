@@ -1,5 +1,3 @@
-console.log("hello world");
-
 //traer los productos
 
 fetch(base_url + "/productos/traerProductos")
@@ -10,8 +8,11 @@ fetch(base_url + "/productos/traerProductos")
   <img src="${producto.imagen_productos}" class="card-img-top">
   <div class="card-body">
   <h5 class="card-title">${producto.nombreProducto}</h5>
-    <p class="card-text">$ ${producto.precio} <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalTienda"><i="fas fa-shopping-cart">
-</button></p>
+    <p class="card-text">
+    <p>$${producto.precio}</p>
+     <button type="button" class="btn btn-primary btn-circle" data-toggle="modal" data-target="#modalTienda"><i="fas fa-shopping-cart">
+      Producto
+    </button></p>
 
   </div>
 </div></div>`
