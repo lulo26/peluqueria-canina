@@ -44,10 +44,32 @@ class Productos extends Controllers{
 
 
     public function traerProductos(){
+        try{
+            $arrData = $this->model->traerProductos();
+
+            if (!empty($arrData)) {
+                $arrRespuesta = array('status' => true, 'data' => $arrData);
+            }else{
+                $arrRespuesta = array('status' => false, 'msg' => 'No se encontraron datos');
+            }
+        }catch(Exception $e){
+            $arrRespuesta = array('status' => false, 'msg' => 'Error desconocido');
+        }
+
+        echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
+    public function getProductSale(){
 
         $arrData = $this->model->traerProductos();
 
+        for($i = 0; $i < count($arrData);$i++){
+            $arrData[$i]['action'] = '<button id="btnAgregarProducto" type="button" class="btn btn-primary">Agregar</button>';
+        }
+
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
 

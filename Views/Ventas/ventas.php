@@ -21,13 +21,23 @@ getModal('ventasModal', $data);
 
     <div class="card-body">
 
-        <form id="frmUsuarios" method="POST">
-
-        <input type="hidden" id="idUsuario" name="idUsuario" value="0">
+        <form id="frmVentas" method="POST">
 
             <div class="form-row">
+              <div class="form-group col-md-3">
+                <input type="text" placeholder="CLIENTE" class="form-control" id="txtCliente" name="txtCliente" autocomplete="off" required="">
+                
+              </div>
+
               <div class="form-group col-md-6">
-                <input type="text" placeholder="CODIGO SKU" class="form-control" id="txtCodigoSKU" name="txtIdentificacion" autocomplete="off" required="">
+                <button id="btnAgregarCliente" type="button" class="btn btn-primary">Agregar</button>
+              </div>
+
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-3">
+                <input type="text" placeholder="CODIGO SKU" class="form-control" id="txtCodigoSKU" name="txtCodigoSKU" autocomplete="off" required="">
                 
               </div>
 
@@ -46,16 +56,20 @@ getModal('ventasModal', $data);
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <select name="metodoPago" id="metodoPago" class="form-control">
-                        <option name="0" id="0">Seleccionar Metodo de pago</option>
-                    </select>
+            
+                <div class="form-row">
+                    <div class="form-group col-md-3" >
+                        <select name="metodoPago" id="metodoPago0" class="form-control">
+                            <option value="0">Seleccionar Metodo de pago</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <button id="btnAgregarMetodo" type="button" class="btn btn-primary">Agregar</button>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <button id="btnAgregarMetodo" type="button" class="btn btn-primary">Agregar</button>
-                </div>
+            <div id="metodoPagoZone">
             </div>
+
       
         <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
