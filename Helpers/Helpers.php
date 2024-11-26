@@ -37,6 +37,11 @@ function media(){
     return BASE_URL."/Assets";
 }
 
+function header_tienda($data = " "){
+    $view_header = "Views/Template/header_tienda.php";
+    require_once ($view_header);
+}
+
 function header_admin($data = ""){
     $view_header = "Views/Template/header_admin.php";
     require_once ($view_header);
