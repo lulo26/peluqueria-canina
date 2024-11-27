@@ -25,7 +25,7 @@ getModal('ventasModal', $data);
 
             <div class="form-row">
               <div class="form-group col-md-3">
-                <input type="text" placeholder="CLIENTE" class="form-control" id="txtCliente" name="txtCliente" autocomplete="off" required="">
+                <input type="text" placeholder="CLIENTE" class="form-control" id="txtCliente" name="txtCliente" autocomplete="off">
                 
               </div>
 
@@ -37,7 +37,7 @@ getModal('ventasModal', $data);
 
             <div class="form-row">
               <div class="form-group col-md-3">
-                <input type="text" placeholder="CODIGO SKU" class="form-control" id="txtCodigoSKU" name="txtCodigoSKU" autocomplete="off" required="">
+                <input type="text" placeholder="CODIGO SKU" class="form-control" id="txtCodigoSKU" name="txtCodigoSKU" autocomplete="off">
                 
               </div>
 
