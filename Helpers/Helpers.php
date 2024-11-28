@@ -52,6 +52,11 @@ function footer_admin($data = ""){
     require_once ($view_footer);
 }
 
+function footer_tienda($data = " "){
+    $view_header = "Views/Template/footer_tienda.php";
+    require_once ($view_header);
+}
+
 function dep($data){
     $format = print_r('<pre>');
     $format .= print_r($data);
