@@ -1,19 +1,109 @@
 const btnNuevaVenta = document.querySelector('#btnNuevaVenta')
 const btnAgregarItem = document.querySelector('#btnAgregarItem')
 const btnAgregarMetodo = document.querySelector('#btnAgregarMetodo')
+const btnAgregarCliente = document.querySelector('#btnAgregarCliente')
 const txtCodigoSKU = document.querySelector('#txtCodigoSKU')
+const txtCliente = document.querySelector('#txtCliente')
 const productList = document.querySelector('#productList')
 const frmVentas = document.querySelector('#frmVentas')
 const metodoPagoZone = document.querySelector('#metodoPagoZone')
 let btnAgregarProducto
+let tablaProductos = null
+let productItems
 
 let metodosCount = 0
 let limiteMetodos = 0
 
 fntLoadMetodosPago()
 
+document.addEventListener('focusout', (e)=>{
+    if (e.target.getAttribute('class') == "form-control target-cantidad") {
+        let stock = e.target.getAttribute('data-item-stock')
+        let value = e.target.value
+        if (value > stock) {
+            e.target.value = stock
+        }
+        if (value < 0 || isNaN(value)) {
+            e.target.value = 1
+        }
+    }
+    
+})
+
+btnAgregarCliente.addEventListener('click', ()=>{
+    fntAgregarCliente(txtCliente.value)
+})
+
 btnAgregarItem.addEventListener('click', ()=>{
-    fetch(base_url + '/productos/getProductoByCode/' + txtCodigoSKU.value)
+    value = txtCodigoSKU.value
+    fntAgregarItem(value)
+})
+txtCodigoSKU.addEventListener('keypress', (e) =>{
+    if (e.key == 'Enter') {
+        value = txtCodigoSKU.value
+        fntAgregarItem(value)
+    }
+})
+
+btnAgregarMetodo.addEventListener('click', ()=>{
+
+    if (metodosCount >= limiteMetodos) {
+        Swal.fire({
+            title: "Atencion",
+            text: `No se pueden agregar mas metodos`,
+            icon: "warning"
+        })
+    }else{
+        html = 
+        `
+            <div class="form-row" id="formMethod${metodosCount}">
+                <div class="form-group col-md-3" >
+                    <select name="metodoPago" id="metodoPago${metodosCount}" class="form-control">
+                        <option value="0">Seleccionar Metodo de pago</option>
+                    </select>
+                </div>
+                <button data-action-id="${metodosCount}" data-action-type="deleteMethod" type="button" class="btn btn-danger btn-circle"><i class="fas fa-trash"></i></button>
+            </div>
+        `
+        metodoPagoZone.innerHTML += html
+        fntLoadMetodosPago()
+    }
+})
+
+document.addEventListener('click', (e)=>{
+    
+    try{
+        if (e.target.getAttribute('data-action-type') == 'close') {
+            let element = e.target.closest('div').parentElement
+            element.remove()
+        }
+        if (e.target.closest('button').getAttribute('data-action-type') == 'deleteMethod') {
+            console.log('eliminar metodo')
+            let idMethod = e.target.closest('button').getAttribute('data-action-id')
+            let element = document.querySelector(`#formMethod${idMethod}`)
+            element.remove()
+            metodosCount--
+        }
+
+        if (e.target.closest('button').getAttribute('data-action-type') == 'AddProduct') {
+            let codigo =  e.target.closest('button').getAttribute('data-action-sku')
+            fntAgregarItem(codigo)
+        }
+    }catch{}
+})
+
+frmVentas.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    
+})
+
+function fntAgregarCliente(value){
+    //TODO: crear funcion agregar cliente
+}
+
+
+function fntAgregarItem(value){
+    fetch(base_url + '/productos/getProductoByCode/' + value)
     .then((response) => response.json())
     .then((data) => {
         if(data.status){
@@ -41,59 +131,21 @@ btnAgregarItem.addEventListener('click', ()=>{
                     }
                 }else{
                     fntAgregarProducto(data)
+                    fntUpdateInternalItemsList()
                 }
             }
             txtCodigoSKU.value = "";
         }else{
             txtCodigoSKU.value = "";
             $('#selectProductModal').modal('show')
-            fntLoadProductosModal()
+            if (tablaProductos == null) {
+                fntLoadProductosModal()
+            }
         }
     })
-})
-
-btnAgregarMetodo.addEventListener('click', ()=>{
-    //fetch busca metodo de pago info
-    if (metodosCount >= limiteMetodos) {
-        Swal.fire({
-            title: "Atencion",
-            text: `No se pueden agregar mas metodos`,
-            icon: "warning"
-        })
-        console.log('nosepuede')
-    }else{
-        html = 
-        `
-            <div class="form-row">
-                <div class="form-group col-md-3" >
-                    <select name="metodoPago" id="metodoPago${metodosCount}" class="form-control">
-                        <option value="0">Seleccionar Metodo de pago</option>
-                    </select>
-                </div>
-            </div>
-        `
-        metodoPagoZone.innerHTML += html
-        fntLoadMetodosPago()
-    }
-console.log('boton disparado')
-})
-
-document.addEventListener('click', (e)=>{
-    
-    try{
-        if (e.target.getAttribute('data-action-type') == 'close') {
-            let element = e.target.closest('div').parentElement
-            element.remove()
-        }
-    }catch{}
-})
-
-frmVentas.addEventListener('submit', (e)=>{
-    e.preventDefault()
-})
+}
 
 function fntAgregarProducto(json){
-    console.log(json)
 
     let html = 
     `
@@ -106,7 +158,7 @@ function fntAgregarProducto(json){
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input type="text" class="form-control" value="1"/></div>
+                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
                 </div>
             </div>
         </div>
@@ -129,7 +181,6 @@ function fntBuscarProducto(json){
 }
 
 function fntLoadMetodosPago(){
-    console.log('funcion metodos activada')
     fetch(base_url + '/ventas/getPaymentMethods')
     .then((response) => response.json())
     .then((data) => {
@@ -150,6 +201,7 @@ function fntLoadMetodosPago(){
 }
 
 function fntLoadProductosModal(){
+
     tablaProductos = $('#productTable').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`

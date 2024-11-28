@@ -65,7 +65,7 @@ class Productos extends Controllers{
         $arrData = $this->model->traerProductos();
 
         for($i = 0; $i < count($arrData);$i++){
-            $arrData[$i]['action'] = '<button id="btnAgregarProducto" type="button" class="btn btn-primary">Agregar</button>';
+            $arrData[$i]['action'] = '<button id="btnAgregarProducto" data-action-sku="'. $arrData[$i]['codigoSKU'] .'" data-action-type="AddProduct" type="button" class="btn btn-primary">Agregar</button>';
         }
 
         echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
