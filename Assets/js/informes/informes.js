@@ -1,6 +1,6 @@
 console.log("hello world");
-
-document.addEventListener("DOMContentLoaded", (e) => {
+//chartRazas
+function chartRazasMascotas() {
   $(document).ready(function () {
     $.ajax({
       url: `${base_url}/informes/getCharts`,
@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
           total.push(data[i].total);
         }
 
-        var ctx = document.getElementById("myChart").getContext("2d");
+        var ctx = document.getElementById("chartRazas").getContext("2d");
 
         if (!ctx) {
           console.log(
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
           ],
         };
         // Bar Chart Example
-        var ctx = document.getElementById("myChart");
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById("chartRazas");
+        var chartRazas = new Chart(ctx, {
           type: "bar",
           data: chartdata,
           options: {
@@ -114,4 +114,97 @@ document.addEventListener("DOMContentLoaded", (e) => {
       },
     });
   });
+}
+
+function getRandomColor() {
+  //generates random colours and puts them in string
+  var colors = [];
+  for (var i = 0; i < 3; i++) {
+    var letters = "0123456789ABCDEF".split("");
+    var color = "#";
+    for (var x = 0; x < 6; x++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    colors.push(color);
+  }
+  return colors;
+}
+
+//chartMascotas
+function chartMostrarMascotas() {
+  $(document).ready(function () {
+    $.ajax({
+      url: `${base_url}/informes/getCharts`,
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      method: "GET",
+      success: function (data) {
+        console.log(data); // Agregado para depuración
+
+        var agrupa = [];
+        var total = [];
+
+        for (var i in data) {
+          agrupa.push(data[i].agrupa);
+          total.push(data[i].total);
+        }
+
+        var ctx = document.getElementById("chartMascotas").getContext("2d");
+
+        if (!ctx) {
+          console.log(
+            "Failed to get context. Ensure the canvas element is present and has the correct ID."
+          );
+          return;
+        }
+
+        var chartdata = {
+          labels: agrupa,
+          datasets: [
+            {
+              label: "razas de mascotas",
+              fill: true,
+              data: total,
+              backgroundColor: getRandomColor(),
+              hoverBackgroundColor: "#2e59d9",
+              borderColor: "#4e73df",
+            },
+          ],
+        };
+        (Chart.defaults.global.defaultFontFamily = "Nunito"),
+          '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+        Chart.defaults.global.defaultFontColor = "#858796";
+        console.log("hey this", chartdata);
+
+        // Pie Chart Example
+        var ctx = document.getElementById("chartMascotas");
+        var chartMascotas = new Chart(ctx, {
+          type: "doughnut",
+          data: chartdata,
+          options: {
+            maintainAspectRatio: false,
+            tooltips: {
+              backgroundColor: "rgb(255,255,255)",
+              bodyFontColor: "#858796",
+              borderColor: "#dddfeb",
+              borderWidth: 1,
+              xPadding: 15,
+              yPadding: 15,
+              displayColors: false,
+              caretPadding: 10,
+            },
+            legend: {
+              display: false,
+            },
+            cutoutPercentage: 80,
+          },
+        });
+      },
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  chartRazasMascotas();
+  chartMostrarMascotas();
 });
