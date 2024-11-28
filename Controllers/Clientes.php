@@ -20,6 +20,12 @@ class Clientes extends Controllers{
         $this->views->getView($this,"clientes", $data);
     }
 
+    public function getClientByIdentification(){
+        $clientes = $this->model->selectClientes();
+        echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function getClientes(){
         $clientes = $this->model->selectClientes();
 

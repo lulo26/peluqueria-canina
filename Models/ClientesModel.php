@@ -33,6 +33,14 @@ class ClientesModel extends Mysql{
         return $request_select;
     }
 
+/*     public function selectClienteByIdentification(int $id){
+        $sql="SELECT * from clientes where idClientes = $id";
+
+        $request_select = $this->select_all($sql);
+
+        return $request_select;
+    } */
+
     public function insertarClientes(string $nombre, string $apellido, string $correo ,string $telefono, string $usuario, string $password){
 
         $result="";
