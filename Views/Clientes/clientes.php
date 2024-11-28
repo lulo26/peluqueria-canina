@@ -1,6 +1,6 @@
 <!-- Carga todo el header, la variable $data viene desde el controlador -->
 <?php header_admin($data) ;
-getModal('insertarClientesModal',$data);
+getModal('clientesModal',$data);
 ?>
  
     <!-- Contenido de la pagina -->
@@ -11,7 +11,7 @@ getModal('insertarClientesModal',$data);
                 <!-- Titulo de la pagina -->
                 <h4 class="h3 mb-4 font-weight-bold  text-primary">
                     <?= $data['page_title'] ?>
-                    <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#insertarClientes">
+                    <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#clientesModal">
                         <span>
                             <i class="fas fa-plus"></i>
                         </span>
@@ -28,11 +28,11 @@ getModal('insertarClientesModal',$data);
                     <table id="tablaClientes" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Idenrificacion</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Correo</th>
                                 <th>Telefono</th>
-                                <th>Usuario</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>

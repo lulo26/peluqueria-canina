@@ -1,5 +1,5 @@
 const formularioClientes = document.querySelector('#formularioClientes')
-const insertarClientesModal = document.querySelector('#insertarClientesModal')
+const insertarClientesModal = document.querySelector('#clientesModal')
 const btnCrearCliente = document.querySelector('#btnCrearCliente')
 let tablaClientes;
 
@@ -14,11 +14,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             "dataSrc":""
         },
         "columns":[
+            {"data":"identificacion"},
             {"data":"nombre"},
             {"data":"apellido"},
             {"data":"correo"},
             {"data":"telefono"},
-            {"data":"usuario"},
             {"data":"options"}
         ],
         "responsive": "true",
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     btnCrearCliente.addEventListener('click',()=>{
         document.querySelector('#idCliente').value=0
         formularioClientes.reset()
-        $('#insertarClientes').modal('show')
+        $('#clientesModal').modal('show')
         document.querySelector('#titulo').innerHTML = "Crear cliente"
     })
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
             if (dataInsert.status) {
                 formularioClientes.reset()
-                $('#insertarClientes').modal('hide')
+                $('#clientesModal').modal('hide')
                 tablaClientes.api().ajax.reload(function(){})
             }
         })
@@ -96,21 +96,18 @@ document.addEventListener('DOMContentLoaded',()=>{
             //actualización clientes
             if (selected == 'update') {
 
-                $('#insertarClientes').modal('show')
+                $('#clientesModal').modal('show')
                 document.querySelector('#titulo').innerHTML = "Actualizar cliente"
                 fetch(base_url + `/clientes/getClienteById/${idCliente}`,{
                     method: "GET"
                 })
                 .then((res)=>res.json())
-
-
                 .then((res)=>{
-                    const inputs = ['#nombre','#apellido','#correo','#telefono','#usuario','#password','#idCliente']
+                    const inputs = ['#identificacion','#nombre','#apellido','#correo','#telefono','#idCliente']
                    
                     arrData = res.data[0]
 
-                    const values = [arrData.nombre,arrData.apellido,arrData.correo,arrData.telefono,arrData.usuario,arrData.password,arrData.idClientes]
-                    
+                    const values = [arrData.identificacion,arrData.nombre,arrData.apellido,arrData.correo,arrData.telefono,arrData.idClientes]
                     
                     for (let index = 0; index < inputs.length; index++) {
                         document.querySelector(inputs[index]).value=values[index]

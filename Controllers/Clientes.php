@@ -20,9 +20,19 @@ class Clientes extends Controllers{
         $this->views->getView($this,"clientes", $data);
     }
 
-    public function getClientByIdentification(){
-        $clientes = $this->model->selectClientes();
-        echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
+    public function getClientByIdentification($identificacion){
+        $intIdentificacion = intval(strClean($identificacion));
+        if ($intIdentificacion > 0) {
+            $arrData = $this->model->selectClienteByIdentification($intIdentificacion);
+            if (!empty($arrData)) {
+                $arrResponse = array('status' => true, 'data' => $arrData);
+            }else{
+                $arrResponse = array('status' => false, 'msg' => 'Cliente no encontrado');
+            }
+        }else{
+            $arrResponse = array('status' => false, 'msg' => 'Tipo de dato no valido');
+        }
+        echo json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
@@ -47,6 +57,13 @@ class Clientes extends Controllers{
         die();
     }
 
+    public function getClientesSale(){
+        $clientes = $this->model->selectClientes();
+
+        echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function getClienteById($idCliente){
             $idCliente = intval($idCliente);
             
@@ -63,24 +80,23 @@ class Clientes extends Controllers{
     }
 
     public function setClientes(){
+        $identificacion = strClean($_POST['identificacion']);
         $nombre = strClean($_POST['nombre']);
         $apellido = strClean($_POST['apellido']);
         $correo = strtolower(strClean($_POST['correo']));
         $telefono = strClean($_POST['telefono']);
-        $usuario = strClean($_POST['usuario']);
-        $password = strClean($_POST['password']);
         $idCliente = intval($_POST['idCliente']);
 
-        $arrayPost = ['nombre','apellido','correo','telefono','usuario','password'];
+        $arrayPost = ['nombre','apellido','correo','telefono','identificacion'];
 
         if (check_post($arrayPost)) {
 
             if ($idCliente === 0 || $idCliente === "") {
-                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$usuario,$password);
+                $requestModel= $this->model->insertarClientes($nombre,$apellido,$correo,$telefono,$identificacion);
                 $action = "insert";
 
             } else {
-                $requestModel= $this->model->actualizarCliente($nombre,$apellido,$correo,$telefono,$usuario,$password,$idCliente);
+                $requestModel= $this->model->actualizarCliente($nombre,$apellido,$correo,$telefono,$identificacion,$idCliente);
                 $action = "update";
                 
             }

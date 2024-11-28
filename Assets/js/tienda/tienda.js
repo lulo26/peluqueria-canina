@@ -6,8 +6,8 @@ let btnModalProducto = document.getElementById("btnModalProducto");
 fetch(base_url + "/productos/traerProductos")
     .then((res) => res.json())
     .then((data) => { 
-        Object.values(data).forEach((producto) => {
-          console.log(producto.imagen_productos);
+        data = data.data
+        data.forEach((producto) => {
           
             document.getElementById("cardProductos").innerHTML += `<div class="col mb-5">
                         <div class="card h-100">
