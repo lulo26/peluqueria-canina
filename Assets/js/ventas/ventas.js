@@ -1,4 +1,4 @@
-const btnNuevaVenta = document.querySelector('#btnNuevaVenta')
+const btnRegistrar = document.querySelector('#btnRegistrar')
 const btnAgregarItem = document.querySelector('#btnAgregarItem')
 const btnAgregarMetodo = document.querySelector('#btnAgregarMetodo')
 const btnAgregarCliente = document.querySelector('#btnAgregarCliente')
@@ -10,7 +10,9 @@ const metodoPagoZone = document.querySelector('#metodoPagoZone')
 const addClientZone = document.querySelector('#addClientZone')
 let btnAgregarProducto
 let tablaProductos = null
+let tablaClientes = null
 let productItems
+let clientSelected = false
 
 let metodosCount = 0
 let limiteMetodos = 0
@@ -29,6 +31,15 @@ document.addEventListener('focusout', (e)=>{
         }
     }
     
+})
+
+btnRegistrar.addEventListener('click', ()=>{
+    frmData = new FormData(frmVentas)
+    fetch(base_url + '/ventas/setVenta', {
+        method: "POST",
+        body: frmData
+    })
+    .then((res) => console.log(res))
 })
 
 btnAgregarCliente.addEventListener('click', ()=>{
@@ -96,6 +107,11 @@ document.addEventListener('click', (e)=>{
             let codigo =  e.target.closest('button').getAttribute('data-action-sku')
             fntAgregarItem(codigo)
         }
+
+        if (e.target.closest('button').getAttribute('data-action-type') == 'addCliente') {
+            let identidad =  e.target.closest('button').getAttribute('data-action-identidad')
+            fntAgregarCliente(identidad)
+        }
     }catch{}
 })
 
@@ -105,17 +121,18 @@ frmVentas.addEventListener('submit', (e)=>{
 })
 
 function fntAgregarCliente(value){
-    //TODO: crear funcion agregar cliente
+
     fetch(base_url + '/clientes/getClientByIdentification/'+ value)
     .then((res) => res.json())
     .then((data) => {
         if (data.status) {
             data = data.data[0]
             fntAgregarClienteHtml(data)
+            clientSelected = true
         }else{
             txtCliente.value=""
             $('#selectClienteModal').modal('show')
-            //trigger search client function
+            tablaClientes == null ? fntLoadClientesModal() : "" 
         }
     })
 }
@@ -150,7 +167,6 @@ function fntAgregarItem(value){
                     }
                 }else{
                     fntAgregarProducto(data)
-                    fntUpdateInternalItemsList() //Revisar y eliminar
                 }
             }
             txtCodigoSKU.value = "";
@@ -167,13 +183,14 @@ function fntAgregarItem(value){
 function fntAgregarClienteHtml(cliente){
     let html = `
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            <strong>${cliente.nombre}</strong> ${cliente.apellido}
+            <input name="cliente" type="hidden" value="${cliente.identificacion}">
+            <strong>${cliente.nombre}</strong> ${cliente.apellido} | ${cliente.identificacion}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
     `
-    addClientZone.innerHTML = html
+    addClientZone.innerHTML = html   
 }
 
 function fntAgregarProducto(json){
@@ -189,7 +206,7 @@ function fntAgregarProducto(json){
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
+                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input name="producto[]" data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
                 </div>
             </div>
         </div>
@@ -229,6 +246,27 @@ function fntLoadMetodosPago(){
             metodosCount++
         }
     })
+}
+
+function fntLoadClientesModal(){
+    console.log('funcion disparada')
+    tablaClientes = $('#clienteTable').dataTable({
+        "language": {
+            "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
+        },
+        "ajax":{
+            "url": " "+base_url+"/clientes/getClientesSale",
+            "dataSrc":""
+        },
+        "columns":[
+            {"data":"identificacion"},
+            {"data":"nombre"},
+            {"data":"apellido"},
+            {"data":"action"}
+        ],
+        "responsive": "true",
+        "order":[[0, "asc"]]
+    }) 
 }
 
 function fntLoadProductosModal(){

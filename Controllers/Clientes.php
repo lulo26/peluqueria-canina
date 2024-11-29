@@ -60,6 +60,15 @@ class Clientes extends Controllers{
     public function getClientesSale(){
         $clientes = $this->model->selectClientes();
 
+        for ($i=0; $i <count($clientes) ; $i++) { 
+            $clientes[$i]['action'] = "
+
+                <button type='button' class='btn btn-primary btn-circle' id='btnAgregar' data-action-identidad='".$clientes[$i]['identificacion']."' data-action-type='addCliente'>
+                    <i class='fas fa-plus'></i>
+                </button>
+            ";
+        }
+
         echo json_encode($clientes, JSON_UNESCAPED_UNICODE);
         die();
     }

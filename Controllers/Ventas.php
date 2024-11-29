@@ -24,6 +24,13 @@ class Ventas extends Controllers{
         $this->views->getView($this,"ventas", $data);
     }
 
+    public function setVenta(){
+        $documentoCliente = $_POST['cliente'];
+        $productos = $_POST['producto'];
+
+        dep($productos);
+    }
+
     public function getPaymentMethods(){
         try{
             $arrData = $this->model->selectPaymentMethods();

@@ -51,6 +51,7 @@
             <tr>
               <th>Documento</th>
               <th>Nombre</th>
+              <th>Apellido</th>
               <th>Agregar</th>
             </tr>
           </thead>
