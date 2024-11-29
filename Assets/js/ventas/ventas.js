@@ -7,6 +7,7 @@ const txtCliente = document.querySelector('#txtCliente')
 const productList = document.querySelector('#productList')
 const frmVentas = document.querySelector('#frmVentas')
 const metodoPagoZone = document.querySelector('#metodoPagoZone')
+const addClientZone = document.querySelector('#addClientZone')
 let btnAgregarProducto
 let tablaProductos = null
 let productItems
@@ -42,6 +43,12 @@ txtCodigoSKU.addEventListener('keypress', (e) =>{
     if (e.key == 'Enter') {
         value = txtCodigoSKU.value
         fntAgregarItem(value)
+    }
+})
+txtCliente.addEventListener('keypress', (e) =>{
+    if (e.key == 'Enter') {
+        value = txtCliente.value
+        fntAgregarCliente(value)
     }
 })
 
@@ -99,6 +106,18 @@ frmVentas.addEventListener('submit', (e)=>{
 
 function fntAgregarCliente(value){
     //TODO: crear funcion agregar cliente
+    fetch(base_url + '/clientes/getClientByIdentification/'+ value)
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status) {
+            data = data.data[0]
+            fntAgregarClienteHtml(data)
+        }else{
+            txtCliente.value=""
+            $('#selectClienteModal').modal('show')
+            //trigger search client function
+        }
+    })
 }
 
 
@@ -131,7 +150,7 @@ function fntAgregarItem(value){
                     }
                 }else{
                     fntAgregarProducto(data)
-                    fntUpdateInternalItemsList()
+                    fntUpdateInternalItemsList() //Revisar y eliminar
                 }
             }
             txtCodigoSKU.value = "";
@@ -143,6 +162,18 @@ function fntAgregarItem(value){
             }
         }
     })
+}
+
+function fntAgregarClienteHtml(cliente){
+    let html = `
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>${cliente.nombre}</strong> ${cliente.apellido}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    `
+    addClientZone.innerHTML = html
 }
 
 function fntAgregarProducto(json){
