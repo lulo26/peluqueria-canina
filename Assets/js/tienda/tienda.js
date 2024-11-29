@@ -5,8 +5,9 @@ let btnModalProducto = document.getElementById("btnModalProducto");
 //traer los productos
 fetch(base_url + "/productos/traerProductos")
   .then((res) => res.json())
-  .then((data) => {
-    Object.values(data).forEach((producto) => {
+  .then((data) => { 
+    data = data.data
+    data.forEach((producto) => {
       console.log(producto.imagen_productos);
 
       document.getElementById(
