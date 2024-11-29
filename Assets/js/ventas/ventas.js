@@ -99,6 +99,16 @@ frmVentas.addEventListener('submit', (e)=>{
 
 function fntAgregarCliente(value){
     //TODO: crear funcion agregar cliente
+    fetch(base_url + '/clientes/getClientByIdentification/'+ value)
+    .then((res) => res.json())
+    .then((data) => {
+        if (data.status) {
+            data = data.data[0]
+            console.log(data)
+        }else{
+            //disparar modal de busqueda clientes
+        }
+    })
 }
 
 
@@ -131,7 +141,7 @@ function fntAgregarItem(value){
                     }
                 }else{
                     fntAgregarProducto(data)
-                    fntUpdateInternalItemsList()
+                    fntUpdateInternalItemsList() //Revisar y eliminar
                 }
             }
             txtCodigoSKU.value = "";
@@ -143,6 +153,10 @@ function fntAgregarItem(value){
             }
         }
     })
+}
+
+function fntAgregarCliente(json){
+    
 }
 
 function fntAgregarProducto(json){

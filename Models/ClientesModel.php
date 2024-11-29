@@ -6,7 +6,7 @@ class ClientesModel extends Mysql{
     }
 
     public function selectClientes(){
-        $sql="SELECT * FROM clientes where status > 0";
+        $sql="SELECT * FROM clientes where status > 0;";
         $request_select = $this->select_all($sql);
         return $request_select;
     }
