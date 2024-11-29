@@ -109,52 +109,59 @@ class Citas extends Controllers{
         }
         
         if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
+            if ($hora_inicio>=$hora_final) {
+                if (!in_array("exist",$array_repetidos)) {
 
-            if (!in_array("exist",$array_repetidos)) {
-                if ($id_cita === 0 || $id_cita === "") {
-                    $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
+                    if ($id_cita === 0 || $id_cita === "") {
+                        $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
+        
+                        foreach ($_POST['servicios'] as $selected) {
+                            $insertPivote = $this->model->insertarCitaServicios($selected);
+                        }
+        
+                        $action = "insert";
+                        
+                    } else {
     
-                    foreach ($_POST['servicios'] as $selected) {
-                        $insertPivote = $this->model->insertarCitaServicios($selected);
+                        $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
+                        
+                        /* $deletePivote = $this->model->deletePivote($id_cita);
+    
+                        foreach ($_POST['servicios'] as $selected) {
+                            $insertPivote = $this->model->insertarCitaServicios($selected);
+                        } */
+    
+                        $action = "update";
                     }
-    
-                    $action = "insert";
-                    
-                } else {
-
-                    $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
-                    
-                    /* $deletePivote = $this->model->deletePivote($id_cita);
-
-                    foreach ($_POST['servicios'] as $selected) {
-                        $insertPivote = $this->model->insertarCitaServicios($selected);
-                    } */
-
-                    $action = "update";
-                }
-    
-                switch ($action) {
-                    case 'insert':
-                        $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
-                        break;
-                    
-                        case 'update':
-                            $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+        
+                    switch ($action) {
+                        case 'insert':
+                            $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
                             break;
+                        
+                            case 'update':
+                                $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+                                break;
+    
+                        default:
+                            break;
+                    }
 
-                    default:
-                        break;
+                }else {
+                    $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
                 }
+
             }else {
-                $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
+                $arrayResp = array('status'=>false,'msg'=>'Horas incorrectas');
             }
+            
             
             
         }else {
             $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
         }
 
-        echo json_encode($arrayResp, JSON_UNESCAPED_UNICODE);
+        echo json_encode($hora_inicio, JSON_UNESCAPED_UNICODE);
         die();
     }
 
