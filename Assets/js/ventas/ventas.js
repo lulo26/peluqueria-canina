@@ -7,6 +7,7 @@ const txtCliente = document.querySelector('#txtCliente')
 const productList = document.querySelector('#productList')
 const frmVentas = document.querySelector('#frmVentas')
 const metodoPagoZone = document.querySelector('#metodoPagoZone')
+const addClientZone = document.querySelector('#addClientZone')
 let btnAgregarProducto
 let tablaProductos = null
 let productItems
@@ -42,6 +43,12 @@ txtCodigoSKU.addEventListener('keypress', (e) =>{
     if (e.key == 'Enter') {
         value = txtCodigoSKU.value
         fntAgregarItem(value)
+    }
+})
+txtCliente.addEventListener('keypress', (e) =>{
+    if (e.key == 'Enter') {
+        value = txtCliente.value
+        fntAgregarCliente(value)
     }
 })
 
@@ -104,9 +111,11 @@ function fntAgregarCliente(value){
     .then((data) => {
         if (data.status) {
             data = data.data[0]
-            console.log(data)
+            fntAgregarClienteHtml(data)
         }else{
-            //disparar modal de busqueda clientes
+            txtCliente.value=""
+            $('#selectClienteModal').modal('show')
+            //trigger search client function
         }
     })
 }
@@ -155,8 +164,16 @@ function fntAgregarItem(value){
     })
 }
 
-function fntAgregarCliente(json){
-    
+function fntAgregarClienteHtml(cliente){
+    let html = `
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>${cliente.nombre}</strong> ${cliente.apellido}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    `
+    addClientZone.innerHTML = html
 }
 
 function fntAgregarProducto(json){

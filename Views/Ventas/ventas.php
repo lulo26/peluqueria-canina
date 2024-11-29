@@ -35,6 +35,10 @@ getModal('ventasModal', $data);
 
             </div>
 
+            <div class="form-row" id="addClientZone">
+
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-3">
                 <input type="text" placeholder="CODIGO SKU" class="form-control" id="txtCodigoSKU" name="txtCodigoSKU" autocomplete="off">
