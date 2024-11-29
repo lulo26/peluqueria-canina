@@ -2,6 +2,10 @@
 const formularioCitas = document.querySelector('#formularioCitas')
 const insertarCitasModal = document.querySelector('#insertarCitas')
 const btnCrearCita = document.querySelector('#btnCrearCita')
+let dia_cita = document.querySelector('#dia_cita')
+let hora_inicio = document.querySelector('#hora_inicio')
+let hora_final = document.querySelector('#hora_final')
+
 let tablaCitas;
 
 let borrar_servicios = document.querySelector('#borrar_servicios')
@@ -10,6 +14,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     CargarServicios()
     CargarMascotas()
     CargarEmpleados()
+
+    hora_inicio.disabled = true
+    hora_final.disabled = true
 
     function CargarServicios() {
         fetch(base_url + `/citas/getServicios`)
@@ -318,7 +325,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     })
             }
 
-        }catch{
+        }catch {
 
         }
     })
@@ -337,6 +344,15 @@ document.addEventListener('DOMContentLoaded',()=>{
                             </div>
                 `
                 CargarServicios()
+    })
+
+    
+    dia_cita.addEventListener('change',()=>{
+        hora_inicio.disabled= false
+    })
+
+    hora_inicio.addEventListener('change',()=>{
+        hora_final.disabled = false
     })
 
 })
