@@ -21,6 +21,27 @@ getModal('citasModal',$data);
                             </span>
                             
                         </button>
+
+                        <!--REPORTES -->
+                        <button id="btnReportes" type="button" class="btn btn-primary btn-icon-split btn-sm" >
+                            <span class="icon text-white-50">
+                                <i class="fa-solid fa-box-archive"></i>
+                            </span>
+
+                            <a class="text" href="<?php echo base_url() ?>/Libraries/fpdf/citasReportes.php" target="_blank">Reporte</a>
+
+                            <style>
+                                a{
+                                    color: white;
+                                }
+
+                                a:hover{
+                                    text-decoration: none;  
+                                    color: white;
+                                }
+                            </style>
+                            
+                        </button>
                         <?php endif; ?>
                     </h4>
                 </div>
@@ -44,6 +65,7 @@ getModal('citasModal',$data);
                         </table>
                     </div>
                 </div>
+                
 
             </div>
             <!-- Titulo de la pagina -->

@@ -21,12 +21,12 @@
 
                         <div class="form-group">
                             <label for="hora_inicio">Hora inicio</label>
-                            <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" autocomplete="off">
+                            <input type="time" disabled class="form-control" id="hora_inicio" name="hora_inicio" autocomplete="off">
                             <small class="form-text text-muted">Hora inicial de la cita.</small>
                         </div>
                         <div class="form-group">
                             <label for="hora_final">Hora finalización</label>
-                            <input type="time" class="form-control" id="hora_final" name="hora_final" autocomplete="off">
+                            <input type="time" disabled class="form-control" id="hora_final" name="hora_final" autocomplete="off">
                             <small class="form-text text-muted">Hora final de la cita.</small>
                         </div>
                         <div class="form-group">

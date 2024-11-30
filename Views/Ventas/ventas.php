@@ -23,6 +23,12 @@ getModal('ventasModal', $data);
 
         <form id="frmVentas" method="POST">
 
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <button type="submit" id="btnRegistrar" class="btn btn-primary">Registrar</button>
+            </div>
+        </div>
+
             <div class="form-row">
               <div class="form-group col-md-3">
                 <input type="text" placeholder="CLIENTE" class="form-control" id="txtCliente" name="txtCliente" autocomplete="off">
@@ -73,9 +79,6 @@ getModal('ventasModal', $data);
                 </div>
             <div id="metodoPagoZone">
             </div>
-
-      
-        <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
 
 
