@@ -70,6 +70,9 @@
         <script src="<?= media() ?>/vendor/chart.js/Chart.bundle.js"></script>
     <?php endif ?>
 
+    <!--Box Icons-->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
 </body>
 
 </html>

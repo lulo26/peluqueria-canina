@@ -8,7 +8,7 @@ getModal('citasModal',$data);
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <!-- Titulo de la pagina -->
-                    <h4 class="m-0 font-weight-bold  text-primary">
+                    <h4 class="h3 mb-4 font-weight-bold  text-primary">
                         <?= $data['page_title'] ?>
                         <?php if ($_SESSION['permisosMod']['w']) : ?>
                         <button id="btnCrearCita" type="button" class="btn btn-primary btn-icon-split btn-sm" data-toggle="modal" data-target="#insertarCitas">
@@ -17,7 +17,7 @@ getModal('citasModal',$data);
                             </span>
 
                             <span class="text">
-                                Crear Cita
+                                Nuevo
                             </span>
                             
                         </button>
@@ -25,7 +25,7 @@ getModal('citasModal',$data);
                         <!--REPORTES -->
                         <button id="btnReportes" type="button" class="btn btn-primary btn-icon-split btn-sm" >
                             <span class="icon text-white-50">
-                                <i class="fa-solid fa-box-archive"></i>
+                                <i class="fas fa-archive"></i>
                             </span>
 
                             <a class="text" href="<?php echo base_url() ?>/Libraries/fpdf/citasReportes.php" target="_blank">Reporte</a>
