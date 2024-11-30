@@ -15,5 +15,11 @@ class TiendaModel extends Mysql{
         return $request;
     }
 
+    public function selectProductosLimit(){
+        $sql = "SELECT idInventario, nombreProducto, cantidadProducto, precio, codigoSKU, imagen_productos FROM productos WHERE estado = 1 LIMIT 4";
+        $request = $this->select_all($sql);
+        return $request;
+    }
+
 
 }

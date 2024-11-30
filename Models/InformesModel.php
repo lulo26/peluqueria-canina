@@ -6,7 +6,7 @@ class InformesModel extends Mysql{
     }
 
     public function chartGroupRazas(){
-        $sql = "SELECT COUNT(idMascotas) AS total, nombreRaza AS agrupa FROM mascotas INNER JOIN razas_mascota ON idRaza = raza_idraza GROUP BY agrupa DESC;";
+        $sql = "SELECT COUNT(idMascotas) AS total, nombreRaza AS agrupa FROM mascotas INNER JOIN razas_mascota ON idRaza = raza_idraza GROUP BY agrupa;";
         $request = $this->select_all($sql);
         $data = array();
         foreach($request as $row){
