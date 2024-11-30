@@ -27,8 +27,11 @@ class Ventas extends Controllers{
     public function setVenta(){
         $documentoCliente = $_POST['cliente'];
         $productos = $_POST['producto'];
+        $metodoPago = $_POST['metodoPago'];
 
-        dep($productos);
+        $arrTest = array('documento' => $documentoCliente, 'productos' => $productos, 'Metodos' => $metodoPago);
+
+        dep($arrTest);
     }
 
     public function getPaymentMethods(){
