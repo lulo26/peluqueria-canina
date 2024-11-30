@@ -18,21 +18,18 @@ class PDF extends FPDF
       $this->SetTextColor(22, 125, 255);
       $this->Cell(100);
       $this->SetFont('Arial', 'B', 15);
-      $this->Cell(100, 10, utf8_decode("REPORTE DE CITAS"), 0, 1, 'C');
+      $this->Cell(100, 10, utf8_decode("REPORTE DE CLIENTES"), 0, 1, 'C');
       $this->Ln(7);
 
       // Campos de la tabla
-      $this->Cell(30);
+      $this->Cell(60);
       $this->SetFillColor(122, 225, 247);
       $this->SetTextColor(0, 0, 0);
       $this->SetDrawColor(163, 163, 163);
       $this->SetFont('Arial', 'B', 11);
-      $this->Cell(50, 10, utf8_decode('NOMBRE DEL CLIENTE'), 1, 0, 'C', 1);
-      $this->Cell(50, 10, utf8_decode('NOMBRE MASCOTA'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('FECHA'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('HORA INICIO'), 1, 0, 'C', 1);
-      $this->Cell(30, 10, utf8_decode('HORA FINAL'), 1, 0, 'C', 1);
-      $this->Cell(40, 10, utf8_decode('SERVICIOS'), 1, 1, 'C', 1);
+      $this->Cell(60, 10, utf8_decode('NOMBRE DEL CLIENTE'), 1, 0, 'C', 1);
+      $this->Cell(80, 10, utf8_decode('CORREO'), 1, 0, 'C', 1);
+      $this->Cell(30, 10, utf8_decode('TELEFONO'), 1, 1, 'C', 1);
       
    }
 
@@ -85,18 +82,11 @@ $mysql ->connectDB();
 $conn = $mysql->getConnection();
 
 // Realizar la consulta para obtener los datos
-$consulta_info = $conn->query('SELECT CONCAT(clientes.nombre," ",clientes.apellido) as nombre_cliente,
-mascotas.nombreMascota,
-citas.dia_cita,
-citas.hora_inicio,
-citas.hora_final,
-servicios.nombre_servicio
+$consulta_info = $conn->query('SELECT CONCAT(clientes.nombre," ",clientes.apellido) as cliente,
+clientes.correo,
+clientes.telefono
 FROM clientes
-JOIN mascotas on mascotas.clientes_idClientes = clientes.idClientes
-JOIN citas on citas.mascotas_idMascotas = mascotas.idMascotas
-JOIN citas_has_servicios on citas_has_servicios.citas_id_cita = citas.id_cita
-JOIN servicios on servicios.id_servicio = citas_has_servicios.servicios_id_servicio
-where citas.estado_cita = 1');
+WHERE clientes.status > 0 ');
 
 // Generar el PDF
 $pdf = new PDF();
@@ -108,13 +98,10 @@ $pdf->SetDrawColor(163, 163, 163);
 if ($consulta_info && $consulta_info->num_rows > 0) {
     // Crear filas de la tabla con los datos de la consulta
     while ($dato_info = $consulta_info->fetch_object()) {
-        $pdf->Cell(30);
-        $pdf->Cell(50, 10, utf8_decode($dato_info->nombre_cliente), 1, 0, 'C');
-        $pdf->Cell(50, 10, utf8_decode($dato_info->nombreMascota), 1, 0, 'C');
-        $pdf->Cell(30, 10, utf8_decode($dato_info->dia_cita), 1, 0, 'C');
-        $pdf->Cell(30, 10, utf8_decode($dato_info->hora_inicio), 1, 0, 'C');
-        $pdf->Cell(30, 10, utf8_decode($dato_info->hora_final), 1, 0, 'C');
-        $pdf->Cell(40, 10, utf8_decode($dato_info->nombre_servicio), 1, 1, 'C');
+        $pdf->Cell(60);
+        $pdf->Cell(60, 10, utf8_decode($dato_info->cliente), 1, 0, 'C');
+        $pdf->Cell(80, 10, utf8_decode($dato_info->correo), 1, 0, 'C');
+        $pdf->Cell(30, 10, utf8_decode($dato_info->telefono), 1, 1, 'C');
     }
 } else {
     $pdf->Cell(0, 10, 'No se encontraron datos.', 1, 1, 'C');

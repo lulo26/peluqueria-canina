@@ -1,12 +1,12 @@
 <?php
 
 /* --REMOTO  */
-/* const BASE_URL = "http://localhost/peluqueria-canina";
+const BASE_URL = "http://localhost/peluqueria-canina";
 const DB_HOST = "bhgtoc1qausfbocum0f0-mysql.services.clever-cloud.com";
 const DB_NAME = "bhgtoc1qausfbocum0f0";
 const DB_USER = "ujjnxedlzantdocl";
 const DB_PASSWORD = "E0fSQ7TKOq7PAsYPuTPk";
-const DB_PORT = 3306; */
+const DB_PORT = 3306;
 
 /* --DEPLOY  */
 /* const BASE_URL = "http://senatest.free.nf/peluqueria-canina";
@@ -17,13 +17,16 @@ const DB_PASSWORD = "4F0K4FfcW15";
 const DB_PORT = 3306; */
 
 /* --LOCAL   */
-const BASE_URL = "http://localhost/peluqueria-canina";
+/* const BASE_URL = "http://localhost/peluqueria-canina";
 const DB_HOST = "localhost";
 const DB_NAME = "caninofeliz";
 const DB_USER = "root";
 const DB_PASSWORD = ""; 
-const DB_PORT = 3306;
-const DB_CHARSET = "utf8";
+const DB_PORT = 3306; */
+
+
+
+const DB_CHARSET = "utf8"; 
 
 
 //Zona horaria

@@ -49,7 +49,7 @@ class Citas extends Controllers{
 
             if ($_SESSION['permisosMod']['r']) {
                 $btn_view = "
-                <button type='button' class='btn btn-secondary btn-circle' data-action-type='btnView' data-id='".$arrayData[$i]['id_cita']."'>
+                <button type='button' class='btn btn-secondary btn-circle' data-action-type='view' data-id='".$arrayData[$i]['id_cita']."'>
                     <i class='fas fa-info'></i>
                 </button>
                 ";
@@ -86,7 +86,7 @@ class Citas extends Controllers{
         $lugar_cita = strClean($_POST['lugar_cita']);
         $id_mascota  = intval($_POST['id_mascota']);
         $id_empleado = intval($_POST['id_empleado']);
-
+        
         $array_post  = ["dia_cita","hora_inicio","hora_final","lugar_cita","id_mascota","id_empleado"];
 
         $count_post = 0;
@@ -107,9 +107,56 @@ class Citas extends Controllers{
                 }
             }
         }
+
+        if ($id_cita === 0 || $id_cita === "") {
+            $action = "insert";
+        }else {
+            $action= "update";
+        }
+
+        switch ($action) {
+            case 'insert':
+                if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
+
+                    if (!in_array("exist",$array_repetidos)) {
+                           
+                        $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
+            
+                        foreach ($_POST['servicios'] as $selected) {
+                            $insertPivote = $this->model->insertarCitaServicios($selected);
+                        }
+
+                        $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
+    
+                    }else {
+                        $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
+                    }
+
+                }else {
+                    $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+                }
+                break;
+
+            case 'update':
+                if (check_post($array_post) && $id_mascota > 0 && $id_empleado > 0) {
+
+                    $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
+
+                    $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+
+                }else {
+                    $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
+                }
+                break;
+
+            default:
+                break;
+        }
         
-        if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
-            if ($hora_inicio>=$hora_final) {
+        /* if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
+
+            if ($hora_inicio<=$hora_final) {
+                
                 if (!in_array("exist",$array_repetidos)) {
 
                     if ($id_cita === 0 || $id_cita === "") {
@@ -124,13 +171,7 @@ class Citas extends Controllers{
                     } else {
     
                         $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
-                        
-                        /* $deletePivote = $this->model->deletePivote($id_cita);
-    
-                        foreach ($_POST['servicios'] as $selected) {
-                            $insertPivote = $this->model->insertarCitaServicios($selected);
-                        } */
-    
+                    
                         $action = "update";
                     }
         
@@ -139,9 +180,9 @@ class Citas extends Controllers{
                             $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
                             break;
                         
-                            case 'update':
-                                $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
-                                break;
+                        case 'update':
+                            $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+                            break;
     
                         default:
                             break;
@@ -159,9 +200,9 @@ class Citas extends Controllers{
             
         }else {
             $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
-        }
+        } */
 
-        echo json_encode($hora_inicio, JSON_UNESCAPED_UNICODE);
+        echo json_encode($arrayResp, JSON_UNESCAPED_UNICODE);
         die();
     }
 
@@ -170,9 +211,8 @@ class Citas extends Controllers{
         if ($_POST) {
             $id_cita = intval($_POST['id_cita']);
             $requestDelete = $this->model->deleteCitas($id_cita);
-            $deletePivote= $this->model->deletePivote($id_cita);
             
-            if ($requestDelete=='ok' && $deletePivote == "ok") {
+            if ($requestDelete=='ok') {
                 $arrayResponse = array('status' => true, 'msg' => 'Cita eliminada correctamente.');
             }else{
                 $arrayResponse = array('status' => false, 'msg' => 'No se pudo eliminar la cita.');
@@ -183,6 +223,20 @@ class Citas extends Controllers{
             print_r($_POST);
         }
 
+        die();
+    }
+
+    public function ViewCita(int $id_cita){
+        $id_cita = intval($id_cita);
+        $arrayData = $this->model->ViewCita($id_cita);
+
+        if(empty($id_cita)){
+            $arrayResponse = array('status' => false, 'msg' => 'Datos no encontrados');
+        }else{
+            $arrayResponse = array('status' => true, 'data' => $arrayData);
+        }
+        
+        echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
         die();
     }
 
