@@ -69,20 +69,6 @@ class CitasModel extends Mysql{
         return $result;
     }
 
-    public function actCitaServicios(int $id_cita,int $id_servicio){
-
-        $this->id_cita = $id_cita;
-        $this->id_servicio = $id_servicio;
-
-        $sql="UPDATE citas_has_servicios SET servicios_id_servicio = ? WHERE citas_id_cita = ?";
-
-        $arrayData = array($this->id_servicio,$this->id_cita);
-        $request_update = $this->update($sql, $arrayData);
-        $result = $request_update;
-
-        return $result;
-    }
-
     public function deleteCitas(int $id_cita){
         $this->id_cita = $id_cita;
         $sql = "UPDATE citas set estado_cita = ? 
@@ -100,19 +86,6 @@ class CitasModel extends Mysql{
         
     }
 
-    public function deletePivote(int $id_cita){
-        $this->id_cita = $id_cita;
-        $sql = "DELETE FROM citas_has_servicios
-        WHERE citas_id_cita  = {$this->id_cita}";
-
-        $requestDelete = $this->delete($sql);
-
-        if ($requestDelete) {
-            $requestDelete="ok";
-        }
-
-        return $requestDelete;
-    }
 
     public function selectCitas(){
         $sql = 'SELECT id_cita,
@@ -143,6 +116,26 @@ class CitasModel extends Mysql{
 
         $request_select = $this->select_all($sql);
         return $request_select;
+    }
+
+    public function ViewCita(int $id_cita){
+        $sql = 'SELECT CONCAT(clientes.nombre," ",clientes.apellido) as cliente,
+                mascotas.nombreMascota,
+                citas.dia_cita,
+                citas.hora_inicio,
+                citas.hora_final,
+                citas.lugar_cita,
+                CONCAT(personas.nombres," ",personas.apellidos) as empleado
+                FROM citas
+                JOIN mascotas on mascotas.idMascotas = citas.mascotas_idMascotas
+                JOIN clientes on clientes.idClientes = mascotas.clientes_idClientes
+                JOIN personas on personas.id_persona = citas.personas_id_persona
+                JOIN citas_has_servicios on citas_has_servicios.citas_id_cita = citas.id_cita
+                WHERE citas.id_cita = '.$id_cita;
+
+        $request_select = $this->select_all($sql);
+        return $request_select;
+        
     }
 
     public function selectServiciosByID(int $id_cita){

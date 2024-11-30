@@ -11,6 +11,7 @@ getModal('clientesModal',$data);
                 <!-- Titulo de la pagina -->
                 <h4 class="h3 mb-4 font-weight-bold  text-primary">
                     <?= $data['page_title'] ?>
+                    <?php if ($_SESSION['permisosMod']['w']) : ?>
                     <button id="btnCrearCliente" class="btn btn-primary" data-toggle="modal" data-target="#clientesModal">
                         <span>
                             <i class="fas fa-plus"></i>
@@ -20,6 +21,27 @@ getModal('clientesModal',$data);
                         </span>
                     
                     </button>
+
+                    <button id="btnReportes" type="button" class="btn btn-primary btn-icon-split btn-sm" >
+                            <span class="icon text-white-50">
+                                <i class="fa-solid fa-box-archive"></i>
+                            </span>
+ 
+                            <a class="text" href="<?php echo base_url() ?>/Libraries/fpdf/clientesReportes.php" target="_blank">Reporte</a>
+
+                            <style>
+                                a{
+                                    color: white;
+                                }
+
+                                a:hover{
+                                    text-decoration: none;  
+                                    color: white;
+                                }
+                            </style>
+                            
+                        </button>
+                    <?php endif; ?>
                 </h4>
             </div>
             
@@ -28,7 +50,7 @@ getModal('clientesModal',$data);
                     <table id="tablaClientes" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Idenrificacion</th>
+                                <th>Identificacion</th>
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Correo</th>

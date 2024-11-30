@@ -6,6 +6,7 @@ let dia_cita = document.querySelector('#dia_cita')
 let hora_inicio = document.querySelector('#hora_inicio')
 let hora_final = document.querySelector('#hora_final')
 
+let accion = ""
 let tablaCitas;
 
 let borrar_servicios = document.querySelector('#borrar_servicios')
@@ -15,8 +16,13 @@ document.addEventListener('DOMContentLoaded',()=>{
     CargarMascotas()
     CargarEmpleados()
 
-    hora_inicio.disabled = true
-    hora_final.disabled = true
+    const on = (element, event, selector, handler) => {
+        element.addEventListener(event, (e) => {
+          if (e.target.closest(selector)) {
+            handler(e);
+          }
+        });
+      };
 
     function CargarServicios() {
         fetch(base_url + `/citas/getServicios`)
@@ -28,6 +34,34 @@ document.addEventListener('DOMContentLoaded',()=>{
                 opcion.innerText = element.nombre_servicio
                 document.querySelector('#servicio_select').appendChild(opcion)
             });
+        })
+    }
+
+    function CargarServiciosPorID(id) {
+        fetch(base_url + `/citas/getServiciosByID/${id}`,{
+            method: "GET"
+        })
+        .then((res)=>res.json())
+        .then((res)=>{
+            document.querySelector('#tr_servicios').innerHTML=""
+            let ul = document.createElement('ul')
+            let th = document.createElement('th')
+            th.innerText="Servicios:"
+            let servicios = res.data
+            
+                
+                for (let index = 0; index < servicios.length; index++) {
+
+                    let li = document.createElement('li')
+                    li.innerText = servicios[index].nombre_servicio
+                    ul.appendChild(li)
+
+                    
+                    document.querySelector('#tr_servicios').appendChild(th)
+                    document.querySelector('#tr_servicios').appendChild(ul)
+                    
+                }
+
         })
     }
 
@@ -82,7 +116,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
 
     //evento que se dispara cuando en el primer select se selecciona un valor (se habilita el boton de agregar servicios)
-    document.querySelector('#servicio_select').addEventListener('change',()=>{
+    on(document,"change","#servicio_select",(e)=>{
         if (document.querySelector('#servicio_select').value>=1) {
             document.querySelector('#mas_servicios').disabled=false
         }else{
@@ -137,19 +171,10 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     })
 
-    const on = (element, event, selector, handler) => {
-        element.addEventListener(event, (e) => {
-          if (e.target.closest(selector)) {
-            handler(e);
-          }
-        });
-      };
-
-      on(document,"click","#borrar_servicios",(e)=>{
+    on(document,"click","#borrar_servicios",(e)=>{
         e.target.parentNode.parentNode.remove()
-      })
+    })
 
-    
     tablaCitas = $('#tablaCitas').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
@@ -173,13 +198,20 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     formularioCitas.addEventListener('submit',(e)=>{
         e.preventDefault()
-        let select = document.querySelectorAll('select[name="servicios[]"]')
-        for (let index = 0; index < select.length; index++) {
-            if (select[index].value==0) {
-                select[index].removeAttribute("name")
-            }
-        }
 
+        if (accion != "update") {
+            let select = document.querySelectorAll('select[name="servicios[]"]')
+
+            if (select.length> 1) {
+                for (let index = 1; index < select.length; index++) {
+                    if (select[index].value==0) {
+                        select[index].removeAttribute("name")
+                    }
+                }
+            }
+            
+        }
+    
         frmCitas = new FormData(formularioCitas)
         fetch(base_url + '/citas/setCitas',{
             method:"POST",
@@ -219,7 +251,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         formularioCitas.reset()
         $('#insertarCitas').modal('show')
         document.querySelector('#titulo').innerHTML='Agendar cita'
-        
+        hora_inicio.disabled = true
+        hora_final.disabled = true
+
+        let btnAgregarServicios = document.querySelector('#btnAgregarServs')
+        btnAgregarServicios.style.display = btnAgregarServicios.style.display === 'none' ? '' : '';
     })
     
     let id_select = 1
@@ -260,8 +296,11 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
             //actualización clientes
             if (selected == 'update') {
-
+                accion = "update"
                 $('#insertarCitas').modal('show')
+                document.querySelector('#servicio_select').disabled = true
+                document.querySelector('#btnAgregarServs').style.display = "none"
+        
                 document.querySelector('#titulo').innerHTML = "Actualizar cita"
                 fetch(base_url + `/citas/getCitasByID/${id_cita}`,{
                     method: "GET"
@@ -283,7 +322,7 @@ document.addEventListener('DOMContentLoaded',()=>{
                     .then((res)=>res.json())
                     .then((res)=>{
                         document.querySelector("#servicio_select").value=res.data[0].servicios_id_servicio
-                        document.querySelector('#mas_servicios').disabled=false
+
 
                         if (res.data.length>1) {
 
@@ -297,23 +336,13 @@ document.addEventListener('DOMContentLoaded',()=>{
                                 select.setAttribute('class','custom-select')
                                 select.setAttribute('name','servicios[]')
                                 select.setAttribute('id',id_select)
+                                select.disabled = true
                                 select.innerHTML=`
                                 <option value="0" selected>Seleccione un servicio</option>
                                 `
-    
-                                //creamos un div que contiene el boton borrar de cada nuevo select
-                                let div_label = document.createElement('div')
-                                div_label.setAttribute('class',"input-group-prepend")
-                                //lavel para el anterior div
-                                let label = document.createElement('label')
-                                label.setAttribute('class',"input-group-text btn-danger")
-                                label.setAttribute('id',"borrar_servicios")
-                                label.innerText="Borrar"
 
-                                 //juntamos el div que contiene el btn borrar con el div que contiene el select
-                                 div_label.appendChild(label)
+
                                  div.appendChild(select)
-                                 div.appendChild(div_label)
                                  document.querySelector('#select_servicios').appendChild(div)
 
                                  //cargamos funcion que crea las opciones que tiene el nuevo select y le asigna el valor que corresponde al que se guardo en el registro de la cita
@@ -325,6 +354,36 @@ document.addEventListener('DOMContentLoaded',()=>{
                     })
             }
 
+            if (selected == 'view') {
+                let id = e.target.closest('button').getAttribute('data-id')
+
+                fetch(base_url + '/citas/ViewCita/' + id)
+                .then((res)=>res.json())
+                .then((view)=>{
+                    if(view.status){
+                        data = view.data[0]
+
+                        document.querySelector('#cell_nombre_cliente').innerHTML = data.cliente
+                        document.querySelector('#cell_nombre_mascota').innerHTML = data.nombreMascota
+                        document.querySelector('#cell_dia_cita').innerHTML = data.dia_cita
+                        document.querySelector('#cell_hora_inicio').innerHTML = data.hora_inicio
+                        document.querySelector('#cell_hora_final').innerHTML = data.hora_final
+                        document.querySelector('#cell_lugar').innerHTML = data.lugar_cita
+                        document.querySelector('#cell_empleado').innerHTML = data.empleado
+                        CargarServiciosPorID(id)
+
+                        $('#verCitasModal').modal('show')
+                    }else{
+                        Swal.fire({
+                            title: 'Error',
+                            text: view.msg,
+                            icon: 'error'
+                        })
+                    }
+
+                })
+            }
+
         }catch {
 
         }
@@ -332,6 +391,11 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     $('#insertarCitas').on('hidden.bs.modal',function (){
         id_select=1
+        accion = ""
+
+        hora_inicio.disabled = false
+        hora_final.disabled = false
+        document.querySelector('#mas_servicios').disabled=true
 
         document.querySelector('#select_servicios').innerHTML=""
                 document.querySelector('#select_servicios').innerHTML=`
