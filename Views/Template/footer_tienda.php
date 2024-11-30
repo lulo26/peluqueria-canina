@@ -4,7 +4,5 @@
         <script>const base_url = "<?= base_url() ?>";</script>
         <!-- Bootstrap core JS-->
         <script src="<?= media() ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="<?= media() ?>/js/tienda/tienda.js"></script>
     </body>
 </html>

@@ -18,8 +18,14 @@ class Tienda extends Controllers
     }
 
     public function productoTienda($id){
+        $data['page_functions_js'] = "tienda/productoTienda.js";
         $intId = intval(strClean($id));
-        $arrData = $this->model->selectProducto($intId);
+        $data = $this->model->selectProducto($id);
+        $this->views->getView($this, "productoTienda", $data);
+    }
+
+    public function listarProductos(){
+        $arrData = $this->model->selectProductos();
         if (empty($arrData)) {
             $arrResponse = array('status' => false, 'msg' => 'datos no encontrados');
         }else{
@@ -27,6 +33,5 @@ class Tienda extends Controllers
         }
         $data = json_encode($arrResponse, JSON_UNESCAPED_UNICODE);
         echo $data;
-        //$this->views->getView($this, "productoTienda", $data);
     }
 }
