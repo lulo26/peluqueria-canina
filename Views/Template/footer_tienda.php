@@ -1,4 +1,4 @@
-<footer class="py-5 bg-dark">
+<footer class="py-5 bg-blue">
             <div class="container"><p class="m-0 text-center text-white"></p></div>
         </footer>
         <script>const base_url = "<?= base_url() ?>";</script>
