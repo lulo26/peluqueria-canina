@@ -118,19 +118,26 @@ class Citas extends Controllers{
             case 'insert':
                 if (check_post($array_post) && $count_post>0 && $id_mascota > 0 && $id_empleado > 0) {
 
-                    if (!in_array("exist",$array_repetidos)) {
+                    if ($hora_final>$hora_inicio) {
+
+                        if (!in_array("exist",$array_repetidos)) {
                            
-                        $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
-            
-                        foreach ($_POST['servicios'] as $selected) {
-                            $insertPivote = $this->model->insertarCitaServicios($selected);
+                            $requestModel = $this->model->insertarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado);
+                
+                            foreach ($_POST['servicios'] as $selected) {
+                                $insertPivote = $this->model->insertarCitaServicios($selected);
+                            }
+    
+                            $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
+        
+                        }else {
+                            $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
                         }
 
-                        $arrayResp = array('status'=>true,'msg'=>'Cita registrada');
-    
                     }else {
-                        $arrayResp = array('status'=>false,'msg'=>'Seleccionaste dos veces un mismo servicio');
+                        $arrayResp = array('status'=>false,'msg'=>'Horas incorrectas');
                     }
+                    
 
                 }else {
                     $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
@@ -140,9 +147,16 @@ class Citas extends Controllers{
             case 'update':
                 if (check_post($array_post) && $id_mascota > 0 && $id_empleado > 0) {
 
-                    $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
+                    if ($hora_final>$hora_inicio) {
+                        $requestModel = $this->model->actualizarCitas($dia_cita,$hora_inicio,$hora_final,$lugar_cita,$id_mascota,$id_empleado,$id_cita);
 
-                    $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+                        $arrayResp = array('status'=>true,'msg'=>'Cita actualizada');
+
+                    }else {
+                        $arrayResp = array('status'=>false,'msg'=>'Horas incorrectas');
+                    }
+
+                    
 
                 }else {
                     $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
