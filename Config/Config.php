@@ -6,7 +6,7 @@ const DB_HOST = "bhgtoc1qausfbocum0f0-mysql.services.clever-cloud.com";
 const DB_NAME = "bhgtoc1qausfbocum0f0";
 const DB_USER = "ujjnxedlzantdocl";
 const DB_PASSWORD = "E0fSQ7TKOq7PAsYPuTPk";
-const DB_PORT = 3306; 
+const DB_PORT = 3306;
 
 /* --DEPLOY  */
 /* const BASE_URL = "http://senatest.free.nf/peluqueria-canina";
