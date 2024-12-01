@@ -7,10 +7,7 @@ class Mascotas extends Controllers{
         if(empty($_SESSION['login'])){
             header('Location: ' . base_url().'/login' );
         }
-        if (empty($_SESSION['permisosMod']['r'])) {
-            header('Location: ' . base_url() );
-        }
-        //getPermisos(8);
+        getPermisos(M_MASCOTAS);
     }
 
     //Muestra la view principal de citas

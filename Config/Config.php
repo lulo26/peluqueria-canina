@@ -1,6 +1,7 @@
 <?php
 
 /* --REMOTO  */
+
 const BASE_URL = "http://localhost/peluqueria-canina";
 const DB_HOST = "bhgtoc1qausfbocum0f0-mysql.services.clever-cloud.com";
 const DB_NAME = "bhgtoc1qausfbocum0f0";

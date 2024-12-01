@@ -1,147 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php header_tienda($data);
 
-<head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+//$data[''] 
+?>
 
 
-  <title>dsf</title>
+       <!-- Product section-->
+       <section class="py-5" id="productoShow">
+       
 
-  <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css"
-    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+       <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<?= base_url() ?>/<?= $data[0]['imagen_productos'] ?>" alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-1">SKU: <?= $data[0]['codigoSKU'] ?></div>
+                        <h1 class="display-5 fw-bolder"><?= $data[0]['nombreProducto'] ?></h1>
+                        <div class="fs-5 mb-5">
+                            <span>$<?= $data[0]['precio'] ?></span>
+                        </div>
+                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="<?= $data[0]['cantidadProducto'] ?>" style="max-width: 3rem" />
+                            <a href="" class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Add to cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="Assets/css/bootstrap.css" />
+       </section>
+        <!-- Related items section-->
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4">Related products</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="relatedCards">
+                    
+                </div>
+            </div>
+        </section>
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Dosis:400,500|Poppins:400,700&display=swap" rel="stylesheet">
-  <!-- Custom styles for this template -->
-  <link href="Assets/css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="Assets/css/responsive.css" rel="stylesheet" />
-
-  <!-- Haciendo tienda con nuevas librerias!!! -->
-
-  <!-- Google font -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
-
-
-
-
-  <!-- Slick -->
-  <link type="text/css" rel="stylesheet" href="../Assets/css/tienda_css/slick.css" />
-  <link type="text/css" rel="stylesheet" href="../Assets/css/tienda_css/slick-theme.css" />
-
-  <!-- nouislider -->
-  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/nouislider.min.css" />
-
-  <!-- Font Awesome Icon -->
-  <link rel="stylesheet" href="./Assets/css/tienda_css/font-awesome.min.css">
-
-  <!-- Custom stlylesheet -->
-  <link type="text/css" rel="stylesheet" href="./Assets/css/tienda_css/style.css" />
-
-
-
-
-  <!-- Aqui termina la tienda con nuevas librerias!! -->
-<?php
-//  getModal('tiendaModal', $data);
-  ?> 
-</head>
-
-<div class="hero_area">
-  <!-- header section strats -->
-  <header class="header_section">
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-lg custom_nav-container ">
-        <a class="navbar-brand" href="index.html">
-          <img src="Assets/img/home/logo.png" alt="">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <div class="d-flex mx-auto flex-column flex-lg-row align-items-center">
-            <ul class="navbar-nav  ">
-              <li class="nav-item active">
-                <a class="nav-link" href="home">Inicio <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="service.html">Servicios </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="pet.html">Galeria de Mascotas </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="clinic.html"> Clinica</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="tienda">Tienda de Mascotas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="buy.html"> Contactanos!</a>
-              </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-              <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-            </form>
-          </div>
-          <div class="quote_btn-container  d-flex justify-content-center">
-
-            <a href="<?= base_url()  ?>/login">Iniciar Sesion</a>
-
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-
-
-  <body>
-
-  
-
-    <!-- HOT DEAL SECTION -->
-    <div id="hot-deal" class="section">
-      <!-- container -->
-      <div class="container" id="cardnavegante">
-  
-        <div class="row" id="cardProductos">
-        </div>
-
-        <!-- /row -->
-      </div>
-      <!-- /container -->
-    </div>
-    <!-- /HOT DEAL SECTION -->
-
-<div class="row" id="losProductos" width="10%">
-
-</div>
-
-
-
-      <script>
-        const base_url = "<?= base_url() ?>";
-      </script>
-      <!-- jQuery Plugins tienda -->
-      <script src="./Assets/js/tienda_js/jquery.min.js"></script>
-      <script src="./Assets/js/tienda_js/bootstrap.min.js"></script>
-      <script src="./Assets/js/tienda_js/slick.min.js"></script>
-      <script src="./Assets/js/tienda_js/nouislider.min.js"></script>
-      <script src="./Assets/js/tienda_js/jquery.zoom.min.js"></script>
-      <script src="./Assets/js/tienda_js/main.js"></script>
-
-      <!-- Aqui termina -->
-
-
-  </body>
+<?php footer_tienda($data) ?> 
+<script>
+let idProducto = <?php $data['idInventario']; ?> 
+</script>
+<script src="<?= media() ?>/js/tienda/productoTienda.js"></script>
