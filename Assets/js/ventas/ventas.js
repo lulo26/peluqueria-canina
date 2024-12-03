@@ -251,7 +251,6 @@ function fntLoadMetodosPago(){
 }
 
 function fntLoadClientesModal(){
-    console.log('funcion disparada')
     tablaClientes = $('#clienteTable').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
