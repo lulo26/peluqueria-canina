@@ -6,10 +6,7 @@ class Tienda extends Controllers
     {
         parent::__construct();
     }
-    public function tienda()
-    {
-
-
+    public function tienda(){
         $data['page_title'] = "Página Tienda";
         $data['page_name'] = "tienda";
         $data['page_id_name'] = "tienda";

@@ -28,6 +28,7 @@ const M_SERVICIOS = 10;
 const M_PRODUCTOS = 11;
 const M_INVENTARIO = 12;
 const M_CLIENTES = 13;
+const M_CARRITO = 14;
 
 function base_url(){
     return BASE_URL;

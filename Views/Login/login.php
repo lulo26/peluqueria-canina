@@ -79,7 +79,7 @@
                                     <div class="text-center">
                                         <br>
                                         <a href="register" class="btn btn-primary btn-user btn-block ghost">
-                                            Crea una Cuenta Firulais!!
+                                            Crear una cuenta
                                         </a>
                                  
                                     </div>
