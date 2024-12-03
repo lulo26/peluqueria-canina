@@ -17,17 +17,14 @@ const DB_USER = "if0_37732983";
 const DB_PASSWORD = "4F0K4FfcW15";
 const DB_PORT = 3306; */
 
-/* --LOCAL   */
-/* const BASE_URL = "http://localhost/peluqueria-canina";
+/* --LOCAL   
+const BASE_URL = "http://localhost/peluqueria-canina";
 const DB_HOST = "localhost";
 const DB_NAME = "caninofeliz";
 const DB_USER = "root";
 const DB_PASSWORD = ""; 
-const DB_PORT = 3306; */
-
-
-
-const DB_CHARSET = "utf8"; 
+const DB_PORT = 3306;*/
+const DB_CHARSET = "utf8";
 
 
 //Zona horaria

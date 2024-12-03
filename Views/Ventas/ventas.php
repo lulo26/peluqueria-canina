@@ -69,7 +69,7 @@ getModal('ventasModal', $data);
             
                 <div class="form-row">
                     <div class="form-group col-md-3" >
-                        <select name="metodoPago" id="metodoPago0" class="form-control">
+                        <select name="metodoPago[]" id="metodoPago0" class="form-control">
                             <option value="0">Seleccionar Metodo de pago</option>
                         </select>
                     </div>

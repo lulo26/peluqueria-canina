@@ -27,6 +27,8 @@ document.addEventListener('focusout', (e)=>{
             e.target.value = stock
         }
         if (value < 0 || isNaN(value)) {
+            console.log(typeof value)
+            console.log('el valor es: ' + value)
             e.target.value = 1
         }
     }
@@ -76,7 +78,7 @@ btnAgregarMetodo.addEventListener('click', ()=>{
         `
             <div class="form-row" id="formMethod${metodosCount}">
                 <div class="form-group col-md-3" >
-                    <select name="metodoPago" id="metodoPago${metodosCount}" class="form-control">
+                    <select name="metodoPago[]" id="metodoPago${metodosCount}" class="form-control">
                         <option value="0">Seleccionar Metodo de pago</option>
                     </select>
                 </div>
@@ -206,7 +208,7 @@ function fntAgregarProducto(json){
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input name="producto[]" data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
+                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input name="producto['${json.idInventario}']" data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
                 </div>
             </div>
         </div>
@@ -249,7 +251,6 @@ function fntLoadMetodosPago(){
 }
 
 function fntLoadClientesModal(){
-    console.log('funcion disparada')
     tablaClientes = $('#clienteTable').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`

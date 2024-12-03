@@ -13,8 +13,8 @@ class Ventas extends Controllers{
     //Muestra la view principal de ventas
     public function ventas(){
 
-        if (empty($_SESSION['permisosMod']['r'])) {
-            header('Location: ' . base_url() );
+        if (empty($_SESSION['permisosMod']['r'])){
+            header('Location: ' . base_url());
         }
 
         $data['page_title'] = "Ventas";
@@ -27,8 +27,17 @@ class Ventas extends Controllers{
     public function setVenta(){
         $documentoCliente = $_POST['cliente'];
         $productos = $_POST['producto'];
+        $metodoPago = $_POST['metodoPago'];
 
-        dep($productos);
+        $arrTest = array('documento' => $documentoCliente, 'productos' => $productos, 'Metodos' => $metodoPago);
+
+        $arrPost = ['cliente', 'producto', 'metodoPago'];
+
+        if (check_post($arrPost)) {
+            dep($arrTest);
+        }else{
+            echo "nop";
+        }
     }
 
     public function getPaymentMethods(){
