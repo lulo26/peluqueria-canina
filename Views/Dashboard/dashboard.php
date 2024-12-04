@@ -5,11 +5,7 @@
 
         <!-- Titulo de la pagina -->
         <h1 class="h3 mb-4 text-gray-800"><?= $data['page_title'] ?></h1>
-        <?php 
-        dep($_SESSION['userData']);
-        dep($_SESSION['permisos']);
-        dep($_SESSION['permisosMod']);
-        ?>
+        :3
     </div>
     <!-- /.Fin de contenido -->
 
