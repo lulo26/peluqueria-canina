@@ -10,6 +10,10 @@ class Mysql extends Conexion{
         $this->conexion = $this->conexion->conect();        
     }
 
+    public function lastId(){
+        return $this->conexion->insert_id;
+    }
+
     public function insert(string $query, array $arrValues){
         $this->strquery = $query;
         $this->arrValues = $arrValues;

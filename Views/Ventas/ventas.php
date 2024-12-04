@@ -28,6 +28,16 @@ getModal('ventasModal', $data);
                 <button type="submit" id="btnRegistrar" class="btn btn-primary">Registrar</button>
             </div>
         </div>
+        
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <h4>
+                    <span>TOTAL: $</span>
+                    <b><span id="totalBill">0</span></b>
+                    <input name="totalBill" id="totalBillInput" type="hidden" value="0">
+                </h4>
+            </div>
+        </div>
 
             <div class="form-row">
               <div class="form-group col-md-3">
@@ -85,8 +95,36 @@ getModal('ventasModal', $data);
         
     </div>
     </div>
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">
+                Facturas
+            </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="tablaVentas" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Numero Factura</th>
+                            <th>Fecha</th>
+                            <th>Cliente</th>
+                            <th>Empleado</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     
 </div>
+
+
 <!-- /.Fin de contenido -->
 
 

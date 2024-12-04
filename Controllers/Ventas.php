@@ -24,20 +24,78 @@ class Ventas extends Controllers{
         $this->views->getView($this,"ventas", $data);
     }
 
+    public function ultimaVenta($fecha){
+        $ventaId = $this->model->selectLastVentaId($fecha);
+        dep($ventaId['idVentas']);
+    }
+
+    public function getVentas(){
+        $arrData = $this->model->selectVentas();
+
+        echo json_encode($arrData, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+
     public function setVenta(){
-        $documentoCliente = $_POST['cliente'];
-        $productos = $_POST['producto'];
-        $metodoPago = $_POST['metodoPago'];
+        $checkStatus = true;
 
-        $arrTest = array('documento' => $documentoCliente, 'productos' => $productos, 'Metodos' => $metodoPago);
+        $arrPost = ['cliente', 'totalBill'];
 
-        $arrPost = ['cliente', 'producto', 'metodoPago'];
+        if (isset($_POST['producto']) && isset($_POST['metodoPago'])) {
+            foreach ($_POST['producto'] as $key => $value){
+                if (empty($value) || !isset($value)) {
+                    $checkStatus = false;
+                    break;
+                }
+            }
 
-        if (check_post($arrPost)) {
-            dep($arrTest);
+            foreach ($_POST['metodoPago'] as $key => $value){
+                if (empty($value) || !isset($value)) {
+                    $checkStatus = false;
+                    break;
+                }
+            }
         }else{
-            echo "nop";
+            $checkStatus = false;
         }
+
+        if (check_post($arrPost) && $checkStatus) {
+            //OK
+            $intIdCliente = intval(strClean($_POST['cliente']));
+            $productos = $_POST['producto'];
+            $metodoPago = $_POST['metodoPago'];
+            $idUsuario = $_SESSION['userData']['id_persona'];
+            $fecha = date("Y-m-d H:i:s");
+            $intTotal = intval(strClean($_POST['totalBill']));
+            $statusProducts = true;
+            $statusMetodos = true;
+
+            $res = $this->model->insertVenta($fecha, $intTotal, $intIdCliente, $idUsuario);
+
+            if ($res) {
+                $ventaId = $this->model->selectLastVentaId($fecha);
+                $ventaId = intval($ventaId['idVentas']);
+
+                foreach ($productos as $key => $value) {
+                    $key = intval(trim($key, "'"));
+                    $status = $this->model->insertVentaProductos($ventaId, $key, intval($value));
+                }
+
+                foreach ($metodoPago as $key => $value) {
+                    $status = $this->model->insertVentaMetodosPago(intval($value), intval($ventaId));
+                }
+
+                $arrRespuesta = array('status' => true, 'msg' => 'Venta registrada');
+            }else{
+                $arrRespuesta = array('status' => false, 'msg' => 'Problema al registrar la venta');
+            }
+
+        }else{
+            $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos requeridos');
+        }
+
+        echo json_encode($arrRespuesta, JSON_UNESCAPED_UNICODE);
+        die();
     }
 
     public function getPaymentMethods(){

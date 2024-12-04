@@ -8,12 +8,13 @@ const productList = document.querySelector('#productList')
 const frmVentas = document.querySelector('#frmVentas')
 const metodoPagoZone = document.querySelector('#metodoPagoZone')
 const addClientZone = document.querySelector('#addClientZone')
+const totalBill = document.querySelector('#totalBill')
+const totalBillInput = document.querySelector('#totalBillInput')
 let btnAgregarProducto
 let tablaProductos = null
 let tablaClientes = null
 let productItems
 let clientSelected = false
-
 let metodosCount = 0
 let limiteMetodos = 0
 
@@ -26,11 +27,13 @@ document.addEventListener('focusout', (e)=>{
         if (value > stock) {
             e.target.value = stock
         }
-        if (value < 0 || isNaN(value)) {
+        if (value <= 0 || isNaN(value)) {
             console.log(typeof value)
             console.log('el valor es: ' + value)
             e.target.value = 1
         }
+
+        fntUpdateBill()
     }
     
 })
@@ -41,7 +44,24 @@ btnRegistrar.addEventListener('click', ()=>{
         method: "POST",
         body: frmData
     })
-    .then((res) => console.log(res))
+    .then((res) => res.json())
+    .then((data)=>{
+        console.log(data)
+        if (data.status) {
+            Swal.fire({
+                title: "Venta registrada",
+                text: data.msg,
+                icon: "success"
+            }) 
+            window.location.reload() //solucion temporal 
+        }else{
+            Swal.fire({
+                title: "Error",
+                text: data.msg,
+                icon: "error"
+            }) 
+        }
+    })
 })
 
 btnAgregarCliente.addEventListener('click', ()=>{
@@ -56,6 +76,7 @@ txtCodigoSKU.addEventListener('keypress', (e) =>{
     if (e.key == 'Enter') {
         value = txtCodigoSKU.value
         fntAgregarItem(value)
+
     }
 })
 txtCliente.addEventListener('keypress', (e) =>{
@@ -64,6 +85,8 @@ txtCliente.addEventListener('keypress', (e) =>{
         fntAgregarCliente(value)
     }
 })
+
+fntLoadVentas()
 
 btnAgregarMetodo.addEventListener('click', ()=>{
 
@@ -166,9 +189,11 @@ function fntAgregarItem(value){
                         })
                     }else{
                         cantidad[0].value = contador
+                        fntUpdateBill()
                     }
                 }else{
                     fntAgregarProducto(data)
+                    fntUpdateBill()
                 }
             }
             txtCodigoSKU.value = "";
@@ -185,7 +210,7 @@ function fntAgregarItem(value){
 function fntAgregarClienteHtml(cliente){
     let html = `
         <div class="alert alert-primary alert-dismissible fade show" role="alert">
-            <input name="cliente" type="hidden" value="${cliente.identificacion}">
+            <input name="cliente" type="hidden" value="${cliente.idClientes}">
             <strong>${cliente.nombre}</strong> ${cliente.apellido} | ${cliente.identificacion}
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -208,7 +233,7 @@ function fntAgregarProducto(json){
             </div>
             <div class="card-body">
                 <div class="form-row">
-                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input name="producto['${json.idInventario}']" data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
+                    $${json.precio} | disponible: ${json.cantidadProducto} Cantidad: <input name="producto['${json.idInventario}']" data-item-price="${json.precio}" data-item-stock="${json.cantidadProducto}" type="text" class="form-control target-cantidad" value="1"/></div>
                 </div>
             </div>
         </div>
@@ -250,6 +275,24 @@ function fntLoadMetodosPago(){
     })
 }
 
+function fntUpdateBill(){
+    productos = document.querySelectorAll('.product')
+    let node
+    let stock
+    let price
+    let total = 0
+    productos.forEach((el) =>{
+        node = el.children[1].children[0].children[0]
+        stock = node.value
+        price = node.getAttribute('data-item-price')
+        total += stock * price
+    })
+
+    totalBill.innerHTML = total
+    totalBillInput.value = total
+    
+}
+
 function fntLoadClientesModal(){
     tablaClientes = $('#clienteTable').dataTable({
         "language": {
@@ -286,6 +329,28 @@ function fntLoadProductosModal(){
             {"data":"precio"},
             {"data":"cantidadProducto"},
             {"data":"action"}
+        ],
+        "responsive": "true",
+        "order":[[0, "asc"]]
+    }) 
+}
+
+function fntLoadVentas(){
+
+    tablaProductos = $('#tablaVentas').dataTable({
+        "language": {
+            "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
+        },
+        "ajax":{
+            "url": " "+base_url+"/ventas/getVentas",
+            "dataSrc":""
+        },
+        "columns":[
+            {"data":"idVentas"},
+            {"data":"fecha"},
+            {"data":"nombre"},
+            {"data":"nombres"},
+            {"data":"total"}
         ],
         "responsive": "true",
         "order":[[0, "asc"]]
