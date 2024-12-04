@@ -28,8 +28,6 @@ document.addEventListener('focusout', (e)=>{
             e.target.value = stock
         }
         if (value <= 0 || isNaN(value)) {
-            console.log(typeof value)
-            console.log('el valor es: ' + value)
             e.target.value = 1
         }
 
@@ -46,7 +44,6 @@ btnRegistrar.addEventListener('click', ()=>{
     })
     .then((res) => res.json())
     .then((data)=>{
-        console.log(data)
         if (data.status) {
             Swal.fire({
                 title: "Venta registrada",
@@ -121,7 +118,6 @@ document.addEventListener('click', (e)=>{
             element.remove()
         }
         if (e.target.closest('button').getAttribute('data-action-type') == 'deleteMethod') {
-            console.log('eliminar metodo')
             let idMethod = e.target.closest('button').getAttribute('data-action-id')
             let element = document.querySelector(`#formMethod${idMethod}`)
             element.remove()
@@ -200,7 +196,8 @@ function fntAgregarItem(value){
         }else{
             txtCodigoSKU.value = "";
             $('#selectProductModal').modal('show')
-            if (tablaProductos == null) {
+
+            if (tablaProductos == null) {            
                 fntLoadProductosModal()
             }
         }
@@ -314,7 +311,6 @@ function fntLoadClientesModal(){
 }
 
 function fntLoadProductosModal(){
-
     tablaProductos = $('#productTable').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
@@ -337,7 +333,7 @@ function fntLoadProductosModal(){
 
 function fntLoadVentas(){
 
-    tablaProductos = $('#tablaVentas').dataTable({
+    ventasProductos = $('#tablaVentas').dataTable({
         "language": {
             "url": `${base_url}/Assets/vendor/datatables/dataTables_es.json`
         },
