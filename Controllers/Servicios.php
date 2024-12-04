@@ -66,41 +66,48 @@ class Servicios extends Controllers{
 
         if (check_post($arrayPost)) {
 
-            if ($id_servicio == 0 || $id_servicio == "") {
-                $requestModel = $this->model->insertarServicios($nombre, $precio, $descripcion);
-                $action = "insert";
-            }else{
-                $requestModel = $this->model->actualizarServicios($nombre, $precio, $descripcion, $id_servicio);
-                $action = "update";
+            if ($precio>0) {
+
+                if ($id_servicio == 0 || $id_servicio == "") {
+                    $requestModel = $this->model->insertarServicios($nombre, $precio, $descripcion);
+                    $action = "insert";
+                }else{
+                    $requestModel = $this->model->actualizarServicios($nombre, $precio, $descripcion, $id_servicio);
+                    $action = "update";
+                }
+    
+                switch ($action) {
+                    case 'insert':
+                        if (is_numeric($requestModel) && $requestModel>0) {
+                            $arrayResp = array('status'=>true,'msg'=>'Registro completo');
+                        }elseif ($requestModel === "exist") {
+                            $arrayResp = array('status'=>false,'msg'=>'Este servicio ya existe');
+                        } else {
+                            $arrayResp= array('status'=>false,'msg'=>'No se pudo registrar este servicio');
+                        }
+                        break;
+                    
+                    case 'update':
+    
+                        if ($requestModel === true ) {
+                            $arrayResp = array('status'=>true,'msg'=>"Actualización completa");
+    
+                        }elseif ($requestModel === "exist") {
+                            $arrayResp= array('status'=>false,'msg'=>'Este servicio ya existe');
+                        } else{
+                            $arrayResp= array('status'=>false,'msg'=>'No se pudo actualizar este cliente');
+                        }
+                        break;
+    
+                    default:
+                        $arrayResp= array('status'=>false,'msg'=>'Acción no reconocida');
+                        break;
+                }
+
+            }else {
+                $arrayResp = array('status'=>false,'msg'=>'Precio inválido.');
             }
-
-            switch ($action) {
-                case 'insert':
-                    if (is_numeric($requestModel) && $requestModel>0) {
-                        $arrayResp = array('status'=>true,'msg'=>'Registro completo');
-                    }elseif ($requestModel === "exist") {
-                        $arrayResp = array('status'=>false,'msg'=>'Este servicio ya existe');
-                    } else {
-                        $arrayResp= array('status'=>false,'msg'=>'No se pudo registrar este servicio');
-                    }
-                    break;
-                
-                case 'update':
-
-                    if ($requestModel === true ) {
-                        $arrayResp = array('status'=>true,'msg'=>"Actualización completa");
-
-                    }elseif ($requestModel === "exist") {
-                        $arrayResp= array('status'=>false,'msg'=>'Este servicio ya existe');
-                    } else{
-                        $arrayResp= array('status'=>false,'msg'=>'No se pudo actualizar este cliente');
-                    }
-                    break;
-
-                default:
-                    $arrayResp= array('status'=>false,'msg'=>'Acción no reconocida');
-                    break;
-            }
+            
 
         }else {
             $arrayResp = array('status'=>false,'msg'=>'Debe ingresar todos los datos');
