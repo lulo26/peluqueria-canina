@@ -45,11 +45,11 @@
                             <div class="imagen-login"> <center>
                                 
                                 
-                                <img src="Assets/img/dog_pruebaLogin.jpg" alt=""></center></div>
+                                <img src="Assets/img/doggy-login.png" alt="" style="max-width: 80%"></center></div>
                             <div class="col-l6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bienvenido!</h1>
+                                        <h1 class="h2 text-gray-900 mb-4">Bienvenido!</h1>
                                         <p style="color:red;">
                                             usuario: 	<b>web@master.com</b><br>
                                             contraseña: <b>123456</b>

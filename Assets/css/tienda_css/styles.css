@@ -111,18 +111,29 @@ body {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.opacityblue{
+.opacityblue {
   background: rgba(78, 114, 223, 0.301);
 }
 
 .banner {
-  background: linear-gradient(90deg, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 90%), url("banner.jpg"); 
+  background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 1) 10%,
+      rgba(255, 255, 255, 0) 20%,
+      rgba(255, 255, 255, 0) 80%,
+      rgba(255, 255, 255, 1) 90%
+    ),
+    url("banner.jpg");
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;
 }
 
-.bg-blue{
+.carousel-banner{
+  max-height: 10px;
+}
+
+.bg-blue {
   background-color: rgba(78, 114, 223, 1) !important;
 }
 
@@ -134,7 +145,7 @@ hr {
   opacity: 0.25;
 }
 
-.text-spacing{
+.text-spacing {
   letter-spacing: 5px;
 }
 
