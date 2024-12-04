@@ -5,6 +5,7 @@ class Tienda extends Controllers
     public function __construct()
     {
         parent::__construct();
+        session_start();
     }
     public function tienda(){
         $data['page_title'] = "Página Tienda";

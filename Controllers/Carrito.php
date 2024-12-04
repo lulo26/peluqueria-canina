@@ -34,30 +34,19 @@ class Carrito extends Controllers{
     }
 
     public function setProductoCarrito(){
-        $idCliente = intval(strClean($_POST['clientes_idCliente']));
-        $idProducto = intval(strClean($_POST['productos_idProducto']));
-        $cantidad = strClean($_POST['cantidad_carrito']);
-        $idCarrito = strClean($_POST['idCarrito']);
-
+        $idCliente = intval(strClean($_POST['idUsuario']));
+        $idProducto = intval(strClean($_POST['idProducto']));
+        $cantidad = intval(strClean($_POST['cantidadProducto']));
+        echo($idCliente);
+        echo($idProducto);
+        echo($cantidad);
+        $arrPost = ['idUsuario','idProducto','cantidadProducto'];
         
-        $arrPost = ['clientes_idCliente','productos_idProducto','cantidad_carrito'];
         if (check_post($arrPost)) {
-            $requestTruth = $this->model->insertarProdcutoCarrito($idCliente, $idProducto, $cantidad);
-            if ($idCliente == 0 || $idCliente == "" || $requestTruth != "isAdded"){
-                $requestModel = $this->model->insertarProdcutoCarrito($idCliente, $idProducto, $cantidad);
-                $option = 1;
-            } else {
-                $requestModel = $this->model->editarProductoCarrito($idCarrito ,$idCliente, $idProducto, $cantidad);
-                $option = 2;
-            }
-           // echo($option);
-            if($requestModel > 0) {
-                if($option === 1){
+            $requestModel = $this->model->insertarProdcutoCarrito($idCliente, $idProducto, $cantidad);
+            if($requestModel) {
                 $arrRespuesta = array('status' => true, 'msg' => 'Datos guardados correctamente.');
             }
-            }else{
-                $arrRespuesta = array('status' => true, 'msg' => 'Datos actualizados correctamente.');
-                }
         }else{
             $arrRespuesta = array('status' => false, 'msg' => 'Debe ingresar todos los datos');
         }
