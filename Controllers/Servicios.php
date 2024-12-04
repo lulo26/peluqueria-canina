@@ -114,13 +114,22 @@ class Servicios extends Controllers{
 
         if ($_POST) {
             $id_servicio = intval($_POST['id_servicio']);
-            $requestDelete = $this->model->deleteServicio($id_servicio);
+
+            $deleteCitas = $this->model->deleteCitasWithService($id_servicio);
+
+            if ($deleteCitas == "ok") {
+                $requestDelete = $this->model->deleteServicio($id_servicio);
             
-            if ($requestDelete=='ok') {
-                $arrayResponse = array('status' => true, 'msg' => 'Servicio eliminado correctamente.');
-            }else{
-                $arrayResponse = array('status' => true, 'msg' => 'No se pudo eliminar el servicio.');
+                if ($requestDelete=='ok') {
+                    $arrayResponse = array('status' => true, 'msg' => 'Servicio eliminado correctamente.');
+                }else{
+                    $arrayResponse = array('status' => true, 'msg' => 'No se pudo eliminar el servicio.');
+                }
+
+            }else {
+                $arrayResponse = array('status' => true, 'msg' => 'No se pudo eliminar las citas adjuntadas al servicio.');
             }
+            
 
             echo json_encode($arrayResponse, JSON_UNESCAPED_UNICODE);
             
