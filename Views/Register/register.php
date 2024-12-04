@@ -85,7 +85,7 @@
                             <hr>
                            
                             <div class="text-center">
-                                <a class="small" href="login">¿Ya tienes cuenta Firulais?, <br>Que esperas para ingresar!!</a>
+                                <a class="small" href="login">¿Ya tiene una cuenta?, <br>Click aquí para ingresar</a>
                             </div>
                         </div>
                     </div>
