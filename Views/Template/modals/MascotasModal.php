@@ -23,7 +23,7 @@
               <label for="razaMascota">Raza</label>
             <select class="custom-select" aria-label="Default select example" id="razaMascota" name="razaMascota">
             </select>
-            <span class="badge badge-primary mt-3" id="agregarNuevo">agregar nueva raza</span>
+            <span class="badge badge-primary mt-3" id="agregarNuevo">Agregar nueva raza</span>
             </div>
             <style>
               span{

@@ -24,7 +24,7 @@ razaMascota.addEventListener("click", (e)=>{
 //insertar mascota
 btnInsertarMascota.addEventListener("click", (e) => {
   //traigame los datos del select
-  nombreUsuario.innerHTML = `<option value="0" selected hidden>seleccione el dueño</option>`;
+  nombreUsuario.innerHTML = `<option value="0" selected hidden>Seleccione el dueño</option>`;
   fetch(base_url + "/clientes/getClientes")
     .then((res) => res.json())
     .then((data) => {
@@ -147,6 +147,7 @@ document.addEventListener("click", (e) => {
                 }
               });
             });
+            razaMascota.innerHTML = `<option value="0" selected hidden">Seleccione la raza</option>`;
           fetch(base_url + "/razas/getRazas")
             .then((res) => res.json())
             .then((data) => {

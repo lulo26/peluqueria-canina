@@ -19,7 +19,7 @@
             <div class="form-group">
               <label for="sizeMascota">Tamaño</label>
             <select class="custom-select" aria-label="Default select example" id="sizeRaza" name="sizeRaza">
-                <option value="0" selected hidden>seleccione la raza</option>
+                <option value="0" selected hidden>Seleccione el tamaño</option>
                 <option value="pequeno">Pequeño</option>
                 <option value="mediano">Mediano</option>
                 <option value="grande">Grande</option>

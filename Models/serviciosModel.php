@@ -102,4 +102,19 @@ class ServiciosModel extends Mysql{
         return $requestDelete;
     }
 
+    public function deleteCitasWithService(int $id_servicio){
+        $this->id_servicio = $id_servicio;
+        $sql = "DELETE from citas_has_servicios
+        where citas_has_servicios.servicios_id_servicio = $this->id_servicio";
+
+        $requestDelete = $this->delete($sql);
+
+        if ($requestDelete) {
+            $requestDelete =  "ok";
+        }
+
+        return $requestDelete;
+
+    }
+
 }
