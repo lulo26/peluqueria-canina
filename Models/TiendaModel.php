@@ -21,5 +21,4 @@ class TiendaModel extends Mysql{
         return $request;
     }
 
-
 }

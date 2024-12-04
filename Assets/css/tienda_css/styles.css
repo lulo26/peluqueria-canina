@@ -116,7 +116,7 @@ body {
 }
 
 .banner {
-  background: linear-gradient(90deg, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 90%), url("download.webp"); 
+  background: linear-gradient(90deg, rgba(255,255,255,1) 10%, rgba(255,255,255,0) 20%, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 90%), url("banner.jpg"); 
   background-repeat: no-repeat;
   background-size: auto;
   background-position: center;

@@ -28,7 +28,7 @@
                         <a href="<?= base_url() ?>/carrito" class="btn btn-outline-dark" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Cart
-                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                            <!--<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>-->
                         </a>
                     </form>
                     <ul class="navbar-nav me-2 mb-2 mb-lg-0 ms-lg-4">

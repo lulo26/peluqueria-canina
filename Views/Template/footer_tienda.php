@@ -4,7 +4,7 @@
 
         <script>const base_url = "<?= base_url() ?>";</script>
 
-
+        <script src="<?= media() ?>/vendor/sweetAlert2/sweetalert2.all.min.js"></script>
         <!-- Bootstrap core JS-->
         <script src="<?= media() ?>/js/jquery.js"></script>
         <script src="<?= media() ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

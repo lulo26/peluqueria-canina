@@ -1,13 +1,17 @@
 console.log("hello world");
+const idUsuario = document.querySelector("#idUsuario").value
 
+document.addEventListener('DOMContentLoaded', e =>{
+  traerProductos();
+})
 
+//let idPersona = e.target.closest('button').getAttribute('rel')
 //traer los productos
-fetch(base_url + "/carrito/listarCarrito")
+function traerProductos(){
+  fetch(base_url + "/carrito/listarCarrito/" + idUsuario)
   .then((res) => res.json())
   .then((data) => { 
-    data = data.data
     data.forEach((producto) => {
-      console.log(producto)
       document.getElementById("printCart").innerHTML += `<div class="card mb-3" style="max-width: 80%; ">
   <div class="row g-0">
     <div class="col-md-4">
@@ -17,30 +21,45 @@ fetch(base_url + "/carrito/listarCarrito")
       <div class="card-body">
         <h5 class="card-title">${producto.nombreProducto}</h5>
         <p class="card-text">$${producto.precio}</p>
+        ${producto.delete}
       </div>
     </div>
   </div>
 </div>`;
     });
   });
+}
 
-/*<div class="col mb-5">
-        <div class="card h-100">
-            <!-- Product image-->
-            <img class="card-img-top" src="${base_url}/${producto.imagen_productos}" alt="..." width="100" height="100"/>
-            <!-- Product details-->
-            <div class="card-body p-4">
-                <div class="text-center">
-                <!-- Product name-->
-                    <h5 class="fw-bolder">${producto.nombreProducto}</h5>
-                    <!-- Product price-->
-                    ${producto.precio}
-                </div>
-            </div>
-            <!-- Product actions-->
-            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            </div>
-        </div>
-    </div>*/
 
-  /**/
+  document.addEventListener('click', (e)=>{
+    try {
+        let idCarrito = e.target.closest('button').getAttribute('rel')
+        //Eliminar producto
+            Swal.fire({
+                title:"quitar producto del carrito",
+                text:"¿Está seguro que quiere quitar este producto del carrito?",
+                icon: "warning",
+                showDenyButton: true,
+                confirmButtonText: "Sí",
+                denyButtonText: `Cancelar`
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let frmData = new FormData()
+                    frmData.append('idCarrito', idCarrito)
+                    fetch(base_url + '/carrito/eliminarProductoCarrito/',{
+                        method: "POST",
+                        body: frmData,
+                    })
+                    .then((res)=>res.json())
+                    .then((data)=>{
+                        Swal.fire({
+                            title: data.status ? 'Correcto' : 'Error',
+                            text: data.msg,
+                            icon: data.status ? "success" : 'error'
+                        })
+                        location.reload();
+                    })
+                  }
+                });
+              }catch{}
+            })
